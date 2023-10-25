@@ -1,4 +1,53 @@
 return {
+  { "shaunsingh/oxocarbon.nvim" },
+  { "ellisonleao/gruvbox.nvim" },
+  {
+    "tokyonight.nvim",
+    priority = 1000,
+    opts = function()
+      return {
+        style = "moon",
+        transparent = true,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
+        -- on_colors = function(c)
+        -- local hsluv = require("tokyonight.hsluv")
+        -- local function randomColor(color)
+        --   if color ~= "NONE" then
+        --     local hsl = hsluv.hex_to_hsluv(color)
+        --     hsl[1] = math.random(0, 360)
+        --     return hsluv.hsluv_to_hex(hsl)
+        --   end
+        --   return color
+        -- end
+        -- local function set(colors)
+        --   if type(colors) == "table" then
+        --     for k, v in pairs(colors) do
+        --       if type(v) == "string" then
+        --         colors[k] = randomColor(v)
+        --       elseif type(v) == "table" then
+        --         set(v)
+        --       end
+        --     end
+        --   end
+        -- end
+        -- set(c)
+        -- end,
+        on_highlights = function(hl, c)
+          hl.CursorLineNr = { fg = c.orange, bold = true }
+          hl.CursorLine = { bg = "#1e1c2a" }
+          -- hl.LineNr = { fg = c.orange, bold = true }
+          hl.LineNrAbove = { fg = c.fg_gutter }
+          hl.LineNrBelow = { fg = c.fg_gutter }
+          hl.TreesitterContext = { bg = "none" }
+          hl.NeoTreeFileName = { fg = "white" }
+          hl.NeoTreeGitModified = { fg = c.orange }
+        end,
+      }
+    end,
+  },
   {
     "rose-pine/neovim",
     lazy = false,
@@ -31,7 +80,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine",
+      colorscheme = "tokyonight",
     },
   },
   {
