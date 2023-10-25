@@ -44,6 +44,7 @@ return {
           hl.TreesitterContext = { bg = "none" }
           hl.NeoTreeFileName = { fg = "white" }
           hl.NeoTreeGitModified = { fg = c.orange }
+          hl.DiagnosticUnnecessary = { fg = "#918fbb" } -- unused variables etc
         end,
       }
     end,
