@@ -51,7 +51,6 @@ return {
   },
   {
     "rose-pine/neovim",
-    lazy = false,
     name = "rose-pine",
     opts = {
       variant = "auto",
@@ -77,6 +76,25 @@ return {
         GitSignsDelete = { fg = "rose", bg = "none" },
       },
     },
+  },
+  {
+    "projekt0n/github-nvim-theme",
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      require("github-theme").setup({
+
+        options = {
+          transparent = true,
+          darken = { -- Darken floating windows and sidebar-like windows
+            floats = true,
+            sidebars = {
+              enabled = true,
+              list = {}, -- Apply dark background to specific windows
+            },
+          },
+        },
+      })
+    end,
   },
   {
     "LazyVim/LazyVim",
