@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
-local config = {}
 local act = wezterm.action
+local config = {}
 
 -- use config builder if possible
 if wezterm.config_builder then
@@ -26,9 +26,9 @@ config.window_background_opacity = 0.6
 -- config.window_padding = { left = 10, right = 10, top = 5, bottom = 0 }
 config.macos_window_background_blur = 5
 config.line_height = 1.10
+config.cell_width = 0.95
 config.adjust_window_size_when_changing_font_size = false
 
--- check if below make a difference?
 config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 config.cursor_blink_ease_in = "Constant"
@@ -124,7 +124,7 @@ config.key_tables = {
 -- Tab bar
 -- I don't like the look of "fancy" tab bar
 config.status_update_interval = 1000
-config.tab_bar_at_bottom = false
+config.tab_bar_at_bottom = true
 wezterm.on("update-status", function(window, pane)
 	-- Workspace name
 	local stat = window:active_workspace()
@@ -177,5 +177,4 @@ wezterm.on("update-status", function(window, pane)
 		{ Text = "  " },
 	}))
 end)
-
 return config
