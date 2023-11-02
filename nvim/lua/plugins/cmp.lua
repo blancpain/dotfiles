@@ -28,7 +28,7 @@ return {
             return not string_ctx and not comment_ctx
           end
         end
-        if source.name == "nvim_lsp:lua_ls" then
+        if source.name == "nvim_lsp" then
           source.option = { use_show_condition = true }
           source.entry_filter = function()
             local context = require("cmp.config.context")

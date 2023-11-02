@@ -1,6 +1,25 @@
+-- nightlfy settings
+local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "nightfly",
+  callback = function()
+    vim.api.nvim_set_hl(0, "WinBar", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+  end,
+  group = custom_highlight,
+})
+vim.g.nightflyTransparent = true
+-- end of nightfly settings
 return {
-  { "shaunsingh/oxocarbon.nvim" },
-  { "ellisonleao/gruvbox.nvim" },
+  {
+    "bluz71/vim-nightfly-colors",
+    name = "nightfly",
+    lazy = false,
+    priority = 1000,
+  },
+  { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
+  { "ofirgall/ofirkai.nvim" },
+  { "cpea2506/one_monokai.nvim" },
   {
     "tokyonight.nvim",
     priority = 1000,
@@ -84,7 +103,7 @@ return {
       require("github-theme").setup({
 
         options = {
-          transparent = true,
+          transparent = false,
           darken = { -- Darken floating windows and sidebar-like windows
             floats = true,
             sidebars = {
@@ -99,7 +118,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "nightfly",
     },
   },
   {
