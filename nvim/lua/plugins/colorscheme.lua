@@ -115,6 +115,9 @@ return {
       })
     end,
   },
+  { "Yazeed1s/oh-lucy.nvim" },
+  { "embark-theme/vim" },
+  { "NLKNguyen/papercolor-theme" },
   {
     "LazyVim/LazyVim",
     opts = {
