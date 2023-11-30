@@ -18,8 +18,19 @@ return {
     priority = 1000,
   },
   { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
-  { "ofirgall/ofirkai.nvim" },
+  {
+    "ofirgall/ofirkai.nvim",
+  },
   { "cpea2506/one_monokai.nvim" },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      flavour = "mocha",
+      transparent_background = true,
+    },
+  },
   {
     "tokyonight.nvim",
     priority = 1000,
@@ -121,7 +132,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "catppuccin",
     },
   },
   {
