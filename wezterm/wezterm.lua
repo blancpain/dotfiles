@@ -37,7 +37,7 @@ config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 
 config.underline_thickness = 3
-config.underline_position = -6
+config.underline_position = -8
 
 -- Keys
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
