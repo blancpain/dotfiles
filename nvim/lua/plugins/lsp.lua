@@ -6,6 +6,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "emmet-language-server",
         "prisma-language-server",
+        "vue-language-server",
       })
     end,
   },

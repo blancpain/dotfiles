@@ -23,6 +23,7 @@ return {
         "css",
         "scss",
         "yaml",
+        "vue",
       })
     end,
   },

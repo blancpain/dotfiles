@@ -23,6 +23,22 @@ return {
   },
   { "cpea2506/one_monokai.nvim" },
   {
+    "rebelot/kanagawa.nvim",
+    opts = {
+      transparent = true,
+      theme = "wave",
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none",
+            },
+          },
+        },
+      },
+    },
+  },
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
@@ -177,7 +193,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = "kanagawa",
     },
   },
   {
