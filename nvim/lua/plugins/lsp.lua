@@ -1,3 +1,5 @@
+local util = require("lspconfig.util")
+
 return {
   -- tools
   {
@@ -9,5 +11,19 @@ return {
         "vue-language-server",
       })
     end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        volar = {
+          filetypes = {
+            "typescript",
+            "vue",
+          },
+          root_dir = util.root_pattern("src/App.vue"),
+        },
+      },
+    },
   },
 }
