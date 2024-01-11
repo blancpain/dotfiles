@@ -15,6 +15,13 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      capabilities = {
+        workspace = {
+          didChangeWatchedFiles = {
+            dynamicRegistration = true, -- to fix having to restart lsp when adding/removing files
+          },
+        },
+      },
       servers = {
         volar = {
           filetypes = {
@@ -22,6 +29,19 @@ return {
             "vue",
           },
           root_dir = util.root_pattern("src/App.vue"),
+          languageFeatures = {
+            implementation = true,
+            references = true,
+            definition = true,
+            typeDefinition = true,
+            callHierarchy = true,
+            hover = true,
+            rename = true,
+            renameFileRefactoring = true,
+            signatureHelp = true,
+            codeAction = true,
+            workspaceSymbol = true,
+          },
         },
       },
     },

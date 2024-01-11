@@ -32,8 +32,8 @@ config.line_height = 1.10
 config.cell_width = 0.95
 config.adjust_window_size_when_changing_font_size = false
 
-config.front_end = "WebGpu"
-config.webgpu_power_preference = "HighPerformance"
+-- config.front_end = "WebGpu"
+-- config.webgpu_power_preference = "HighPerformance"
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 
