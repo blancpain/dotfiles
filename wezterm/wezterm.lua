@@ -9,10 +9,10 @@ end
 
 -- Settings
 config.window_decorations = "RESIZE"
-config.font_size = 18.5
+config.font_size = 19
 config.hide_tab_bar_if_only_one_tab = true
 config.font = wezterm.font_with_fallback({
-	{ family = "FiraCode Nerd Font", weight = 400, scale = 0.8 },
+	{ family = "FiraCode Nerd Font", weight = 450, scale = 0.8 },
 })
 config.use_fancy_tab_bar = false
 -- config.color_scheme = "Rosé Pine (base16)"
