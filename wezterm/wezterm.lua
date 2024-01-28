@@ -22,12 +22,13 @@ config.use_fancy_tab_bar = false
 -- config.color_scheme = "Gruvbox dark, hard (base16)"
 -- config.color_scheme = "Builtin Dark"
 -- config.color_scheme = "tokyonight"
-config.color_scheme = "kanagawabones"
+-- config.color_scheme = "kanagawabones"
+config.color_scheme = "Windows 10 (base16)"
 -- config.color_scheme = "deep"
 -- config.color_scheme = "carbonfox"
 config.window_background_opacity = 0.98
--- config.window_padding = { left = 10, right = 10, top = 5, bottom = 0 }
 config.macos_window_background_blur = 5
+-- config.window_padding = { left = 10, right = 10, top = 5, bottom = 0 }
 config.line_height = 1.10
 config.cell_width = 0.95
 config.adjust_window_size_when_changing_font_size = false
