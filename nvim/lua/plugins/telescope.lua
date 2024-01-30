@@ -8,10 +8,6 @@ return {
     --     winblend = 0,
     --   },
     -- add some mappings
-    keys = {
-      -- disable the keymap to grep files
-      { "<leader>/", false },
-    },
     defaults = {
       mappings = {
         i = {
@@ -24,5 +20,9 @@ return {
         },
       },
     },
+  },
+  keys = {
+    -- disable the keymap to grep files
+    { "<leader>/", false },
   },
 }

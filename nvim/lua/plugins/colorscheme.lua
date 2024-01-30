@@ -1,27 +1,16 @@
 -- custom nightlfy settings
-local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "nightfly",
-  callback = function()
-    vim.api.nvim_set_hl(0, "WinBar", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-  end,
-  group = custom_highlight,
-})
-vim.g.nightflyTransparent = true
+-- local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--   pattern = "nightfly",
+--   callback = function()
+--     vim.api.nvim_set_hl(0, "WinBar", { bg = "none" })
+--     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+--   end,
+--   group = custom_highlight,
+-- })
+-- vim.g.nightflyTransparent = true
 
 return {
-  -- {
-  --   "bluz71/vim-nightfly-colors",
-  --   name = "nightfly",
-  --   lazy = false,
-  --   priority = 1000,
-  -- },
-  -- { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
-  -- {
-  --   "ofirgall/ofirkai.nvim",
-  -- },
-  -- { "cpea2506/one_monokai.nvim" },
   {
     "rebelot/kanagawa.nvim",
     opts = {
@@ -104,29 +93,9 @@ return {
           sidebars = "transparent",
           floats = "transparent",
         },
-        -- on_colors = function(c)
-        -- local hsluv = require("tokyonight.hsluv")
-        -- local function randomColor(color)
-        --   if color ~= "NONE" then
-        --     local hsl = hsluv.hex_to_hsluv(color)
-        --     hsl[1] = math.random(0, 360)
-        --     return hsluv.hsluv_to_hex(hsl)
-        --   end
-        --   return color
-        -- end
-        -- local function set(colors)
-        --   if type(colors) == "table" then
-        --     for k, v in pairs(colors) do
-        --       if type(v) == "string" then
-        --         colors[k] = randomColor(v)
-        --       elseif type(v) == "table" then
-        --         set(v)
-        --       end
-        --     end
-        --   end
-        -- end
-        -- set(c)
-        -- end,
+        on_colors = function(colors)
+          colors.bg_statusline = colors.none -- transparent lualine/navic/
+        end,
         on_highlights = function(hl, c)
           hl.CursorLineNr = { fg = c.orange, bold = true }
           hl.CursorLine = { bg = "#1e1c2a" }
@@ -141,6 +110,23 @@ return {
       }
     end,
   },
+  {
+    "craftzdog/solarized-osaka.nvim",
+    lazy = true,
+    priority = 1000,
+    opts = function()
+      return {
+        transparent = true,
+      }
+    end,
+  },
+  -- {
+  --   "cpea2506/one_monokai.nvim",
+  --   opts = {
+  --     transparent = true,
+  --     italics = true,
+  --   },
+  -- },
   {
     "rose-pine/neovim",
     name = "rose-pine",
@@ -169,32 +155,10 @@ return {
       },
     },
   },
-  -- {
-  --   "projekt0n/github-nvim-theme",
-  --   priority = 1000, -- make sure to load this before all the other start plugins
-  --   config = function()
-  --     require("github-theme").setup({
-  --
-  --       options = {
-  --         transparent = false,
-  --         darken = { -- Darken floating windows and sidebar-like windows
-  --           floats = true,
-  --           sidebars = {
-  --             enabled = true,
-  --             list = {}, -- Apply dark background to specific windows
-  --           },
-  --         },
-  --       },
-  --     })
-  --   end,
-  -- },
-  -- { "Yazeed1s/oh-lucy.nvim" },
-  -- { "embark-theme/vim" },
-  -- { "NLKNguyen/papercolor-theme" },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa",
+      colorscheme = "tokyonight",
     },
   },
   {

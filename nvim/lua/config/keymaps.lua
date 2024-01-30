@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<C-i>", "<C-i>", { silent = true, noremap = true }) -- needed as sometimes overlaps w/ Tab
+vim.keymap.set("n", "<C-i>", "<C-i>", opts) -- needed as sometimes overlaps w/ Tab
 
 -- write file - remove unused keymaps first
 vim.api.nvim_del_keymap("n", "<leader>ww")
@@ -29,3 +29,11 @@ vim.keymap.set("v", "<C-j>", ":MoveBlock(1)<cr>", { silent = true })
 vim.keymap.set("v", "<C-k>", ":MoveBlock(-1)<cr>", { silent = true })
 
 vim.keymap.set("x", "p", [["_dP]], opts) -- keep copied/deleted in register
+
+-- moving to beginning/end of line
+vim.keymap.set({ "n", "o", "x" }, "<s-h>", "^", opts)
+vim.keymap.set({ "n", "o", "x" }, "<s-l>", "g_", opts)
+
+-- tailwind bearable to work with
+vim.keymap.set({ "n", "x" }, "j", "gj", opts)
+vim.keymap.set({ "n", "x" }, "k", "gk", opts)

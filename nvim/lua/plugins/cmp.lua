@@ -24,10 +24,6 @@ return {
         event = "InsertEnter",
       },
       {
-        "hrsh7th/cmp-path",
-        event = "InsertEnter",
-      },
-      {
         "hrsh7th/cmp-cmdline",
         event = "InsertEnter",
       },
@@ -110,10 +106,12 @@ return {
           end
         end, { "i", "s" }),
 
-        -- change some defauly keymaps
+        -- change some default keymaps
         ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
       })
+
+      opts.experimental.ghost_text = false
     end,
   },
 
