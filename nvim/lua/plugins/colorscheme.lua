@@ -1,15 +1,3 @@
--- custom nightlfy settings
--- local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
--- vim.api.nvim_create_autocmd("ColorScheme", {
---   pattern = "nightfly",
---   callback = function()
---     vim.api.nvim_set_hl(0, "WinBar", { bg = "none" })
---     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
---   end,
---   group = custom_highlight,
--- })
--- vim.g.nightflyTransparent = true
-
 return {
   {
     "rebelot/kanagawa.nvim",
@@ -50,6 +38,40 @@ return {
         types = {},
         operators = {},
       },
+      custom_highlights = function(colors)
+        return {
+          TreeSitterContextBottom = { fg = colors.none },
+          CursorLine = { bg = "none" },
+          NavicText = { bg = colors.none, fg = colors.flamingo },
+          NavicSeparator = { bg = colors.none },
+          NavicIconsKey = { bg = colors.none },
+          NavicIconsEnum = { bg = colors.none },
+          NavicIconsFile = { bg = colors.none },
+          NavicIconsNull = { bg = colors.none },
+          NavicIconsArray = { bg = colors.none },
+          NavicIconsClass = { bg = colors.none },
+          NavicIconsEvent = { bg = colors.none },
+          NavicIconsField = { bg = colors.none },
+          NavicIconsMethod = { bg = colors.none },
+          NavicIconsModule = { bg = colors.none },
+          NavicIconsNumber = { bg = colors.none },
+          NavicIconsObject = { bg = colors.none },
+          NavicIconsString = { bg = colors.none },
+          NavicIconsStruct = { bg = colors.none },
+          NavicIconsBoolean = { bg = colors.none },
+          NavicIconsPackage = { bg = colors.none },
+          NavicIconsConstant = { bg = colors.none },
+          NavicIconsFunction = { bg = colors.none },
+          NavicIconsOperator = { bg = colors.none },
+          NavicIconsProperty = { bg = colors.none },
+          NavicIconsVariable = { bg = colors.none },
+          NavicIconsInterface = { bg = colors.none },
+          NavicIconsNamespace = { bg = colors.none },
+          NavicIconsEnumMember = { bg = colors.none },
+          NavicIconsConstructor = { bg = colors.none },
+          NavicIconsTypeParameter = { bg = colors.none },
+        }
+      end,
       color_overrides = {
         mocha = {
           rosewater = "#efc9c2",
@@ -120,13 +142,6 @@ return {
       }
     end,
   },
-  -- {
-  --   "cpea2506/one_monokai.nvim",
-  --   opts = {
-  --     transparent = true,
-  --     italics = true,
-  --   },
-  -- },
   {
     "rose-pine/neovim",
     name = "rose-pine",
@@ -158,13 +173,13 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "catppuccin",
     },
   },
-  {
-    "nvim-notify",
-    opts = {
-      background_colour = "#000000",
-    },
-  },
+  -- {
+  --   "nvim-notify",
+  --   opts = {
+  --     background_colour = "#000000",
+  --   },
+  -- },
 }

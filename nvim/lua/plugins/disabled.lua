@@ -4,4 +4,5 @@ return {
     "hrsh7th/cmp-path",
     enabled = false,
   },
+  { "rcarriga/nvim-notify", enabled = false },
 }
