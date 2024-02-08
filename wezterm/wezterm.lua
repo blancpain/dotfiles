@@ -14,8 +14,8 @@ config.font = wezterm.font_with_fallback({
 })
 --config.color_scheme = "Windows 10 (base16)"
 config.color_scheme = "Catppuccin Mocha"
-config.window_background_opacity = 0.15
-config.macos_window_background_blur = 70
+config.window_background_opacity = 1
+config.macos_window_background_blur = 30
 config.window_padding = { left = 10, right = 10, top = 5, bottom = 0 }
 config.line_height = 1.10
 config.cell_width = 0.95
