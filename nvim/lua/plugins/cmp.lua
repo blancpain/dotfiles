@@ -48,7 +48,8 @@ return {
       local luasnip = require("luasnip")
       require("luasnip.loaders.from_vscode").lazy_load()
 
-      -- below screws up neotab
+      -- NOTE: below screws up neotab
+
       -- local has_words_before = function()
       --   unpack = unpack or table.unpack
       --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))

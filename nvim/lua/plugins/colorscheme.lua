@@ -40,8 +40,8 @@ return {
       },
       custom_highlights = function(colors)
         return {
-          TreeSitterContextBottom = { fg = colors.none },
           CursorLine = { bg = "none" },
+          TreeSitterContextBottom = { fg = "none" },
           NavicText = { bg = colors.none, fg = colors.flamingo },
           NavicSeparator = { bg = colors.none },
           NavicIconsKey = { bg = colors.none },
@@ -70,6 +70,7 @@ return {
           NavicIconsEnumMember = { bg = colors.none },
           NavicIconsConstructor = { bg = colors.none },
           NavicIconsTypeParameter = { bg = colors.none },
+          DapStoppedLine = { bg = "#1e1e2e" },
         }
       end,
       color_overrides = {
