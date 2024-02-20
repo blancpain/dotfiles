@@ -1,2 +1,4 @@
 .tmux/
 .tmux.conf
+last
+tmux_resurrect*
