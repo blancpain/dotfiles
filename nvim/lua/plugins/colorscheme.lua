@@ -163,9 +163,7 @@ return {
   },
   {
     "navarasu/onedark.nvim",
-    lazy = false,
     opts = {
-      -- Main options --
       style = "deep", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
       transparent = true, -- Show/hide background
       term_colors = true, -- Change terminal color as per the selected theme style
@@ -191,6 +189,7 @@ return {
         WinBarNC = { bg = "none" },
         DapStoppedLine = { bg = "#1e1e2e" },
         DiagnosticWarn = { bg = "#1e1e2e" },
+        CursorLine = { bg = "none" },
       },
 
       -- Plugins Config --
