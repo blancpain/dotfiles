@@ -40,8 +40,8 @@ return {
       },
       custom_highlights = function(colors)
         return {
-          CursorLine = { bg = "none" },
-          TreeSitterContextBottom = { fg = "none" },
+          CursorLine = { bg = colors.none },
+          TreeSitterContextBottom = { fg = colors.none },
           NavicText = { bg = colors.none, fg = colors.flamingo },
           NavicSeparator = { bg = colors.none },
           NavicIconsKey = { bg = colors.none },
@@ -134,16 +134,6 @@ return {
     end,
   },
   {
-    "craftzdog/solarized-osaka.nvim",
-    lazy = true,
-    priority = 1000,
-    opts = function()
-      return {
-        transparent = true,
-      }
-    end,
-  },
-  {
     "rose-pine/neovim",
     name = "rose-pine",
     opts = {
@@ -172,15 +162,60 @@ return {
     },
   },
   {
-    "LazyVim/LazyVim",
+    "navarasu/onedark.nvim",
+    lazy = false,
     opts = {
-      colorscheme = "catppuccin",
+      -- Main options --
+      style = "deep", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+      transparent = true, -- Show/hide background
+      term_colors = true, -- Change terminal color as per the selected theme style
+      cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
+
+      code_style = {
+        comments = "none",
+        keywords = "none",
+        functions = "none",
+        strings = "none",
+        variables = "none",
+      },
+
+      lualine = {
+        transparent = true, -- lualine center bar transparency
+      },
+
+      colors = {},
+      highlights = {
+        StatusLine = { bg = "none" },
+        NormalFloat = { bg = "none" },
+        WinBar = { bg = "none" },
+        WinBarNC = { bg = "none" },
+        DapStoppedLine = { bg = "#1e1e2e" },
+        DiagnosticWarn = { bg = "#1e1e2e" },
+      },
+
+      -- Plugins Config --
+      diagnostics = {
+        darker = true, -- darker colors for diagnostic
+        undercurl = true, -- use undercurl instead of underline for diagnostics
+        background = false, -- use background color for virtual text
+      },
     },
   },
   -- {
-  --   "nvim-notify",
-  --   opts = {
-  --     background_colour = "#000000",
-  --   },
+  --   "neanias/everforest-nvim",
+  --   version = false,
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require("everforest").setup({
+  --       transparent_background_level = 0,
+  --     })
+  --   end,
   -- },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "onedark",
+    },
+  },
 }
