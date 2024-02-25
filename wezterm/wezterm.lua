@@ -13,10 +13,13 @@ config.font = wezterm.font_with_fallback({
 	-- { family = "JetBrains Mono", weight = 500, scale = 0.75 },
 	-- { family = "MesloLGM Nerd Font", weight = 600, scale = 0.80 },
 })
---config.color_scheme = "Windows 10 (base16)"
-config.color_scheme = "Catppuccin Mocha"
-config.window_background_opacity = 1.0
-config.macos_window_background_blur = 30
+-- config.color_scheme = "Windows 10 (base16)"
+config.color_scheme = "One Half Black (Gogh)"
+-- config.color_scheme = "Catppuccin Mocha"
+-- config.color_scheme = "Tokyo Night"
+-- config.color_scheme = "Solarized Dark Higher Contrast"
+config.window_background_opacity = 0.79
+config.macos_window_background_blur = 50
 config.window_padding = { left = 5, right = 5, top = 10, bottom = 0 }
 config.line_height = 1.10
 config.cell_width = 0.95
