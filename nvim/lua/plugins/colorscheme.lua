@@ -10,10 +10,19 @@ return {
             ui = {
               bg_gutter = "none",
               bg_p1 = "none", --lualine
+              float = "none",
             },
           },
         },
       },
+      overrides = function(colors)
+        return {
+          -- Assign a static color to strings
+          -- String = { fg = colors.palette.carpYellow, italic = true },
+          -- theme colors will update dynamically when you change theme!
+          CodeBlock = { bg = "#1a1c2a" },
+        }
+      end,
     },
   },
   {
@@ -190,6 +199,7 @@ return {
         DapStoppedLine = { bg = "#1e1e2e" },
         DiagnosticWarn = { bg = "#1e1e2e" },
         CursorLine = { bg = "none" },
+        CodeBlock = { bg = "#1a1c2a" },
       },
 
       -- Plugins Config --
