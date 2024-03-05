@@ -180,7 +180,7 @@ return {
 
       code_style = {
         comments = "none",
-        keywords = "none",
+        keywords = "bold",
         functions = "none",
         strings = "none",
         variables = "none",
@@ -199,7 +199,9 @@ return {
         DapStoppedLine = { bg = "#1e1e2e" },
         DiagnosticWarn = { bg = "#1e1e2e" },
         CursorLine = { bg = "none" },
-        CodeBlock = { bg = "#1a1c2a" },
+        CodeBlock = { bg = "#1e1e2e" },
+        MatchParen = { bg = "none", fg = "#f7768e" },
+        FloatBorder = { bg = "none" },
       },
 
       -- Plugins Config --
