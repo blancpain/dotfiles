@@ -3,12 +3,12 @@ return {
   opts = {
     window = {
       backdrop = 0.95,
-      width = 100, -- width of the Zen window
+      width = 80, -- width of the Zen window
       height = 1, -- height of the Zen window
       options = {
         signcolumn = "no", -- disable signcolumn
-        number = false, -- disable number column
-        relativenumber = false, -- disable relative numbers
+        number = true, --
+        relativenumber = true,
         -- cursorline = false, -- disable cursorline
         -- cursorcolumn = false, -- disable cursor column
         -- foldcolumn = "0", -- disable fold column
@@ -27,7 +27,7 @@ return {
       },
       -- twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
       gitsigns = { enabled = false }, -- disables git signs
-      tmux = { enabled = true }, -- disables the tmux statusline
+      tmux = { enabled = false }, -- disables the tmux statusline
       wezterm = {
         enabled = true,
         font = "+0", -- (10% increase per step); disable font size increasing since buggy
