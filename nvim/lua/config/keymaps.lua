@@ -2,6 +2,13 @@ local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<C-i>", "<C-i>", opts) -- needed as sometimes overlaps w/ Tab
 
+-- remap increment/decrement
+vim.keymap.set({ "n", "x" }, "+", "<C-a>", opts)
+vim.keymap.set({ "n", "x" }, "_", "<C-x>", opts) -- technically not '-' but + still requires shift so no need to take finger off shift this way
+-- remaps in visual mode as well
+vim.keymap.set("x", "g+", "g<C-a>", opts)
+vim.keymap.set("x", "g_", "g<C-x>", opts)
+
 --remove unused default keymaps
 vim.api.nvim_del_keymap("n", "<leader>ww")
 vim.api.nvim_del_keymap("n", "<leader>wd")
@@ -28,7 +35,24 @@ vim.keymap.set({ "n", "o", "x" }, "<s-l>", "g_", opts)
 vim.keymap.set({ "n", "x" }, "j", "gj", opts)
 vim.keymap.set({ "n", "x" }, "k", "gk", opts)
 
--- NOTE: wezterm specific, not using as using TMUX
+-- chatgpt
+vim.keymap.set("n", "<leader>gp", "<cmd>ChatGPT<cr>", { desc = "Launch ChatGPT" })
+vim.keymap.set("n", "<leader>gpa", "<cmd>ChatGPTActAs<cr>", { desc = "ChatGPT Act As" })
+vim.keymap.set("n", "<leader>gpe", "<cmd>ChatGPTEditWithInstructions<cr>", { desc = "ChatGPT Edit With Instructions" })
+vim.keymap.set("n", "<leader>gpc", "<cmd>ChatGPTCompleteCode<cr>", { desc = "ChatGPT Complete Code" })
+vim.keymap.set("n", "<leader>gpf", "<cmd>ChatGPTRun fix_bugs<cr>", { desc = "ChatGPT Fix Bugs" })
+vim.keymap.set("n", "<leader>gpx", "<cmd>ChatGPTRun explain_code<cr>", { desc = "ChatGPT Explain Code" })
+
+-- markdown specific
+vim.keymap.set("x", "<leader>mb", "di****<esc>hhp", { desc = "Auto bold" })
+vim.keymap.set("x", "<leader>mi", "di**<esc>hp", { desc = "Auto italic" })
+vim.keymap.set("x", "<leader>ml", "di[]()<esc>hhhpllli", { desc = "Auto link" })
+vim.keymap.set("x", "<leader>mc", "di``<esc>hp", { desc = "Auto backtick" })
+
+-- git
+vim.api.nvim_set_keymap("n", "<leader>gm", ':Git commit -m "', { noremap = false })
+
+-- NOTE: wezterm specific, not using as using TMUX atm
 
 -- moving between wezterm panes
 -- local nav = {
