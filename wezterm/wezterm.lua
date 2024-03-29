@@ -19,7 +19,7 @@ config.color_scheme = "One Half Black (Gogh)"
 -- config.color_scheme = "Tokyo Night"
 -- config.color_scheme = "Solarized Dark Higher Contrast"
 config.window_background_opacity = 0.79
-config.macos_window_background_blur = 50
+config.macos_window_background_blur = 60
 config.window_padding = { left = 5, right = 5, top = 10, bottom = 0 }
 config.line_height = 1.10
 config.cell_width = 0.95
