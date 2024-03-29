@@ -1,3 +1,9 @@
+-- NOTE: not currently using this plugin
+
+if true then
+  return {}
+end
+
 return {
   "jackMort/ChatGPT.nvim",
   event = "VeryLazy",
