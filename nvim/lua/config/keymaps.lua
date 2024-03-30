@@ -19,11 +19,11 @@ vim.api.nvim_del_keymap("n", "<leader>qq")
 -- exit insert mode with jj
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
 
--- better c-d and c-u and search
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
-vim.keymap.set("n", "n", "nzzzv", { silent = true })
-vim.keymap.set("n", "N", "Nzzzv", { silent = true })
+-- better navigation and search; NOTE: buggy in nightly; look into fixes
+vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
+vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
+vim.keymap.set("n", "n", "nzzzv", opts)
+vim.keymap.set("n", "N", "Nzzzv", opts)
 
 vim.keymap.set("x", "p", [["_dP]], opts) -- keep copied/deleted in register
 
