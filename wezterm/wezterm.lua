@@ -32,6 +32,8 @@ config.underline_thickness = 3
 config.underline_position = -8
 config.scrollback_lines = 10000
 
+config.term = "wezterm"
+
 -- NOTE: fixes c-i issue in tmux - see tmux.conf for details
 config.keys = {
 	{
