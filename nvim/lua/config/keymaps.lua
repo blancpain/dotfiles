@@ -19,9 +19,9 @@ vim.api.nvim_del_keymap("n", "<leader>qq")
 -- exit insert mode with jj
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
 
--- better navigation and search; NOTE: buggy in nightly; look into fixes
-vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
-vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
+-- better navigation and search;
+vim.keymap.set("n", "<C-d>", "19jzz", opts)
+vim.keymap.set("n", "<C-u>", "19kzz", opts)
 vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
 
@@ -44,10 +44,11 @@ vim.keymap.set("n", "<leader>gpf", "<cmd>ChatGPTRun fix_bugs<cr>", { desc = "Cha
 vim.keymap.set("n", "<leader>gpx", "<cmd>ChatGPTRun explain_code<cr>", { desc = "ChatGPT Explain Code" })
 
 -- markdown specific
-vim.keymap.set("x", "<leader>mb", "di****<esc>hhp", { desc = "Auto bold" })
-vim.keymap.set("x", "<leader>mi", "di**<esc>hp", { desc = "Auto italic" })
-vim.keymap.set("x", "<leader>ml", "di[]()<esc>hhhpllli", { desc = "Auto link" })
-vim.keymap.set("x", "<leader>mc", "di``<esc>hp", { desc = "Auto backtick" })
+-- vim.keymap.set("x", "<leader>mb", "di****<esc>hhp", { desc = "Auto bold" })
+-- vim.keymap.set("x", "<leader>mi", "di**<esc>hp", { desc = "Auto italic" })
+-- vim.keymap.set("x", "<leader>ml", "di[]()<esc>hhhpllli", { desc = "Auto link" })
+-- vim.keymap.set("x", "<leader>mc", "di``<esc>hp", { desc = "Auto backtick" })
+--vim.keymap.set("x", "<leader>ms", "di~~~~<esc>hp", { desc = "Auto strikethrough" })
 
 -- git
 vim.api.nvim_set_keymap("n", "<leader>gm", ':Git commit -m "', { noremap = false })
