@@ -27,12 +27,16 @@ return {
     menu = {
       width = vim.api.nvim_win_get_width(0) - 4,
     },
+    -- NOTE: not working??
+    global_settings = {
+      save_on_toggle = true,
+    },
   },
   keys = {
     {
       "<s-m>",
       function()
-        require("harpoon"):list():append()
+        require("harpoon"):list():add()
       end,
       desc = "Mark file with Harpoon",
     },
