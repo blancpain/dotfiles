@@ -27,9 +27,9 @@ return {
     menu = {
       width = vim.api.nvim_win_get_width(0) - 4,
     },
-    -- NOTE: not working??
-    global_settings = {
+    settings = {
       save_on_toggle = true,
+      sync_on_ui_close = true,
     },
   },
   keys = {
