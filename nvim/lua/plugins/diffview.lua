@@ -12,7 +12,6 @@ return {
   opts = {
     file_panel = {
       position = "bottom",
-      height = 20,
     },
   },
   keys = {
