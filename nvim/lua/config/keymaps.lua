@@ -53,6 +53,7 @@ vim.keymap.set({ "n", "x" }, "k", "gk", opts)
 -- git
 vim.keymap.set("n", "<leader>gp", ":Neogit pull<CR>", opts)
 vim.keymap.set("n", "<leader>gP", ":Neogit push<CR>", opts)
+--test
 
 -- NOTE: wezterm specific, not using as using TMUX atm
 
