@@ -20,8 +20,11 @@ return {
     keys = {
       { "<leader>gm", "<cmd>lua require('neogit').open({'commit'})<CR>", desc = "Neogit commit" },
       { "<leader>gS", "<cmd>lua require('neogit').open()<CR>", desc = "Neogit Status" },
+      { "<leader>gp", "<cmd>lua require('neogit').pull()<CR>", desc = "Neogit Pull" },
+      { "<leader>gP", "<cmd>lua require('neogit').push()<CR>", desc = "Neogit Push" },
     },
   },
+
   {
     "lewis6991/gitsigns.nvim",
     event = "LazyFile",
