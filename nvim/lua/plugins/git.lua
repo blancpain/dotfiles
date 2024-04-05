@@ -14,6 +14,7 @@ return {
     integrations = {
       diffview = true,
     },
+    kind = "vsplit",
   },
   keys = {
     { "<leader>gm", "<cmd>lua require('neogit').open({'commit'})<CR>", desc = "Neogit commit" },
