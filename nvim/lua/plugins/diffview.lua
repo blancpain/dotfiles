@@ -11,7 +11,11 @@ return {
   },
   opts = {
     file_panel = {
-      position = "bottom",
+      win_config = {
+        position = "bottom",
+        width = 35,
+        height = 16,
+      },
     },
   },
   keys = {
