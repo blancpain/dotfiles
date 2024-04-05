@@ -36,12 +36,12 @@ vim.keymap.set({ "n", "x" }, "j", "gj", opts)
 vim.keymap.set({ "n", "x" }, "k", "gk", opts)
 
 -- chatgpt
-vim.keymap.set("n", "<leader>gp", "<cmd>ChatGPT<cr>", { desc = "Launch ChatGPT" })
-vim.keymap.set("n", "<leader>gpa", "<cmd>ChatGPTActAs<cr>", { desc = "ChatGPT Act As" })
-vim.keymap.set("n", "<leader>gpe", "<cmd>ChatGPTEditWithInstructions<cr>", { desc = "ChatGPT Edit With Instructions" })
-vim.keymap.set("n", "<leader>gpc", "<cmd>ChatGPTCompleteCode<cr>", { desc = "ChatGPT Complete Code" })
-vim.keymap.set("n", "<leader>gpf", "<cmd>ChatGPTRun fix_bugs<cr>", { desc = "ChatGPT Fix Bugs" })
-vim.keymap.set("n", "<leader>gpx", "<cmd>ChatGPTRun explain_code<cr>", { desc = "ChatGPT Explain Code" })
+-- vim.keymap.set("n", "<leader>gp", "<cmd>ChatGPT<cr>", { desc = "Launch ChatGPT" })
+-- vim.keymap.set("n", "<leader>gpa", "<cmd>ChatGPTActAs<cr>", { desc = "ChatGPT Act As" })
+-- vim.keymap.set("n", "<leader>gpe", "<cmd>ChatGPTEditWithInstructions<cr>", { desc = "ChatGPT Edit With Instructions" })
+-- vim.keymap.set("n", "<leader>gpc", "<cmd>ChatGPTCompleteCode<cr>", { desc = "ChatGPT Complete Code" })
+-- vim.keymap.set("n", "<leader>gpf", "<cmd>ChatGPTRun fix_bugs<cr>", { desc = "ChatGPT Fix Bugs" })
+-- vim.keymap.set("n", "<leader>gpx", "<cmd>ChatGPTRun explain_code<cr>", { desc = "ChatGPT Explain Code" })
 
 -- markdown specific
 -- vim.keymap.set("x", "<leader>mb", "di****<esc>hhp", { desc = "Auto bold" })
@@ -51,7 +51,7 @@ vim.keymap.set("n", "<leader>gpx", "<cmd>ChatGPTRun explain_code<cr>", { desc = 
 --vim.keymap.set("x", "<leader>ms", "di~~~~<esc>hp", { desc = "Auto strikethrough" })
 
 -- git
-vim.api.nvim_set_keymap("n", "<leader>gm", ':Git commit -m "', { noremap = false })
+-- vim.api.nvim_set_keymap("n", "<leader>gm", ':Git commit -m "', { noremap = false })
 
 -- NOTE: wezterm specific, not using as using TMUX atm
 

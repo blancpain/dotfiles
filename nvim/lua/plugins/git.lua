@@ -1,5 +1,3 @@
--- return { "tpope/vim-fugitive" }
-
 return {
   "NeogitOrg/neogit",
   dependencies = {
@@ -17,8 +15,8 @@ return {
       diffview = true,
     },
   },
-  -- keys = {
-  --   { "<leader>gc", "<cmd>lua require('neogit').open({'commit'})<CR>", desc = "Git commit" },
-  --   { "<leader>gg", "<cmd>lua require('neogit').open()<CR>", desc = "Git commit" },
-  -- },
+  keys = {
+    { "<leader>gm", "<cmd>lua require('neogit').open({'commit'})<CR>", desc = "Git commit" },
+    -- { "<leader>gg", "<cmd>lua require('neogit').open()<CR>", desc = "Git commit" },
+  },
 }
