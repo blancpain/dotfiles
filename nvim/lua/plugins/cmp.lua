@@ -48,6 +48,9 @@ return {
       local luasnip = require("luasnip")
       require("luasnip.loaders.from_vscode").lazy_load()
 
+      -- add emoji source
+      table.insert(opts.sources, { name = "emoji" })
+
       -- NOTE: below screws up neotab
 
       -- local has_words_before = function()
