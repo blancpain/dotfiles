@@ -242,7 +242,7 @@ return {
     config = function()
       require("bamboo").setup({
         style = "multiplex", -- Choose between 'vulgaris' (regular), 'multiplex' (greener), and 'light'
-        transparent = true, -- Show/hide background
+        transparent = false, -- Show/hide background
         lualine = {
           transparent = true, -- lualine center bar transparency
         },
@@ -256,16 +256,6 @@ return {
         },
       })
     end,
-  },
-  {
-    "uloco/bluloco.nvim",
-    lazy = false,
-    priority = 1000,
-    dependencies = { "rktjmp/lush.nvim" },
-    opts = {
-      style = "dark",
-      transparent = false,
-    },
   },
   -- {
   --   "scottmckendry/cyberdream.nvim",
@@ -294,7 +284,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "bluloco",
+      colorscheme = "bamboo",
     },
   },
 }

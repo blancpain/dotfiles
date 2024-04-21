@@ -5,5 +5,3 @@ vim.opt.timeoutlen = 200
 
 -- Add asterisks in block comments
 vim.opt.formatoptions:append({ "r" }) -- WARN: doesn't work as expected
-
-LazyVim.lazygit.theme.activeBorderColor = { bg = "green" } -- sets it to the background color of `Visual`
