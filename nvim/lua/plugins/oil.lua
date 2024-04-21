@@ -8,6 +8,18 @@ function M.config()
     float = {
       max_height = 20,
       max_width = 60,
+      padding = 5,
+      border = "rounded",
+    },
+    -- columns = {
+    --   "icon",
+    --   "size",
+    -- },
+    view_options = {
+      show_hidden = true,
+      is_always_hidden = function(name, _)
+        return vim.startswith(name, ".DS_Store")
+      end,
     },
   })
   vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })

@@ -38,7 +38,7 @@ return {
       function()
         require("harpoon"):list():add()
       end,
-      desc = "Mark file with Harpoon",
+      desc = "mark file with harpoon",
     },
     {
       "<TAB>",

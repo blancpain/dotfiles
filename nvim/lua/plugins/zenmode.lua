@@ -3,7 +3,7 @@ return {
   opts = {
     window = {
       backdrop = 0.95,
-      width = 80, -- width of the Zen window
+      width = 120, -- width of the Zen window
       height = 1, -- height of the Zen window
       options = {
         signcolumn = "no", -- disable signcolumn
@@ -32,6 +32,15 @@ return {
         enabled = true,
         font = "+0", -- (10% increase per step); disable font size increasing since buggy
       },
+    },
+  },
+  keys = {
+    {
+      "<leader>Z",
+      function()
+        require("zen-mode").toggle()
+      end,
+      desc = "Toggle Zen Mode",
     },
   },
 }

@@ -5,7 +5,6 @@ return {
     wk.register({
       ["<leader>"] = {
         w = { "<Cmd>w<CR>", "Save Buffer" },
-        q = { ":bd<CR>", "Close Buffer" },
       },
     })
   end,

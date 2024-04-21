@@ -146,11 +146,14 @@ return {
     "rose-pine/neovim",
     name = "rose-pine",
     opts = {
-      variant = "auto",
+      variant = "moon",
+      dark_variant = "moon",
       disable_background = true,
       disable_float_background = true,
       disable_italics = true,
       highlight_groups = {
+        TreesitterContext = { bg = "none" },
+        TreesitterContextLineNumber = { bg = "none" },
         Comment = { italic = true },
         FloatBorder = { fg = "subtle", bg = "none" },
         TelescopeBorder = { fg = "subtle", bg = "none" },
@@ -165,6 +168,7 @@ return {
         StatusLine = { fg = "love", bg = "love", blend = 10 },
         StatusLineNC = { fg = "subtle", bg = "surface" },
         GitSignsAdd = { fg = "iris", bg = "none" },
+        TabLine = { bg = "none" },
         GitSignsChange = { fg = "foam", bg = "none" },
         GitSignsDelete = { fg = "rose", bg = "none" },
       },
@@ -213,21 +217,84 @@ return {
       },
     },
   },
+  {
+    "zootedb0t/citruszest.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      option = {
+        transparent = true,
+        bold = true,
+        italic = true,
+      },
+      style = {
+        IblIndent = { fg = "#333333" },
+        TreesitterContextLineNumber = { bg = "none" },
+        StatusLine = { bg = "none" },
+        ColorColumn = { bg = "#1e1e2e" },
+      },
+    },
+  },
+  {
+    "ribru17/bamboo.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("bamboo").setup({
+        style = "multiplex", -- Choose between 'vulgaris' (regular), 'multiplex' (greener), and 'light'
+        transparent = true, -- Show/hide background
+        lualine = {
+          transparent = true, -- lualine center bar transparency
+        },
+        highlights = {
+          TreesitterContext = { bg = "none" },
+          DiagnosticVirtualTextHint = { bg = "none" },
+          DiagnosticVirtualTextWarn = { bg = "none" },
+          DiagnosticVirtualTextError = { bg = "none" },
+          DiagnosticVirtualTextInformation = { bg = "none" },
+          IblIndent = { fg = "#333333" },
+        },
+      })
+    end,
+  },
+  {
+    "uloco/bluloco.nvim",
+    lazy = false,
+    priority = 1000,
+    dependencies = { "rktjmp/lush.nvim" },
+    opts = {
+      style = "dark",
+      transparent = false,
+    },
+  },
   -- {
-  --   "neanias/everforest-nvim",
-  --   version = false,
+  --   "scottmckendry/cyberdream.nvim",
   --   lazy = false,
   --   priority = 1000,
+  --   loadfile = true,
   --   config = function()
-  --     require("everforest").setup({
-  --       transparent_background_level = 0,
+  --     require("cyberdream").setup({
+  --       transparent = true,
+  --       italic_comments = true,
+  --       hide_fillchars = true,
+  --       borderless_telescope = false,
+  --       terminal_colors = true,
+  --
+  --       theme = {
+  --         highlights = {
+  --           CursorColumn = { bg = "none" },
+  --           FoldColumn = { bg = "none" },
+  --           IblIndent = { fg = "#333333" },
+  --           CodeBlock = { bg = "#1e1e2e" },
+  --         },
+  --       },
   --     })
   --   end,
   -- },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "onedark",
+      colorscheme = "bluloco",
     },
   },
 }
