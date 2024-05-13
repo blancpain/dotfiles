@@ -51,8 +51,8 @@ vim.keymap.set({ "n", "x" }, "k", "gk", opts)
 --vim.keymap.set("x", "<leader>ms", "di~~~~<esc>hp", { desc = "Auto strikethrough" })
 
 -- git
-vim.keymap.set("n", "<leader>gp", ":Neogit pull<CR>", opts)
-vim.keymap.set("n", "<leader>gP", ":Neogit push<CR>", opts)
+-- vim.keymap.set("n", "<leader>gp", ":Neogit pull<CR>", opts)
+-- vim.keymap.set("n", "<leader>gP", ":Neogit push<CR>", opts)
 vim.keymap.set("n", "<leader>gb", ":BlameToggle<CR>", opts)
 --test
 

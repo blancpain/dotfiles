@@ -7,4 +7,5 @@ return {
   { "rcarriga/nvim-notify", enabled = false },
   -- { "lukas-reineke/headlines.nvim", enabled = false },
   { "echasnovski/mini.comment", enabled = false },
+  { "NeogitOrg/neogit", enabled = false },
 }
