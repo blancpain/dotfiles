@@ -15,6 +15,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      inlay_hints = {
+        enabled = false,
+      },
       capabilities = {
         workspace = {
           didChangeWatchedFiles = {
@@ -22,7 +25,34 @@ return {
           },
         },
       },
+      diagnostics = {
+        virtual_text = false,
+      },
       servers = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              hint = {
+                enable = true,
+              },
+            },
+          },
+        },
+        tsserver = {
+          -- enable inlay hints, see https://github.com/neovim/nvim-lspconfig/issues/2688#issuecomment-1601582648
+          init_options = {
+            preferences = {
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+              importModuleSpecifierPreference = "non-relative",
+            },
+          },
+        },
         volar = {
           filetypes = {
             "typescript",
