@@ -253,38 +253,80 @@ return {
           DiagnosticVirtualTextError = { bg = "none" },
           DiagnosticVirtualTextInformation = { bg = "none" },
           IblIndent = { fg = "#333333" },
+          CodeBlock = { bg = "#1a1c2a" },
         },
       })
     end,
   },
-  -- {
-  --   "scottmckendry/cyberdream.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   loadfile = true,
-  --   config = function()
-  --     require("cyberdream").setup({
-  --       transparent = true,
-  --       italic_comments = true,
-  --       hide_fillchars = true,
-  --       borderless_telescope = false,
-  --       terminal_colors = true,
-  --
-  --       theme = {
-  --         highlights = {
-  --           CursorColumn = { bg = "none" },
-  --           FoldColumn = { bg = "none" },
-  --           IblIndent = { fg = "#333333" },
-  --           CodeBlock = { bg = "#1e1e2e" },
-  --         },
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    loadfile = true,
+    config = function()
+      require("cyberdream").setup({
+        transparent = false,
+        italic_comments = true,
+        hide_fillchars = true,
+        borderless_telescope = false,
+        terminal_colors = true,
+
+        theme = {
+          highlights = {
+            CursorColumn = { bg = "none" },
+            FoldColumn = { bg = "none" },
+            IblIndent = { fg = "#333333" },
+            CodeBlock = { bg = "#1e1e2e" },
+          },
+        },
+      })
+    end,
+  },
+  {
+    "eldritch-theme/eldritch.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("eldritch").setup({
+        transparent = false,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
+        sidebars = { "lualine" },
+        on_highlights = function(highlights, colors)
+          highlights.TreesitterContextBottom = { bg = colors.none }
+          highlights.TreesitterContext = { bg = colors.none }
+          highlights.WinBar = { bg = colors.none }
+          highlights.WinBarNC = { bg = colors.none }
+          highlights.CodeBlock = { bg = "#040404" }
+          highlights.LspInlayHint = { bg = colors.none, fg = "#7081d0" }
+        end,
+      })
+    end,
+  },
+  {
+    "samharju/synthweave.nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000,
+    config = function()
+      local synthweave = require("synthweave")
+      synthweave.setup({
+        transparent = false,
+        overrides = {
+          -- Identifier = { fg = "#f22f52" },
+        },
+        palette = {
+          -- override palette colors, take a peek at synthweave/palette.lua
+          -- bg0 = "#040404",
+        },
+      })
+    end,
+  },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "bamboo",
+      colorscheme = "eldritch",
     },
   },
 }
