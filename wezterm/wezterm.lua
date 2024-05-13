@@ -7,7 +7,7 @@ if wezterm.config_builder then
 end
 
 config.window_decorations = "RESIZE"
-config.font_size = 20
+config.font_size = 22
 config.font = wezterm.font_with_fallback({
 	{ family = "FiraCode Nerd Font", weight = 500, scale = 0.80 },
 	-- { family = "0xProto", weight = 500, scale = 0.80 },
@@ -16,17 +16,18 @@ config.font = wezterm.font_with_fallback({
 	-- { family = "MesloLGM Nerd Font", weight = 600, scale = 0.80 },
 })
 -- config.color_scheme = "Windows 10 (base16)"
+config.color_scheme = "Eldritch"
 -- config.color_scheme = "One Half Black (Gogh)"
 -- config.color_scheme = "BlulocoDark"
 -- config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "Tokyo Night"
-config.color_scheme = "Bamboo Multiplex"
+-- config.color_scheme = "Bamboo Multiplex"
 -- config.color_scheme = "Solarized Dark Higher Contrast"
 config.window_background_opacity = 1
 config.macos_window_background_blur = 35
 config.window_padding = { left = 5, right = 5, top = 10, bottom = 0 }
-config.line_height = 1.10
-config.cell_width = 0.95
+config.line_height = 1.05
+config.cell_width = 0.98
 config.adjust_window_size_when_changing_font_size = false
 
 config.cursor_blink_ease_in = "Constant"
