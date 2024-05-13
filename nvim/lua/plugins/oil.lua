@@ -6,9 +6,9 @@ local M = {
 function M.config()
   require("oil").setup({
     float = {
-      max_height = 20,
-      max_width = 60,
-      padding = 5,
+      max_height = 40,
+      max_width = 80,
+      -- padding = 20,
       border = "rounded",
     },
     -- columns = {
