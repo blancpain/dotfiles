@@ -32,27 +32,28 @@ return {
         lua_ls = {
           settings = {
             Lua = {
-              hint = {
-                enable = true,
-              },
+              -- hint = {
+              --   enable = true,
+              -- },
             },
           },
         },
-        tsserver = {
-          -- enable inlay hints, see https://github.com/neovim/nvim-lspconfig/issues/2688#issuecomment-1601582648
-          init_options = {
-            preferences = {
-              includeInlayParameterNameHints = "all",
-              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHints = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-              importModuleSpecifierPreference = "non-relative",
-            },
-          },
-        },
+        -- NOTE: now enabled by default w/ LazyVim
+        -- tsserver = {
+        --   -- enable inlay hints, see https://github.com/neovim/nvim-lspconfig/issues/2688#issuecomment-1601582648
+        --   init_options = {
+        --     preferences = {
+        --       includeInlayParameterNameHints = "all",
+        --       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        --       includeInlayFunctionParameterTypeHints = true,
+        --       includeInlayVariableTypeHints = true,
+        --       includeInlayPropertyDeclarationTypeHints = true,
+        --       includeInlayFunctionLikeReturnTypeHints = true,
+        --       includeInlayEnumMemberValueHints = true,
+        --       importModuleSpecifierPreference = "non-relative",
+        --     },
+        --   },
+        -- },
         volar = {
           filetypes = {
             "typescript",
