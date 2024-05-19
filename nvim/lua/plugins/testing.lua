@@ -3,7 +3,6 @@ return {
   dependencies = {
     "nvim-neotest/neotest-jest",
     "nvim-lua/plenary.nvim",
-    "haydenmeade/neotest-jest",
     "marilari88/neotest-vitest",
   },
   opts = function(_, opts)
