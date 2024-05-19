@@ -16,6 +16,8 @@ vim.api.nvim_del_keymap("n", "<leader>w-")
 vim.api.nvim_del_keymap("n", "<leader>w|")
 vim.api.nvim_del_keymap("n", "<leader>qq")
 
+vim.keymap.set("n", "<leader>q", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
+
 -- exit insert mode with jj
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
 

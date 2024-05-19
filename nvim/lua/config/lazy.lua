@@ -24,6 +24,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.test.core" },
     { import = "lazyvim.plugins.extras.editor.outline" },
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
+    { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
     { import = "plugins" },
   },
   defaults = {
