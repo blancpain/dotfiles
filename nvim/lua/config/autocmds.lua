@@ -7,32 +7,32 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- re erratic behaviour of tab
-vim.api.nvim_create_autocmd("ModeChanged", {
-  pattern = "*",
-  callback = function()
-    if
-      ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
-      and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-      and not require("luasnip").session.jump_active
-    then
-      require("luasnip").unlink_current()
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd("ModeChanged", {
+--   pattern = "*",
+--   callback = function()
+--     if
+--       ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
+--       and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+--       and not require("luasnip").session.jump_active
+--     then
+--       require("luasnip").unlink_current()
+--     end
+--   end,
+-- })
 
 -- fixes weird behaviour with snippets and tab completion
-vim.api.nvim_create_autocmd({ "CursorHold" }, {
-  callback = function()
-    local status_ok, luasnip = pcall(require, "luasnip")
-    if not status_ok then
-      return
-    end
-    if luasnip.expand_or_jumpable() then
-      -- luasnip.unlink_current()
-      vim.cmd([[silent! lua require("luasnip").unlink_current()]])
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "CursorHold" }, {
+--   callback = function()
+--     local status_ok, luasnip = pcall(require, "luasnip")
+--     if not status_ok then
+--       return
+--     end
+--     if luasnip.expand_or_jumpable() then
+--       -- luasnip.unlink_current()
+--       vim.cmd([[silent! lua require("luasnip").unlink_current()]])
+--     end
+--   end,
+-- })
 
 -- vue/ts setup
 local lsp_conficts, _ = pcall(vim.api.nvim_get_autocmds, { group = "LspAttach_conflicts" })
