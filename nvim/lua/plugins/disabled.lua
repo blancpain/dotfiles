@@ -8,4 +8,5 @@ return {
   -- { "lukas-reineke/headlines.nvim", enabled = false },
   { "echasnovski/mini.comment", enabled = false },
   { "NeogitOrg/neogit", enabled = false },
+  { "folke/ts-comments.nvim", enabled = false },
 }
