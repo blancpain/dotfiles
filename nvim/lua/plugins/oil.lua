@@ -18,6 +18,9 @@ function M.config()
     keymaps = {
       ["<C-h>"] = false,
     },
+    -- win_options = {
+    --   winbar = "%{v:lua.require('oil').get_current_dir()}", -- show current directory in winbar
+    -- },
     view_options = {
       show_hidden = true,
       is_always_hidden = function(name, _)
@@ -25,8 +28,8 @@ function M.config()
       end,
     },
   })
-  -- vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
-  vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+  vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
+  -- vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 end
 
 return M
