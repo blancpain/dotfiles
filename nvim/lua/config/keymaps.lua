@@ -37,26 +37,8 @@ vim.keymap.set({ "n", "o", "x" }, "<s-l>", "g_", opts)
 vim.keymap.set({ "n", "x" }, "j", "gj", opts)
 vim.keymap.set({ "n", "x" }, "k", "gk", opts)
 
--- chatgpt
--- vim.keymap.set("n", "<leader>gp", "<cmd>ChatGPT<cr>", { desc = "Launch ChatGPT" })
--- vim.keymap.set("n", "<leader>gpa", "<cmd>ChatGPTActAs<cr>", { desc = "ChatGPT Act As" })
--- vim.keymap.set("n", "<leader>gpe", "<cmd>ChatGPTEditWithInstructions<cr>", { desc = "ChatGPT Edit With Instructions" })
--- vim.keymap.set("n", "<leader>gpc", "<cmd>ChatGPTCompleteCode<cr>", { desc = "ChatGPT Complete Code" })
--- vim.keymap.set("n", "<leader>gpf", "<cmd>ChatGPTRun fix_bugs<cr>", { desc = "ChatGPT Fix Bugs" })
--- vim.keymap.set("n", "<leader>gpx", "<cmd>ChatGPTRun explain_code<cr>", { desc = "ChatGPT Explain Code" })
-
--- markdown specific
--- vim.keymap.set("x", "<leader>mb", "di****<esc>hhp", { desc = "Auto bold" })
--- vim.keymap.set("x", "<leader>mi", "di**<esc>hp", { desc = "Auto italic" })
--- vim.keymap.set("x", "<leader>ml", "di[]()<esc>hhhpllli", { desc = "Auto link" })
--- vim.keymap.set("x", "<leader>mc", "di``<esc>hp", { desc = "Auto backtick" })
---vim.keymap.set("x", "<leader>ms", "di~~~~<esc>hp", { desc = "Auto strikethrough" })
-
 -- git
--- vim.keymap.set("n", "<leader>gp", ":Neogit pull<CR>", opts)
--- vim.keymap.set("n", "<leader>gP", ":Neogit push<CR>", opts)
 vim.keymap.set("n", "<leader>gb", ":BlameToggle<CR>", opts)
---test
 
 -- NOTE: wezterm specific, not using as using TMUX atm
 
