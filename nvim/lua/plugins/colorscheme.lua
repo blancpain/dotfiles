@@ -295,16 +295,18 @@ return {
         },
         sidebars = { "lualine" },
         on_highlights = function(highlights, colors)
-          highlights.TreesitterContextBottom = { bg = colors.none }
-          highlights.TreesitterContext = { bg = colors.none }
+          -- highlights.TreesitterContextBottom = { bg = colors.none }
+          -- highlights.TreesitterContext = { bg = colors.none }
           highlights.WinBar = { bg = colors.none }
           highlights.WinBarNC = { bg = colors.none }
           highlights.CodeBlock = { bg = "#040404" }
           highlights.LspInlayHint = { bg = colors.none, fg = "#7081d0" }
+          highlights.StatusLine = { bg = colors.none }
         end,
       })
     end,
   },
+  { "diegoulloao/neofusion.nvim", priority = 1000, config = true, opts = {} },
   -- {
   --   "samharju/synthweave.nvim",
   --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
