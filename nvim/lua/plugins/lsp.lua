@@ -9,6 +9,7 @@ return {
         "emmet-language-server",
         "prisma-language-server",
         "vue-language-server",
+        "css-lsp",
       })
     end,
   },
