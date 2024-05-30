@@ -6,34 +6,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Disable New Line Comment",
 })
 
--- re erratic behaviour of tab
--- vim.api.nvim_create_autocmd("ModeChanged", {
---   pattern = "*",
---   callback = function()
---     if
---       ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
---       and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
---       and not require("luasnip").session.jump_active
---     then
---       require("luasnip").unlink_current()
---     end
---   end,
--- })
-
--- fixes weird behaviour with snippets and tab completion
--- vim.api.nvim_create_autocmd({ "CursorHold" }, {
---   callback = function()
---     local status_ok, luasnip = pcall(require, "luasnip")
---     if not status_ok then
---       return
---     end
---     if luasnip.expand_or_jumpable() then
---       -- luasnip.unlink_current()
---       vim.cmd([[silent! lua require("luasnip").unlink_current()]])
---     end
---   end,
--- })
-
+-- FIX: might not be needed as vue now included in extra - double check...
 -- vue/ts setup
 local lsp_conficts, _ = pcall(vim.api.nvim_get_autocmds, { group = "LspAttach_conflicts" })
 if not lsp_conficts then
@@ -41,7 +14,7 @@ if not lsp_conficts then
 end
 vim.api.nvim_create_autocmd("LspAttach", {
   group = "LspAttach_conflicts",
-  desc = "prevent tsserver and volar competing",
+  desc = "prevent vtsls and volar competing",
   callback = function(args)
     if not (args.data and args.data.client_id) then
       return
@@ -54,11 +27,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client.name == "volar" then
       for _, client_ in pairs(active_clients) do
         -- stop tsserver if volar is already active
-        if client_.name == "tsserver" then
+        if client_.name == "vtsls" then
           client_.stop()
         end
       end
-    elseif client.name == "tsserver" then
+    elseif client.name == "vtsls" then
       for _, client_ in pairs(active_clients) do
         -- prevent tsserver from starting if volar is already active
         if client_.name == "volar" then
