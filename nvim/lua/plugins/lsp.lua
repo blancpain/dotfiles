@@ -30,6 +30,59 @@ return {
         virtual_text = false,
       },
       servers = {
+        vtsls = {
+          keys = {
+            {
+              "<leader>cu",
+              function()
+                require("vtsls").commands.remove_unused()
+              end,
+              desc = "Remove unused imports",
+            },
+            {
+              "gD",
+              function()
+                require("vtsls").commands.goto_source_definition(0)
+              end,
+              desc = "Goto Source Definition",
+            },
+            {
+              "gR",
+              function()
+                require("vtsls").commands.file_references(0)
+              end,
+              desc = "File References",
+            },
+            {
+              "<leader>co",
+              function()
+                require("vtsls").commands.organize_imports(0)
+              end,
+              desc = "Organize Imports",
+            },
+            {
+              "<leader>cM",
+              function()
+                require("vtsls").commands.add_missing_imports(0)
+              end,
+              desc = "Add missing imports",
+            },
+            {
+              "<leader>cD",
+              function()
+                require("vtsls").commands.fix_all(0)
+              end,
+              desc = "Fix all diagnostics",
+            },
+            {
+              "<leader>cV",
+              function()
+                require("vtsls").commands.select_ts_version(0)
+              end,
+              desc = "Select TS workspace version",
+            },
+          },
+        },
         lua_ls = {
           settings = {
             Lua = {
@@ -39,22 +92,6 @@ return {
             },
           },
         },
-        -- NOTE: now enabled by default w/ LazyVim
-        -- tsserver = {
-        --   -- enable inlay hints, see https://github.com/neovim/nvim-lspconfig/issues/2688#issuecomment-1601582648
-        --   init_options = {
-        --     preferences = {
-        --       includeInlayParameterNameHints = "all",
-        --       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        --       includeInlayFunctionParameterTypeHints = true,
-        --       includeInlayVariableTypeHints = true,
-        --       includeInlayPropertyDeclarationTypeHints = true,
-        --       includeInlayFunctionLikeReturnTypeHints = true,
-        --       includeInlayEnumMemberValueHints = true,
-        --       importModuleSpecifierPreference = "non-relative",
-        --     },
-        --   },
-        -- },
         volar = {
           filetypes = {
             "typescript",
