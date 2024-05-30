@@ -23,8 +23,5 @@ return {
       "yaml",
       "vue",
     },
-    -- highlight = {
-    --   additional_vim_regex_highlighting = false,
-    -- },
   },
 }
