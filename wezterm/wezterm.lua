@@ -23,8 +23,8 @@ config.color_scheme = "Eldritch"
 -- config.color_scheme = "Tokyo Night"
 -- config.color_scheme = "Bamboo Multiplex"
 -- config.color_scheme = "Solarized Dark Higher Contrast"
-config.window_background_opacity = 1
-config.macos_window_background_blur = 35
+config.window_background_opacity = 0.85
+config.macos_window_background_blur = 25
 config.window_padding = { left = 5, right = 5, top = 10, bottom = 0 }
 config.line_height = 1.05
 config.cell_width = 0.98

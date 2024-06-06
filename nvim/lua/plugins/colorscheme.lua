@@ -258,50 +258,51 @@ return {
   --     })
   --   end,
   -- },
-  -- {
-  --   "scottmckendry/cyberdream.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   loadfile = true,
-  --   config = function()
-  --     require("cyberdream").setup({
-  --       transparent = false,
-  --       italic_comments = true,
-  --       hide_fillchars = true,
-  --       borderless_telescope = false,
-  --       terminal_colors = true,
-  --
-  --       theme = {
-  --         highlights = {
-  --           CursorColumn = { bg = "none" },
-  --           FoldColumn = { bg = "none" },
-  --           IblIndent = { fg = "#333333" },
-  --           CodeBlock = { bg = "#1e1e2e" },
-  --         },
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    loadfile = true,
+    config = function()
+      require("cyberdream").setup({
+        transparent = true,
+        italic_comments = true,
+        hide_fillchars = true,
+        borderless_telescope = false,
+        terminal_colors = true,
+
+        theme = {
+          highlights = {
+            CursorColumn = { bg = "none" },
+            FoldColumn = { bg = "none" },
+            IblIndent = { fg = "#333333" },
+            CodeBlock = { bg = "#1e1e2e" },
+          },
+        },
+      })
+    end,
+  },
   {
     "eldritch-theme/eldritch.nvim",
     lazy = false,
     priority = 1000,
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("eldritch").setup({
-        transparent = false,
+        transparent = true,
         styles = {
           sidebars = "transparent",
           floats = "transparent",
         },
         sidebars = { "lualine" },
         on_highlights = function(highlights, colors)
-          -- highlights.TreesitterContextBottom = { bg = colors.none }
-          -- highlights.TreesitterContext = { bg = colors.none }
-          highlights.WinBar = { bg = colors.none }
-          highlights.WinBarNC = { bg = colors.none }
+          -- highlights.WinBar = { bg = colors.none }
+          -- highlights.WinBarNC = { bg = colors.none }
           highlights.CodeBlock = { bg = "#040404" }
+          highlights.CursorLine = { bg = colors.none }
           highlights.LspInlayHint = { bg = colors.none, fg = "#7081d0" }
           highlights.StatusLine = { bg = colors.none }
+          highlights.StatusLineNC = { bg = colors.none }
         end,
       })
     end,
