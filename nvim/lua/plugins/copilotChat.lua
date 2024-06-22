@@ -1,3 +1,6 @@
+if true then
+  return {}
+end
 local prompts = {
   -- Code related prompts
   Explain = "Please explain how the following code works.",
@@ -150,6 +153,7 @@ return {
         "<cmd>CopilotChatCommit<cr>",
         desc = "CopilotChat - Generate commit message for all changes",
       },
+
       {
         "<leader>aM",
         "<cmd>CopilotChatCommitStaged<cr>",
