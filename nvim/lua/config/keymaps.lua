@@ -11,12 +11,17 @@ vim.keymap.set("x", "g_", "g<C-x>", opts)
 
 --remove unused default keymaps
 vim.api.nvim_del_keymap("n", "<leader>ww")
+vim.api.nvim_del_keymap("n", "<leader>wm")
 vim.api.nvim_del_keymap("n", "<leader>wd")
 vim.api.nvim_del_keymap("n", "<leader>w-")
 vim.api.nvim_del_keymap("n", "<leader>w|")
 vim.api.nvim_del_keymap("n", "<leader>qq")
 
 vim.keymap.set("n", "<leader>q", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
+
+vim.keymap.set("n", "<leader>m", function()
+  LazyVim.toggle.maximize()
+end, { desc = "Maximize Toggle" })
 
 -- exit insert mode with jj
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
