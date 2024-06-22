@@ -1,23 +1,23 @@
 -- NOTE: use below if we want to use telescope as a harpoon menu
 
-local conf = require("telescope.config").values
-local function toggle_telescope(harpoon_files)
-  local file_paths = {}
-  for _, item in ipairs(harpoon_files.items) do
-    table.insert(file_paths, item.value)
-  end
-
-  require("telescope.pickers")
-    .new({}, {
-      prompt_title = "Harpoon",
-      finder = require("telescope.finders").new_table({
-        results = file_paths,
-      }),
-      previewer = conf.file_previewer({}),
-      sorter = conf.generic_sorter({}),
-    })
-    :find()
-end
+-- local conf = require("telescope.config").values
+-- local function toggle_telescope(harpoon_files)
+--   local file_paths = {}
+--   for _, item in ipairs(harpoon_files.items) do
+--     table.insert(file_paths, item.value)
+--   end
+--
+--   require("telescope.pickers")
+--     .new({}, {
+--       prompt_title = "Harpoon",
+--       finder = require("telescope.finders").new_table({
+--         results = file_paths,
+--       }),
+--       previewer = conf.file_previewer({}),
+--       sorter = conf.generic_sorter({}),
+--     })
+--     :find()
+-- end
 
 return {
   "ThePrimeagen/harpoon",
@@ -48,14 +48,14 @@ return {
       end,
       desc = "Harpoon quick menu",
     },
-    {
-      "<leader>h",
-      function()
-        local harpoon = require("harpoon")
-        toggle_telescope(harpoon:list())
-      end,
-      desc = "Harpoon telescope",
-    },
+    -- {
+    --   "<leader>h",
+    --   function()
+    --     local harpoon = require("harpoon")
+    --     toggle_telescope(harpoon:list())
+    --   end,
+    --   desc = "Harpoon telescope",
+    -- },
     {
       "<leader>j",
       function()
