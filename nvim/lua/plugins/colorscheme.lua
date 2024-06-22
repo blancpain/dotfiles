@@ -272,11 +272,13 @@ return {
         terminal_colors = true,
 
         theme = {
+          variant = "dark",
           highlights = {
             CursorColumn = { bg = "none" },
             FoldColumn = { bg = "none" },
             IblIndent = { fg = "#333333" },
             CodeBlock = { bg = "#1e1e2e" },
+            CursorLine = { bg = "none" },
           },
         },
       })
@@ -294,7 +296,7 @@ return {
           sidebars = "transparent",
           floats = "transparent",
         },
-        sidebars = { "lualine" },
+        hide_inactive_statusline = true,
         on_highlights = function(highlights, colors)
           -- highlights.WinBar = { bg = colors.none }
           -- highlights.WinBarNC = { bg = colors.none }
@@ -329,7 +331,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "eldritch",
+      colorscheme = "cyberdream",
     },
   },
 }
