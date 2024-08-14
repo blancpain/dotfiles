@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   opts = {
     winopts = {
-      width = 1,
+      width = 0.9,
       height = 0.9,
       row = 0.5,
       col = 0.5,
