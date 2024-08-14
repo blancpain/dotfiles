@@ -15,12 +15,20 @@ return {
   },
 
   opts = {
+    -- use markdown.nvim instead for these as some bugs
+    ui = {
+      checkboxes = {},
+      bullets = {},
+      external_link_icon = {},
+    },
+
     workspaces = {
       {
         name = "obsidian",
         path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/obsidian",
       },
     },
+
     completion = {
       nvim_cmp = true,
       min_chars = 2,
