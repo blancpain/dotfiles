@@ -30,8 +30,8 @@ return {
   --   name = "catppuccin",
   --   priority = 1000,
   --   opts = {
-  --     flavour = "mocha",
-  --     transparent_background = true,
+  --     flavour = "latte",
+  --     -- transparent_background = true,
   --     -- no_italic = true,
   --     styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
   --       comments = { "italic" },
@@ -49,8 +49,7 @@ return {
   --     },
   --     custom_highlights = function(colors)
   --       return {
-  --         CursorLine = { bg = colors.none },
-  --         TreeSitterContextBottom = { fg = colors.none },
+  --         -- CursorLine = { bg = colors.none },
   --         NavicText = { bg = colors.none, fg = colors.flamingo },
   --         NavicSeparator = { bg = colors.none },
   --         NavicIconsKey = { bg = colors.none },
@@ -79,6 +78,7 @@ return {
   --         NavicIconsEnumMember = { bg = colors.none },
   --         NavicIconsConstructor = { bg = colors.none },
   --         NavicIconsTypeParameter = { bg = colors.none },
+  --         CursorLine = { bg = colors.none },
   --         DapStoppedLine = { bg = "#1e1e2e" },
   --       }
   --     end,
@@ -114,46 +114,43 @@ return {
   --     },
   --   },
   -- },
-  -- {
-  --   "tokyonight.nvim",
-  --   priority = 1000,
-  --   opts = function()
-  --     return {
-  --       style = "moon",
-  --       transparent = true,
-  --       styles = {
-  --         sidebars = "transparent",
-  --         floats = "transparent",
-  --       },
-  --       on_colors = function(colors)
-  --         colors.bg_statusline = colors.none -- transparent lualine/navic/
-  --       end,
-  --       on_highlights = function(hl, c)
-  --         hl.CursorLineNr = { fg = c.orange, bold = true }
-  --         hl.CursorLine = { bg = "#1e1c2a" }
-  --         -- hl.LineNr = { fg = c.orange, bold = true }
-  --         hl.LineNrAbove = { fg = c.fg_gutter }
-  --         hl.LineNrBelow = { fg = c.fg_gutter }
-  --         hl.TreesitterContext = { bg = "none" }
-  --         hl.NeoTreeFileName = { fg = "white" }
-  --         hl.NeoTreeGitModified = { fg = c.orange }
-  --         hl.DiagnosticUnnecessary = { fg = "#918fbb" } -- unused variables etc
-  --       end,
-  --     }
-  --   end,
-  -- },
+  {
+    "tokyonight.nvim",
+    priority = 1000,
+    opts = function()
+      return {
+        style = "night",
+        -- transparent = true,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
+        on_colors = function(colors)
+          colors.bg_statusline = colors.none -- transparent lualine/navic/
+        end,
+        on_highlights = function(hl, c)
+          hl.CursorLineNr = { fg = c.orange, bold = true }
+          hl.CursorLine = { bg = "none" }
+          -- hl.LineNr = { fg = c.orange, bold = true }
+          hl.LineNrAbove = { fg = c.fg_gutter }
+          hl.LineNrBelow = { fg = c.fg_gutter }
+          hl.NeoTreeFileName = { fg = "white" }
+          hl.NeoTreeGitModified = { fg = c.orange }
+          hl.DiagnosticUnnecessary = { fg = "#918fbb" } -- unused variables etc
+        end,
+      }
+    end,
+  },
   -- {
   --   "rose-pine/neovim",
   --   name = "rose-pine",
   --   opts = {
   --     variant = "moon",
   --     dark_variant = "moon",
-  --     disable_background = true,
-  --     disable_float_background = true,
+  --     -- disable_background = true,
+  --     -- disable_float_background = true,
   --     disable_italics = true,
   --     highlight_groups = {
-  --       TreesitterContext = { bg = "none" },
-  --       TreesitterContextLineNumber = { bg = "none" },
   --       Comment = { italic = true },
   --       FloatBorder = { fg = "subtle", bg = "none" },
   --       TelescopeBorder = { fg = "subtle", bg = "none" },
@@ -247,13 +244,12 @@ return {
   --         transparent = true, -- lualine center bar transparency
   --       },
   --       highlights = {
-  --         TreesitterContext = { bg = "none" },
   --         DiagnosticVirtualTextHint = { bg = "none" },
   --         DiagnosticVirtualTextWarn = { bg = "none" },
   --         DiagnosticVirtualTextError = { bg = "none" },
   --         DiagnosticVirtualTextInformation = { bg = "none" },
-  --         IblIndent = { fg = "#333333" },
-  --         CodeBlock = { bg = "#1a1c2a" },
+  --         -- IblIndent = { fg = "#333333" },
+  --         -- CodeBlock = { bg = "#1a1c2a" },
   --       },
   --     })
   --   end,
@@ -284,32 +280,32 @@ return {
       })
     end,
   },
-  {
-    "eldritch-theme/eldritch.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("eldritch").setup({
-        transparent = true,
-        styles = {
-          sidebars = "transparent",
-          floats = "transparent",
-        },
-        hide_inactive_statusline = true,
-        on_highlights = function(highlights, colors)
-          -- highlights.WinBar = { bg = colors.none }
-          -- highlights.WinBarNC = { bg = colors.none }
-          highlights.CodeBlock = { bg = "#040404" }
-          highlights.CursorLine = { bg = colors.none }
-          highlights.LspInlayHint = { bg = colors.none, fg = "#7081d0" }
-          highlights.StatusLine = { bg = colors.none }
-          highlights.StatusLineNC = { bg = colors.none }
-        end,
-      })
-    end,
-  },
-  { "diegoulloao/neofusion.nvim", priority = 1000, config = true, opts = {} },
+  -- {
+  --   "eldritch-theme/eldritch.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     ---@diagnostic disable-next-line: missing-fields
+  --     require("eldritch").setup({
+  --       transparent = true,
+  --       styles = {
+  --         sidebars = "transparent",
+  --         floats = "transparent",
+  --       },
+  --       hide_inactive_statusline = true,
+  --       on_highlights = function(highlights, colors)
+  --         -- highlights.WinBar = { bg = colors.none }
+  --         -- highlights.WinBarNC = { bg = colors.none }
+  --         highlights.CodeBlock = { bg = "#040404" }
+  --         highlights.CursorLine = { bg = colors.none }
+  --         highlights.LspInlayHint = { bg = colors.none, fg = "#7081d0" }
+  --         highlights.StatusLine = { bg = colors.none }
+  --         highlights.StatusLineNC = { bg = colors.none }
+  --       end,
+  --     })
+  --   end,
+  -- },
+  -- { "diegoulloao/neofusion.nvim", priority = 1000, config = true, opts = {} },
   -- {
   --   "samharju/synthweave.nvim",
   --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -328,10 +324,80 @@ return {
   --     })
   --   end,
   -- },
+  -- {
+  --   "neanias/everforest-nvim",
+  --   version = false,
+  --   lazy = false,
+  --   priority = 1000, -- make sure to load this before all the other start plugins
+  --   -- Optional; default configuration will be used if setup isn't called.
+  --   config = function()
+  --     require("everforest").setup({
+  --       -- Your config here
+  --       background = "soft",
+  --       transparent_background_level = 2,
+  --       on_highlights = function(hl, palette)
+  --         -- hl.CursorLine = { bg = palette.none }
+  --       end,
+  --     })
+  --   end,
+  -- },
+  -- {
+  --   "polirritmico/monokai-nightasty.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {
+  --     dark_style_background = "default", -- default, dark, transparent, #color
+  --     light_style_background = "default", -- default, dark, transparent, #color
+  --     color_headers = true, -- Enable header colors for each header level (h1, h2, etc.)
+  --     lualine_bold = true, -- Lualine a and z sections font width
+  --     lualine_style = "default", -- "dark", "light" or "default" (Follows dark/light style)
+  --     markdown_header_marks = true, -- Add headers marks highlights (the `#` character) to Treesitter highlight query
+  --     -- Style to be applied to different syntax groups. See `:help nvim_set_hl`
+  --     hl_styles = {
+  --       keywords = { italic = true },
+  --       comments = { italic = true },
+  --     },
+  --
+  --     -- This also could be a table like this: `terminal_colors = { Normal = { fg = "#e6e6e6" } }`
+  --     terminal_colors = function(colors)
+  --       return { fg = colors.fg_dark }
+  --     end,
+  --
+  --     --- You can override specific color/highlights. Theme color values
+  --     --- in `extras/palettes`. Also could be any hex RGB color you like.
+  --     on_colors = function(colors)
+  --       -- Custom color only for light theme
+  --       local current_is_light = vim.o.background == "light"
+  --       colors.comment = current_is_light and "#2d7e79" or colors.grey
+  --
+  --       -- Custom color only for dark theme
+  --       colors.border = not current_is_light and colors.magenta or colors.border
+  --
+  --       -- Custom lualine normal color
+  --       colors.lualine.normal_bg = current_is_light and "#7ebd00" or colors.green
+  --     end,
+  --
+  --     on_highlights = function(highlights, colors)
+  --       -- You could add styles like bold, underline, italic
+  --       highlights.TelescopeSelection = { bold = true }
+  --       highlights.TelescopeBorder = { fg = colors.grey }
+  --       highlights["@lsp.type.property.lua"] = { fg = colors.fg }
+  --     end,
+  --   },
+  --   config = function(_, opts)
+  --     -- Highlight line at the cursor position
+  --     vim.opt.cursorline = true
+  --
+  --     -- Default to dark theme
+  --     vim.o.background = "light" -- dark | light
+  --
+  --     require("monokai-nightasty").load(opts)
+  --   end,
+  -- },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "cyberdream",
+      colorscheme = "tokyonight",
     },
   },
 }
