@@ -17,7 +17,8 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       inlay_hints = {
-        enabled = false,
+        enabled = true,
+        exclude = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
       },
       capabilities = {
         workspace = {
