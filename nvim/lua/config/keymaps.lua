@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<C-i>", "<C-i>", opts) -- needed as sometimes overlaps w/ Tab
+vim.keymap.set("n", "<C-i>", "<C-i>", opts) -- needed as sometimes overlaps w/ Tab while using TMUX
 
 -- remap increment/decrement
 vim.keymap.set({ "n", "x" }, "+", "<C-a>", opts)
@@ -9,19 +9,11 @@ vim.keymap.set({ "n", "x" }, "_", "<C-x>", opts) -- technically not '-' but + st
 vim.keymap.set("x", "g+", "g<C-a>", opts)
 vim.keymap.set("x", "g_", "g<C-x>", opts)
 
---remove unused default keymaps
-vim.api.nvim_del_keymap("n", "<leader>ww")
-vim.api.nvim_del_keymap("n", "<leader>wm")
-vim.api.nvim_del_keymap("n", "<leader>wd")
-vim.api.nvim_del_keymap("n", "<leader>w-")
-vim.api.nvim_del_keymap("n", "<leader>w|")
-vim.api.nvim_del_keymap("n", "<leader>qq")
-
+-- save and delete
+vim.keymap.set({ "x", "n", "s" }, "<leader>w", "<cmd>w<cr><esc>", { desc = "Save File" })
 vim.keymap.set("n", "<leader>q", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
 
-vim.keymap.set("n", "<leader>m", function()
-  LazyVim.toggle.maximize()
-end, { desc = "Maximize Toggle" })
+LazyVim.toggle.map("<leader>m", LazyVim.toggle.maximize)
 
 -- exit insert mode with jj
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
@@ -35,8 +27,8 @@ vim.keymap.set("n", "N", "Nzzzv", opts)
 vim.keymap.set("x", "p", [["_dP]], opts) -- keep copied/deleted in register
 
 -- moving to beginning/end of line
-vim.keymap.set({ "n", "o", "x" }, "<s-h>", "^", opts)
-vim.keymap.set({ "n", "o", "x" }, "<s-l>", "g_", opts)
+vim.keymap.set({ "n", "o", "x" }, "<S-h>", "^", opts)
+vim.keymap.set({ "n", "o", "x" }, "<S-l>", "g_", opts)
 
 -- tailwind bearable to work with
 vim.keymap.set({ "n", "x" }, "j", "gj", opts)
