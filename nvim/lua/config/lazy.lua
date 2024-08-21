@@ -6,35 +6,40 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+local spec = {
+  -- add LazyVim and import its plugins
+  { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+  { import = "lazyvim.plugins.extras.lang.typescript" },
+  { import = "lazyvim.plugins.extras.lang.docker" },
+  { import = "lazyvim.plugins.extras.lang.yaml" },
+  { import = "lazyvim.plugins.extras.lang.markdown" },
+  { import = "lazyvim.plugins.extras.lang.json" },
+  { import = "lazyvim.plugins.extras.formatting.prettier" },
+  { import = "lazyvim.plugins.extras.linting.eslint" },
+  { import = "lazyvim.plugins.extras.lang.tailwind" },
+  { import = "lazyvim.plugins.extras.lang.toml" },
+  { import = "lazyvim.plugins.extras.dap.core" },
+  { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
+  { import = "lazyvim.plugins.extras.test.core" },
+  { import = "lazyvim.plugins.extras.editor.outline" },
+  { import = "lazyvim.plugins.extras.coding.mini-surround" },
+  { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
+  { import = "lazyvim.plugins.extras.coding.mini-comment" },
+  { import = "lazyvim.plugins.extras.editor.inc-rename" },
+  { import = "lazyvim.plugins.extras.util.dot" },
+  { import = "lazyvim.plugins.extras.coding.copilot-chat" },
+  { import = "lazyvim.plugins.extras.editor.fzf" },
+  { import = "lazyvim.plugins.extras.editor.refactoring" },
+  { import = "lazyvim.plugins.extras.lang.rust" },
+  { import = "plugins" },
+}
+
+if vim.fn.has("mac") == 1 then
+  table.insert(spec, { import = "lazyvim.plugins.extras.lang.clangd" })
+end
+
 require("lazy").setup({
-  spec = {
-    -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.docker" },
-    { import = "lazyvim.plugins.extras.lang.yaml" },
-    { import = "lazyvim.plugins.extras.lang.markdown" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
-    { import = "lazyvim.plugins.extras.linting.eslint" },
-    { import = "lazyvim.plugins.extras.lang.tailwind" },
-    { import = "lazyvim.plugins.extras.lang.clangd" },
-    { import = "lazyvim.plugins.extras.lang.toml" },
-    { import = "lazyvim.plugins.extras.dap.core" },
-    { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-    { import = "lazyvim.plugins.extras.test.core" },
-    { import = "lazyvim.plugins.extras.editor.outline" },
-    { import = "lazyvim.plugins.extras.coding.mini-surround" },
-    { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
-    { import = "lazyvim.plugins.extras.coding.mini-comment" },
-    { import = "lazyvim.plugins.extras.editor.inc-rename" },
-    { import = "lazyvim.plugins.extras.util.dot" },
-    { import = "lazyvim.plugins.extras.coding.copilot-chat" },
-    { import = "lazyvim.plugins.extras.editor.fzf" },
-    { import = "lazyvim.plugins.extras.editor.refactoring" },
-    { import = "lazyvim.plugins.extras.lang.rust" },
-    { import = "plugins" },
-  },
+  spec = spec,
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
     -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
