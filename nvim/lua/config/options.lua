@@ -7,3 +7,5 @@ vim.o.background = "dark" -- dark vs light
 
 -- Add asterisks in block comments
 vim.opt.formatoptions:append({ "r" }) -- WARN: doesn't work as expected
+
+vim.opt.clipboard = "unnamedplus"
