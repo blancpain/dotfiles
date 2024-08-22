@@ -132,6 +132,7 @@ return {
           hl.CursorLineNr = { fg = c.orange, bold = true }
           hl.CursorLine = { bg = "none" }
           -- hl.LineNr = { fg = c.orange, bold = true }
+          hl.RenderMarkdownCode = { bg = "#2E2E2E" }
           hl.LineNrAbove = { fg = c.fg_gutter }
           hl.LineNrBelow = { fg = c.fg_gutter }
           hl.NeoTreeFileName = { fg = "white" }
