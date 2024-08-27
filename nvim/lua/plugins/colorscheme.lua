@@ -255,32 +255,32 @@ return {
   --     })
   --   end,
   -- },
-  {
-    "scottmckendry/cyberdream.nvim",
-    lazy = false,
-    priority = 1000,
-    loadfile = true,
-    config = function()
-      require("cyberdream").setup({
-        transparent = true,
-        italic_comments = true,
-        hide_fillchars = true,
-        borderless_telescope = false,
-        terminal_colors = true,
-
-        theme = {
-          variant = "dark",
-          highlights = {
-            CursorColumn = { bg = "none" },
-            FoldColumn = { bg = "none" },
-            IblIndent = { fg = "#333333" },
-            CodeBlock = { bg = "#1e1e2e" },
-            CursorLine = { bg = "none" },
-          },
-        },
-      })
-    end,
-  },
+  -- {
+  --   "scottmckendry/cyberdream.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   loadfile = true,
+  --   config = function()
+  --     require("cyberdream").setup({
+  --       transparent = true,
+  --       italic_comments = true,
+  --       hide_fillchars = true,
+  --       borderless_telescope = false,
+  --       terminal_colors = true,
+  --
+  --       theme = {
+  --         variant = "dark",
+  --         highlights = {
+  --           CursorColumn = { bg = "none" },
+  --           FoldColumn = { bg = "none" },
+  --           IblIndent = { fg = "#333333" },
+  --           CodeBlock = { bg = "#1e1e2e" },
+  --           CursorLine = { bg = "none" },
+  --         },
+  --       },
+  --     })
+  --   end,
+  --},
   -- {
   --   "eldritch-theme/eldritch.nvim",
   --   lazy = false,
