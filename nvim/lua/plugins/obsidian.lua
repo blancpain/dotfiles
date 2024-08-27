@@ -17,9 +17,9 @@ return {
   opts = {
     -- use markdown.nvim instead for these as some bugs
     ui = {
-      checkboxes = {},
+      --   checkboxes = {},
       bullets = {},
-      external_link_icon = {},
+      --   external_link_icon = {},
     },
 
     workspaces = {
