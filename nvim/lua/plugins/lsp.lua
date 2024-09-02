@@ -52,6 +52,15 @@ return {
             workspaceSymbol = true,
           },
         },
+        vtsls = {
+          settings = {
+            typescript = {
+              preferences = {
+                importModuleSpecifier = "non-relative",
+              },
+            },
+          },
+        },
         emmet_language_server = {
           filetypes = {
             "css",
