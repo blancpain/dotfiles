@@ -15,12 +15,11 @@ return {
   },
 
   opts = {
-    -- use markdown.nvim instead for these as some bugs
-    ui = {
-      --   checkboxes = {},
-      bullets = {},
-      --   external_link_icon = {},
-    },
+    -- ui = {
+    -- checkboxes = {},
+    -- bullets = {},
+    -- external_link_icon = {},
+    -- },
 
     workspaces = {
       {
