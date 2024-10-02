@@ -2,6 +2,8 @@ local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<C-i>", "<C-i>", opts) -- needed as sometimes overlaps w/ Tab while using TMUX
 
+vim.keymap.del({ "i", "x", "n", "s" }, "<C-s>")
+
 -- remap increment/decrement
 vim.keymap.set({ "n", "x" }, "+", "<C-a>", opts)
 vim.keymap.set({ "n", "x" }, "_", "<C-x>", opts) -- technically not '-' but + still requires shift so no need to take finger off shift this way
