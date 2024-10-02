@@ -23,7 +23,7 @@ return {
       capabilities = {
         workspace = {
           didChangeWatchedFiles = {
-            dynamicRegistration = true, -- to fix having to restart lsp when adding/removing files
+            dynamicRegistration = true, -- NOTE: to fix having to restart lsp when adding/removing files
           },
         },
       },
@@ -31,7 +31,7 @@ return {
         virtual_text = false,
       },
       servers = {
-        -- see if below needed as inc in extras now
+        -- TODO: see if below needed as inc in extras now
         volar = {
           filetypes = {
             "typescript",
