@@ -18,12 +18,14 @@ config.font = wezterm.font_with_fallback({
 -- config.color_scheme = "Windows 10 (base16)"
 -- config.color_scheme = "Eldritch"
 -- config.color_scheme = "One Half Black (Gogh)"
+-- config.color_scheme = "Rosé Pine Moon (base16)"
+config.color_scheme = "Rosé Pine (base16)"
 -- config.color_scheme = "BlulocoDark"
 -- config.color_scheme = "Catppuccin Latte"
 -- config.color_scheme = "Everforest Light (Gogh)"
 -- config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "Catppuccin Macchiato"
-config.color_scheme = "Tokyo Night"
+-- config.color_scheme = "Tokyo Night"
 -- config.color_scheme = "Dawn (terminal.sexy)"
 
 -- config.colors = {
