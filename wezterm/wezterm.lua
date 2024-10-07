@@ -51,12 +51,12 @@ config.scrollback_lines = 10000
 
 config.term = "wezterm"
 
--- NOTE: fixes c-i issue in tmux - see tmux.conf for details
+-- NOTE: workaround to get c-i to work as expected, have mapped c-pageUp in nvim to c-i
 config.keys = {
 	{
 		key = "i",
 		mods = "CTRL",
-		action = wezterm.action({ SendString = "\x1b[24~\x09" }),
+		action = wezterm.action.SendKey({ key = "PageUp", mods = "CTRL" }),
 	},
 }
 

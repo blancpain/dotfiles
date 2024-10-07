@@ -1,6 +1,6 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<C-i>", "<C-i>", opts) -- needed as sometimes overlaps w/ Tab while using TMUX
+vim.keymap.set("n", "<C-PageUp>", "<C-i>", opts) -- Temp workaround as C-i recognized as Tab in tmux
 
 vim.keymap.del({ "i", "x", "n", "s" }, "<C-s>")
 
