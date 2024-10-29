@@ -119,7 +119,7 @@ return {
     priority = 1000,
     opts = function()
       return {
-        style = "night",
+        style = "moon",
         -- transparent = true,
         styles = {
           sidebars = "transparent",
@@ -149,7 +149,7 @@ return {
       -- variant = "moon",
       -- dark_variant = "moon",
       -- disable_background = true,
-      -- disable_float_background = true,
+      disable_float_background = true,
       disable_italics = true,
       highlight_groups = {
         Comment = { italic = true },
@@ -252,32 +252,32 @@ return {
   --     })
   --   end,
   -- },
-  -- {
-  --   "scottmckendry/cyberdream.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   loadfile = true,
-  --   config = function()
-  --     require("cyberdream").setup({
-  --       transparent = true,
-  --       italic_comments = true,
-  --       hide_fillchars = true,
-  --       borderless_telescope = false,
-  --       terminal_colors = true,
-  --
-  --       theme = {
-  --         variant = "dark",
-  --         highlights = {
-  --           CursorColumn = { bg = "none" },
-  --           FoldColumn = { bg = "none" },
-  --           IblIndent = { fg = "#333333" },
-  --           CodeBlock = { bg = "#1e1e2e" },
-  --           CursorLine = { bg = "none" },
-  --         },
-  --       },
-  --     })
-  --   end,
-  --},
+  {
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    loadfile = true,
+    config = function()
+      require("cyberdream").setup({
+        transparent = true,
+        italic_comments = true,
+        hide_fillchars = true,
+        borderless_telescope = false,
+        terminal_colors = true,
+
+        theme = {
+          variant = "dark",
+          highlights = {
+            CursorColumn = { bg = "none" },
+            FoldColumn = { bg = "none" },
+            IblIndent = { fg = "#333333" },
+            CodeBlock = { bg = "#1e1e2e" },
+            CursorLine = { bg = "none" },
+          },
+        },
+      })
+    end,
+  },
   -- {
   --   "eldritch-theme/eldritch.nvim",
   --   lazy = false,
@@ -393,9 +393,54 @@ return {
   --   end,
   -- },
   {
+    "miikanissi/modus-themes.nvim",
+    priority = 1000,
+
+    config = function()
+      -- Default options
+      require("modus-themes").setup({
+        -- Theme comes in two styles `modus_operandi` and `modus_vivendi`
+        -- `auto` will automatically set style based on background set with vim.o.background
+        style = "auto",
+        variant = "default", -- Theme comes in four variants `default`, `tinted`, `deuteranopia`, and `tritanopia`
+        transparent = true, -- Transparent background (as supported by the terminal)
+        dim_inactive = false, -- "non-current" windows are dimmed
+        hide_inactive_statusline = false, -- Hide statuslines on inactive windows. Works with the standard **StatusLine**, **LuaLine** and **mini.statusline**
+        styles = {
+          -- Style to be applied to different syntax groups
+          -- Value is any valid attr-list value for `:help nvim_set_hl`
+          comments = { italic = true },
+          keywords = { italic = true },
+          functions = {},
+          variables = {},
+        },
+
+        --- You can override specific color groups to use other groups or a hex color
+        --- Function will be called with a ColorScheme table
+        --- Refer to `extras/lua/modus_operandi.lua` or `extras/lua/modus_vivendi.lua` for the ColorScheme table
+        ---@param colors ColorScheme
+        on_colors = function(colors) end,
+
+        --- You can override specific highlights to use other groups or a hex color
+        --- Function will be called with a Highlights and ColorScheme table
+        --- Refer to `extras/lua/modus_operandi.lua` or `extras/lua/modus_vivendi.lua` for the Highlights and ColorScheme table
+        ---@param highlights Highlights
+        ---@param colors ColorScheme
+        on_highlights = function(highlights, colors)
+          highlights.NormalFloat = { bg = "none" }
+          highlights.CursorLine = { bg = "none" }
+          highlights.LineNrAbove = { bg = "none" }
+          highlights.LineNrBelow = { bg = "none" }
+          highlights.StatusLineNC = { bg = "none" }
+          highlights.StatusLine = { bg = "none" }
+        end,
+      })
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine",
+      colorscheme = "tokyonight",
     },
   },
 }
