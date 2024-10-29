@@ -9,7 +9,7 @@ end
 config.window_decorations = "RESIZE"
 config.font_size = 22
 config.font = wezterm.font_with_fallback({
-	{ family = "FiraCode Nerd Font", weight = 500, scale = 0.80 },
+	{ family = "FiraCode Nerd Font", weight = 500, scale = 0.75 },
 	-- { family = "0xProto", weight = 500, scale = 0.80 },
 	-- { family = "Victor Mono", weight = "Bold", scale = 0.80 },
 	-- { family = "JetBrains Mono", weight = 500, scale = 0.75 },
@@ -19,13 +19,15 @@ config.font = wezterm.font_with_fallback({
 -- config.color_scheme = "Eldritch"
 -- config.color_scheme = "One Half Black (Gogh)"
 -- config.color_scheme = "Rosé Pine Moon (base16)"
-config.color_scheme = "Rosé Pine (base16)"
+-- config.color_scheme = "Rosé Pine (base16)"
+-- config.color_scheme = 'Modus Vivendi (Gogh)'
 -- config.color_scheme = "BlulocoDark"
 -- config.color_scheme = "Catppuccin Latte"
 -- config.color_scheme = "Everforest Light (Gogh)"
 -- config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "Catppuccin Macchiato"
 -- config.color_scheme = "Tokyo Night"
+config.color_scheme = "Tokyo Night Moon"
 -- config.color_scheme = "Dawn (terminal.sexy)"
 
 -- config.colors = {
