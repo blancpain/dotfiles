@@ -1,0 +1,195 @@
+exit
+$nu.env-path
+$nu.config-path
+cd Users
+z Users
+exit
+$nu.config-path
+$nu.env-path
+exit
+$nu.config-path
+$nu.env-path
+ls
+ls -al
+v
+nvim
+eza
+ls
+ls -al
+ps
+$env
+ps | where cpu > 5
+..
+cd repos/
+ls
+cd rules-distributor-service/
+ls
+cd
+ls
+ls -al
+ls
+exit
+g
+z
+z fish
+ls
+ls -al
+ls
+exit
+ls
+ls -al
+exit
+docker ps 
+ls
+$nu.env-path
+cd nushell/
+ls
+ls -al
+ls
+touch env.nu
+vim env.nu
+vim config.nu
+source env.nu
+source config.nu
+ls
+z repos
+..
+cd repos/
+cd rules-distributor-service/
+..
+cd payload-helper/
+ls
+..
+ls
+cd mclimate-payload-helper/
+cd
+cd dotfiles/
+ls
+cd nushell/
+ls
+vim env.nu
+source env.nu
+source config.nu
+z repos
+z dotf
+cd nushell/
+ls
+vim
+brew install carapace
+vim env.nu
+source env.nu
+source config.nu
+docker ps
+echo $SHELL
+ls
+vim
+source env.nu
+ls
+source config.nu
+ls
+vim config.nu 
+ls
+exit
+ls
+vim
+source config.nu
+ls
+config.nu
+vim config.nu 
+ls
+docker
+docket 
+exit
+ls
+vim config.nu 
+config
+$env.EDITOR
+config nu
+exit
+brew ls 
+ls
+btop
+cat
+cat env.nu 
+bat env.nu 
+bat config.nu 
+nu config
+config nu
+source config.nu
+source env.nu
+vim
+source env.nu
+vim
+source env.nu
+config nu
+source env.nu
+source config.nu
+exit
+ls
+tn 
+vim
+config nu
+source config.nu
+cd nushell/
+source config.nu
+source env.nu
+exit
+ls
+ls -a
+ls -al
+tree
+ls
+where --help
+ls
+where 
+where --help
+ls | where type =="file"
+ls | where type == "file"
+ls | where type == "dir"
+ls | where size > 65b
+ls | where size > 63b
+ls | where size > 63b | sort-by size
+ls | where size > 63b | sort-by size --reverse 
+ls 
+|<\n>
+ls
+help commands 
+help commands \
+help commands |<\n>where name == ls
+echo 
+echo $current
+g
+z rules
+g
+g ent
+z enter
+ls
+g
+z lazygit
+ls
+vim 
+z dot
+vim
+ls
+vim
+ls
+cd lazygit/
+ls
+vim config.yml 
+g
+vim
+g
+ls
+g
+ls
+man
+man man
+help commands 
+g
+ls
+exit
+ls
+help commands 
+ls
+nix run "nixpkgs#hello"
+exit
