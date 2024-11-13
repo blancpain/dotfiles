@@ -22,6 +22,8 @@ return {
       "scss",
       "yaml",
       "vue",
+      "nu",
+      "nix",
     },
   },
 }
