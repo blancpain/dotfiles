@@ -13,9 +13,11 @@ vim.keymap.set("x", "g_", "g<C-x>", opts)
 
 -- save and delete
 vim.keymap.set({ "x", "n", "s" }, "<leader>w", "<cmd>w<cr><esc>", { desc = "Save File" })
-vim.keymap.set("n", "<leader>q", LazyVim.ui.bufremove, { desc = "Delete Buffer" })
+vim.keymap.set("n", "<leader>q", function()
+  Snacks.bufdelete()
+end, { desc = "Delete Buffer" })
 
-LazyVim.toggle.map("<leader>m", LazyVim.toggle.maximize)
+LazyVim.ui.maximize():map("<leader>m")
 
 -- exit insert mode with jj
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
