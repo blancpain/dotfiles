@@ -71,6 +71,9 @@
             "nikitabobko/tap/aerospace"
           ];
 
+          # Add this to allow impure evaluation
+          nix.settings.allow-impure-eval = true;
+
         };
     in
     {
