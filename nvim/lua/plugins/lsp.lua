@@ -61,6 +61,15 @@ return {
             },
           },
         },
+        -- nil_ls = {
+        --   settings = {
+        --     ["nil"] = {
+        --       formatting = {
+        --         command = { "nixfmt" },
+        --       },
+        --     },
+        --   },
+        -- },
         emmet_language_server = {
           filetypes = {
             "css",
