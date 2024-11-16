@@ -193,3 +193,142 @@ help commands
 ls
 nix run "nixpkgs#hello"
 exit
+darwin-rebuild
+exit
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin
+exit
+ls
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin
+ls
+exit
+sudo nvim /etc/hosts
+exit
+sudo nvim /etc/hosts
+exit
+echo $SHELL
+echo $env.SHELL
+exit
+nix run "nixpkgs#hello"
+exit
+nix run nixpkgs#nix-info -- -m
+exit
+ls
+exit
+ls
+exit
+bob update
+bub update --all
+bob update --all
+exit
+reload-env
+exit
+source env.nu
+cd nushell/
+ls
+source env.nu
+source config.nu
+vim env.nu 
+vim
+source config.nu
+source env.nu
+m
+vim
+source config.nu
+source env.nu
+vim env.nu 
+source config.nu
+vim
+source config.nu
+vim
+source config.nu
+vim
+source config.nu
+history | columns
+vim
+source config.nu
+source env.nu
+m
+vim
+source config.nu
+exit
+vim
+source config.nu
+vim
+source config.nu
+z
+z ent
+z rules
+history
+vim
+ls
+ls -al
+ls
+t
+tree
+ltree
+tee
+ls
+vim
+nvm ls
+curl -fsSL https://fnm.vercel.app/install | bash
+brew leaves
+node --version
+fnm 
+fnm list-remote
+fnm use 20
+fnm list
+$nu.config-path
+vim
+config
+config nu
+source config.nu
+cd nushell/
+source config.nu
+source env.nu
+vim
+source env.nu
+vim
+source env.nu
+source config.nu
+fnm
+fnm list
+fnm ls
+fnm use 20
+ls
+z ent
+node --version
+fnm use 24
+nvm ls
+fnm ls
+fnm list-remote
+fnm use 22
+node --version
+nvm use 20
+fnm use 20
+node --version
+node -version
+z ent
+exit
+exit
+fnm ls
+z dot
+z dot
+vim
+cd nushell/
+ls
+source config.nu
+source env.nu
+fnm ls
+exit
+nu
+exit
+node --version
+ls
+exit
+fnm ls
+exit
+vim
+exit
+ls
+rm tmux
+ls

@@ -424,12 +424,47 @@ $env.config = {
             }
         }
         {
-            name: history_menu
-            modifier: control
-            keycode: char_r
-            mode: [emacs, vi_insert, vi_normal]
-            event: { send: menu name: history_menu }
+          name: fuzzy_history_fzf
+          modifier: control
+          keycode: char_r
+          mode: [emacs, vi_normal, vi_insert]
+          event: {
+            send: executehostcommand
+            cmd: "commandline edit --replace (
+            history
+            | get command
+            | reverse
+            | uniq
+            | str join (char -i 0)
+            | fzf --read0 --scheme=history 
+            --layout=reverse-list
+            --height=60%  
+            --reverse 
+            --no-info 
+            --prompt=' ' 
+            --pointer=''  
+            --marker=''   
+            --ansi 
+            --border=rounded
+            --border-label=' Command History ' 
+            --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7 
+            --preview='echo {..}' 
+            --preview-window='bottom:3:wrap' 
+            --bind alt-up:preview-up,alt-down:preview-down 
+            -q (commandline)
+            --preview='echo -n {} | nu --stdin -c \"nu-highlight\"'
+            | decode utf-8
+            | str trim
+            )"
+          }
         }
+        # {
+        #     name: history_menu
+        #     modifier: control
+        #     keycode: char_r
+        #     mode: [emacs, vi_insert, vi_normal]
+        #     event: { send: menu name: history_menu }
+        # }
         {
             name: help_menu
             modifier: none
