@@ -41,11 +41,6 @@
           # Enable alternative shell support in nix-darwin.
           # programs.fish.enable = true;
 
-          users.users.blancpain = {
-            # shell = pkgs.fish;
-            shell = pkgs.nushell;
-          };
-
           # Set Git commit hash for darwin-version.
           system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -58,11 +53,9 @@
 
           security.pam.enableSudoTouchIdAuth = true; # NOTE: doesn't work in tmux
 
-          # for home-manager
-          # users.users.blancpain.home = "/Users/blancpain";
           users.users.blancpain = {
-            isNormalUser = true;
             home = "/Users/blancpain";
+            shell = pkgs.nushell;
           };
           home-manager.backupFileExtension = "backup";
 
