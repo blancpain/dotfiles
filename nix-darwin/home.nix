@@ -47,7 +47,7 @@
     "$HOME/.nix-profile/bin"
   ];
   programs = {
-    home-manager.enable = true;
+    # home-manager.enable = true;
     nushell = {
       enable = true;
       configFile.source = ../nushell/config.nu;

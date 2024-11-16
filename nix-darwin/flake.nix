@@ -59,7 +59,11 @@
           security.pam.enableSudoTouchIdAuth = true; # NOTE: doesn't work in tmux
 
           # for home-manager
-          users.users.blancpain.home = "/Users/blancpain";
+          # users.users.blancpain.home = "/Users/blancpain";
+          users.users.blancpain = {
+            isNormalUser = true;
+            home = "/Users/blancpain";
+          };
           home-manager.backupFileExtension = "backup";
 
           # Set system-wide defaults for certain options.
