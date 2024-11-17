@@ -570,3 +570,11 @@ vim
 ls
 fnm ls
 exit
+ls
+exit
+z dot
+z dotf
+btop
+vim
+vim 
+vim
