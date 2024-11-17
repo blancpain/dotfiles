@@ -1,21 +1,41 @@
-#starship
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
+# Starship setup
+def --env setup_starship [] {
+  if not ($env.HOME | path join ".cache" "starship" | path exists) {
+    mkdir ($env.HOME | path join ".cache" "starship")
+  }
+  if (which starship | is-empty) {
+    echo "Starship not found in PATH"
+    return
+  }
+  starship init nu | save -f ~/.cache/starship/init.nu
+}
+
+
+# NOTE: not sure if we need zoxide here if managed by brew
 #zoxide
-zoxide init nushell | save -f ~/.zoxide.nu
-#carapace
-$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+# zoxide init nushell | save -f ~/.zoxide.nu
 
-$env.PROMPT_INDICATOR = {|| "> " }
-$env.PROMPT_INDICATOR_VI_INSERT = {|| ": " }
-$env.PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
-$env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
 
-# $env.PATH = ($env.PATH | prepend "/home/blancpain/.fnm")
+# Carapace setup
+def --env setup_carapace [] {
+  if not ($env.HOME | path join ".cache" "carapace" | path exists) {
+    mkdir ($env.HOME | path join ".cache" "carapace")
+  }
+  if (which carapace | is-empty) {
+    echo "Carapace not found in PATH"
+    return
+  }
+  $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
+  carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+}
 
-load-env (fnm env --shell bash
+# FNM setup
+def --env setup_fnm [] {
+  if (which fnm | is-empty) {
+    echo "FNM not found in PATH"
+    return
+  }
+  load-env (fnm env --shell bash
     | lines
     | str replace 'export ' ''
     | str replace -a '"' ''
@@ -23,15 +43,21 @@ load-env (fnm env --shell bash
     | rename name value
     | where name != "FNM_ARCH" and name != "PATH"
     | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value }
-)
-
-$env.PATH = ($env.PATH
+  )
+  $env.PATH = ($env.PATH
     | split row (char esep)
     | prepend $"($env.FNM_MULTISHELL_PATH)/bin"
-)
+  )
+}
 
-# # FZF configurations
-# $env.FZF_CTRL_R_OPTS = "--border-label=' Command History ' --prompt=' '"
-# $env.FZF_DEFAULT_COMMAND = "fd -H -E '.git'"
-# $env.FZF_DEFAULT_OPTS = "--reverse --no-info --prompt=' ' --pointer='' --marker='' --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
-# $env.FZF_TMUX_OPTS = "-p --no-info --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
+# Run setups
+setup_starship
+setup_carapace
+setup_fnm
+
+# Configure prompt
+$env.STARSHIP_CONFIG = ($env.HOME | path join ".config" "starship" "starship.toml")
+$env.PROMPT_INDICATOR = {|| "> " }
+$env.PROMPT_INDICATOR_VI_INSERT = {|| ": " }
+$env.PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
+$env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }

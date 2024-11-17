@@ -332,3 +332,241 @@ exit
 ls
 rm tmux
 ls
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+ls
+fnm ls
+$nu.env-path
+vim
+z conf
+ls
+ls -al
+vim lazyvim.json 
+vim lazy-lock.json 
+ls
+vim init.lua 
+z dot
+vim
+vim
+rustlings
+ls
+exit
+ls
+vim
+nu config
+nu.config
+config.nu
+config
+z fish
+config nu
+z nushell
+ls
+source env.nu
+ls
+exit
+z nushell
+vim
+ls
+m
+v
+docker bui
+exit
+which nu
+exit
+darwin-rebuild 
+exit
+fnm ls
+vim
+which nu
+vim
+echo (which nu) | sudo tee -a /etc/shells
+man tee
+cat /etc/shells
+sudo nvim /etc/shells 
+chsh -s /run/current-system/sw/bin/fish
+cat /etc/shells
+chsh -s /run/current-system/sw/bin/nu
+ls
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+ls
+z ent
+..
+ls
+z dotf
+vim
+which nu
+vim
+brew ls
+brew ls | starship
+brew list | grep starship
+brew list | grep starship carapace
+brew list | grep carap
+brew list | grep zoxide
+vim
+cd nushell/
+ls
+source env.nu
+source config.nu
+exit
+.
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+ls
+exit
+which nu
+exut
+exit
+chsh -s /run/current-system/sw/bin/nu
+vim
+z dot
+vim
+cd nushell/
+ls
+source config.nu
+source env.nu
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+..
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+exit
+ls
+z conf
+ls
+cd nushell/
+ls -al
+z dot
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+exit
+nu
+ls
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+exit
+fnm ls
+g
+vim
+chsh -s /run/current-system/sw/bin/fish
+exit
+nu
+ls
+exit
+nu
+ls
+z ent
+ls
+fnm ls
+z conf
+vim
+ls
+fnm ls
+fnm use 14
+z conf
+z dot
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+ls
+exit
+nu
+chsh -s /run/current-system/sw/bin/nu
+which nu
+g
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+g
+which nu
+brew ls 
+vim
+chsh -s /run/current-system/sw/bin/fis
+chsh -s /run/current-system/sw/bin/fish
+cat /etc/shells
+chsh -s /run/current-system/sw/bin/nu
+g
+z dotf
+vim
+g
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+vim
+chsh -s /run/current-system/sw/bin/fish
+exit
+fnm use 14
+ls
+vim
+brew remove starship
+brew ls
+ls
+vim
+chsh -s /run/current-system/sw/bin/nu
+vim
+cd nushell/
+source env.nu
+source config.nu
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+exit
+nu
+exit
+nu
+exit
+fnm ls
+fnm use 16
+exit
+g
+vim
+ls
+which nu
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+vim
+ls -la ~/Library/Application\ Support/nushell
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+sudo mv /etc/shells /etc/shells.before-nix-darwin
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+cat /etc/shells
+sudo mv /etc/shells.before-nix-darwin /etc/shells
+cat /etc/shells
+cd /etc/
+ls
+z dotf
+vim
+nu- l
+m
+vi
+g
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+chsh -s /run/current-system/sw/bin/fish
+exit
+nu -l
+exit
+nu
+exit
+nu
+exit
+ls
+vim
+z conf
+ls
+cd nushell/
+ls
+cat config.nu 
+..
+ls
+z dotf
+vim
+darwin-rebuild switch --flake ~/dotfiles/nix-darwin --impure
+cat /etc/shells
+which nu
+vim
+ls
+fnm ls
+exit
