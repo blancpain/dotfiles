@@ -1,3 +1,6 @@
+#NOTE: see `https://discourse.nixos.org/t/any-nix-darwin-nushell-users/37778/2` for nushell
+# https://nixos.wiki/wiki/Nushell
+
 {
   description = "My Darwin system flake";
 
@@ -27,6 +30,7 @@
           environment.systemPackages = [
             pkgs.vim
             pkgs.fish
+            pkgs.nushell
             pkgs.starship
             pkgs.nixfmt-rfc-style
           ];
