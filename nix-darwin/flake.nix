@@ -27,7 +27,7 @@
           environment.systemPackages = [
             pkgs.vim
             pkgs.fish
-            pkgs.nushell
+            pkgs.starship
             pkgs.nixfmt-rfc-style
           ];
 
@@ -37,9 +37,6 @@
 
           # Necessary for using flakes on this system.
           nix.settings.experimental-features = "nix-command flakes";
-
-          # Enable alternative shell support in nix-darwin.
-          # programs.fish.enable = true;
 
           # Set Git commit hash for darwin-version.
           system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -55,7 +52,6 @@
 
           users.users.blancpain = {
             home = "/Users/blancpain";
-            shell = pkgs.nushell;
           };
           home-manager.backupFileExtension = "backup";
 
@@ -70,6 +66,9 @@
           homebrew.casks = [
             "nikitabobko/tap/aerospace"
           ];
+          homebrew.brews =
+            [
+            ];
 
         };
     in
