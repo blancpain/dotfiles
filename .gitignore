@@ -3,3 +3,4 @@
 last
 tmux_resurrect*
 lazy-lock.json
+.secrets.enc

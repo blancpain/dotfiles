@@ -1,9 +1,16 @@
+
 if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
     source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
 end
 
 if test -d /run/current-system/sw/bin
     fish_add_path /run/current-system/sw/bin
+end
+
+# secrets
+# to set use: echo "set -gx KEY_NAME the_actual_key" | openssl enc -base64 >> .secrets.enc
+if test -f $HOME/dotfiles/fish/.secrets.enc
+    openssl enc -base64 -d <$HOME/dotfiles/fish/.secrets.enc | source
 end
 
 #https://fishshell.com/docs/current/language.html
