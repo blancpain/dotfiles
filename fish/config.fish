@@ -57,3 +57,5 @@ abbr gp git pull
 abbr gP git push
 abbr cr cargo run
 abbr cb cargo build
+
+fzf_configure_bindings --directory=\cf
