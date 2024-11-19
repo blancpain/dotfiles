@@ -33,6 +33,7 @@
             pkgs.nushell
             pkgs.starship
             pkgs.nixfmt-rfc-style
+            pkgs.hub
           ];
 
           # Auto upgrade nix package and the daemon service.
