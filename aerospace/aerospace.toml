@@ -215,3 +215,8 @@ run = 'move-node-to-workspace 6'
 if.app-id = 'com.hnc.Discord'
 if.workspace = '1'
 run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if.app-id = 'io.raindrop.macapp'
+if.workspace = '1'
+run = 'move-node-to-workspace 8'
