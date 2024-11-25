@@ -62,18 +62,78 @@
 
           # Set system-wide defaults for certain options.
           system.defaults = {
-            # dock.autohide = true;
+            dock.autohide = true;
             finder.AppleShowAllExtensions = true;
             finder.FXPreferredViewStyle = "clmv";
           };
 
           homebrew.enable = true;
           homebrew.casks = [
+            "1password-cli"
+            "alacritty"
+            "alt-tab"
+            "docker"
+            "font-fira-sans"
+            "font-meslo-lg-nerd-font"
+            "font-victor-mono"
+            "google-chrome"
+            "gstreamer-runtime"
+            "iterm2"
+            "sequel-ace"
+            "wezterm"
+            "epk/epk/font-sf-mono-nerd-font"
             "nikitabobko/tap/aerospace"
           ];
-          homebrew.brews =
-            [
-            ];
+          homebrew.brews = [
+            "automake"
+            "bat"
+            "bob"
+            "bottom"
+            "btop"
+            "carapace"
+            "cloc"
+            "cloudflared"
+            "cpanminus"
+            "fastfetch"
+            "fd"
+            "ffmpegthumbnailer"
+            "flyctl"
+            "fnm"
+            "fzf"
+            "gdu"
+            "gh"
+            "gifsicle"
+            "git"
+            "gnu-sed"
+            "go"
+            "helix"
+            "httpie"
+            "jesseduffield/lazygit/lazygit"
+            "jq"
+            "koekeishiya/formulae/skhd"
+            "llvm@17"
+            "lpeg"
+            "make"
+            "mycli"
+            "php"
+            "pngpaste"
+            "poppler"
+            "python@3.11"
+            "rabbitmq"
+            "redis"
+            "ripgrep"
+            "rust"
+            "rust-analyzer"
+            "rustup"
+            "tldr"
+            "tmux"
+            "tree"
+            "unar"
+            "wget"
+            "yazi"
+            "zellij"
+            "zoxide"
+          ];
 
         };
     in
