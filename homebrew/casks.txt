@@ -1,0 +1,14 @@
+1password-cli
+aerospace
+alacritty
+alt-tab
+docker
+font-fira-sans
+font-meslo-lg-nerd-font
+font-sf-mono-nerd-font
+font-victor-mono
+google-chrome
+gstreamer-runtime
+iterm2
+sequel-ace
+wezterm
