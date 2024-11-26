@@ -32,6 +32,7 @@ local spec = {
   { import = "lazyvim.plugins.extras.editor.refactoring" },
   { import = "lazyvim.plugins.extras.lang.rust" },
   { import = "lazyvim.plugins.extras.lang.nix" },
+  { import = "lazyvim.plugins.extras.lang.nushell" },
   -- { import = "lazyvim.plugins.extras.coding.blink" },
   { import = "plugins" },
 }
