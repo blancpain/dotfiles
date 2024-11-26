@@ -44,6 +44,8 @@ set -U GOPATH (go env GOPATH) # https://golang.google.cn/
 set -x OP_BIOMETRIC_UNLOCK_ENABLED true
 set -x XDG_CONFIG_HOME "/Users/blancpain/.config"
 set -x NIX_CONF_DIR "/Users/blancpain/.config/nix"
+set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+carapace _carapace | source
 
 #abbreviations
 abbr vim nvim
