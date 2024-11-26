@@ -25,24 +25,33 @@
       configuration =
         { pkgs, ... }:
         {
-          # List packages installed in system profile. To search by name, run:
-          # $ nix-env -qaP | grep wget
-          environment.systemPackages = [
-            pkgs.vim
-            pkgs.fish
-            pkgs.nushell
-            pkgs.starship
-            pkgs.nixfmt-rfc-style
-            pkgs.hub
-            pkgs.obsidian
-            pkgs.slack
-            pkgs.colima
-            pkgs.docker
-            pkgs.wezterm
-            pkgs.tmux
-            pkgs.ngrok
-            pkgs.carapace
-          ];
+          environment = {
+            systemPackages = [
+              pkgs.vim
+              pkgs.fish
+              pkgs.nushell
+              pkgs.starship
+              pkgs.nixfmt-rfc-style
+              pkgs.hub
+              pkgs.obsidian
+              pkgs.slack
+              pkgs.colima
+              pkgs.docker
+              pkgs.wezterm
+              pkgs.tmux
+              pkgs.ngrok
+              pkgs.carapace
+              pkgs.pam-reattach
+            ];
+
+            # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
+
+            etc."pam.d/sudo_local".text = ''
+              # Managed by Nix Darwin
+              auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
+              auth       sufficient     pam_tid.so
+            '';
+          };
 
           # Auto upgrade nix package and the daemon service.
           services.nix-daemon.enable = true;
