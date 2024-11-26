@@ -34,6 +34,13 @@
             pkgs.starship
             pkgs.nixfmt-rfc-style
             pkgs.hub
+            pkgs.obsidian
+            pkgs.slack
+            pkgs.colima
+            pkgs.docker
+            pkgs.wezterm
+            pkgs.tmux
+            pkgs.ngrok
           ];
 
           # Auto upgrade nix package and the daemon service.
@@ -52,6 +59,7 @@
 
           # The platform the configuration will be used on.
           nixpkgs.hostPlatform = "aarch64-darwin";
+          nixpkgs.config.allowUnfree = true;
 
           security.pam.enableSudoTouchIdAuth = true; # NOTE: doesn't work in tmux
 
@@ -65,94 +73,118 @@
             dock.autohide = true;
             finder.AppleShowAllExtensions = true;
             finder.FXPreferredViewStyle = "clmv";
+            NSGlobalDomain.KeyRepeat = 1;
+            NSGlobalDomain.InitialKeyRepeat = 14;
           };
 
-          homebrew.enable = true;
-          homebrew.casks = [
-            "1password-cli"
-            "alacritty"
-            "alt-tab"
-            "docker"
-            "font-fira-sans"
-            "font-meslo-lg-nerd-font"
-            "font-victor-mono"
-            "google-chrome"
-            "gstreamer-runtime"
-            "iterm2"
-            "sequel-ace"
-            "wezterm"
-            "epk/epk/font-sf-mono-nerd-font"
-            "nikitabobko/tap/aerospace"
+          #TODO: double check mac mini name
+          homebrew = {
+            enable = true;
+            casks = [
+              "alfred"
+              "1password-cli"
+              "alt-tab"
+              "font-fira-sans"
+              "spacelauncher"
+              "font-meslo-lg-nerd-font"
+              "font-victor-mono"
+              "gstreamer-runtime"
+              "iterm2"
+              "sequel-ace"
+              "chatgpt"
+              "epk/epk/font-sf-mono-nerd-font"
+              "nikitabobko/tap/aerospace"
+              "karabiner-elements"
+              "firefox"
+              "appcleaner"
+              "mongodb-compass"
+              "postman"
+            ];
+            brews = [
+              "mas"
+              "automake"
+              "bat"
+              "bob"
+              "bottom"
+              "btop"
+              "carapace"
+              "cloc"
+              "cloudflared"
+              "cpanminus"
+              "fastfetch"
+              "fd"
+              "ffmpegthumbnailer"
+              "flyctl"
+              "fnm"
+              "fzf"
+              "gdu"
+              "gh"
+              "gifsicle"
+              "git"
+              "gnu-sed"
+              "go"
+              "helix"
+              "httpie"
+              "jesseduffield/lazygit/lazygit"
+              "jq"
+              "llvm@17"
+              "lpeg"
+              "make"
+              "mycli"
+              "php"
+              "pngpaste"
+              "poppler"
+              "python@3.11"
+              "rabbitmq"
+              "redis"
+              "ripgrep"
+              "rust"
+              "rust-analyzer"
+              "rustup"
+              "tldr"
+              "tree"
+              "unar"
+              "wget"
+              "yazi"
+              "zoxide"
+            ];
+            masApps = {
+              "Color Picker" = 1545870783;
+              "Unzip - RAR ZIP 7Z Unarchiver" = 1537056818;
+              "Gifski" = 1351639930;
+              "Toggl Track" = 1291898086;
+              "Xcode" = 497799835;
+              "Spark" = 1176895641;
+              "Trello" = 1278508951;
+              "Things 3" = 904280696;
+            };
+          };
+        };
+      # Build darwin flake using:
+      mkDarwinSystem =
+        hostname:
+        nix-darwin.lib.darwinSystem {
+          modules = [
+            configuration
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.blancpain = import ./home.nix;
+            }
           ];
-          homebrew.brews = [
-            "automake"
-            "bat"
-            "bob"
-            "bottom"
-            "btop"
-            "carapace"
-            "cloc"
-            "cloudflared"
-            "cpanminus"
-            "fastfetch"
-            "fd"
-            "ffmpegthumbnailer"
-            "flyctl"
-            "fnm"
-            "fzf"
-            "gdu"
-            "gh"
-            "gifsicle"
-            "git"
-            "gnu-sed"
-            "go"
-            "helix"
-            "httpie"
-            "jesseduffield/lazygit/lazygit"
-            "jq"
-            "koekeishiya/formulae/skhd"
-            "llvm@17"
-            "lpeg"
-            "make"
-            "mycli"
-            "php"
-            "pngpaste"
-            "poppler"
-            "python@3.11"
-            "rabbitmq"
-            "redis"
-            "ripgrep"
-            "rust"
-            "rust-analyzer"
-            "rustup"
-            "tldr"
-            "tmux"
-            "tree"
-            "unar"
-            "wget"
-            "yazi"
-            "zellij"
-            "zoxide"
-          ];
-
         };
     in
     {
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#Yasens-MacBook-Pro
-      darwinConfigurations."Yasens-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-        modules = [
-          configuration
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.blancpain = import ./home.nix;
-          }
-        ];
+
+      darwinConfigurations = {
+        # You can add any hostname here and the configuration will work
+        "Yasens-MacBook-Pro" = mkDarwinSystem "Yasens-MacBook-Pro";
+        "Yasens-Mac-Mini" = mkDarwinSystem "Yasens-Mac-Mini";
       };
 
       # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."Yasens-MacBook-Pro".pkgs;
+      # TODO: see how we can make hostname agnostic
+      # darwinPackages = self.darwinConfigurations."Yasens-MacBook-Pro".pkgs;
     };
 }
