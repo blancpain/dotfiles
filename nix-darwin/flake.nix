@@ -41,6 +41,7 @@
             pkgs.wezterm
             pkgs.tmux
             pkgs.ngrok
+            pkgs.carapace
           ];
 
           # Auto upgrade nix package and the daemon service.
@@ -107,7 +108,6 @@
               "bob"
               "bottom"
               "btop"
-              "carapace"
               "cloc"
               "cloudflared"
               "cpanminus"
