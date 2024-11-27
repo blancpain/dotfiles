@@ -34,9 +34,7 @@
               pkgs.nixfmt-rfc-style
               pkgs.hub
               pkgs.obsidian
-              pkgs.slack
               pkgs.colima
-              pkgs.docker
               pkgs.wezterm
               pkgs.tmux
               pkgs.ngrok
@@ -45,11 +43,16 @@
             ];
 
             # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
+            # For enabling touchId in clamshell mode follow: https://linkarzu.com/posts/macos/auth-apple-watch/
+            # WARN: comment out the pam_watchid.so on first setup as we need to install the watchid script first
+            # otherwise sudo will break
+            # alternatively write some scripts for setting everything up
 
             etc."pam.d/sudo_local".text = ''
               # Managed by Nix Darwin
               auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
               auth       sufficient     pam_tid.so
+              auth       sufficient     pam_watchid.so
             '';
           };
 
@@ -71,7 +74,7 @@
           nixpkgs.hostPlatform = "aarch64-darwin";
           nixpkgs.config.allowUnfree = true;
 
-          security.pam.enableSudoTouchIdAuth = true; # NOTE: doesn't work in tmux
+          security.pam.enableSudoTouchIdAuth = true;
 
           users.users.blancpain = {
             home = "/Users/blancpain";
@@ -98,6 +101,7 @@
               "spacelauncher"
               "font-meslo-lg-nerd-font"
               "font-victor-mono"
+              "slack"
               "gstreamer-runtime"
               "iterm2"
               "sequel-ace"
@@ -189,7 +193,7 @@
       darwinConfigurations = {
         # You can add any hostname here and the configuration will work
         "Yasens-MacBook-Pro" = mkDarwinSystem "Yasens-MacBook-Pro";
-        "Yasens-Mac-Mini" = mkDarwinSystem "Yasens-Mac-Mini";
+        "Yasens-Mac-mini" = mkDarwinSystem "Yasens-Mac-mini";
       };
 
       # Expose the package set, including overlays, for convenience.
