@@ -90,7 +90,6 @@
             NSGlobalDomain.InitialKeyRepeat = 14;
           };
 
-          #TODO: double check mac mini name
           homebrew = {
             enable = true;
             casks = [
