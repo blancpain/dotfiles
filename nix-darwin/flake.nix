@@ -34,6 +34,7 @@
               pkgs.nixfmt-rfc-style
               pkgs.hub
               pkgs.obsidian
+              pkgs.docker
               pkgs.colima
               pkgs.wezterm
               pkgs.tmux
@@ -112,6 +113,7 @@
               "appcleaner"
               "mongodb-compass"
               "postman"
+              "raindropio"
             ];
             brews = [
               "mas"
