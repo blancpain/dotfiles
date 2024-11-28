@@ -33,7 +33,6 @@
               pkgs.starship
               pkgs.nixfmt-rfc-style
               pkgs.hub
-              pkgs.obsidian
               pkgs.docker
               pkgs.colima
               pkgs.wezterm
@@ -97,6 +96,7 @@
             casks = [
               "alfred"
               "1password-cli"
+              "obsidian"
               "1password"
               "alt-tab"
               "font-fira-sans"
