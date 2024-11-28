@@ -51,8 +51,6 @@ config.underline_thickness = 3
 config.underline_position = -8
 config.scrollback_lines = 10000
 
-config.term = "wezterm"
-
 -- NOTE: workaround to get c-i to work as expected, have mapped c-pageUp in nvim to c-i
 config.keys = {
 	{
