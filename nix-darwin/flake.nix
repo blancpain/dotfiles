@@ -41,6 +41,7 @@
               pkgs.ngrok
               pkgs.carapace
               pkgs.pam-reattach
+              pkgs.lazygit
             ];
 
             # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
@@ -96,6 +97,7 @@
             casks = [
               "alfred"
               "1password-cli"
+              "1password"
               "alt-tab"
               "font-fira-sans"
               "spacelauncher"
@@ -139,7 +141,6 @@
               "go"
               "helix"
               "httpie"
-              "jesseduffield/lazygit/lazygit"
               "jq"
               "llvm@17"
               "lpeg"
