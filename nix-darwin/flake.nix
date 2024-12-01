@@ -111,7 +111,7 @@
               "sequel-ace"
               "chatgpt"
               "epk/epk/font-sf-mono-nerd-font"
-              "nikitabobko/tap/aerospace"
+              # "nikitabobko/tap/aerospace"
               "karabiner-elements"
               "firefox"
               "appcleaner"
