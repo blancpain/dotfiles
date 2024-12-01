@@ -28,6 +28,8 @@ in
     ".config/nushell".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/nushell";
     ".config/fish".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/fish";
     ".config/karabiner".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/karabiner";
+    ".config/skhd".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/skhd";
+    ".config/yabai".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/yabai";
   };
 
   home.sessionVariables = { };

@@ -41,6 +41,8 @@
               pkgs.carapace
               pkgs.pam-reattach
               pkgs.lazygit
+              pkgs.skhd
+              pkgs.yabai
             ];
 
             # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
