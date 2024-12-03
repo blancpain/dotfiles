@@ -51,12 +51,29 @@
             # otherwise sudo will break
             # alternatively write some scripts for setting everything up
 
+            # watchid script
             etc."pam.d/sudo_local".text = ''
               # Managed by Nix Darwin
               auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
               auth       sufficient     pam_tid.so
               auth       sufficient     pam_watchid.so
             '';
+
+            # NOTE: blancpain is hardcoded as user here
+            # Add yabai sudoers configuration
+            # etc."sudoers.d/yabai".text = ''blancpain ALL=(root) NOPASSWD: sha256:4440221a5afa923f12b428689b9eadeaaf902a12b14cf0a30b9fd1737405df06 /run/current-system/sw/bin/yabai --load-sa''; # Note: no newline at the end
+
+            etc."sudoers.d/yabai".text =
+              let
+                yabaiPath = "${pkgs.yabai}/bin/yabai";
+                hash = builtins.readFile (
+                  pkgs.runCommand "yabai-hash" { } ''
+                    printf "%s" "$(sha256sum ${yabaiPath} | cut -d " " -f1)" > $out
+                  ''
+                );
+              in
+              "blancpain ALL=(root) NOPASSWD: sha256:${hash} ${yabaiPath} --load-sa";
+
           };
 
           # Auto upgrade nix package and the daemon service.
