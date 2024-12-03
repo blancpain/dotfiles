@@ -61,8 +61,6 @@
 
             # NOTE: blancpain is hardcoded as user here
             # Add yabai sudoers configuration
-            # etc."sudoers.d/yabai".text = ''blancpain ALL=(root) NOPASSWD: sha256:4440221a5afa923f12b428689b9eadeaaf902a12b14cf0a30b9fd1737405df06 /run/current-system/sw/bin/yabai --load-sa''; # Note: no newline at the end
-
             etc."sudoers.d/yabai".text =
               let
                 yabaiPath = "${pkgs.yabai}/bin/yabai";
