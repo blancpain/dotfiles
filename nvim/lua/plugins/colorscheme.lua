@@ -278,31 +278,31 @@ return {
       })
     end,
   },
-  -- {
-  --   "eldritch-theme/eldritch.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     ---@diagnostic disable-next-line: missing-fields
-  --     require("eldritch").setup({
-  --       transparent = true,
-  --       styles = {
-  --         sidebars = "transparent",
-  --         floats = "transparent",
-  --       },
-  --       hide_inactive_statusline = true,
-  --       on_highlights = function(highlights, colors)
-  --         -- highlights.WinBar = { bg = colors.none }
-  --         -- highlights.WinBarNC = { bg = colors.none }
-  --         highlights.CodeBlock = { bg = "#040404" }
-  --         highlights.CursorLine = { bg = colors.none }
-  --         highlights.LspInlayHint = { bg = colors.none, fg = "#7081d0" }
-  --         highlights.StatusLine = { bg = colors.none }
-  --         highlights.StatusLineNC = { bg = colors.none }
-  --       end,
-  --     })
-  --   end,
-  -- },
+  {
+    "eldritch-theme/eldritch.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require("eldritch").setup({
+        transparent = true,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
+        hide_inactive_statusline = true,
+        on_highlights = function(highlights, colors)
+          -- highlights.WinBar = { bg = colors.none }
+          -- highlights.WinBarNC = { bg = colors.none }
+          highlights.CodeBlock = { bg = "#040404" }
+          highlights.CursorLine = { bg = colors.none }
+          highlights.LspInlayHint = { bg = colors.none, fg = "#7081d0" }
+          highlights.StatusLine = { bg = colors.none }
+          highlights.StatusLineNC = { bg = colors.none }
+        end,
+      })
+    end,
+  },
   -- { "diegoulloao/neofusion.nvim", priority = 1000, config = true, opts = {} },
   -- {
   --   "samharju/synthweave.nvim",
@@ -440,7 +440,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "eldritch",
     },
   },
 }
