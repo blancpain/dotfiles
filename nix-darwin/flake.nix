@@ -114,6 +114,7 @@
               "alfred"
               "1password-cli"
               "obsidian"
+              "discord"
               "1password"
               "alt-tab"
               "font-fira-sans"
