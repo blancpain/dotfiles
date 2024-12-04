@@ -43,6 +43,8 @@
               pkgs.lazygit
               pkgs.skhd
               pkgs.yabai
+              pkgs.ncurses
+              pkgs.curl
             ];
 
             # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
@@ -73,6 +75,15 @@
               "blancpain ALL=(root) NOPASSWD: sha256:${hash} ${yabaiPath} --load-sa";
 
           };
+
+          # wezterm term info: ref https://wezfurlong.org/wezterm/config/lua/config/term.html?h=term
+          system.activationScripts.extraActivation.text = ''
+            tempfile="$(mktemp)"
+            ${pkgs.curl}/bin/curl -o "$tempfile" https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo
+            ${pkgs.ncurses}/bin/tic -x -o "/Users/blancpain/.terminfo" "$tempfile"
+            rm "$tempfile"
+            chown -R blancpain:staff /Users/blancpain/.terminfo
+          '';
 
           # Auto upgrade nix package and the daemon service.
           services.nix-daemon.enable = true;
