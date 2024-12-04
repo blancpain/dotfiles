@@ -108,6 +108,8 @@
             NSGlobalDomain.InitialKeyRepeat = 14;
           };
 
+          # NOTE: can also add an onActivation func to zap all brews/casks that are not in the list
+
           homebrew = {
             enable = true;
             casks = [
