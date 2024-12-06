@@ -16,7 +16,7 @@ config.font = wezterm.font_with_fallback({
 	-- { family = "MesloLGM Nerd Font", weight = 600, scale = 0.80 },
 })
 -- config.color_scheme = "Windows 10 (base16)"
--- config.color_scheme = "Eldritch"
+config.color_scheme = "Eldritch"
 -- config.color_scheme = "One Half Black (Gogh)"
 -- config.color_scheme = "Rosé Pine Moon (base16)"
 -- config.color_scheme = "Rosé Pine (base16)"
@@ -27,18 +27,18 @@ config.font = wezterm.font_with_fallback({
 -- config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "Catppuccin Macchiato"
 -- config.color_scheme = "Tokyo Night"
-config.color_scheme = "Tokyo Night Moon"
+-- config.color_scheme = "Tokyo Night Moon"
 -- config.color_scheme = "Dawn (terminal.sexy)"
+-- config.color_scheme = "Chalkboard (Gogh)"
+-- config.color_scheme = "Bamboo Multiplex"
+-- config.color_scheme = "Solarized Dark Higher Contrast"
 
 -- config.colors = {
 -- 	background = "#16181a", -- for cyberdream nvim theme
 -- }
 
--- config.color_scheme = "Chalkboard (Gogh)"
--- config.color_scheme = "Bamboo Multiplex"
--- config.color_scheme = "Solarized Dark Higher Contrast"
 -- config.window_background_opacity = 0.75
-config.macos_window_background_blur = 20
+-- config.macos_window_background_blur = 90
 config.window_padding = { left = 5, right = 5, top = 10, bottom = 0 }
 config.line_height = 1.05
 config.cell_width = 0.98
