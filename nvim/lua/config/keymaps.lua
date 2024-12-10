@@ -19,9 +19,6 @@ end, { desc = "Delete Buffer" })
 
 LazyVim.ui.maximize():map("<leader>m")
 
--- exit insert mode with jj
-vim.keymap.set("i", "jj", "<ESC>", { silent = true })
-
 -- better navigation and search;
 vim.keymap.set("n", "<C-d>", "19jzz", opts)
 vim.keymap.set("n", "<C-u>", "19kzz", opts)
