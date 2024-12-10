@@ -68,6 +68,7 @@ yabai_rule app="^AlDente$" manage=off
 yabai_rule app="^Toggl Track$" manage=off
 yabai_rule app="^Finder$" manage=off
 yabai_rule app="^1Password$" manage=off
+yabai_rule app="^Homerow$" manage=off
 yabai_rule app="^System Information$" manage=off
 yabai_rule app="^Activity Monitor$" manage=off
 
