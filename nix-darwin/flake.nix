@@ -147,6 +147,7 @@
               "mongodb-compass"
               "postman"
               "raindropio"
+              "homerow"
             ];
             brews = [
               "mas"
@@ -161,7 +162,6 @@
               "fastfetch"
               "fd"
               "ffmpegthumbnailer"
-              "homerow"
               "flyctl"
               "fnm"
               "fzf"
