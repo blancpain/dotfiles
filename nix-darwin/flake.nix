@@ -161,6 +161,7 @@
               "fastfetch"
               "fd"
               "ffmpegthumbnailer"
+              "homerow"
               "flyctl"
               "fnm"
               "fzf"
