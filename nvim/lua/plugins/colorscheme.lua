@@ -297,8 +297,8 @@ return {
           highlights.CodeBlock = { bg = "#040404" }
           highlights.CursorLine = { bg = colors.none }
           highlights.LspInlayHint = { bg = colors.none, fg = "#7081d0" }
-          highlights.StatusLine = { bg = colors.none }
-          highlights.StatusLineNC = { bg = colors.none }
+          highlights.StatusLine = { bg = colors.bg_highlight }
+          highlights.StatusLineNC = { bg = colors.bg_highlight }
         end,
       })
     end,
