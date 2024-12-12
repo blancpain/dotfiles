@@ -47,5 +47,25 @@ return {
         { section = "startup" },
       },
     },
+    zen = { -- NOTE: figure out if we can make it work with oil...
+      enabled = false,
+      backdrop = 0.95,
+      toggles = {
+        dim = false,
+        git_signs = false,
+        mini_diff_signs = false,
+        -- diagnostics = false,
+        -- inlay_hints = false,
+      },
+    },
+  },
+  keys = {
+    -- {
+    --   "<leader>z",
+    --   function()
+    --     Snacks.zen()
+    --   end,
+    --   desc = "Toggle Zen Mode",
+    -- },
   },
 }
