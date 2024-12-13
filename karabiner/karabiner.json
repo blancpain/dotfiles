@@ -42,11 +42,11 @@
             ]
           },
           {
-            "description": "left_control -> homerow click",
+            "description": "left_command -> homerow click",
             "manipulators": [
               {
-                "from": { "key_code": "left_control" },
-                "to": [{ "key_code": "left_control" }],
+                "from": { "key_code": "left_command" },
+                "to": [{ "key_code": "left_command" }],
                 "to_if_alone": [
                   {
                     "key_code": "delete_or_backspace",
