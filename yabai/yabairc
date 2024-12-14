@@ -54,11 +54,12 @@ function yabai_rule {
 yabai_rule app="^WezTerm$" space=2 label="assign-wezterm" sticky=off
 yabai_rule app="^Slack$" space=3 label="assign-slack" sticky=off
 yabai_rule app="^Spark$" space=3 label="assign-spark" sticky=off
-yabai_rule app="^Battle.net$" space=4 label="assign-slack" sticky=off
+yabai_rule app="^Battle.net$" space=4 label="assign-bnet" sticky=off
 yabai_rule app="^Obsidian$" space=5 label="assign-obsidian" sticky=off
 yabai_rule app="^Things$" space=5 label="assign-things" sticky=off manage=on
 yabai_rule app="^Raindrop.io$" space=6 label="assign-raindrop" sticky=off
 yabai_rule app="^Discord$" space=7 label="assign-discord" sticky=off
+yabai_rule app="^ChatGPT$" space=8 label="assign-chatgpt" sticky=off
 
 # turn off yabai for these apps
 yabai_rule app="^System Settings$" manage=off
