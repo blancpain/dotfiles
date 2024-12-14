@@ -9,3 +9,5 @@ vim.o.background = "dark" -- dark vs light
 vim.opt.formatoptions:append({ "r" }) -- WARN: doesn't work as expected
 
 vim.opt.clipboard = "unnamedplus"
+
+vim.g.snacks_animate = false

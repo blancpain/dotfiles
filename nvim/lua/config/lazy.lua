@@ -28,12 +28,11 @@ local spec = {
   { import = "lazyvim.plugins.extras.editor.inc-rename" },
   { import = "lazyvim.plugins.extras.util.dot" },
   { import = "lazyvim.plugins.extras.ai.copilot-chat" },
-  { import = "lazyvim.plugins.extras.editor.fzf" },
   { import = "lazyvim.plugins.extras.editor.refactoring" },
   { import = "lazyvim.plugins.extras.lang.rust" },
   { import = "lazyvim.plugins.extras.lang.nix" },
   { import = "lazyvim.plugins.extras.lang.nushell" },
-  -- { import = "lazyvim.plugins.extras.coding.blink" },
+  { import = "lazyvim.plugins.extras.ui.indent-blankline" },
   { import = "plugins" },
 }
 

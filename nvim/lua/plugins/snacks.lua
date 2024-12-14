@@ -68,4 +68,7 @@ return {
     --   desc = "Toggle Zen Mode",
     -- },
   },
+  indent = {
+    enabled = false,
+  },
 }

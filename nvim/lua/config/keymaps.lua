@@ -17,7 +17,7 @@ vim.keymap.set("n", "<leader>q", function()
   Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
 
-LazyVim.ui.maximize():map("<leader>m")
+-- LazyVim.ui.maximize():map("<leader>m")
 
 -- better navigation and search;
 vim.keymap.set("n", "<C-d>", "19jzz", opts)
