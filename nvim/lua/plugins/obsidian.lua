@@ -28,10 +28,10 @@ return {
       },
     },
 
-    completion = {
-      nvim_cmp = true,
-      min_chars = 2,
-    },
+    -- completion = {
+    --   nvim_cmp = true,
+    --   min_chars = 2,
+    -- },
     new_notes_location = "current_dir",
     wiki_link_func = function(opts)
       if opts.id == nil then
