@@ -5,5 +5,6 @@ return {
       { "<leader>w", desc = "Save file" },
       { "<leader>q", desc = "Close buffer" },
     },
+    preset = "modern",
   },
 }
