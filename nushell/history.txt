@@ -581,3 +581,5 @@ vim
 exit
 vim
 exit
+ls
+exit
