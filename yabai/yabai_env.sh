@@ -7,7 +7,7 @@
 # apps_transparent="(Spotify|kitty|Neovide|Google Chrome|Code|WezTerm|Ghostty)"
 
 # Apps that I want to always show, even when I have a transparent app focused
-apps_transp_ignore="(Firefox)"
+apps_transp_ignore="(Firefox|Arc)"
 
 # Apps excluded from window management, so you can resize them and move them around
 # This is basically the ignore list
