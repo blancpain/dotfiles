@@ -1,7 +1,7 @@
 font-family = FiraCode Nerd Font
-font-size = 18
-theme = Dark Pastel
+font-size = 16
+theme = FishTank
 macos-titlebar-style = hidden
-adjust-cursor-thickness = 3
+adjust-cursor-thickness = 22
 bold-is-bright = true
 font-thicken = true
