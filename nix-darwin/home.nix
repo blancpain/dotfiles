@@ -30,6 +30,7 @@ in
     ".config/karabiner".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/karabiner";
     ".config/skhd".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/skhd";
     ".config/yabai".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/yabai";
+    ".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/ghostty";
   };
 
   home.sessionVariables = { };

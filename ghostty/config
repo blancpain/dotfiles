@@ -1,0 +1,6 @@
+font-family = FiraCode Nerd Font
+font-size = 18
+macos-titlebar-style = hidden
+adjust-cursor-thickness = 3
+bold-is-bright = true
+font-thicken = true
