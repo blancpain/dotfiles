@@ -148,6 +148,7 @@
               "postman"
               "raindropio"
               "homerow"
+              "ghostty"
             ];
             brews = [
               "mas"
