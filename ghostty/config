@@ -1,7 +1,14 @@
 font-family = FiraCode Nerd Font
 font-size = 16
-theme = FishTank
+theme = eldritch
+cursor-color = #37f499
 macos-titlebar-style = hidden
-adjust-cursor-thickness = 22
+adjust-cursor-thickness = 3
 bold-is-bright = true
 font-thicken = true
+window-padding-x = 0
+window-padding-y = 10,0
+window-decoration = false
+
+# keybindings
+keybind = ctrl+i=text:\x1b[5;5~
