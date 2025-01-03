@@ -1,14 +1,21 @@
+# fonts
 font-family = FiraCode Nerd Font
+font-style = Retina
 font-size = 16
-theme = eldritch
-cursor-color = #37f499
-macos-titlebar-style = hidden
-adjust-cursor-thickness = 3
 bold-is-bright = true
 font-thicken = true
+
+# theme and colors
+theme = eldritch
+cursor-color = #37f499
+
+# general style
+macos-titlebar-style = hidden
+adjust-cursor-thickness = 3
 window-padding-x = 0
 window-padding-y = 10,0
 window-decoration = false
+mouse-hide-while-typing = true
 
 # keybindings
 keybind = ctrl+i=text:\x1b[5;5~
