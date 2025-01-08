@@ -1,6 +1,6 @@
 return {
   "folke/todo-comments.nvim",
-  cmd = { "TodoTrouble", "TodoTelescope" },
+  cmd = { "TodoTrouble" },
   event = "LazyFile",
   config = true,
   -- stylua: ignore
@@ -35,12 +35,6 @@ return {
     { "<leader>xF", "<cmd>TodoTrouble keywords=FIX,FIXME<cr>", desc = "Fix/Fixme (Trouble)" },
     { "<leader>xN", "<cmd>TodoTrouble keywords=NOTE<cr>", desc = "Note (Trouble)" },
     { "<leader>xU", "<cmd>TodoTrouble keywords=Q<cr>", desc = "Questions (Trouble)" },
-    -- telescope
-    -- { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
-    -- { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
-    -- { "<leader>sF", "<cmd>TodoTelescope keywords=FIX,FIXME<cr>", desc = "Fix/Fixme (Trouble)" },
-    -- { "<leader>sN", "<cmd>TodoTelescope keywords=NOTE<cr>", desc = "Note" },
-    -- { "<leader>sU", "<cmd>TodoTelescope keywords=Q<cr>", desc = "Questions" },
     -- fzf
     {
       "<leader>st",
