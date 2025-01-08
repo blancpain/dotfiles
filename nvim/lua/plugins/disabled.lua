@@ -4,4 +4,5 @@ return {
   { "NeogitOrg/neogit", enabled = false },
   { "folke/ts-comments.nvim", enabled = false },
   { "jake-stewart/multicursor.nvim", enabled = false }, -- TODO: enable once more stable/mature
+  { "nvim-telescope/telescope.nvim", enabled = false },
 }
