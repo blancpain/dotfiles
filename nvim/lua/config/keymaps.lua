@@ -17,7 +17,9 @@ vim.keymap.set("n", "<leader>q", function()
   Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
 
--- LazyVim.ui.maximize():map("<leader>m")
+-- maximmize and zen mode
+Snacks.toggle.zoom():map("<leader>m"):map("<leader>uZ")
+Snacks.toggle.zen():map("<leader>z")
 
 -- better navigation and search;
 vim.keymap.set("n", "<C-d>", "19jzz", opts)
@@ -37,38 +39,3 @@ vim.keymap.set({ "n", "x" }, "k", "gk", opts)
 
 -- git
 vim.keymap.set("n", "<leader>gb", ":BlameToggle<CR>", opts)
-
--- NOTE: wezterm specific, not using as using TMUX atm
-
--- moving between wezterm panes
--- local nav = {
---   h = "Left",
---   j = "Down",
---   k = "Up",
---   l = "Right",
--- }
---
--- local function navigate(dir)
---   return function()
---     local win = vim.api.nvim_get_current_win()
---     vim.cmd.wincmd(dir)
---     local pane = vim.env.WEZTERM_PANE
---     if pane and win == vim.api.nvim_get_current_win() then
---       local pane_dir = nav[dir]
---       vim.system({ "wezterm", "cli", "activate-pane-direction", pane_dir }, { text = true }, function(p)
---         if p.code ~= 0 then
---           vim.notify(
---             "Failed to move to pane " .. pane_dir .. "\n" .. p.stderr,
---             vim.log.levels.ERROR,
---             { title = "Wezterm" }
---           )
---         end
---       end)
---     end
---   end
--- end
---
--- for key, dir in pairs(nav) do
---   vim.keymap.set("n", "<" .. dir .. ">", navigate(key))
---   vim.keymap.set("n", "<C-" .. key .. ">", navigate(key))
--- end
