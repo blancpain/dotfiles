@@ -15,22 +15,22 @@ return {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
       -- Get the default keymaps
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      -- local keys = require("lazyvim.plugins.lsp.keymaps").get()
 
       -- Modify keymaps here as per docs
-      keys[#keys + 1] = { "<c-k>", false }
-      keys[#keys + 1] = {
-        "<c-m>",
-        function()
-          return vim.lsp.buf.signature_help()
-        end,
-        mode = "i",
-        desc = "Signature Help",
-        has = "signatureHelp",
-      }
+      -- keys[#keys + 1] = { "<c-k>", false }
+      -- keys[#keys + 1] = {
+      --   "<c-m>",
+      --   function()
+      --     return vim.lsp.buf.signature_help()
+      --   end,
+      --   mode = "i",
+      --   desc = "Signature Help",
+      --   has = "signatureHelp",
+      -- }
 
       -- Extend the default options
-      opts.keys = keys
+      -- opts.keys = keys
       opts.inlay_hints = vim.tbl_deep_extend("force", opts.inlay_hints or {}, {
         enabled = true,
         exclude = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
