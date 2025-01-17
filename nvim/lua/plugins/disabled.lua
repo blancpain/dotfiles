@@ -6,4 +6,7 @@ return {
   { "jake-stewart/multicursor.nvim", enabled = false }, -- TODO: enable once more stable/mature
   { "nvim-telescope/telescope.nvim", enabled = false },
   { "folke/zen-mode.nvim", enabled = false },
+  { "zbirenbaum/copilot.lua", enabled = false },
+  -- { "monkoose/neocodeium", enabled = false },
+  { "olimorris/codecompanion.nvim", enabled = false },
 }
