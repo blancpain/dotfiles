@@ -285,6 +285,7 @@ return {
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require("eldritch").setup({
+        palette = "darker",
         transparent = true,
         styles = {
           sidebars = "transparent",
