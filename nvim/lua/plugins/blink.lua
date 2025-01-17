@@ -46,6 +46,9 @@ return {
 
       -- Merge completion settings
       opts.completion = vim.tbl_deep_extend("force", opts.completion or {}, {
+        ghost_text = {
+          enabled = false,
+        },
         menu = {
           min_width = 20,
           border = "rounded",
@@ -57,6 +60,7 @@ return {
                 text = colorful_menu.blink_components_text,
                 highlight = colorful_menu.blink_components_highlight,
               },
+
               source = {
                 text = function(ctx)
                   local map = {
