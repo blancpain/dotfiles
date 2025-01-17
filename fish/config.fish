@@ -9,6 +9,7 @@ end
 
 # secrets
 # to set use: echo "set -gx KEY_NAME the_actual_key" | openssl enc -base64 >> .secrets.enc
+# file needs to sit in fish root path /fish/
 if test -f $HOME/dotfiles/fish/.secrets.enc
     openssl enc -base64 -d <$HOME/dotfiles/fish/.secrets.enc | source
 end
