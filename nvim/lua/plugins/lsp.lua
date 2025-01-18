@@ -1,5 +1,7 @@
--- local util = require("lspconfig.util")
+local util = require("lspconfig.util")
+
 return {
+  -- tools
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
@@ -13,62 +15,56 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      -- Get the default keymaps
-      -- local keys = require("lazyvim.plugins.lsp.keymaps").get()
-
-      -- Modify keymaps here as per docs
-      -- keys[#keys + 1] = { "<c-k>", false }
+    init = function()
+      --[[Modify LSP keymaps]]
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "<c-k>", false } -- figure out how to properly disable this and set it to another keymap...
+      -- keys[#keys + 1] =
+      --   { "<leader>clr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", desc = "Remove workspace" }
+      -- keys[#keys + 1] = { "<leader>cla", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", desc = "Add workspace" }
       -- keys[#keys + 1] = {
-      --   "<c-m>",
-      --   function()
-      --     return vim.lsp.buf.signature_help()
-      --   end,
-      --   mode = "i",
-      --   desc = "Signature Help",
-      --   has = "signatureHelp",
+      --   "<leader>cll",
+      --   "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
+      --   desc = "List workspace",
       -- }
-
-      -- Extend the default options
-      -- opts.keys = keys
-      opts.inlay_hints = vim.tbl_deep_extend("force", opts.inlay_hints or {}, {
+    end,
+    opts = {
+      inlay_hints = {
         enabled = true,
         exclude = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-      })
-      opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities or {}, {
+      },
+      capabilities = {
         workspace = {
           didChangeWatchedFiles = {
             dynamicRegistration = true, -- NOTE: to fix having to restart lsp when adding/removing files
           },
         },
-      })
-      opts.diagnostics = vim.tbl_deep_extend("force", opts.diagnostics or {}, {
+      },
+      diagnostics = {
         virtual_text = false,
-      })
-
-      -- Extend/override the servers table
-      opts.servers = vim.tbl_deep_extend("force", opts.servers or {}, {
+      },
+      servers = {
         -- TODO: see if below needed as inc in extras now
-        -- volar = {
-        --   filetypes = {
-        --     "typescript",
-        --     "vue",
-        --   },
-        --   root_dir = util.root_pattern("src/App.vue"),
-        --   languageFeatures = {
-        --     implementation = true,
-        --     references = true,
-        --     definition = true,
-        --     typeDefinition = true,
-        --     callHierarchy = true,
-        --     hover = true,
-        --     rename = true,
-        --     renameFileRefactoring = true,
-        --     signatureHelp = true,
-        --     codeAction = true,
-        --     workspaceSymbol = true,
-        --   },
-        -- },
+        volar = {
+          filetypes = {
+            "typescript",
+            "vue",
+          },
+          root_dir = util.root_pattern("src/App.vue"),
+          languageFeatures = {
+            implementation = true,
+            references = true,
+            definition = true,
+            typeDefinition = true,
+            callHierarchy = true,
+            hover = true,
+            rename = true,
+            renameFileRefactoring = true,
+            signatureHelp = true,
+            codeAction = true,
+            workspaceSymbol = true,
+          },
+        },
         vtsls = {
           settings = {
             typescript = {
@@ -100,8 +96,7 @@ return {
             "typescriptreact",
           },
         },
-      })
-      return opts
-    end,
+      },
+    },
   },
 }
