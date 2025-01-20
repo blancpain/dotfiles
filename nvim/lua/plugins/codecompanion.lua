@@ -1,4 +1,4 @@
--- TODO: set up
+-- TODO: set up keybinds etc...
 return {
   "olimorris/codecompanion.nvim",
   dependencies = {
@@ -7,6 +7,14 @@ return {
   },
   config = true,
   opts = {
+    strategies = {
+      chat = {
+        adapter = "anthropic",
+      },
+      inline = {
+        adapter = "anthropic",
+      },
+    },
     adapters = {
       anthropic = function()
         return require("codecompanion.adapters").extend("anthropic", {
@@ -16,6 +24,5 @@ return {
         })
       end,
     },
-    strategies = {},
   },
 }
