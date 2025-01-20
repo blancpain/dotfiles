@@ -21,6 +21,10 @@ return {
     -- external_link_icon = {},
     -- },
 
+    ui = {
+      enable = false,
+    },
+
     workspaces = {
       {
         name = "obsidian",
