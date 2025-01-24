@@ -65,3 +65,6 @@ abbr dr "darwin-rebuild switch --flake ~/dotfiles/nix-darwin"
 
 
 fzf_configure_bindings --directory=\cf
+
+# Added by Windsurf
+fish_add_path /Users/blancpain/.codeium/windsurf/bin
