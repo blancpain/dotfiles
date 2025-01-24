@@ -9,6 +9,44 @@ return {
       provider = "fzf",
       provider_opts = {},
     },
+    windows = {
+      width = 50,
+      ask = {
+        start_insert = false,
+      },
+    },
+    mappings = {
+      --- @class AvanteConflictMappings
+      -- diff = {
+      --   ours = "co",
+      --   theirs = "ct",
+      --   all_theirs = "ca",
+      --   both = "cb",
+      --   cursor = "cc",
+      --   next = "]x",
+      --   prev = "[x",
+      -- },
+      -- suggestion = {
+      --   accept = "<M-l>",
+      --   next = "<M-]>",
+      --   prev = "<M-[>",
+      --   dismiss = "<C-]>",
+      -- },
+      -- jump = {
+      --   next = "]]",
+      --   prev = "[[",
+      -- },
+      -- submit = {
+      --   normal = "<CR>",
+      --   insert = "<C-s>",
+      -- },
+      -- sidebar = {
+      --   apply_all = "A",
+      --   apply_cursor = "a",
+      --   switch_windows = "<Tab>",
+      --   reverse_switch_windows = "<S-Tab>",
+      -- },
+    },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
