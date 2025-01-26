@@ -51,7 +51,7 @@ function yabai_rule {
 }
 
 # automation rules
-yabai_rule app="^WezTerm$" space=2 label="assign-wezterm" sticky=off
+yabai_rule app="^Ghostty$" space=2 label="assign-ghostty" sticky=off
 yabai_rule app="^Slack$" space=3 label="assign-slack" sticky=off
 yabai_rule app="^Battle.net$" space=4 label="assign-bnet" sticky=off
 yabai_rule app="^Obsidian$" space=5 label="assign-obsidian" sticky=off
