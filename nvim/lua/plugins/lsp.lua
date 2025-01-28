@@ -18,15 +18,17 @@ return {
     init = function()
       --[[Modify LSP keymaps]]
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "<c-k>", false } -- figure out how to properly disable this and set it to another keymap...
-      -- keys[#keys + 1] =
-      --   { "<leader>clr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", desc = "Remove workspace" }
-      -- keys[#keys + 1] = { "<leader>cla", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", desc = "Add workspace" }
-      -- keys[#keys + 1] = {
-      --   "<leader>cll",
-      --   "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-      --   desc = "List workspace",
-      -- }
+      -- NOTE: make sure you include "mode" as without it disabling doesn't seem to work
+      keys[#keys + 1] = { "<C-k>", false, mode = { "i" } }
+      keys[#keys + 1] = {
+        "<C-g>",
+        function()
+          return vim.lsp.buf.signature_help()
+        end,
+        mode = { "i" },
+        desc = "Signature Help",
+        has = "signatureHelp",
+      }
     end,
     opts = {
       inlay_hints = {
