@@ -152,6 +152,7 @@
             ];
             brews = [
               "mas"
+              "aider"
               "automake"
               "bat"
               "bob"
