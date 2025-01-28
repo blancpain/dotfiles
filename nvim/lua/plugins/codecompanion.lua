@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 ---@diagnostic disable-next-line: unused-local
 local function generate_slash_commands()
   local commands = {}
