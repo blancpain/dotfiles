@@ -4,6 +4,12 @@ vim.keymap.set("n", "<C-PageUp>", "<C-i>", opts) -- Temp workaround as C-i recog
 
 vim.keymap.del({ "i", "x", "n", "s" }, "<C-s>")
 
+-- terminal toggling
+vim.keymap.set("n", "<c-q>", function()
+  Snacks.terminal(nil, { cwd = LazyVim.root() })
+end, { desc = "Terminal (Root Dir)" })
+vim.keymap.set("t", "<C-q>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
 -- remap increment/decrement
 vim.keymap.set({ "n", "x" }, "+", "<C-a>", opts)
 vim.keymap.set({ "n", "x" }, "_", "<C-x>", opts) -- technically not '-' but + still requires shift so no need to take finger off shift this way
