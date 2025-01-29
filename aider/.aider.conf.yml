@@ -1,1 +1,4 @@
 code-theme: monokai
+auto-commits: false
+watch-files: true
+dark-mode: true
