@@ -31,6 +31,7 @@ in
     ".config/skhd".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/skhd";
     ".config/yabai".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/yabai";
     ".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/ghostty";
+    ".aider.conf.yml".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/aider/.aider.conf.yml";
   };
 
   home.sessionVariables = { };
