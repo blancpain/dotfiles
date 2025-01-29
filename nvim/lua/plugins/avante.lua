@@ -5,6 +5,18 @@ return {
   version = false, -- set this to "*" if you want to always pull the latest change, false to update on release
   build = "make",
   opts = {
+    -- NOTE: below experimental for deepseek but it means that deepseek will be the default
+    -- provider = "openai",
+    -- auto_suggestions_provider = "openai", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+    -- openai = {
+    --   endpoint = "https://api.deepseek.com",
+    --   model = "deepseek-chat",
+    --   timeout = 30000, -- Timeout in milliseconds
+    --   temperature = 0,
+    --   max_tokens = 4096,
+    --   -- optional
+    --   api_key_name = "DEEPSEEK_API_KEY",
+    -- },
     file_selector = {
       provider = "fzf",
       provider_opts = {},
@@ -15,6 +27,9 @@ return {
         start_insert = false,
       },
     },
+  },
+  keys = {
+    { "<leader>al", "<cmd>AvanteClear<cr>", desc = "avante: clear" },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
