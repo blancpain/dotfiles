@@ -5,5 +5,5 @@ tmux_resurrect*
 lazy-lock.json
 .secrets.enc
 tmux/plugins/
-.aider*
+/.aider*
 .env
