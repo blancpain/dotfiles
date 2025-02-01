@@ -125,6 +125,7 @@
             enable = true;
             casks = [
               "alfred"
+              "arc"
               "1password-cli"
               "obsidian"
               "discord"
