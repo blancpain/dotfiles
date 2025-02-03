@@ -49,7 +49,7 @@
 
             # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
             # For enabling touchId in clamshell mode follow: https://linkarzu.com/posts/macos/auth-apple-watch/
-            # WARN: comment out the pam_watchid.so on first setup as we need to install the watchid script first
+            # WARN: comment out the pam_watchid.so on first setup as we need to install the watchid script first!!!
             # otherwise sudo will break
             # alternatively write some scripts for setting everything up
 
@@ -77,6 +77,7 @@
           };
 
           # wezterm term info: ref https://wezfurlong.org/wezterm/config/lua/config/term.html?h=term
+          # TODO: check if needed for ghostty....
           system.activationScripts.extraActivation.text = ''
             tempfile="$(mktemp)"
             ${pkgs.curl}/bin/curl -o "$tempfile" https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo
