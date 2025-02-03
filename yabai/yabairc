@@ -60,6 +60,7 @@ yabai_rule app="^Raindrop.io$" space=6 label="assign-raindrop" sticky=off
 yabai_rule app="^Discord$" space=7 label="assign-discord" sticky=off
 yabai_rule app="^ChatGPT$" space=8 label="assign-chatgpt" sticky=off
 yabai_rule app="^Spark$" space=9 label="assign-spark" sticky=off
+yabai_rule app="^Spotify$" space=10 label="assign-spotify" sticky=off
 
 # turn off yabai for these apps
 yabai_rule app="^System Settings$" manage=off
