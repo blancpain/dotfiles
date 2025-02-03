@@ -19,6 +19,7 @@ return {
       --[[Modify LSP keymaps]]
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- NOTE: make sure you include "mode" as without it disabling doesn't seem to work
+      -- see: https://github.com/dpetka2001/dotfiles/blob/main/dot_config/nvim/lua/plugins/lsp.lua
       keys[#keys + 1] = { "<C-k>", false, mode = { "i" } }
       keys[#keys + 1] = {
         "<C-g>",
