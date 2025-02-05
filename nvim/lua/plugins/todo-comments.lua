@@ -7,7 +7,7 @@ return {
   opts = {
     keywords = {
       Q = {
-        icon = " ", 
+        icon = " ",
         color = "info", -- can be a hex color, or a named color (see below)
         alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
         -- signs = false, -- configure signs for some keywords individually
@@ -30,46 +30,63 @@ return {
       desc = "Previous Todo Comment",
     },
     -- trouble
-    { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-    { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
-    { "<leader>xF", "<cmd>TodoTrouble keywords=FIX,FIXME<cr>", desc = "Fix/Fixme (Trouble)" },
-    { "<leader>xN", "<cmd>TodoTrouble keywords=NOTE<cr>", desc = "Note (Trouble)" },
-    { "<leader>xU", "<cmd>TodoTrouble keywords=Q<cr>", desc = "Questions (Trouble)" },
-    -- fzf
+    { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO}}<cr>", desc = "Todo (Trouble)" },
+    { "<leader>xF", "<cmd>Trouble todo toggle filter = {tag = {FIX,FIXME}}<cr>", desc = "Fix/Fixme (Trouble)" },
+    { "<leader>xN", "<cmd>Trouble todo toggle filter = {tag = {NOTE}}<cr>", desc = "NOTE (Trouble)" },
+    { "<leader>xU", "<cmd>Trouble todo toggle filter = {tag = {Q}}<cr>", desc = "Q (Trouble)" },
+
+    -- snacks picker
     {
       "<leader>st",
       function()
-        require("todo-comments.fzf").todo()
+        Snacks.picker.todo_comments()
       end,
-      desc = "Todo",
+      desc = "Todo/Fix/Fixme/Note/Questions",
     },
     {
       "<leader>sT",
       function()
-        require("todo-comments.fzf").todo({ keywords = { "TODO", "FIX", "FIXME" } })
+        Snacks.picker.todo_comments({ keywords = { "TODO" } })
       end,
-      desc = "Todo/Fix/Fixme",
+      desc = "Todo",
     },
+
     {
       "<leader>sF",
       function()
-        require("todo-comments.fzf").todo({ keywords = { "FIX", "FIXME" } })
+        Snacks.picker.todo_comments({ keywords = { "FIX", "FIXME" } })
       end,
       desc = "Fix/Fixme",
     },
     {
       "<leader>sN",
       function()
-        require("todo-comments.fzf").todo({ keywords = { "NOTE" } })
+        Snacks.picker.todo_comments({ keywords = { "NOTE" } })
       end,
       desc = "Note",
     },
     {
       "<leader>sU",
       function()
-        require("todo-comments.fzf").todo({ keywords = { "Q" } })
+        Snacks.picker.todo_comments({ keywords = { "Q" } })
       end,
       desc = "Questions",
     },
+
+    -- old for fzf-lua
+    -- {
+    --   "<leader>sF",
+    --   function()
+    --     require("todo-comments.fzf").todo({ keywords = { "FIX", "FIXME" } })
+    --   end,
+    --   desc = "Fix/Fixme",
+    -- },
+    -- {
+    --   "<leader>sN",
+    --   function()
+    --     require("todo-comments.fzf").todo({ keywords = { "NOTE" } })
+    --   end,
+    --   desc = "Note",
+    -- },
   },
 }
