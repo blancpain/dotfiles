@@ -10,4 +10,5 @@ return {
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   -- { "monkoose/neocodeium", enabled = false },
   { "olimorris/codecompanion.nvim", enabled = false },
+  { "ibhagwan/fzf-lua", enabled = false },
 }

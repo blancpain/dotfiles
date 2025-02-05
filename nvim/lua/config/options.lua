@@ -7,3 +7,8 @@ vim.o.background = "dark" -- dark vs light
 vim.opt.formatoptions:append({ "r" }) -- WARN: doesn't work as expected
 vim.opt.clipboard = "unnamedplus"
 vim.g.snacks_animate = false
+
+-- default picker
+vim.g.lazyvim_picker = "snacks"
+
+vim.g.bullets_enable_in_empty_buffers = 0 -- NOTE: workaround for nvim-bullets + snacks picker (see https://github.com/folke/snacks.nvim/issues/812)

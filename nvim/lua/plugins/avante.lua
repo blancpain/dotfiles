@@ -18,7 +18,7 @@ return {
     --   api_key_name = "DEEPSEEK_API_KEY",
     -- },
     file_selector = {
-      provider = "fzf",
+      provider = "snacks",
       provider_opts = {},
     },
     windows = {
