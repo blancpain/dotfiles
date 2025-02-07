@@ -262,18 +262,14 @@ return {
         transparent = true,
         italic_comments = true,
         hide_fillchars = true,
-        borderless_telescope = false,
         terminal_colors = true,
-
-        theme = {
-          variant = "dark",
-          highlights = {
-            CursorColumn = { bg = "none" },
-            FoldColumn = { bg = "none" },
-            IblIndent = { fg = "#333333" },
-            CodeBlock = { bg = "#1e1e2e" },
-            CursorLine = { bg = "none" },
-          },
+        variant = "dark",
+        highlights = {
+          CursorColumn = { bg = "none" },
+          FoldColumn = { bg = "none" },
+          IblIndent = { fg = "#333333" },
+          CodeBlock = { bg = "#1e1e2e" },
+          CursorLine = { bg = "none" },
         },
       })
     end,
