@@ -36,10 +36,6 @@ local spec = {
   { import = "plugins" },
 }
 
-if vim.fn.has("mac") == 1 then
-  table.insert(spec, { import = "lazyvim.plugins.extras.lang.clangd" })
-end
-
 require("lazy").setup({
   spec = spec,
   defaults = {
