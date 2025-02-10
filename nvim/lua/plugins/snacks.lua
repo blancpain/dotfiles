@@ -5,6 +5,7 @@ return {
   ---@type snacks.Config
   opts = {
     notifier = { enabled = false },
+    image = { enabled = true },
     bigfile = { enabled = true },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
