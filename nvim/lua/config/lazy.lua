@@ -7,7 +7,6 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 local spec = {
-  -- add LazyVim and import its plugins
   { "LazyVim/LazyVim", import = "lazyvim.plugins" },
   { import = "lazyvim.plugins.extras.lang.typescript" },
   { import = "lazyvim.plugins.extras.lang.docker" },
