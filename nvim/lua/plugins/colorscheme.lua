@@ -119,8 +119,8 @@ return {
     priority = 1000,
     opts = function()
       return {
-        style = "moon",
-        -- transparent = true,
+        style = "night",
+        transparent = true,
         styles = {
           sidebars = "transparent",
           floats = "transparent",
@@ -131,11 +131,9 @@ return {
         on_highlights = function(hl, c)
           hl.CursorLineNr = { fg = c.orange, bold = true }
           hl.CursorLine = { bg = "none" }
-          -- hl.LineNr = { fg = c.orange, bold = true }
-          hl.RenderMarkdownCode = { bg = "#2E2E2E" }
+          -- hl.RenderMarkdownCode = { bg = "#2E2E2E" }
           hl.LineNrAbove = { fg = c.fg_gutter }
           hl.LineNrBelow = { fg = c.fg_gutter }
-          hl.NeoTreeFileName = { fg = "white" }
           hl.NeoTreeGitModified = { fg = c.orange }
           hl.DiagnosticUnnecessary = { fg = "#918fbb" } -- unused variables etc
         end,
@@ -148,7 +146,7 @@ return {
     opts = {
       -- variant = "moon",
       -- dark_variant = "moon",
-      -- disable_background = true,
+      disable_background = true,
       disable_float_background = true,
       disable_italics = true,
       highlight_groups = {
@@ -437,7 +435,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "eldritch",
+      colorscheme = "onedark",
     },
   },
 }
