@@ -6,7 +6,8 @@ bold-is-bright = true
 font-thicken = true
 
 # theme and colors
-theme = eldritch
+# theme = eldritch
+theme = ultradark
 cursor-color = #37f499
 
 # general style
