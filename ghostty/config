@@ -7,8 +7,9 @@ font-thicken = true
 
 # theme and colors
 # theme = eldritch
-theme = ultradark
-cursor-color = #37f499
+theme = rose-pine-moon
+# cursor-color = #37f499
+cursor-color = #f6c177
 
 # general style
 macos-titlebar-style = hidden
