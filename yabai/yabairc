@@ -53,7 +53,7 @@ function yabai_rule {
 # automation rules
 yabai_rule app="^Ghostty$" space=2 label="assign-ghostty" sticky=off
 yabai_rule app="^Slack$" space=3 label="assign-slack" sticky=off
-yabai_rule app="^Battle.net$" space=4 label="assign-bnet" sticky=off
+yabai_rule app="^Trader Workstation$" space=4 label="assign-bnet" sticky=off
 yabai_rule app="^Things$" space=5 label="assign-things" sticky=off manage=on
 yabai_rule app="^Raindrop.io$" space=6 label="assign-raindrop" sticky=off
 yabai_rule app="^Discord$" space=7 label="assign-discord" sticky=off
