@@ -35,7 +35,6 @@
               pkgs.hub
               pkgs.docker
               pkgs.colima
-              pkgs.wezterm
               pkgs.tmux
               pkgs.ngrok
               pkgs.carapace
@@ -78,13 +77,14 @@
 
           # wezterm term info: ref https://wezfurlong.org/wezterm/config/lua/config/term.html?h=term
           # TODO: check if needed for ghostty....
-          system.activationScripts.extraActivation.text = ''
-            tempfile="$(mktemp)"
-            ${pkgs.curl}/bin/curl -o "$tempfile" https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo
-            ${pkgs.ncurses}/bin/tic -x -o "/Users/blancpain/.terminfo" "$tempfile"
-            rm "$tempfile"
-            chown -R blancpain:staff /Users/blancpain/.terminfo
-          '';
+
+          # system.activationScripts.extraActivation.text = ''
+          #   tempfile="$(mktemp)"
+          #   ${pkgs.curl}/bin/curl -o "$tempfile" https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo
+          #   ${pkgs.ncurses}/bin/tic -x -o "/Users/blancpain/.terminfo" "$tempfile"
+          #   rm "$tempfile"
+          #   chown -R blancpain:staff /Users/blancpain/.terminfo
+          # '';
 
           # Auto upgrade nix package and the daemon service.
           services.nix-daemon.enable = true;
@@ -128,9 +128,9 @@
               "alfred"
               "arc"
               "1password-cli"
+              "1password"
               "obsidian"
               "discord"
-              "1password"
               "alt-tab"
               "font-fira-sans"
               "spacelauncher"
@@ -138,7 +138,6 @@
               "font-victor-mono"
               "slack"
               "gstreamer-runtime"
-              "iterm2"
               "sequel-ace"
               "chatgpt"
               "epk/epk/font-sf-mono-nerd-font"
@@ -192,7 +191,6 @@
               "rust"
               "rust-analyzer"
               "rustup"
-              "tldr"
               "tree"
               "unar"
               "wget"
