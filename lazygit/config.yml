@@ -3,8 +3,7 @@ gui:
   nerdFontsVersion: "3"
   border: rounded
   mouseEvents: false
-  windowSize: normal
-
+  screenMode: normal
   theme:
     activeBorderColor:
       - "#5ef1ff"

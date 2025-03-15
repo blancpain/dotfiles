@@ -86,10 +86,6 @@
           #   chown -R blancpain:staff /Users/blancpain/.terminfo
           # '';
 
-          # Auto upgrade nix package and the daemon service.
-          services.nix-daemon.enable = true;
-          # nix.package = pkgs.nix;
-
           # Necessary for using flakes on this system.
           nix.settings.experimental-features = "nix-command flakes";
 
@@ -104,7 +100,7 @@
           nixpkgs.hostPlatform = "aarch64-darwin";
           nixpkgs.config.allowUnfree = true;
 
-          security.pam.enableSudoTouchIdAuth = true;
+          security.pam.services.sudo_local.touchIdAuth = true;
 
           users.users.blancpain = {
             home = "/Users/blancpain";
@@ -206,6 +202,7 @@
               "Spark" = 1176895641;
               "Trello" = 1278508951;
               "Things 3" = 904280696;
+              "Perplexity" = 6714467650;
             };
           };
         };
