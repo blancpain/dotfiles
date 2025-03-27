@@ -39,9 +39,5 @@ vim.keymap.set("x", "p", [["_dP]], opts) -- keep copied/deleted in register
 vim.keymap.set({ "n", "o", "x" }, "<S-h>", "^", opts)
 vim.keymap.set({ "n", "o", "x" }, "<S-l>", "g_", opts)
 
--- tailwind bearable to work with
-vim.keymap.set({ "n", "x" }, "j", "gj", opts)
-vim.keymap.set({ "n", "x" }, "k", "gk", opts)
-
 -- git
 vim.keymap.set("n", "<leader>gb", ":BlameToggle<CR>", opts)
