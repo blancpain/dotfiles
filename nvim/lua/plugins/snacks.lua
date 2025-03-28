@@ -4,6 +4,7 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
+    indent = { enabled = false },
     notifier = { enabled = false },
     image = { enabled = false },
     bigfile = { enabled = true },
@@ -33,8 +34,5 @@ return {
         -- inlay_hints = false,
       },
     },
-  },
-  indent = {
-    enabled = false,
   },
 }

@@ -31,7 +31,7 @@ local spec = {
   { import = "lazyvim.plugins.extras.editor.inc-rename" },
   { import = "lazyvim.plugins.extras.util.dot" },
   { import = "lazyvim.plugins.extras.editor.refactoring" },
-  { import = "lazyvim.plugins.extras.ui.indent-blankline" },
+  -- { import = "lazyvim.plugins.extras.ui.indent-blankline" },
   { import = "plugins" },
 }
 
