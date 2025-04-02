@@ -53,12 +53,14 @@ function yabai_rule {
 # automation rules
 yabai_rule app="^Ghostty$" space=2 label="assign-ghostty" sticky=off
 yabai_rule app="^Slack$" space=3 label="assign-slack" sticky=off
-yabai_rule app="^Trader Workstation$" space=4 label="assign-bnet" sticky=off
-yabai_rule app="^Things$" space=5 label="assign-things" sticky=off manage=on
+yabai_rule app="^Notes$" space=4 label="assign-notes" sticky=off
+yabai_rule app="^Obsidian$" space=4 label="assign-obsidian" sticky=off manage=on
+yabai_rule app="^Reminders$" space=5 label="assign-reminders" sticky=off manage=on
 yabai_rule app="^Raindrop.io$" space=6 label="assign-raindrop" sticky=off
+yabai_rule app="^Spark$" space=6 label="assign-spark" sticky=off
 yabai_rule app="^Discord$" space=7 label="assign-discord" sticky=off
 yabai_rule app="^ChatGPT$" space=8 label="assign-chatgpt" sticky=off
-yabai_rule app="^Spark$" space=9 label="assign-spark" sticky=off
+yabai_rule app="^Trader Workstation$" space=9 label="assign-ibkr" sticky=off
 yabai_rule app="^Spotify$" space=10 label="assign-spotify" sticky=off
 
 # turn off yabai for these apps
