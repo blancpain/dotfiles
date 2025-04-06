@@ -8,7 +8,7 @@ return {
   { "folke/zen-mode.nvim", enabled = false },
   { "zbirenbaum/copilot.lua", enabled = false },
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
-  -- { "monkoose/neocodeium", enabled = false },
+  { "monkoose/neocodeium", enabled = false },
   { "olimorris/codecompanion.nvim", enabled = false },
   { "ibhagwan/fzf-lua", enabled = false },
 }
