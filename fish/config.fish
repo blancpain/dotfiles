@@ -68,3 +68,21 @@ fzf_configure_bindings --directory=\cf
 
 # Added by Windsurf
 fish_add_path /Users/blancpain/.codeium/windsurf/bin
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /Users/blancpain/miniforge3/bin/conda
+    eval /Users/blancpain/miniforge3/bin/conda "shell.fish" "hook" $argv | source
+else
+    if test -f "/Users/blancpain/miniforge3/etc/fish/conf.d/conda.fish"
+        . "/Users/blancpain/miniforge3/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH "/Users/blancpain/miniforge3/bin" $PATH
+    end
+end
+
+if test -f "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
+    source "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
+end
+# <<< conda initialize <<<
+
