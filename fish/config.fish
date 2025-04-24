@@ -1,4 +1,3 @@
-
 if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
     source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
 end
@@ -33,7 +32,6 @@ fish_add_path /Applications/Postgres.app/Contents/Versions/15/bin
 fish_add_path /Users/blancpain/.local/share/bob/nvim-bin #nvim bob
 fish_add_path /Users/blancpain/.cargo/bin
 
-
 #settings
 set -Ux EDITOR nvim
 set -Ux VISUAL nvim
@@ -52,6 +50,7 @@ carapace _carapace | source
 abbr vim nvim
 abbr vi nvim
 abbr v nvim
+abbr p python3
 abbr y yazi
 abbr g lazygit
 abbr tn "tmux new -s (pwd | sed 's/.*\///g')"
@@ -63,7 +62,6 @@ abbr cb cargo build
 abbr bu "brew update && brew upgrade"
 abbr dr "darwin-rebuild switch --flake ~/dotfiles/nix-darwin"
 
-
 fzf_configure_bindings --directory=\cf
 
 # Added by Windsurf
@@ -72,12 +70,12 @@ fish_add_path /Users/blancpain/.codeium/windsurf/bin
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 if test -f /Users/blancpain/miniforge3/bin/conda
-    eval /Users/blancpain/miniforge3/bin/conda "shell.fish" "hook" $argv | source
+    eval /Users/blancpain/miniforge3/bin/conda "shell.fish" hook $argv | source
 else
     if test -f "/Users/blancpain/miniforge3/etc/fish/conf.d/conda.fish"
         . "/Users/blancpain/miniforge3/etc/fish/conf.d/conda.fish"
     else
-        set -x PATH "/Users/blancpain/miniforge3/bin" $PATH
+        set -x PATH /Users/blancpain/miniforge3/bin $PATH
     end
 end
 
@@ -85,4 +83,3 @@ if test -f "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
     source "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
 end
 # <<< conda initialize <<<
-
