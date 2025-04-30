@@ -41,3 +41,4 @@ vim.keymap.set({ "n", "o", "x" }, "<S-l>", "g_", opts)
 
 -- git
 vim.keymap.set("n", "<leader>gb", ":BlameToggle<CR>", opts)
+vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "GitSigns Select Hunk" })
