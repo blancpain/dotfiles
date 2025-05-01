@@ -36,7 +36,7 @@ return {
         changedelete = { text = "▎" },
         untracked = { text = "▎" },
       },
-      -- current_line_blame = true, --TODO: bring back once fixed
+      current_line_blame = true, --TODO: bring back once fixed
     },
   },
 }
