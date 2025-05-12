@@ -76,5 +76,6 @@ yabai_rule app="^Homerow$" manage=off
 yabai_rule app="^System Information$" manage=off
 yabai_rule app="^Activity Monitor$" manage=off
 yabai_rule app="^Trader Workstation$" manage=off
+yabai_rule app="^DASTrader DEMO$" manage=off
 
 echo "yabai configuration loaded.."
