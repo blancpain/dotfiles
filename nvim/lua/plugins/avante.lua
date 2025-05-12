@@ -15,6 +15,7 @@ return {
     --     model = "deepseek-coder",
     --   },
     -- },
+    mode = "legacy", -- legacy or agentic
     claude = {
       endpoint = "https://api.anthropic.com",
       model = "claude-3-7-sonnet-20250219",
