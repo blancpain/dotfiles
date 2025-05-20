@@ -146,6 +146,7 @@
               "raindropio"
               "homerow"
               "ghostty"
+              "zen"
             ];
             brews = [
               "mas"
