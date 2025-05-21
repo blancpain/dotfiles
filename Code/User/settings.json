@@ -28,12 +28,13 @@
   "editor.minimap.enabled": false,
   "breadcrumbs.enabled": false,
 
-  // vim
+  // VIM BINDINGS
   "vim.leader": "<Space>",
   "vim.useSystemClipboard": true,
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "rgba(250, 165, 0, 0.7)",
   "vim.highlightedyank.duration": 250,
+
   // To improve performance"
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1,
@@ -50,6 +51,14 @@
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<S-h>"],
+      "after": ["^"]
+    },
+    {
+      "before": ["<S-l>"],
+      "after": ["g", "_"]
+    },
     // NAVIGATION
     {
       "before": ["K"],
@@ -72,8 +81,8 @@
     },
 
     // switch b/w buffers
-    { "before": ["<S-h>"], "commands": [":bprevious"] },
-    { "before": ["<S-l>"], "commands": [":bnext"] },
+    // { "before": ["<S-h>"], "commands": [":bprevious"] },
+    // { "before": ["<S-l>"], "commands": [":bnext"] },
 
     // splits
     { "before": ["leader", "v"], "commands": [":vsplit"] },
@@ -105,8 +114,28 @@
     { "before": ["ctrl+j"], "commands": ["editor.action.moveLinesDownAction"] },
     { "before": ["ctrl+k"], "commands": ["editor.action.moveLinesUpAction"] },
     // toggle comment selection
-    { "before": ["leader", "/"], "commands": ["editor.action.commentLine"] }
+    { "before": ["leader", "/"], "commands": ["editor.action.commentLine"] },
+    {
+      "before": ["<S-h>"],
+      "after": ["^"]
+    },
+    {
+      "before": ["<S-l>"],
+      "after": ["g", "_"]
+    }
   ],
+  "vim.operatorPendingModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<S-h>"],
+      "after": ["^"]
+    },
+    {
+      "before": ["<S-l>"],
+      "after": ["g", "_"]
+    }
+  ],
+
+  // VIM BINDINGS
 
   // error lens
   "errorLens.fontSize": "13",
