@@ -7,3 +7,7 @@ lazy-lock.json
 tmux/plugins/
 /.aider*
 .env
+History/
+globalStorage/
+sync/
+workspaceStorage/
