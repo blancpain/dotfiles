@@ -77,5 +77,6 @@ yabai_rule app="^System Information$" manage=off
 yabai_rule app="^Activity Monitor$" manage=off
 yabai_rule app="^Trader Workstation$" manage=off
 yabai_rule app="^DAS Trader Pro$" manage=off
+yabai_rule app="^SierraChart_ARM64.exe$" manage=off
 
 echo "yabai configuration loaded.."
