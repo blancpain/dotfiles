@@ -79,7 +79,11 @@
       "before": ["<C-k>"],
       "commands": ["workbench.action.focusAboveGroup"]
     },
-
+    {
+      "before": ["-"],
+      "commands": ["vsnetrw.open"],
+      "when": "editorLangId != vsnetrw"
+    },
     // switch b/w buffers
     // { "before": ["<S-h>"], "commands": [":bprevious"] },
     // { "before": ["<S-l>"], "commands": [":bnext"] },
