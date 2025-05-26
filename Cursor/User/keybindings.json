@@ -1,9 +1,14 @@
-// Place your key bindings in this file to override the defaults
 [
   {
     "key": "tab",
     "command": "selectNextQuickFix",
     "when": "editorFocus && quickFixWidgetVisible"
+  },
+  // Maximize terminal or panel when focused
+  {
+    "key": "ctrl+m",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "terminalFocus || panelFocus"
   },
   {
     "key": "shift+tab",
@@ -118,6 +123,11 @@
     "key": "ctrl+i",
     "command": "extension.vim_ctrl+i",
     "when": "editorTextFocus && vim.active && vim.use<C-i> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active || editorTextFocus"
   },
   // FILE TREE
   {

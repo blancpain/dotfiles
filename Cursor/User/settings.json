@@ -31,6 +31,7 @@
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "rgba(250, 165, 0, 0.7)",
   "vim.highlightedyank.duration": 250,
+  "workbench.activityBar.orientation": "vertical",
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1,
     "asvetliakov.vscode-neovim": 1
@@ -73,11 +74,11 @@
       "commands": ["workbench.action.focusAboveGroup"]
     },
     {
-      "before": ["leader", "v"],
+      "before": ["leader", "|"],
       "commands": [":vsplit"]
     },
     {
-      "before": ["leader", "s"],
+      "before": ["leader", "-"],
       "commands": [":split"]
     },
     {
