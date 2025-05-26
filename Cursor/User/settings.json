@@ -1,5 +1,5 @@
 {
-  "editor.fontSize": 17,
+  "editor.fontSize": 15,
   "editor.formatOnSave": true,
   "editor.autoClosingDelete": "always",
   "workbench.iconTheme": "vscode-icons",
@@ -64,14 +64,6 @@
       "before": ["<C-n>"],
       "commands": [":nohl"],
       "silent": true
-    },
-    {
-      "before": ["<C-j>"],
-      "commands": ["workbench.action.focusBelowGroup"]
-    },
-    {
-      "before": ["<C-k>"],
-      "commands": ["workbench.action.focusAboveGroup"]
     },
     {
       "before": ["leader", "|"],

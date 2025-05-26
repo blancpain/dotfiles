@@ -4,6 +4,16 @@
     "command": "selectNextQuickFix",
     "when": "editorFocus && quickFixWidgetVisible"
   },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.toggleAuxiliaryBar",
+    "when": "false"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "workbench.action.toggleAuxiliaryBar",
+    "when": "true"
+  },
   // Maximize terminal or panel when focused
   {
     "key": "ctrl+m",
@@ -30,14 +40,14 @@
     "command": "workbench.view.explorer",
     "when": "viewContainer.workbench.view.explorer.enabled"
   },
-  // {
-  //   "key": "ctrl+k",
-  //   "command": "workbench.action.navigateUp"
-  // },
-  // {
-  //   "key": "ctrl+j",
-  //   "command": "workbench.action.navigateDown"
-  // },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.navigateUp"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.navigateDown"
+  },
   {
     "key": "ctrl+j",
     "command": "workbench.action.quickOpenSelectNext",
