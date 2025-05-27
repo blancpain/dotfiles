@@ -83,3 +83,9 @@ if test -f "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
     source "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
 end
 # <<< conda initialize <<<
+
+# Added by Windsurf
+fish_add_path /Users/blancpain/.codeium/windsurf/bin
+
+# Added by Windsurf
+fish_add_path /Users/blancpain/.codeium/windsurf/bin

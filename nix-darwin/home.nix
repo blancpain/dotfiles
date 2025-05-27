@@ -36,6 +36,8 @@ in
       config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/Code/User";
     "Library/Application Support/Cursor/User".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/Cursor/User";
+    "Library/Application Support/Windsurf/User".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/Windsurf/User";
     ".aider.conf.yml".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/aider/.aider.conf.yml";
   };
