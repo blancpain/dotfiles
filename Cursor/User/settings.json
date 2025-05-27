@@ -80,6 +80,10 @@
       "commands": [":split"]
     },
     {
+      "before": ["leader", "m"],
+      "commands": ["workbench.action.toggleMaximizeEditorGroup"]
+    },
+    {
       "before": ["<C-u>"],
       "after": ["2", "5", "k"]
     },

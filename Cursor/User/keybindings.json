@@ -203,10 +203,5 @@
   {
     "key": "cmd+c",
     "command": "problems.action.copyMessage"
-  },
-  {
-    "key": "ctrl+m",
-    "command": "workbench.action.toggleMaximizeEditorGroup",
-    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
   }
 ]
