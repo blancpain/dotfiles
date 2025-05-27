@@ -88,6 +88,10 @@
       "after": ["2", "5", "j"]
     },
     {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
       "before": ["leader", "w"],
       "commands": [":w!"]
     },
