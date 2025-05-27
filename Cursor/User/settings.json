@@ -1,9 +1,11 @@
 {
-  "editor.fontSize": 15,
+  "editor.fontSize": 18,
+  "editor.lineHeight": 20,
   "editor.formatOnSave": true,
   "editor.autoClosingDelete": "always",
   "workbench.iconTheme": "vscode-icons",
   "editor.tabSize": 2,
+  "window.zoomLevel": -0.5,
   "workbench.startupEditor": "none",
   "workbench.editor.showTabs": "single",
   "debug.javascript.codelens.npmScripts": "never",
