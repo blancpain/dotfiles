@@ -20,6 +20,11 @@
     "when": "terminalFocus"
   },
   {
+    "key": "shift+k",
+    "command": "editor.action.showHover",
+    "when": "editorTextFocus"
+  },
+  {
     "key": "ctrl+]",
     "command": "workbench.action.terminal.focusPrevious",
     "when": "terminalFocus"
