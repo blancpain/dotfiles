@@ -149,6 +149,11 @@
     "when": "editorHoverFocused"
   },
   {
+    "key": "q",
+    "command": "workbench.action.closeSidebar",
+    "when": "sideBarVisible && sideBarFocus"
+  },
+  {
     "key": "ctrl+i",
     "command": "extension.vim_ctrl+i",
     "when": "editorTextFocus && vim.active && vim.use<C-i> && !inDebugRepl"
