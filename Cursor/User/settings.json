@@ -3,7 +3,6 @@
   "editor.lineHeight": 20,
   "editor.formatOnSave": true,
   "editor.autoClosingDelete": "always",
-  "workbench.iconTheme": "vscode-icons",
   "editor.tabSize": 1,
   "window.zoomLevel": -0.5,
   "workbench.startupEditor": "none",
@@ -14,7 +13,7 @@
   "editor.cursorBlinking": "solid",
   "files.trimTrailingWhitespace": true,
   "editor.fontFamily": "Fira Code",
-  "editor.fontWeight": 400,
+  "editor.fontWeight": "450",
   "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
   "editor.fontLigatures": true,
   "workbench.editor.enablePreview": false,
@@ -24,23 +23,22 @@
   "editor.guides.bracketPairs": "active",
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "typescript.updateImportsOnFileMove.enabled": "never",
-  "workbench.colorTheme": "Monokai++ Unified",
+  "workbench.colorTheme": "Night Wolf (black)",
   "editor.minimap.enabled": false,
   "breadcrumbs.enabled": false,
   "vim.leader": "<Space>",
   "vim.useSystemClipboard": true,
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "rgba(250, 165, 0, 0.7)",
-  "vim.highlightedyank.duration": 250,
+  "vim.highlightedyank.duration": 100,
   "workbench.activityBar.orientation": "vertical",
   "extensions.experimental.affinity": {
-    "vscodevim.vim": 1,
-    "asvetliakov.vscode-neovim": 1
+    "vscodevim.vim": 1
   },
   "vim.hlsearch": true,
   "vim.incsearch": true,
   "editor.cursorSurroundingLines": 10,
-  "vim.searchHighlightColor": "yellow",
+  "vim.searchHighlightColor": "red",
   "vim.insertModeKeyBindings": [],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -173,7 +171,7 @@
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
   "terminal.external.osxExec": "Ghostty.app",
-  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.fontFamily": "monospace",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.defaultProfile.osx": "fish",
   "liveServer.settings.donotShowInfoMsg": true,
@@ -283,5 +281,6 @@
     "markdown": false,
     "scminput": false
   },
-  "explorer.openEditors.visible": 3
+  "explorer.openEditors.visible": 3,
+  "cursor.composer.textSizeScale": 1.3
 }
