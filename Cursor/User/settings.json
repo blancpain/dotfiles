@@ -301,7 +301,7 @@
   ],
   "javascript.suggest.paths": false,
   "typescript.suggest.paths": false,
-  "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.editor.enableAutoCompletions": false,
   "prisma.showPrismaDataPlatformNotification": false,
   "workbench.sideBar.location": "right",
   "github.copilot.enable": {
