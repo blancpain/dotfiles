@@ -53,6 +53,7 @@ function yabai_rule {
 # automation rules
 # yabai_rule app="^Arc$" space=1 label="assign-arc" sticky=off
 yabai_rule app="^Ghostty$" space=2 label="assign-ghostty" sticky=off
+yabai_rule app="^Cursor$" space=2 label="assign-cursor" sticky=off
 yabai_rule app="^Slack$" space=3 label="assign-slack" sticky=off
 yabai_rule app="^DAS Trader Pro$" space=4 label="assign-DAS" sticky=off
 yabai_rule app="^Notes$" space=5 label="assign-notes" sticky=off
