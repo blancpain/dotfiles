@@ -71,12 +71,6 @@
       "commands": ["vsnetrw.open"],
       "when": "editorLangId != vsnetrw"
     },
-
-    {
-      "before": ["K"],
-      "commands": ["lineBreakInsert"],
-      "silent": true
-    },
     {
       "before": ["<C-n>"],
       "commands": [":nohl"],
@@ -160,24 +154,8 @@
     }
   ],
   "errorLens.fontSize": "13",
-  "workbench.colorCustomizations": {
-    "errorLens.hintForeground": "#ffc600A1",
-    "errorLens.hintBackground": "#ffc60003",
-    "errorLens.errorBackground": "#ff000005",
-    "editorBracketPairGuide.background1": "#FFB86C",
-    "editorBracketPairGuide.background2": "#FF75B5",
-    "editorBracketPairGuide.background3": "#45A9F9",
-    "editorBracketPairGuide.background4": "#B084EB",
-    "editorBracketPairGuide.background5": "#E6E6E6",
-    "editorBracketPairGuide.background6": "#19f9d8",
-    "editorBracketPairGuide.activeBackground1": "#FFB86C",
-    "editorBracketPairGuide.activeBackground2": "#FF75B5",
-    "editorBracketPairGuide.activeBackground3": "#45A9F9",
-    "editorBracketPairGuide.activeBackground4": "#B084EB",
-    "editorBracketPairGuide.activeBackground5": "#E6E6E6",
-    "editorBracketPairGuide.activeBackground6": "#19f9d8",
-    "editorCursor.foreground": "#d6ee21"
-  },
+  "errorLens.gutterIconsEnabled": "true",
+  "errorLens.messageBackgroundMode": "none",
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
@@ -237,7 +215,7 @@
       "italic": false
     },
     {
-      "tag": "?",
+      "tag": "Q",
       "color": "#3498DB",
       "strikethrough": false,
       "underline": false,
@@ -264,13 +242,13 @@
       "italic": true
     },
     {
-      "tag": "*",
-      "color": "#98C379",
+      "tag": "note",
+      "color": "#ffc600",
       "strikethrough": false,
       "underline": false,
       "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
+      "bold": true,
+      "italic": true
     },
     {
       "tag": "Method",
@@ -280,24 +258,6 @@
       "backgroundColor": "#ffc600",
       "bold": true,
       "italic": true
-    },
-    {
-      "tag": "Solution",
-      "color": "#ffc600",
-      "strikethrough": false,
-      "underline": true,
-      "backgroundColor": "Transparent",
-      "bold": false,
-      "italic": true
-    },
-    {
-      "tag": "·",
-      "color": "#ffffffC7",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "Transparent",
-      "bold": false,
-      "italic": false
     }
   ],
   "javascript.suggest.paths": false,
