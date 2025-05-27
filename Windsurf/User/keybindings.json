@@ -31,21 +31,6 @@
     "when": "terminalFocus || panelFocus"
   },
   {
-    "key": "shift+tab",
-    "command": "selectPrevQuickFix",
-    "when": "editorFocus && quickFixWidgetVisible"
-  },
-  {
-    "key": "tab",
-    "command": "selectNextSuggestion",
-    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-  },
-  {
-    "key": "shift+tab",
-    "command": "selectPrevSuggestion",
-    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-  },
-  {
     "key": "ctrl+shift+b",
     "command": "workbench.view.explorer",
     "when": "viewContainer.workbench.view.explorer.enabled"
