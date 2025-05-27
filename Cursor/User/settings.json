@@ -158,7 +158,7 @@
   ],
   "errorLens.fontSize": "13",
   "errorLens.gutterIconsEnabled": "true",
-  "errorLens.messageBackgroundMode": "none",
+  "errorLens.messageEnabled": false,
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
