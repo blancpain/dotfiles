@@ -56,6 +56,22 @@
       "after": ["g", "_"]
     },
     {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.nextInFiles"],
+      "silent": true
+    },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prevInFiles"],
+      "silent": true
+    },
+    {
+      "before": ["-"],
+      "commands": ["vsnetrw.open"],
+      "when": "editorLangId != vsnetrw"
+    },
+
+    {
       "before": ["K"],
       "commands": ["lineBreakInsert"],
       "silent": true
@@ -98,7 +114,7 @@
       "commands": [":q!"]
     },
     {
-      "before": ["leader", "f"],
+      "before": ["leader", "space"],
       "commands": ["workbench.action.quickOpen"]
     }
   ],
@@ -287,5 +303,11 @@
   "typescript.suggest.paths": false,
   "github.copilot.editor.enableAutoCompletions": true,
   "prisma.showPrismaDataPlatformNotification": false,
-  "workbench.sideBar.location": "right"
+  "workbench.sideBar.location": "right",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
 }
