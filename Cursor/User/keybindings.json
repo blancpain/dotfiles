@@ -29,7 +29,6 @@
     "command": "workbench.action.terminal.focusPrevious",
     "when": "terminalFocus"
   },
-  // Maximize terminal or panel when focused
   {
     "key": "ctrl+m",
     "command": "workbench.action.toggleMaximizedPanel",
@@ -57,11 +56,13 @@
   },
   {
     "key": "ctrl+k",
-    "command": "workbench.action.navigateUp"
+    "command": "workbench.action.navigateUp",
+    "when": "vim.mode != 'Visual' && vim.mode != 'VisualLine' && vim.mode != 'VisualBlock'"
   },
   {
     "key": "ctrl+j",
-    "command": "workbench.action.navigateDown"
+    "command": "workbench.action.navigateDown",
+    "when": "vim.mode != 'Visual' && vim.mode != 'VisualLine' && vim.mode != 'VisualBlock'"
   },
   {
     "key": "ctrl+j",
@@ -110,7 +111,6 @@
     "key": "ctrl+i",
     "command": "workbench.action.terminal.moveToEditor"
   },
-  // emmet specific
   {
     "key": "ctrl+shift+\\",
     "command": "editor.emmet.action.matchTag"
@@ -123,7 +123,6 @@
     "key": "ctrl+shift+t",
     "command": "editor.emmet.action.removeTag"
   },
-  // vim
   {
     "key": "h",
     "command": "editor.action.scrollLeftHover",
@@ -154,7 +153,6 @@
     "command": "workbench.action.terminal.toggleTerminal",
     "when": "terminal.active || editorTextFocus"
   },
-  // FILE TREE
   {
     "command": "workbench.action.toggleSidebarVisibility",
     "key": "ctrl+e"
@@ -180,11 +178,6 @@
     "when": "terminalFocus && terminalHasBeenCreated && !accessibilityModeEnabled || terminalFocus && terminalProcessSupported && !accessibilityModeEnabled"
   },
   {
-    "key": "cmd+k",
-    "command": "-workbench.action.terminal.clear",
-    "when": "terminalFocus && terminalHasBeenCreated && !accessibilityModeEnabled || terminalFocus && terminalProcessSupported && !accessibilityModeEnabled"
-  },
-  {
     "key": "cmd+f",
     "command": "editor.action.startFindReplaceAction",
     "when": "editorFocus || editorIsOpen"
@@ -205,5 +198,10 @@
   {
     "key": "cmd+c",
     "command": "problems.action.copyMessage"
+  },
+  {
+    "key": "ctrl+m",
+    "command": "workbench.action.toggleMaximizeEditorGroup",
+    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
   }
 ]

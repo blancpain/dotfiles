@@ -40,13 +40,8 @@
   "vim.hlsearch": true,
   "vim.incsearch": true,
   "editor.cursorSurroundingLines": 10,
-  "vim.searchHighlightColor": "red",
-  "vim.insertModeKeyBindings": [
-    {
-      "before": ["j", "j"],
-      "after": ["<Esc>"]
-    }
-  ],
+  "vim.searchHighlightColor": "yellow",
+  "vim.insertModeKeyBindings": [],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["<S-h>"],
@@ -93,16 +88,16 @@
       "after": ["2", "5", "j"]
     },
     {
-      "before": ["g", "h"],
-      "commands": ["editor.action.showDefinitionPreviewHover"]
-    },
-    {
       "before": ["leader", "w"],
       "commands": [":w!"]
     },
     {
       "before": ["leader", "/"],
       "commands": ["editor.action.commentLine"]
+    },
+    {
+      "before": ["leader", "Q"],
+      "commands": ["workbench.action.closeEditorsInGroup"]
     },
     {
       "before": ["leader", "q"],
@@ -123,11 +118,11 @@
       "commands": ["editor.action.indentLines"]
     },
     {
-      "before": ["ctrl+j"],
+      "before": ["<C-j>"],
       "commands": ["editor.action.moveLinesDownAction"]
     },
     {
-      "before": ["ctrl+k"],
+      "before": ["<C-k>"],
       "commands": ["editor.action.moveLinesUpAction"]
     },
     {
@@ -269,5 +264,6 @@
     "plaintext": false,
     "markdown": false,
     "scminput": false
-  }
+  },
+  "explorer.openEditors.visible": 3
 }
