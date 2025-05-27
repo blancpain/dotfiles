@@ -52,6 +52,16 @@
       "after": ["g", "_"]
     },
     {
+      "before": ["]", "h"],
+      "commands": ["editor.action.dirtydiff.previous"],
+      "silent": true
+    },
+    {
+      "before": ["[", "h"],
+      "commands": ["editor.action.dirtydiff.next"],
+      "silent": true
+    },
+    {
       "before": ["]", "d"],
       "commands": ["editor.action.marker.nextInFiles"],
       "silent": true
