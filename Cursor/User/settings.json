@@ -5,7 +5,7 @@
   "workbench.iconTheme": "vscode-icons",
   "editor.tabSize": 2,
   "workbench.startupEditor": "none",
-  "workbench.editor.showTabs": false,
+  "workbench.editor.showTabs": "single",
   "debug.javascript.codelens.npmScripts": "never",
   "editor.accessibilitySupport": "off",
   "editor.linkedEditing": true,
