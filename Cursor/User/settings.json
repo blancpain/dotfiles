@@ -5,7 +5,6 @@
   "editor.autoClosingDelete": "always",
   "editor.tabSize": 1,
   "window.zoomLevel": -0.5,
-  "workbench.startupEditor": "none",
   "workbench.editor.showTabs": "none",
   "debug.javascript.codelens.npmScripts": "never",
   "editor.accessibilitySupport": "off",
@@ -18,7 +17,6 @@
   "editor.fontLigatures": true,
   "workbench.editor.enablePreview": false,
   "editor.lineNumbers": "relative",
-  "cSpell.userWords": ["Chakra", "mangify", "Togglable"],
   "redhat.telemetry.enabled": false,
   "editor.guides.bracketPairs": "active",
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
@@ -170,8 +168,6 @@
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
-  "terminal.external.osxExec": "Ghostty.app",
-  "terminal.integrated.fontFamily": "monospace",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.defaultProfile.osx": "fish",
   "liveServer.settings.donotShowInfoMsg": true,
@@ -273,14 +269,9 @@
   ],
   "javascript.suggest.paths": false,
   "typescript.suggest.paths": false,
-  "prisma.showPrismaDataPlatformNotification": false,
   "workbench.sideBar.location": "right",
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
-  },
   "explorer.openEditors.visible": 3,
-  "cursor.composer.textSizeScale": 1.3
+  "cursor.composer.textSizeScale": 1.3,
+  "terminal.external.osxExec": "Ghostty.app",
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font"
 }
