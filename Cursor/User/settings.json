@@ -35,10 +35,10 @@
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
   },
-  "vim.hlsearch": true,
+  "vim.hlsearch": false,
   "vim.incsearch": true,
   "editor.cursorSurroundingLines": 10,
-  "vim.searchHighlightColor": "red",
+  //"vim.searchHighlightColor": "red",
   "vim.insertModeKeyBindings": [],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -79,7 +79,7 @@
       "when": "editorLangId != vsnetrw"
     },
     {
-      "before": ["<Esc>"],
+      "before": ["<C-n>"],
       "commands": [":nohl"],
       "silent": true
     },
