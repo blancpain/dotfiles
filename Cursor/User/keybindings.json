@@ -15,6 +15,11 @@
     "when": "true"
   },
   {
+    "key": "q",
+    "command": "vsnetrw.close",
+    "when": "editorLangId == vsnetrw"
+  },
+  {
     "key": "ctrl+[",
     "command": "workbench.action.terminal.focusNext",
     "when": "terminalFocus"
@@ -204,9 +209,5 @@
   {
     "key": "shift+cmd+h",
     "command": "-workbench.action.replaceInFiles"
-  },
-  {
-    "key": "cmd+c",
-    "command": "problems.action.copyMessage"
   }
 ]
