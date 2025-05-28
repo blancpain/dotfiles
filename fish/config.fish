@@ -33,7 +33,7 @@ fish_add_path /Users/blancpain/.local/share/bob/nvim-bin #nvim bob
 fish_add_path /Users/blancpain/.cargo/bin
 
 #settings
-set -Ux EDITOR nvim
+set -Ux EDITOR cursor
 set -Ux VISUAL nvim
 set -U FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' '"
 set -U FZF_DEFAULT_COMMAND "fd -H -E '.git'"
