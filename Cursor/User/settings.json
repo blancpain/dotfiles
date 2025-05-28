@@ -22,8 +22,8 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "typescript.updateImportsOnFileMove.enabled": "never",
   "terminal.integrated.cwd": "${fileDirname}",
-  "workbench.colorTheme": "Monokai++ Unified",
   "editor.minimap.enabled": false,
+  "todo-tree.regex.regex": "(//)\\s*($TAGS).*(\\n(?=\\s*//\\s{1,}\\S).*?)*",
   "todo-tree.highlights.defaultHighlight": {
     "type": "line"
   },
@@ -82,6 +82,14 @@
   "vim.searchHighlightColor": "red",
   "vim.insertModeKeyBindings": [],
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
+    },
     {
       "before": ["<S-h>"],
       "after": ["^"]
@@ -278,5 +286,6 @@
   "explorer.openEditors.visible": 3,
   "cursor.composer.textSizeScale": 1.3,
   "terminal.external.osxExec": "Ghostty.app",
-  "terminal.integrated.fontFamily": "FiraCode Nerd Font"
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "workbench.colorTheme": "Monokai++"
 }
