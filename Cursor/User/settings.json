@@ -4,7 +4,7 @@
   "editor.formatOnSave": true,
   "editor.autoClosingDelete": "always",
   "editor.tabSize": 1,
-  "window.zoomLevel": -0.5,
+  "window.zoomLevel": -0.2,
   "workbench.editor.showTabs": "none",
   "debug.javascript.codelens.npmScripts": "never",
   "editor.accessibilitySupport": "off",
@@ -287,5 +287,5 @@
   "cursor.composer.textSizeScale": 1.3,
   "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",
-  "workbench.colorTheme": "Monokai++"
+  "workbench.colorTheme": "Kanagawa Black"
 }
