@@ -1,10 +1,5 @@
 [
   {
-    "key": "tab",
-    "command": "selectNextQuickFix",
-    "when": "editorFocus && quickFixWidgetVisible"
-  },
-  {
     "key": "ctrl+w",
     "command": "-workbench.action.toggleAuxiliaryBar",
     "when": "false"
@@ -38,21 +33,6 @@
     "key": "ctrl+m",
     "command": "workbench.action.toggleMaximizedPanel",
     "when": "terminalFocus || panelFocus"
-  },
-  {
-    "key": "shift+tab",
-    "command": "selectPrevQuickFix",
-    "when": "editorFocus && quickFixWidgetVisible"
-  },
-  {
-    "key": "tab",
-    "command": "selectNextSuggestion",
-    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-  },
-  {
-    "key": "shift+tab",
-    "command": "selectPrevSuggestion",
-    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
   },
   {
     "key": "ctrl+shift+b",
