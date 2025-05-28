@@ -136,7 +136,7 @@
   {
     "key": "q",
     "command": "workbench.action.closeSidebar",
-    "when": "sideBarVisible && sideBarFocus"
+    "when": "sideBarVisible && sideBarFocus && !inputFocus"
   },
   {
     "key": "ctrl+i",
