@@ -24,6 +24,7 @@
   "terminal.integrated.cwd": "${fileDirname}",
   "editor.minimap.enabled": false,
   "todo-tree.regex.regex": "(//)\\s*($TAGS).*(\\n(?=\\s*//\\s{1,}\\S).*?)*",
+  "vim.foldfix": true,
   "todo-tree.highlights.defaultHighlight": {
     "type": "line"
   },
@@ -82,14 +83,6 @@
   "vim.searchHighlightColor": "red",
   "vim.insertModeKeyBindings": [],
   "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["j"],
-      "after": ["g", "j"]
-    },
-    {
-      "before": ["k"],
-      "after": ["g", "k"]
-    },
     {
       "before": ["<S-h>"],
       "after": ["^"]
@@ -160,11 +153,11 @@
     },
     {
       "before": ["<C-u>"],
-      "after": ["2", "5", "k"]
+      "after": ["2", "5", "g", "k"]
     },
     {
       "before": ["<C-d>"],
-      "after": ["2", "5", "j"]
+      "after": ["2", "5", "g", "j"]
     },
     {
       "before": ["g", "r"],
@@ -232,7 +225,7 @@
     }
   ],
   "errorLens.fontSize": "13",
-  "errorLens.gutterIconsEnabled": "true",
+  "errorLens.gutterIconsEnabled": true,
   "errorLens.messageEnabled": false,
   "git.autofetch": true,
   "git.confirmSync": false,
