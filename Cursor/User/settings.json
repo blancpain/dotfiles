@@ -24,7 +24,7 @@
   "terminal.integrated.cwd": "${fileDirname}",
   "workbench.colorTheme": "Monokai++ Unified",
   "editor.minimap.enabled": false,
-  "lazygit-vscode.autoMaximizeWindow": true,
+  // "lazygit-vscode.autoMaximizeWindow": true,
   "breadcrumbs.enabled": false,
   "vim.leader": "<Space>",
   "vim.useSystemClipboard": true,
@@ -46,7 +46,7 @@
       "after": ["^"]
     },
     {
-      "before": ["<leader>", "g"],
+      "before": ["<leader>", "g", "g"],
       "commands": ["lazygit-vscode.toggle"]
     },
     {
@@ -79,7 +79,7 @@
       "when": "editorLangId != vsnetrw"
     },
     {
-      "before": ["<C-n>"],
+      "before": ["<Esc>"],
       "commands": [":nohl"],
       "silent": true
     },
