@@ -76,7 +76,7 @@
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
   },
-  "vim.hlsearch": false,
+  "vim.hlsearch": true,
   "vim.incsearch": true,
   "editor.cursorSurroundingLines": 10,
   "vim.searchHighlightColor": "red",
