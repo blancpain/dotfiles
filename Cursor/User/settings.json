@@ -21,12 +21,11 @@
   "editor.guides.bracketPairs": "active",
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "typescript.updateImportsOnFileMove.enabled": "never",
-  "terminal.integrated.cwd": "${fileDirname}",
   "editor.minimap.enabled": false,
   "todo-tree.regex.regex": "(//)\\s*($TAGS).*(\\n(?=\\s*//\\s{1,}\\S).*?)*",
   "vim.foldfix": true,
   "todo-tree.highlights.defaultHighlight": {
-    "type": "line"
+    "type": "text-and-comment"
   },
   "todo-tree.highlights.customHighlight": {
     "BUG": {
@@ -80,9 +79,23 @@
   "vim.hlsearch": true,
   "vim.incsearch": true,
   "editor.cursorSurroundingLines": 10,
-  "vim.searchHighlightColor": "red",
+  "vim.searchHighlightColor": "#908caa",
+  "vim.searchHighlightTextColor": "#f6c177",
   "vim.insertModeKeyBindings": [],
+  "flash-vscode.caseSensitive": false,
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["s"],
+      "commands": ["flash-vscode.start"]
+    },
+    {
+      "before": ["S"],
+      "commands": ["flash-vscode.startSelection"]
+    },
+    {
+      "before": ["<BS>"],
+      "commands": ["flash-vscode.backspace"]
+    },
     {
       "before": ["<S-h>"],
       "after": ["^"]
