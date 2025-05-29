@@ -280,5 +280,7 @@
   "cursor.composer.textSizeScale": 1.3,
   "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",
-  "workbench.colorTheme": "Rosé Pine Moon"
+  "workbench.colorTheme": "Rosé Pine Moon",
+  "gitlens.codeLens.recentChange.enabled": false,
+  "gitlens.codeLens.authors.enabled": false
 }
