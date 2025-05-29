@@ -22,7 +22,7 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "typescript.updateImportsOnFileMove.enabled": "never",
   "editor.minimap.enabled": false,
-  "todo-tree.regex.regex": "(//)\\s*($TAGS).*(\\n(?=\\s*//\\s{1,}\\S).*?)*",
+  "todo-tree.regex.regex": "(//)\\s*($TAGS).*(?:\\n\\s*//(?!.*($TAGS)).*)*",
   "vim.foldfix": true,
   "todo-tree.highlights.defaultHighlight": {
     "type": "text-and-comment"
