@@ -2,6 +2,10 @@
   "editor.fontSize": 17,
   "editor.lineHeight": 20,
   "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": "always",
+    "source.organizeImports": "always"
+  },
   "editor.autoClosingDelete": "always",
   "editor.tabSize": 1,
   "window.zoomLevel": -0.2,
@@ -24,6 +28,7 @@
   "editor.minimap.enabled": false,
   "todo-tree.regex.regex": "(//)\\s*($TAGS).*(?:\\n\\s*//(?!.*($TAGS)).*)*",
   "vim.foldfix": true,
+  "vim.timeout": 200,
   "todo-tree.highlights.defaultHighlight": {
     "type": "text-and-comment"
   },
@@ -84,6 +89,10 @@
   "vim.insertModeKeyBindings": [],
   "flash-vscode.caseSensitive": false,
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "c", "u"],
+      "commands": ["typescript.removeUnusedImports"]
+    },
     {
       "before": ["s"],
       "commands": ["flash-vscode.start"]
