@@ -152,11 +152,6 @@
       "silent": true
     },
     {
-      "before": ["-"],
-      "commands": ["vsnetrw.open"],
-      "when": "editorLangId != vsnetrw"
-    },
-    {
       "before": ["<C-n>"],
       "commands": [":nohl"],
       "silent": true
@@ -202,7 +197,7 @@
       "commands": [":q!"]
     },
     {
-      "before": ["leader", "space"],
+      "before": ["leader", "leader"],
       "commands": ["workbench.action.quickOpen"]
     }
   ],
@@ -304,5 +299,39 @@
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",
   "workbench.colorTheme": "Rosé Pine Moon",
   "gitlens.codeLens.recentChange.enabled": false,
-  "gitlens.codeLens.authors.enabled": false
+  "gitlens.codeLens.authors.enabled": false,
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["-"],
+      "commands": [
+        {
+          "command": "oil-code.open"
+        }
+      ]
+    },
+    {
+      "before": ["<cr>"],
+      "commands": [
+        {
+          "command": "oil-code.select"
+        }
+      ]
+    },
+    {
+      "before": ["<c-l>"],
+      "commands": [
+        {
+          "command": "oil-code.refresh"
+        }
+      ]
+    },
+    {
+      "before": ["`"],
+      "commands": [
+        {
+          "command": "oil-code.cd"
+        }
+      ]
+    }
+  ]
 }

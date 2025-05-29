@@ -11,8 +11,8 @@
   },
   {
     "key": "q",
-    "command": "vsnetrw.close",
-    "when": "editorLangId == vsnetrw"
+    "command": "oil-code.close",
+    "when": "editorLangId == oil"
   },
   {
     "key": "ctrl+[",
