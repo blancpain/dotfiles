@@ -86,6 +86,3 @@ end
 
 # Added by Windsurf
 fish_add_path /Users/blancpain/.codeium/windsurf/bin
-
-# Added by Windsurf
-fish_add_path /Users/blancpain/.codeium/windsurf/bin
