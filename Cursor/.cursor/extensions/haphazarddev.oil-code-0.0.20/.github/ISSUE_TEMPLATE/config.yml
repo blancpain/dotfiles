@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/corwinm/oil.code#readme
+    about: Check the README for usage instructions and documentation
+  - name: 💬 Discussions
+    url: https://github.com/corwinm/oil.code/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 🌟 Star the Project
+    url: https://github.com/corwinm/oil.code
+    about: If you find oil.code useful, please consider starring the repository
+  - name: ⭐ Leave a review
+    url: https://marketplace.visualstudio.com/items?itemName=haphazarddev.oil-code&ssr=false#review-details
+    about: If you find oil.code useful, please consider reviewing it on the VS Code Marketplace
