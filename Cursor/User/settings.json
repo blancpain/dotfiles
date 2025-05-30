@@ -30,6 +30,7 @@
   "todo-tree.regex.regex": "(//)\\s*($TAGS).*(?:\\n\\s*//(?!.*($TAGS)).*)*",
   "vim.foldfix": true,
   "vim.timeout": 300,
+  "oil-code.disableOpenCwdNothingOpen": true,
   "todo-tree.highlights.defaultHighlight": {
     "type": "text-and-comment"
   },
