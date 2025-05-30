@@ -335,5 +335,6 @@
     }
   ],
   "workbench.iconTheme": "vscode-icons",
-  "workbench.colorTheme": "Rosé Pine Moon"
+  "workbench.colorTheme": "Rosé Pine Moon",
+  "window.newWindowProfile": "Default"
 }
