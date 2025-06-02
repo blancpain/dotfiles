@@ -261,6 +261,9 @@
   "terminal.integrated.defaultProfile.osx": "fish",
   "liveServer.settings.donotShowInfoMsg": true,
   "typescript.preferences.importModuleSpecifier": "non-relative",
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
