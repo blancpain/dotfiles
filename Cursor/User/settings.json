@@ -345,5 +345,6 @@
   ],
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorTheme": "Rosé Pine Moon",
-  "window.newWindowProfile": "Default"
+  "window.newWindowProfile": "Default",
+  "projectManager.git.baseFolders": ["~/repos"]
 }
