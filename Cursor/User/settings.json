@@ -26,7 +26,7 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "vue.updateImportsOnFileMove.enabled": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "editor.minimap.enabled": false,
+  "editor.minimap.enabled": true,
   "todo-tree.regex.regex": "(//)\\s*($TAGS).*(?:\\n\\s*//(?!.*($TAGS)).*)*",
   "vim.foldfix": true,
   "vim.timeout": 300,
