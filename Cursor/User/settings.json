@@ -4,7 +4,7 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "always",
-    "source.organizeImports": "always"
+    "source.organizeImports": "never"
   },
   "editor.autoClosingDelete": "always",
   "editor.tabSize": 1,
@@ -351,5 +351,5 @@
     "secondarySidebar": "hide"
   },
   "multiCommand.commands": [],
-  "workbench.colorTheme": "Night Wolf (dark gray)"
+  "workbench.colorTheme": "Night Wolf (black)"
 }
