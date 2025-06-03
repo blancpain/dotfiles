@@ -120,16 +120,16 @@
       "after": ["^"]
     },
     {
+      "before": ["<S-l>"],
+      "after": ["g", "_"]
+    },
+    {
       "before": ["<leader>", "c", "r"],
       "commands": ["editor.action.changeAll"]
     },
     {
       "before": ["<leader>", "g", "g"],
       "commands": ["lazygit-vscode.toggle"]
-    },
-    {
-      "before": ["<S-l>"],
-      "after": ["g", "_"]
     },
     {
       "before": ["]", "t"],
@@ -205,10 +205,6 @@
     {
       "before": ["leader", "q"],
       "commands": [":q!"]
-    },
-    {
-      "before": ["leader", "leader"],
-      "commands": ["workbench.action.quickOpen"]
     }
   ],
   "vim.visualModeKeyBindings": [

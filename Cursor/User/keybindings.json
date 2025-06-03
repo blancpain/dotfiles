@@ -15,7 +15,7 @@
     "when": "editorLangId == oil"
   },
   {
-    "key": "ctrl+[",
+    "key": "ctrl+]",
     "command": "workbench.action.terminal.focusNext",
     "when": "terminalFocus"
   },
@@ -25,7 +25,7 @@
     "when": "editorTextFocus && vim.mode != 'Insert'"
   },
   {
-    "key": "ctrl+]",
+    "key": "ctrl+[",
     "command": "workbench.action.terminal.focusPrevious",
     "when": "terminalFocus"
   },
@@ -180,5 +180,18 @@
   {
     "key": "shift+cmd+f",
     "command": "workbench.action.replaceInFiles"
+  },
+  {
+    "key": "alt+cmd+p",
+    "command": "composer.openAddContextMenu",
+    "when": "composerFocused && !editorTextFocus"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+alt+p",
+    "command": "projectManager.listProjects"
   }
 ]
