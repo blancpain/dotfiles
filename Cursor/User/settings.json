@@ -96,14 +96,6 @@
       "commands": ["typescript.removeUnusedImports"]
     },
     {
-      "before": ["<leader>", "l"],
-      "commands": ["projectManager.listProjects"]
-    },
-    {
-      "before": ["<leader>", "L"],
-      "commands": ["projectManager.listProjectsNewWindow"]
-    },
-    {
       "before": ["s"],
       "commands": ["flash-vscode.start"]
     },
