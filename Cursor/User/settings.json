@@ -346,7 +346,6 @@
     }
   ],
   "workbench.iconTheme": "vscode-icons",
-  "workbench.colorTheme": "Kolada",
   "window.newWindowProfile": "Default",
   "projectManager.git.baseFolders": ["~/repos"],
   "todo-tree.ripgrep.ripgrepArgs": "--pcre2",
@@ -355,5 +354,6 @@
     "panel": "hide",
     "secondarySidebar": "hide"
   },
-  "multiCommand.commands": []
+  "multiCommand.commands": [],
+  "workbench.colorTheme": "Gruvbox Dark Medium"
 }
