@@ -184,7 +184,7 @@
     },
     {
       "before": ["leader", "w"],
-      "commands": [":w!"]
+      "commands": ["workbench.action.files.save"]
     },
     {
       "before": ["leader", "/"],
