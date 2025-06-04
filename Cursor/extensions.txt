@@ -1,3 +1,4 @@
+alefragnani.project-manager
 christian-kohler.path-intellisense
 cunbidun.flash-vscode
 dbaeumer.vscode-eslint
@@ -11,8 +12,10 @@ fabiospampinato.vscode-monokai-night
 formulahendry.auto-rename-tag
 github.vscode-github-actions
 gruntfuggly.todo-tree
+gxl.git-graph-3
 haphazarddev.oil-code
 humao.rest-client
+jdinhlife.gruvbox
 lamarcke.kanagawa-black
 liviuschera.noctis
 maosantaella.night-wolf
@@ -38,3 +41,4 @@ vue.volar
 william-voyek.vscode-nginx
 xabikos.javascriptsnippets
 yasendimitrov.lazygit-vscode-v2
+yzhang.markdown-all-in-one
