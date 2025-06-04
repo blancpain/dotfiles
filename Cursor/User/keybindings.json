@@ -197,7 +197,7 @@
   {
     "key": "ctrl+alt+o",
     "command": "projectManager.listProjectsNewWindow"
-  }
+  },
   {
     "key": "cmd+n",
     "command": "explorer.newFile",
@@ -212,5 +212,25 @@
     "key": "cmd+backspace",
     "command": "deleteFile",
     "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "editor.action.smartSelect.expand",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+right",
+    "command": "-editor.action.smartSelect.expand",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+h",
+    "command": "editor.action.smartSelect.shrink",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+left",
+    "command": "-editor.action.smartSelect.shrink",
+    "when": "editorTextFocus"
   }
 ]
