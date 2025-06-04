@@ -344,5 +344,8 @@
   },
   "multiCommand.commands": [],
   "workbench.colorTheme": "Night Wolf (black)",
-  "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose"
+  "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
+  "vim.targets.enable": true,
+  "vim.targets.smartQuotes.enable": true,
+  "vim.targets.bracketObjects.enable": true
 }
