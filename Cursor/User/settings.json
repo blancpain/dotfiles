@@ -145,12 +145,12 @@
     },
     {
       "before": ["]", "d"],
-      "commands": ["editor.action.marker.nextInFiles"],
+      "commands": ["editor.action.marker.next"],
       "silent": true
     },
     {
       "before": ["[", "d"],
-      "commands": ["editor.action.marker.prevInFiles"],
+      "commands": ["editor.action.marker.prev"],
       "silent": true
     },
     {
@@ -343,5 +343,6 @@
     "secondarySidebar": "hide"
   },
   "multiCommand.commands": [],
-  "workbench.colorTheme": "Night Wolf (black)"
+  "workbench.colorTheme": "Night Wolf (black)",
+  "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose"
 }
