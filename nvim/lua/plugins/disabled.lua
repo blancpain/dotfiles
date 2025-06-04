@@ -11,5 +11,5 @@ return {
   { "monkoose/neocodeium", enabled = false },
   { "olimorris/codecompanion.nvim", enabled = false },
   { "ibhagwan/fzf-lua", enabled = false },
-  -- { "yetone/avante.nvim", enabled = false },
+  { "yetone/avante.nvim", enabled = false },
 }
