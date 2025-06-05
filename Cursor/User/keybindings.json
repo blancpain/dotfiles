@@ -191,11 +191,11 @@
     "command": "workbench.action.quickOpen"
   },
   {
-    "key": "ctrl+alt+p",
+    "key": "ctrl+shift+p",
     "command": "projectManager.listProjects"
   },
   {
-    "key": "ctrl+alt+o",
+    "key": "ctrl+shift+o",
     "command": "projectManager.listProjectsNewWindow"
   },
   {
@@ -219,18 +219,8 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+shift+right",
-    "command": "-editor.action.smartSelect.expand",
-    "when": "editorTextFocus"
-  },
-  {
     "key": "ctrl+shift+h",
     "command": "editor.action.smartSelect.shrink",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+shift+left",
-    "command": "-editor.action.smartSelect.shrink",
     "when": "editorTextFocus"
   },
   {
