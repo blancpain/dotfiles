@@ -2,7 +2,6 @@ alefragnani.project-manager
 christian-kohler.path-intellisense
 cunbidun.flash-vscode
 dbaeumer.vscode-eslint
-dbankier.vscode-quick-select
 dcasella.monokai-plusplus
 docker.docker
 dsznajder.es7-react-js-snippets
@@ -26,13 +25,13 @@ ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
 ms-vscode.remote-explorer
 mvllow.rose-pine
-planbcoding.vscode-react-refactor
 prisma.prisma
 quicktype.quicktype
 redhat.vscode-yaml
 ritwickdey.liveserver
 ryuta46.multi-command
 shd101wyy.markdown-preview-enhanced
+sleistner.vscode-fileutils
 tamasfe.even-better-toml
 usernamehw.errorlens
 vscode-icons-team.vscode-icons
