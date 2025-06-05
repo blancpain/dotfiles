@@ -1,15 +1,5 @@
 [
   {
-    "key": "ctrl+w",
-    "command": "-workbench.action.toggleAuxiliaryBar",
-    "when": "false"
-  },
-  {
-    "key": "ctrl+w",
-    "command": "workbench.action.toggleAuxiliaryBar",
-    "when": "true"
-  },
-  {
     "key": "q",
     "command": "oil-code.close",
     "when": "editorLangId == oil"
@@ -226,5 +216,48 @@
   {
     "key": "ctrl+n",
     "command": "workbench.action.showCommands"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "composer.startComposerPrompt"
+  },
+  {
+    "key": "cmd+i",
+    "command": "-composer.startComposerPrompt"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "workbench.action.findInFiles",
+    "when": "!explorerViewletFocus && !searchViewletVisible"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "workbench.action.toggleAuxiliaryBar",
+    "when": "searchViewletVisible"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "search.focus.nextInputBox",
+    "when": "searchViewletVisible && inputFocus && searchInputBoxFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "search.focus.previousInputBox",
+    "when": "searchViewletVisible && inputFocus && searchInputBoxFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "search.action.focusSearchFromResults",
+    "when": "searchViewletVisible && hasSearchResult && !inputFocus"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "list.focusDown",
+    "when": "searchViewletVisible && searchResultsFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "list.focusUp",
+    "when": "searchViewletVisible && searchResultsFocus"
   }
 ]
