@@ -158,7 +158,7 @@
       "silent": true
     },
     {
-      "before": ["<C-n>"],
+      "before": ["<C-b>"],
       "commands": [":nohl"],
       "silent": true
     },
