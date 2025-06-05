@@ -238,12 +238,12 @@
   {
     "key": "ctrl+j",
     "command": "search.focus.nextInputBox",
-    "when": "searchViewletVisible && inputFocus && searchInputBoxFocus"
+    "when": "searchViewletVisible && searchViewletFocus && inputFocus"
   },
   {
     "key": "ctrl+k",
     "command": "search.focus.previousInputBox",
-    "when": "searchViewletVisible && inputFocus && searchInputBoxFocus"
+    "when": "searchViewletVisible && searchViewletFocus && inputFocus"
   },
   {
     "key": "ctrl+k",
