@@ -92,6 +92,10 @@
   "flash-vscode.caseSensitive": false,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
+      "before": ["<leader>", "z"],
+      "commands": ["workbench.action.toggleZenMode"]
+    },
+    {
       "before": ["<leader>", "c", "u"],
       "commands": ["typescript.removeUnusedImports"]
     },
@@ -347,5 +351,8 @@
   "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
   "vim.targets.enable": true,
   "vim.targets.smartQuotes.enable": true,
-  "vim.targets.bracketObjects.enable": true
+  "vim.targets.bracketObjects.enable": true,
+  "zenMode.showTabs": "none",
+  "zenMode.hideLineNumbers": false,
+  "zenMode.silentNotifications": false
 }
