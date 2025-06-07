@@ -1,5 +1,9 @@
 {
   "mcpServers": {
+    "taskmaster-ai": {
+      "command": "npx",
+      "args": ["envmcp", "npx","-y", "task-master-mcp",  "ANTHROPIC_API_KEY", "PERPLEXITY_API_KEY"]
+    },
     "browser-tools": {
       "command": "npx @agentdeskai/browser-tools-mcp@1.2.0"
     },
