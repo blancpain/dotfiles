@@ -140,8 +140,18 @@
   },
   {
     "key": "ctrl+q",
+    "command": "workbench.action.togglePanel",
+    "when": "editorTextFocus && panelVisible"
+  },
+  {
+    "key": "ctrl+q",
     "command": "workbench.action.terminal.toggleTerminal",
-    "when": "terminal.active || editorTextFocus"
+    "when": "editorTextFocus && !panelVisible"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "workbench.action.togglePanel",
+    "when": "terminalFocus"
   },
   {
     "command": "workbench.action.toggleSidebarVisibility",
