@@ -20,9 +20,14 @@
     "when": "terminalFocus"
   },
   {
-    "key": "ctrl+m",
+    "key": "ctrl+a z",
     "command": "workbench.action.toggleMaximizedPanel",
     "when": "terminalFocus || panelFocus"
+  },
+  {
+    "key": "ctrl+a z",
+    "command": "workbench.action.toggleMaximizeEditorGroup",
+    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
   },
   {
     "key": "ctrl+shift+b",
@@ -259,13 +264,18 @@
     "key": "ctrl+k",
     "command": "list.focusUp",
     "when": "searchViewletVisible && searchResultsFocus"
-},
-{
+  },
+  {
     "key": "shift+enter",
     "command": "workbench.action.terminal.sendSequence",
     "args": {
-        "text": "\\\r\n"
+      "text": "\\\r\n"
     },
     "when": "terminalFocus"
-}
+  },
+  {
+    "key": "cmd+r cmd+m",
+    "command": "-workbench.action.toggleMaximizeEditorGroup",
+    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+  }
 ]
