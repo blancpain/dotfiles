@@ -45,6 +45,7 @@ set -x XDG_CONFIG_HOME "/Users/blancpain/.config"
 set -x NIX_CONF_DIR "/Users/blancpain/.config/nix"
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 carapace _carapace | source
+set -U nvm_default_version lts
 
 #abbreviations
 abbr vim nvim
@@ -83,6 +84,3 @@ if test -f "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
     source "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
 end
 # <<< conda initialize <<<
-
-# Added by Windsurf
-fish_add_path /Users/blancpain/.codeium/windsurf/bin
