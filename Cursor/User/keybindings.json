@@ -259,5 +259,13 @@
     "key": "ctrl+k",
     "command": "list.focusUp",
     "when": "searchViewletVisible && searchResultsFocus"
-  }
+},
+{
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+        "text": "\\\r\n"
+    },
+    "when": "terminalFocus"
+}
 ]
