@@ -147,7 +147,6 @@
           ]
         },
         {
-          "disable_built_in_keyboard_if_exists": true,
           "identifiers": {
             "is_keyboard": true,
             "is_pointing_device": true,
@@ -156,16 +155,7 @@
           },
           "ignore": false,
           "manipulate_caps_lock_led": false,
-          "simple_modifications": [
-            {
-              "from": { "key_code": "left_option" },
-              "to": [{ "key_code": "left_control" }]
-            },
-            {
-              "from": { "key_code": "left_command" },
-              "to": [{ "key_code": "left_option" }]
-            }
-          ]
+          "treat_as_built_in_keyboard": true
         }
       ],
       "name": "Default profile",
@@ -199,3 +189,4 @@
     }
   ]
 }
+
