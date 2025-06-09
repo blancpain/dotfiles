@@ -354,5 +354,8 @@
   "vim.targets.bracketObjects.enable": true,
   "zenMode.showTabs": "none",
   "zenMode.hideLineNumbers": false,
-  "zenMode.silentNotifications": false
+  "zenMode.silentNotifications": false,
+  "terminal.integrated.commandsToSkipShell": [
+    "workbench.action.toggleMaximizeEditorGroup"
+  ] // NOTE: we do this so that ctrl+m is not treated as carriage return in terminal views
 }

@@ -20,12 +20,12 @@
     "when": "terminalFocus"
   },
   {
-    "key": "ctrl+a z",
+    "key": "ctrl+m",
     "command": "workbench.action.toggleMaximizedPanel",
-    "when": "terminalFocus || panelFocus"
+    "when": "terminalFocus && panelFocus"
   },
   {
-    "key": "ctrl+a z",
+    "key": "ctrl+m",
     "command": "workbench.action.toggleMaximizeEditorGroup",
     "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
   },
