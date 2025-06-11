@@ -298,7 +298,6 @@
   "javascript.suggest.paths": false,
   "typescript.suggest.paths": false,
   "explorer.openEditors.visible": 3,
-  "cursor.composer.textSizeScale": 1.3,
   "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",
   "gitlens.codeLens.recentChange.enabled": false,

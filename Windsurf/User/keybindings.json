@@ -234,11 +234,11 @@
   },
   {
     "key": "ctrl+w",
-    "command": "composer.startComposerPrompt"
+    "command": "windsurf.prioritized.chat.open"
   },
   {
-    "key": "cmd+i",
-    "command": "-composer.startComposerPrompt"
+    "key": "cmd+l",
+    "command": "-windsurf.prioritized.chat.open"
   },
   {
     "key": "ctrl+f",
