@@ -44,6 +44,7 @@
               pkgs.yabai
               pkgs.ncurses
               pkgs.curl
+              pkgs.nil
             ];
 
             # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
@@ -150,6 +151,7 @@
             ];
             brews = [
               "mas"
+              "lazydocker"
               "automake"
               "bat"
               "bob"
