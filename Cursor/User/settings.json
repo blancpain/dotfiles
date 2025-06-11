@@ -346,6 +346,17 @@
     "panel": "hide",
     "secondarySidebar": "hide"
   },
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nil",
+  // LSP config can be passed via the ``nix.serverSettings.{lsp}`` as shown below.
+  "nix.serverSettings": {
+    // check https://github.com/oxalica/nil/blob/main/docs/configuration.md for all options available
+    "nil": {
+      "formatting": {
+        "command": ["nixfmt"]
+      }
+    }
+  },
   "multiCommand.commands": [],
   "workbench.colorTheme": "Night Wolf (black)",
   "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
