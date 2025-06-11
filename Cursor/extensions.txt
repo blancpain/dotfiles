@@ -1,4 +1,5 @@
 alefragnani.project-manager
+anthropic.claude-code
 christian-kohler.path-intellisense
 cunbidun.flash-vscode
 dbaeumer.vscode-eslint
