@@ -1,10 +1,12 @@
 alefragnani.project-manager
 anthropic.claude-code
+christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 cunbidun.flash-vscode
 dbaeumer.vscode-eslint
 dcasella.monokai-plusplus
 docker.docker
+donjayamanne.githistory
 dsznajder.es7-react-js-snippets
 eamodio.gitlens
 esbenp.prettier-vscode
@@ -12,10 +14,10 @@ fabiospampinato.vscode-monokai-night
 formulahendry.auto-rename-tag
 github.vscode-github-actions
 gruntfuggly.todo-tree
-gxl.git-graph-3
 haphazarddev.oil-code
 humao.rest-client
 jdinhlife.gruvbox
+jnoortheen.nix-ide
 lamarcke.kanagawa-black
 liviuschera.noctis
 maosantaella.night-wolf
