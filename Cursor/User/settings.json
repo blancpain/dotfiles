@@ -367,6 +367,7 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.silentNotifications": false,
   "terminal.integrated.commandsToSkipShell": [
-    "workbench.action.toggleMaximizeEditorGroup"
+    "workbench.action.toggleMaximizeEditorGroup",
+    "composer.startComposerPrompt"
   ] // NOTE: we do this so that ctrl+m is not treated as carriage return in terminal views
 }
