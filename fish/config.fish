@@ -53,6 +53,7 @@ abbr v nvim
 abbr p python3
 abbr y yazi
 abbr g lazygit
+abbr d lazydocker
 abbr tn "tmux new -s (pwd | sed 's/.*\///g')"
 abbr gc git clone
 abbr gp git pull
