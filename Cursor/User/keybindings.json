@@ -154,6 +154,16 @@
     "when": "terminalFocus"
   },
   {
+    "key": "ctrl+q",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "!editorTextFocus && !terminalFocus && !panelVisible"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "workbench.action.togglePanel",
+    "when": "!editorTextFocus && !terminalFocus && panelVisible"
+  },
+  {
     "command": "workbench.action.toggleSidebarVisibility",
     "key": "ctrl+e"
   },
@@ -173,7 +183,7 @@
     "when": "explorerViewletFocus"
   },
   {
-    "key": "ctrl+l",
+    "key": "cmd+l",
     "command": "workbench.action.terminal.clear",
     "when": "terminalFocus && terminalHasBeenCreated && !accessibilityModeEnabled || terminalFocus && terminalProcessSupported && !accessibilityModeEnabled"
   },
