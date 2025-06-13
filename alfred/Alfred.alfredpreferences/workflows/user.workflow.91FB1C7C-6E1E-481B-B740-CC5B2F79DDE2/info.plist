@@ -1597,6 +1597,7 @@ Search for folders with the `nav` keyword and press &lt;kbd&gt;↩&lt;/kbd&gt; t
 * &lt;kbd&gt;⌘&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Flip sort order.
 * &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Reveal in Finder.
 * &lt;kbd&gt;⇧&lt;/kbd&gt;&lt;kbd&gt;↩&lt;/kbd&gt; Navigate to parent folder.
+* &lt;kbd&gt;⌃&lt;/kbd&gt; Show full name in subtitle.
 
 ![Viewing image](images/about/imageview.png)
 
@@ -1604,7 +1605,7 @@ Search for folders with the `nav` keyword and press &lt;kbd&gt;↩&lt;/kbd&gt; t
 
 ![Viewing Markdown file](images/about/mdview.png)
 
-Alternatively, begin navigation in a folder via a [Universal Action](https://www.alfredapp.com/help/features/universal-actions/).
+Alternatively, begin navigation in a folder via the [Universal Action](https://www.alfredapp.com/help/features/universal-actions/).
 
 ![Navigate with Universal Action](images/about/navua.png)
 
@@ -2106,7 +2107,7 @@ Can take multiple paths separated by colons.</string>
 		</dict>
 	</array>
 	<key>version</key>
-	<string>2024.5</string>
+	<string>2025.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/alfredapp/thumbnail-navigation-workflow/</string>
 </dict>
