@@ -68,11 +68,6 @@
     "command": "workbench.action.navigateRight"
   },
   {
-    "key": "ctrl+h",
-    "command": "workbench.action.previousPanelView",
-    "when": "panelFocus"
-  },
-  {
     "key": "ctrl+k",
     "command": "workbench.files.action.focusOpenEditorsView",
     "when": "sideBarFocus && explorerViewletVisible"
