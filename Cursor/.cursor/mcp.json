@@ -2,13 +2,31 @@
   "mcpServers": {
     "taskmaster-ai": {
       "command": "npx",
-      "args": ["envmcp", "npx","-y", "task-master-mcp",  "ANTHROPIC_API_KEY", "PERPLEXITY_API_KEY"]
+      "args": [
+        "envmcp",
+        "npx",
+        "-y",
+        "task-master-mcp",
+        "ANTHROPIC_API_KEY",
+        "PERPLEXITY_API_KEY"
+      ]
     },
     "browser-tools": {
       "command": "npx @agentdeskai/browser-tools-mcp@1.2.0"
     },
     "context7": {
       "url": "https://mcp.context7.com/mcp"
+    },
+    "@21st-dev/magic": {
+      "command": "npx",
+      "args": [
+        "envmcp",
+        "npx",
+        "-y",
+        "@21st-dev/magic@latest",
+        "API_KEY_21_DEV"
+      ]
     }
   }
 }
+
