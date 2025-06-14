@@ -245,6 +245,7 @@
   ],
   "errorLens.fontSize": "13",
   "errorLens.gutterIconsEnabled": true,
+  "errorLens.enabledDiagnosticLevels": ["error", "warning", "info", "hint"],
   "errorLens.messageEnabled": false,
   "git.autofetch": true,
   "git.confirmSync": false,
