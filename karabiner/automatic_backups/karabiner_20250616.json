@@ -5,11 +5,49 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Hyper Key (⌃⌥⇧⌘)",
+                        "manipulators": [
+                            {
+                                "description": "right_command -> Hyper Key",
+                                "from": { "key_code": "right_command" },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_command", "left_control", "left_option"]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "4",
+                                        "modifiers": ["left_command", "left_control", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "caps_lock -> escape",
                         "manipulators": [
                             {
                                 "from": { "key_code": "caps_lock" },
                                 "to": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "left_command -> homerow click",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "left_command" },
+                                "to": [{ "key_code": "left_command" }],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": ["left_control", "left_command"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
