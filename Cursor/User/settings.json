@@ -340,6 +340,7 @@
   ],
   "workbench.iconTheme": "vscode-icons",
   "window.newWindowProfile": "Default",
+  "workbench.activityBar.location": "hidden",
   "projectManager.git.baseFolders": ["~/repos"],
   "todo-tree.ripgrep.ripgrepArgs": "--pcre2",
   "lazygit-vscode.panels": {
@@ -359,7 +360,7 @@
     }
   },
   "multiCommand.commands": [],
-  "workbench.colorTheme": "Night Wolf (black)",
+  "workbench.colorTheme": "Palenight Theme",
   "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
   "vim.targets.enable": true,
   "vim.targets.smartQuotes.enable": true,
