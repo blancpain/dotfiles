@@ -8,7 +8,7 @@
   },
   "editor.autoClosingDelete": "always",
   "editor.tabSize": 1,
-  "window.zoomLevel": -0.3,
+  "window.zoomLevel": -0.2,
   "workbench.editor.showTabs": "none",
   "debug.javascript.codelens.npmScripts": "never",
   "editor.accessibilitySupport": "off",
