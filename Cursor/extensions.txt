@@ -21,6 +21,7 @@ jnoortheen.nix-ide
 lamarcke.kanagawa-black
 liviuschera.noctis
 maosantaella.night-wolf
+mathcale.theme-dracula-refined
 mikestead.dotenv
 ms-azuretools.vscode-docker
 ms-vscode-remote.remote-containers

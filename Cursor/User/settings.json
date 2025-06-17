@@ -360,7 +360,7 @@
     }
   },
   "multiCommand.commands": [],
-  "workbench.colorTheme": "Palenight Theme",
+  "workbench.colorTheme": "Dracula Refined",
   "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
   "vim.targets.enable": true,
   "vim.targets.smartQuotes.enable": true,
