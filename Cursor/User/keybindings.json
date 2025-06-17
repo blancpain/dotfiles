@@ -21,13 +21,13 @@
   },
   {
     "key": "ctrl+m",
-    "command": "workbench.action.toggleMaximizedPanel",
-    "when": "terminalFocus && panelFocus"
+    "command": "workbench.action.toggleMaximizeEditorGroup",
+    "when": "!panelFocus"
   },
   {
     "key": "ctrl+m",
-    "command": "workbench.action.toggleMaximizeEditorGroup",
-    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "panelFocus"
   },
   {
     "key": "ctrl+shift+b",
