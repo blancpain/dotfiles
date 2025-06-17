@@ -179,6 +179,10 @@
       "after": ["2", "5", "g", "k"]
     },
     {
+      "before": ["g", "f"],
+      "commands": ["editor.action.openLink"]
+    },
+    {
       "before": ["<C-d>"],
       "after": ["2", "5", "g", "j"]
     },
