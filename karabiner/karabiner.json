@@ -13,6 +13,43 @@
                 "type": "basic"
               }
             ]
+          },
+          {
+            "description": "Map left Option to Control+Shift+Command+4 (Screenshot + Copy)",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "right_option"
+                },
+                "to": [
+                  {
+                    "key_code": "4",
+                    "modifiers": ["left_control", "left_shift", "left_command"]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Map left Command + right Option to Command+Shift+4 (Screenshot + Save)",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "right_option",
+                  "modifiers": {
+                    "mandatory": ["left_command"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "4",
+                    "modifiers": ["left_command", "left_shift"]
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
