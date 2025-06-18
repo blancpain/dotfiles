@@ -61,7 +61,7 @@ yabai_rule app="^Raindrop.io$" space=6 label="assign-raindrop" sticky=off
 yabai_rule app="^Spark$" space=6 label="assign-spark" sticky=off
 yabai_rule app="^Discord$" space=7 label="assign-discord" sticky=off
 yabai_rule app="^ChatGPT$" space=8 label="assign-chatgpt" sticky=off
-yabai_rule app="^Claude$" space=8 label="assign-claude" sticky=off
+# yabai_rule app="^Claude$" space=8 label="assign-claude" sticky=off
 yabai_rule app="^Trader Workstation$" space=9 label="assign-tws" sticky=off
 yabai_rule app="^Spotify$" space=10 label="assign-spotify" sticky=off
 
