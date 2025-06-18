@@ -34,7 +34,7 @@ fish_add_path /Users/blancpain/.cargo/bin
 
 #settings
 set -Ux EDITOR cursor
-set -Ux VISUAL nvim
+set -Ux VISUAL cursor
 set -U FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' '"
 set -U FZF_DEFAULT_COMMAND "fd -H -E '.git'"
 set -U FZF_DEFAULT_OPTS "--reverse --no-info --prompt=' ' --pointer='' --marker='' --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
