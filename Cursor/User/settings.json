@@ -376,5 +376,7 @@
     "workbench.action.toggleMaximizeEditorGroup",
     "composer.startComposerPrompt",
     "workbench.action.toggleSidebarVisibility"
-  ]
+  ],
+  "coderabbit.agentType": "Claude Code",
+  "docker.extension.enableComposeLanguageServer": false
 }
