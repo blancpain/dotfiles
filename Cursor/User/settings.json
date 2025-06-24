@@ -349,7 +349,7 @@
   "todo-tree.ripgrep.ripgrepArgs": "--pcre2",
   "lazygit-vscode.panels": {
     "sidebar": "hide",
-    "panel": "hide",
+    "panel": "keep",
     "secondarySidebar": "hide"
   },
   "nix.enableLanguageServer": true,
