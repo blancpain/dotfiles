@@ -378,5 +378,6 @@
     "workbench.action.toggleSidebarVisibility"
   ],
   "coderabbit.agentType": "Claude Code",
-  "docker.extension.enableComposeLanguageServer": false
+  "docker.extension.enableComposeLanguageServer": false,
+  "terminal.integrated.cursorStyle": "line"
 }
