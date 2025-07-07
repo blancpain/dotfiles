@@ -379,5 +379,6 @@
   ],
   "coderabbit.agentType": "Claude Code",
   "docker.extension.enableComposeLanguageServer": false,
-  "terminal.integrated.cursorStyle": "line"
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.tabs.enabled": false
 }
