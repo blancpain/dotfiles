@@ -33,41 +33,22 @@ return {
           },
           {
             function()
+              return ">"
+            end,
+            cond = function()
+              return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
+            end,
+          },
+          {
+            function()
               return require("nvim-navic").get_location()
             end,
             cond = function()
               return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
             end,
-            -- color = { fg = colors.grey, bg = colors.none },
+            color = { bg = "#44475a" },
           },
         },
-        -- old version with copilot icons
-        -- lualine_x = {
-        --   {
-        --     require("lazy.status").updates,
-        --     cond = require("lazy.status").has_updates,
-        --     color = { fg = colors.green },
-        --   },
-        --   {
-        --     function()
-        --       local icon = " "
-        --       local status = require("copilot.api").status.data
-        --       return icon .. (status.message or "")
-        --     end,
-        --     cond = function()
-        --       local ok, clients = pcall(vim.lsp.get_clients, { name = "copilot", bufnr = 0 })
-        --       return ok and #clients > 0
-        --     end,
-        --     color = function()
-        --       if not package.loaded["copilot"] then
-        --         return
-        --       end
-        --       local status = require("copilot.api").status.data
-        --       return copilot_colors[status.status] or copilot_colors[""]
-        --     end,
-        --   },
-        --   { "diff" },
-        -- },
         lualine_x = {
           -- stylua: ignore
           {
