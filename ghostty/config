@@ -9,9 +9,10 @@ bold-is-bright = true
 # theme and colors
 
 # theme = eldritch
-theme = rose-pine-moon
+# theme = rose-pine-moon
+theme = dracula
 # cursor-color = #37f499
-cursor-color = #f6c177
+# cursor-color = #f6c177
 
 # general styles
 
