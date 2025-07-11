@@ -26,3 +26,4 @@ mouse-hide-while-typing = true
 # keybindings
 
 keybind = ctrl+i=text:\x1b[5;5~
+keybind = shift+enter=text:\n
