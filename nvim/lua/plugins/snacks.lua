@@ -34,5 +34,12 @@ return {
         -- inlay_hints = false,
       },
     },
+    picker = {
+      sources = {
+        files = {
+          hidden = true,
+        },
+      },
+    },
   },
 }
