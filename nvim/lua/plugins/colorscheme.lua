@@ -29,6 +29,7 @@ return {
     "Mofiqul/dracula.nvim",
     opts = {
       lualine_bg_color = "#44475a", -- default nil
+      transparent_bg = true, -- default false
 
       overrides = {
         CursorLine = { bg = "none" },
