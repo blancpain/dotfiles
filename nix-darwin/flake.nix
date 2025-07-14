@@ -45,6 +45,7 @@
               pkgs.ncurses
               pkgs.curl
               pkgs.nil
+              pkgs.sesh
             ];
 
             # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
