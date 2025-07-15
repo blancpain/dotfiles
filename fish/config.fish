@@ -89,3 +89,5 @@ end
 
 # Added by Windsurf
 fish_add_path /Users/blancpain/.codeium/windsurf/bin
+
+alias claude="/Users/blancpain/.claude/local/claude"
