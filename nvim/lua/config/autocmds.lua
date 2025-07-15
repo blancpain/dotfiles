@@ -66,3 +66,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     ]])
   end,
 })
+
+-- Disable diagnostics for markdown files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function(args)
+    vim.diagnostic.disable(args.buf)
+  end,
+  desc = "Disable diagnostics for markdown files",
+})
