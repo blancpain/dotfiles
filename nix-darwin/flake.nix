@@ -135,7 +135,6 @@
               "font-meslo-lg-nerd-font"
               "font-victor-mono"
               "slack"
-              "gstreamer-runtime"
               "sequel-ace"
               "chatgpt"
               "epk/epk/font-sf-mono-nerd-font"
