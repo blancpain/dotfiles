@@ -60,8 +60,8 @@ abbr tn "tmux new -s (pwd | sed 's/.*\///g')"
 abbr gc git clone
 abbr gp git pull
 abbr gP git push
-abbr cr cargo run
-abbr cb cargo build
+abbr car cargo run
+abbr cab cargo build
 abbr bu "brew update && brew upgrade"
 abbr dr "darwin-rebuild switch --flake ~/dotfiles/nix-darwin"
 
