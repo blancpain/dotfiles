@@ -32,6 +32,7 @@ in
     ".config/yabai".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/yabai";
     ".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/ghostty";
     ".config/helix".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/helix";
+    ".config/yazi".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/yazi";
     "Library/Application Support/Code/User".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/Code/User";
     "Library/Application Support/Cursor/User".source =
