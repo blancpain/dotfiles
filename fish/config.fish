@@ -26,7 +26,6 @@ fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/sbin
 fish_add_path /opt/homebrew/opt/sqlite/bin
 fish_add_path $GOPATH/bin
-fish_add_path $HOME/.npm-global/bin/
 fish_add_path $HOME/.config/bin # custom scripts; currently empty
 fish_add_path /Applications/Postgres.app/Contents/Versions/15/bin
 fish_add_path /Users/blancpain/.local/share/bob/nvim-bin #nvim bob
