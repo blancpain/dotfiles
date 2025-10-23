@@ -31,23 +31,6 @@ return {
             "filename",
             symbols = { modified = "  ", readonly = "", unnamed = "" },
           },
-          {
-            function()
-              return ">"
-            end,
-            cond = function()
-              return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
-            end,
-          },
-          {
-            function()
-              return require("nvim-navic").get_location()
-            end,
-            cond = function()
-              return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
-            end,
-            color = { bg = "#44475a" },
-          },
         },
         lualine_x = {
           -- stylua: ignore
