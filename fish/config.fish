@@ -62,7 +62,7 @@ abbr gP git push
 abbr car cargo run
 abbr cab cargo build
 abbr bu "brew update && brew upgrade"
-abbr dr "darwin-rebuild switch --flake ~/dotfiles/nix-darwin"
+abbr dr "sudo darwin-rebuild switch --flake ~/dotfiles/nix-darwin"
 
 fzf_configure_bindings --directory=\cf
 
