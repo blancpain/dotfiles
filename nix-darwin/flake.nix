@@ -115,7 +115,6 @@
           system.defaults = {
             dock.autohide = true;
             finder.AppleShowAllExtensions = true;
-            finder.FXPreferredViewStyle = "clmv";
             NSGlobalDomain.KeyRepeat = 1;
             NSGlobalDomain.InitialKeyRepeat = 14;
           };
@@ -202,7 +201,7 @@
               "Xcode" = 497799835;
               "Spark" = 1176895641;
               "Trello" = 1278508951;
-              "Perplexity" = 6714467650;
+              # "Perplexity" = 6714467650;
             };
           };
         };
