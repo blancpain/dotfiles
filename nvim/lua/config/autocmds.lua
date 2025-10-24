@@ -75,3 +75,24 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   desc = "Disable diagnostics for markdown files",
 })
+
+-- Copilot inline completion
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.name == "copilot" then
+      -- Enable inline completion
+      vim.lsp.inline_completion.enable(true)
+
+      -- Accept inline completion with C-l
+      vim.keymap.set("i", "<C-l>", function()
+        local completion = vim.lsp.inline_completion.get()
+        if completion then
+          vim.lsp.inline_completion.select()
+        else
+          return "<C-l>"
+        end
+      end, { buffer = args.buf, expr = true, desc = "Accept Copilot Suggestion" })
+    end
+  end,
+})
