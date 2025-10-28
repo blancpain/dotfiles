@@ -171,19 +171,6 @@
                             "to": [{ "key_code": "left_control" }]
                         }
                     ]
-                },
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 65136,
-                        "vendor_id": 6645
-                    },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "right_command" },
-                            "to": [{ "key_code": "right_option" }]
-                        }
-                    ]
                 }
             ],
             "name": "Default profile",
