@@ -46,6 +46,11 @@ set -x NIX_CONF_DIR "/Users/blancpain/.config/nix"
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 carapace _carapace | source
 
+# Set browser only on macOS
+if test (uname) = Darwin
+    set -gx BROWSER "/Applications/Arc.app/Contents/MacOS/Arc"
+end
+
 #abbreviations
 abbr vim nvim
 abbr vi nvim
@@ -85,8 +90,5 @@ if test -f "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
     source "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
 end
 # <<< conda initialize <<<
-
-# Added by Windsurf
-fish_add_path /Users/blancpain/.codeium/windsurf/bin
 
 alias claude="/Users/blancpain/.claude/local/claude"
