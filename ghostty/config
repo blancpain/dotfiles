@@ -1,13 +1,11 @@
 # fonts
-
 font-family = FiraCode Nerd Font
 font-style = Retina
-font-size = 15
+font-size = 14
 bold-is-bright = true
 # font-thicken = true
 
 # theme and colors
-
 # theme = eldritch
 # theme = rose-pine-moon
 # theme = dracula
@@ -27,6 +25,5 @@ background-opacity = 0.85
 background-blur = true
 
 # keybindings
-
 keybind = ctrl+i=text:\x1b[5;5~
 keybind = shift+enter=text:\n
