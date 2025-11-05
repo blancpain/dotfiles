@@ -10,14 +10,13 @@ return {
       opts.keymap = vim.tbl_deep_extend("force", opts.keymap or {}, {
         preset = "enter",
         ["<Tab>"] = {
-          function(cmp)
-            if cmp.snippet_active() then
-              return cmp.accept()
-            else
-              return require("blink.cmp").select_next()
-            end
-          end,
           "snippet_forward",
+          function() -- sidekick next edit suggestion
+            return require("sidekick").nes_jump_or_apply()
+          end,
+          function() -- if you are using Neovim's native inline completions
+            return vim.lsp.inline_completion.get()
+          end,
           "fallback",
         },
         ["<S-Tab>"] = {
