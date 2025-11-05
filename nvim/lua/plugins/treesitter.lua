@@ -24,6 +24,7 @@ return {
       "vue",
       "nu",
       "nix",
+      "rust",
     },
   },
 }
