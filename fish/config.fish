@@ -31,6 +31,8 @@ fish_add_path /Applications/Postgres.app/Contents/Versions/15/bin
 fish_add_path /Users/blancpain/.local/share/bob/nvim-bin #nvim bob
 fish_add_path /Users/blancpain/.cargo/bin
 
+alias influxdb="/Users/blancpain/.influxdb/influxdb3"
+
 #settings
 set -Ux EDITOR nvim
 set -Ux VISUAL nvim
@@ -90,5 +92,3 @@ if test -f "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
     source "/Users/blancpain/miniforge3/etc/fish/conf.d/mamba.fish"
 end
 # <<< conda initialize <<<
-
-alias claude="/Users/blancpain/.claude/local/claude"
