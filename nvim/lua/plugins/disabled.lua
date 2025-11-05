@@ -12,4 +12,5 @@ return {
   { "olimorris/codecompanion.nvim", enabled = false },
   { "ibhagwan/fzf-lua", enabled = false },
   { "yetone/avante.nvim", enabled = false },
+  { "coder/claudecode.nvim", enabled = false },
 }
