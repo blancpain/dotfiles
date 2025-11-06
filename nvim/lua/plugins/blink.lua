@@ -54,7 +54,8 @@ return {
           draw = {
             -- We don't need label_description now because label and label_description are already
             -- combined together in label by colorful-menu.nvim.
-            columns = { { "kind_icon" }, { "label", gap = 10 }, { "source" } },
+            columns = { { "kind_icon" }, { "label", gap = 10 } },
+            -- columns = { { "kind_icon" }, { "label", gap = 10 }, { "source" } },
             components = {
               label = {
                 width = { fill = true, max = 60 },
@@ -80,17 +81,17 @@ return {
                   return highlights
                 end,
               },
-              source = {
-                text = function(ctx)
-                  local map = {
-                    ["lsp"] = "[]",
-                    ["path"] = "[󰉋]",
-                    ["snippets"] = "[]",
-                  }
-                  return map[ctx.item.source_id]
-                end,
-                highlight = "BlinkCmpSource",
-              },
+              -- source = {
+              --   text = function(ctx)
+              --     local map = {
+              --       ["lsp"] = "[]",
+              --       ["path"] = "[󰉋]",
+              --       ["snippets"] = "[]",
+              --     }
+              --     return map[ctx.item.source_id]
+              --   end,
+              --   highlight = "BlinkCmpSource",
+              -- },
             },
           },
         },

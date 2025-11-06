@@ -1,32 +1,5 @@
 return {
   {
-    "rebelot/kanagawa.nvim",
-    opts = {
-      transparent = true,
-      theme = "wave",
-      colors = {
-        theme = {
-          all = {
-            ui = {
-              bg_gutter = "none",
-              bg_p1 = "none", --lualine
-              float = "none",
-            },
-          },
-        },
-      },
-      overrides = function()
-        return {
-          -- Assign a static color to strings
-          -- String = { fg = colors.palette.carpYellow, italic = true },
-          -- theme colors will update dynamically when you change theme!
-          CodeBlock = { bg = "#1a1c2a" },
-          CursorLine = { bg = "none" },
-        }
-      end,
-    },
-  },
-  {
     "Mofiqul/dracula.nvim",
     opts = {
       lualine_bg_color = "#44475a", -- default nil
@@ -80,7 +53,7 @@ return {
     priority = 1000,
     opts = function()
       return {
-        style = "night",
+        style = "moon",
         transparent = true,
         styles = {
           sidebars = "transparent",
@@ -97,6 +70,13 @@ return {
           hl.LineNrBelow = { fg = c.fg_gutter }
           hl.NeoTreeGitModified = { fg = c.orange }
           hl.DiagnosticUnnecessary = { fg = "#918fbb" } -- unused variables etc
+          hl.BlinkCmpSource = { bg = "none" }
+          hl.BlinkCmpLabelMatch = { bg = "none" }
+          hl.BlinkCmpScrollBarGutter = { bg = "none" }
+          hl.Pmenu = { bg = "none" }
+          hl.PmenuSbar = { bg = "none" }
+          hl.SnacksPickerDir = { fg = "#918fbb" }
+          hl.LspInlayHint = { fg = "#918fbb" }
         end,
       }
     end,
@@ -244,7 +224,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "bamboo",
+      colorscheme = "tokyonight",
     },
   },
 }
