@@ -19,7 +19,7 @@ return {
     },
   },
   keys = {
-    { "<leader>gp", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
-    { "<leader>gP", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
+    { "<leader>gk", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
+    { "<leader>gK", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
   },
 }
