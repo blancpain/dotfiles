@@ -7,11 +7,10 @@ bold-is-bright = true
 
 # theme and colors
 # theme = eldritch
-# theme = rose-pine-moon
 # theme = dracula
 # theme = Catppuccin Macchiato
-# theme = Rose Pine Moon
-theme = TokyoNight Moon
+theme = Rose Pine Moon
+# theme = TokyoNight Moon
 # cursor-color = #37f499
 # cursor-color = #f6c177
 
