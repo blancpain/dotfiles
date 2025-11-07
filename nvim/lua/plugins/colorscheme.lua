@@ -167,6 +167,7 @@ return {
           DiagnosticVirtualTextError = { bg = "none" },
           DiagnosticVirtualTextInformation = { bg = "none" },
           CursorLine = { bg = "none" },
+          SnacksPickerDir = { fg = "#918fbb" },
           -- IblIndent = { fg = "#333333" },
           -- CodeBlock = { bg = "#1a1c2a" },
         },
@@ -224,7 +225,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "bamboo",
     },
   },
 }
