@@ -53,6 +53,21 @@ if test (uname) = Darwin
     set -gx BROWSER "/Applications/Arc.app/Contents/MacOS/Arc"
 end
 
+#helpers
+function nix_darwin_update --description 'Run nix flake update in ~/dotfiles/nix-darwin'
+    set -l repo "$HOME/dotfiles/nix-darwin"
+    if not test -d $repo
+        printf 'nix flake repo not found: %s\n' $repo >&2
+        return 1
+    end
+
+    pushd $repo >/dev/null; or return 1
+    nix flake update $argv
+    set -l cmd_status $status
+    popd >/dev/null
+    return $cmd_status
+end
+
 #abbreviations
 abbr vim nvim
 abbr vi nvim
@@ -70,6 +85,7 @@ abbr car cargo run
 abbr cab cargo build
 abbr bu "brew update && brew upgrade"
 abbr dr "sudo darwin-rebuild switch --flake ~/dotfiles/nix-darwin"
+abbr du nix_darwin_update
 
 fzf_configure_bindings --directory=\cf
 
