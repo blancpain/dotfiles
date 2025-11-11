@@ -5,7 +5,7 @@ return {
       "<leader>sz",
       function()
         local grug = require("grug-far")
-        grug.grug_far({
+        grug.open({
           prefills = { paths = vim.fn.expand("%") },
         })
       end,
