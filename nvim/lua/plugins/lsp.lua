@@ -1,18 +1,6 @@
 local util = require("lspconfig.util")
 
 return {
-  -- tools
-  -- {
-  --   "williamboman/mason.nvim",
-  --   opts = function(_, opts)
-  --     vim.list_extend(opts.ensure_installed, {
-  --       "emmet-language-server",
-  --       "prisma-language-server",
-  --       "vue-language-server",
-  --       "css-lsp",
-  --     })
-  --   end,
-  -- },
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -77,15 +65,6 @@ return {
             },
           },
         },
-        -- nil_ls = {
-        --   settings = {
-        --     ["nil"] = {
-        --       formatting = {
-        --         command = { "nixfmt" },
-        --       },
-        --     },
-        --   },
-        -- },
         emmet_language_server = {
           filetypes = {
             "css",

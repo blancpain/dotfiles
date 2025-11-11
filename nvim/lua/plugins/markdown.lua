@@ -6,7 +6,6 @@ return {
       "norg",
       "rmd",
       "org",
-      "Avante",
     },
     bullet = {
       -- padding
@@ -14,5 +13,5 @@ return {
       right_pad = 1,
     },
   },
-  ft = { "markdown", "norg", "rmd", "org", "Avante" },
+  ft = { "markdown", "norg", "rmd", "org" },
 }
