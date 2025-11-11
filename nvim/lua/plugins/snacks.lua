@@ -1,3 +1,4 @@
+-- note that some configs are also set in keybindings
 return {
   "folke/snacks.nvim",
   priority = 1000,

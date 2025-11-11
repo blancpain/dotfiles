@@ -26,7 +26,7 @@ end, { desc = "Delete Buffer" })
 -- maximmize and zen mode
 Snacks.toggle.zoom():map("<leader>m"):map("<leader>uZ")
 Snacks.toggle.zen():map("<leader>z")
-
+--
 -- better navigation and search;
 vim.keymap.set("n", "<C-d>", "19jzz", opts)
 vim.keymap.set("n", "<C-u>", "19kzz", opts)
@@ -41,4 +41,3 @@ vim.keymap.set({ "n", "o", "x" }, "<S-l>", "g_", opts)
 
 -- git
 vim.keymap.set("n", "<leader>gb", ":BlameToggle<CR>", opts)
-vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "GitSigns Select Hunk" })
