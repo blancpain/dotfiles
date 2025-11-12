@@ -10,6 +10,10 @@ vim.keymap.set("n", "<c-e>", function()
 end, { desc = "Terminal (Root Dir)" })
 vim.keymap.set("t", "<c-e>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
+-- make j and k move by visual line, not actual line, when text is soft-wrapped
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "k", "gk")
+
 -- remap increment/decrement
 vim.keymap.set({ "n", "x" }, "+", "<C-a>", opts)
 vim.keymap.set({ "n", "x" }, "_", "<C-x>", opts) -- technically not '-' but + still requires shift so no need to take finger off shift this way
