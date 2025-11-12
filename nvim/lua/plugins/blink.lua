@@ -4,8 +4,6 @@ return {
     "saghen/blink.cmp",
     dependencies = { "xzbdmw/colorful-menu.nvim" },
     opts = function(_, opts)
-      local colorful_menu = require("colorful-menu")
-
       -- Merge keymap settings
       opts.keymap = vim.tbl_deep_extend("force", opts.keymap or {}, {
         preset = "enter",
@@ -33,6 +31,17 @@ return {
         enabled = true,
         window = {
           border = "rounded",
+        },
+      })
+
+      opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
+        default = { "fuzzy-path", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          ["fuzzy-path"] = {
+            name = "Fuzzy Path",
+            module = "blink-cmp-fuzzy-path",
+            score_offset = 0,
+          },
         },
       })
 
