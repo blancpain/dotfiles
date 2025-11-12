@@ -29,8 +29,7 @@ end, { desc = "Delete Buffer" })
 
 -- maximmize and zen mode
 Snacks.toggle.zoom():map("<leader>m"):map("<leader>uZ")
--- Snacks.toggle.zen():map("<leader>z")
---
+
 -- better navigation and search;
 vim.keymap.set("n", "<C-d>", "19jzz", opts)
 vim.keymap.set("n", "<C-u>", "19kzz", opts)
@@ -49,3 +48,20 @@ vim.keymap.set({ "n", "o", "x" }, "<S-l>", "g_", opts)
 
 -- git
 vim.keymap.set("n", "<leader>gb", ":BlameToggle<CR>", opts)
+
+-- scratch
+vim.keymap.set("n", "<leader>S", function()
+  Snacks.picker.scratch({
+    finder = "scratch",
+    format = "scratch_format",
+    confirm = "scratch_open",
+    win = {
+      input = {
+        keys = {
+          ["<c-c>"] = { "scratch_delete", mode = { "n", "i" } },
+          ["<c-n>"] = { "scratch_new", mode = { "n", "i" } },
+        },
+      },
+    },
+  })
+end, { desc = "Scratch" })
