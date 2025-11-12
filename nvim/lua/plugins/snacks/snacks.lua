@@ -7,7 +7,7 @@ return {
   opts = {
     indent = { enabled = false },
     notifier = { enabled = false },
-    image = { enabled = false },
+    image = { enabled = true },
     bigfile = { enabled = true },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },

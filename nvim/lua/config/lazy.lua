@@ -32,6 +32,7 @@ local spec = {
   { import = "lazyvim.plugins.extras.util.dot" },
   { import = "lazyvim.plugins.extras.editor.refactoring" },
   { import = "plugins" },
+  { import = "plugins.snacks" },
 }
 
 require("lazy").setup({
