@@ -25,7 +25,7 @@ end, { desc = "Delete Buffer" })
 
 -- maximmize and zen mode
 Snacks.toggle.zoom():map("<leader>m"):map("<leader>uZ")
-Snacks.toggle.zen():map("<leader>z")
+-- Snacks.toggle.zen():map("<leader>z")
 --
 -- better navigation and search;
 vim.keymap.set("n", "<C-d>", "19jzz", opts)
