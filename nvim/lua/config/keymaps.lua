@@ -35,6 +35,10 @@ vim.keymap.set("n", "N", "Nzzzv", opts)
 
 vim.keymap.set("x", "p", [["_dP]], opts) -- keep copied/deleted in register
 
+-- pasting on new lines
+vim.keymap.set("n", "gp", "o<Esc>p", { desc = "Paste on new line below" })
+vim.keymap.set("n", "gP", "O<Esc>p", { desc = "Paste on new line above" })
+
 -- moving to beginning/end of line
 vim.keymap.set({ "n", "o", "x" }, "<S-h>", "^", opts)
 vim.keymap.set({ "n", "o", "x" }, "<S-l>", "g_", opts)
