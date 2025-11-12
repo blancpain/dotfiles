@@ -24,6 +24,8 @@ return {
       "vue",
       "nu",
       "nix",
+      "latex",
+      "typst",
       "rust",
     },
   },
