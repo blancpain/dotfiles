@@ -27,6 +27,10 @@
       pkgs.curl
       pkgs.nil
       pkgs.sesh
+      pkgs.ghostscript
+      pkgs.tectonic
+      pkgs.mermaid-cli
+      pkgs.imagemagick
     ];
 
     # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
