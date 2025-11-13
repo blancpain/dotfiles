@@ -18,17 +18,22 @@ nix-darwin/
 ## Key Changes from Original Setup
 
 ### 1. **Brew packages moved to Nix**
+
 Most brew packages are now installed via Nix and available on both platforms:
+
 - Development tools: git, gh, fzf, ripgrep, bat, fd, jq, yazi, zoxide, etc.
 - Language runtimes: go, rust, python, php, node (via fnm)
 - Utilities: lazygit, lazydocker, btop, bottom, fastfetch, etc.
 
 ### 2. **Homebrew kept for macOS GUI apps only**
+
 Homebrew now only manages:
+
 - Casks (GUI applications): alfred, arc, 1password, obsidian, etc.
 - `mas` (Mac App Store CLI)
 
 ### 3. **Platform-specific configurations**
+
 - **macOS**: Uses nix-darwin for system config + home-manager for user config
 - **Linux/WSL**: Uses home-manager standalone for user config
 
@@ -46,42 +51,53 @@ darwin-rebuild switch --flake .
 
 ## Fresh macOS Bootstrap
 
-The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --flake ~/.config/nix-darwin` works. The steps below assume Apple Silicon but also apply to Intel (skip Rosetta).
+The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --flake ~/.config/nix-darwin` works. The steps below assume Apple Silicon but also apply to Intel (skip Rosetta). For an automated run, execute `./scripts/bootstrap-macos.sh` from this repo—it walks through the same steps and stops if manual intervention is required.
 
 1. **Install Apple tooling**
+
    ```bash
    xcode-select --install
    softwareupdate --install-rosetta --agree-to-license # Apple Silicon only
    ```
-2. **Install multi-user Nix with flakes enabled**
+
+2. **Install multi-user Nix (Determinate Systems installer)**
+
    ```bash
-   curl -L https://nixos.org/nix/install | sh -s -- --daemon
-   mkdir -p ~/.config/nix
-   echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+   curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
    ```
+
+   See the [Determinate Nix Installer docs](https://github.com/DeterminateSystems/nix-installer#determinate-nix-installer) for background. This repo manages `~/.config/nix/nix.conf` (symlinked when the flake is applied), so you can skip the manual `experimental-features` edit.
+
 3. **Install nix-darwin**
+   Follow the [nix-darwin getting-started guide](https://github.com/nix-darwin/nix-darwin?tab=readme-ov-file#getting-started-from-scratch) if you need to bootstrap `/etc/nix-darwin` (create the directory, `nix flake init -t ...`, set `nixpkgs.hostPlatform`, etc.). Once your flake exists (e.g., this repo cloned into `~/.config/nix-darwin`), install or update nix-darwin via:
+
    ```bash
-   nix run nix-darwin/master -- switch --flake ~/.config/nix-darwin
+   sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix-darwin
    ```
+
    The command above will fail if the flake does not exist yet—clone this repository into `~/.config/nix-darwin` (or any path you prefer and adjust commands accordingly) before running it.
+
 4. **Apply the configuration**
+
    ```bash
    cd ~/.config/nix-darwin
    darwin-rebuild switch --flake .
    ```
+
 5. **Touch ID / watchID reminder**: the `pam_watchid.so` line in `darwin-configuration.nix` is enabled by default (see the comment above the `etc."pam.d/sudo_local"` block). Comment it out until you have installed the watchID helper script; otherwise `sudo` will fail.
 
 ### Barebones apps installed on macOS
 
-- **Terminal & windowing**: Ghostty, iTerm2, yabai, skhd, Aerospace-like hotkeys.
+- **Terminal & windowing**: Ghostty, yabai, skhd.
 - **Browsers & productivity**: Arc, Firefox, Google Chrome, Slack, Discord, Obsidian, Raindrop, Toggl.
 - **System essentials**: 1Password (+ CLI), Alfred, AppCleaner, AltTab, Karabiner Elements, key fonts (Meslo, Victor Mono, SF Mono, Fira Sans).
 
 All CLI tooling (git, gh, fzf, ripgrep, tmux, Docker/Colima, language toolchains, etc.) is installed via nix packages declared in `darwin-configuration.nix` and `home-manager/common.nix`, so once `darwin-rebuild` succeeds the machine is ready for development.
 
-### Linux/WSL
+## Linux/WSL
 
 First, install Nix on WSL:
+
 ```bash
 # Install Nix (multi-user installation recommended)
 curl -L https://nixos.org/nix/install | sh -s -- --daemon
@@ -92,6 +108,7 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 ```
 
 Then install and use home-manager:
+
 ```bash
 # Install home-manager
 nix run home-manager/master -- init --switch
@@ -114,19 +131,25 @@ home-manager switch --flake .#blancpain@linux-aarch64
 ## Configuration Details
 
 ### Common Packages (Both Platforms)
+
 Located in `home-manager/common.nix`:
+
 - All CLI tools and development utilities
 - Shared symlinks for nvim, tmux, fish, starship, etc.
 
 ### macOS-Specific
+
 Located in `home-manager/darwin.nix` and `darwin-configuration.nix`:
+
 - macOS GUI app paths (Library/Application Support)
 - macOS-only tools: pngpaste, aerospace, karabiner, yabai, skhd
 - System preferences: dock, finder, keyboard settings
 - Homebrew casks and Mac App Store apps
 
 ### Linux-Specific
+
 Located in `home-manager/linux.nix`:
+
 - Linux-specific paths (.config/Code instead of Library/...)
 - WSL-specific configurations
 - Different home directory path (/home/blancpain)
@@ -134,7 +157,9 @@ Located in `home-manager/linux.nix`:
 ## Adding New Packages
 
 ### CLI Tools (Available on Both Platforms)
+
 Add to `home-manager/common.nix`:
+
 ```nix
 home.packages = with pkgs; [
   # ... existing packages
@@ -143,7 +168,9 @@ home.packages = with pkgs; [
 ```
 
 ### macOS-Only Tools
+
 Add to `home-manager/darwin.nix`:
+
 ```nix
 home.packages = with pkgs; [
   # ... existing packages
@@ -152,7 +179,9 @@ home.packages = with pkgs; [
 ```
 
 ### Linux-Only Tools
+
 Add to `home-manager/linux.nix`:
+
 ```nix
 home.packages = with pkgs; [
   # ... existing packages
@@ -161,7 +190,9 @@ home.packages = with pkgs; [
 ```
 
 ### macOS GUI Apps
+
 Add to `darwin-configuration.nix` under `homebrew.casks`:
+
 ```nix
 homebrew = {
   casks = [
@@ -205,14 +236,17 @@ home-manager switch --flake ~/.config/nix-darwin#blancpain@linux
 ## Troubleshooting
 
 ### macOS: Permission denied on sudo
+
 - Check that pam_watchid is properly commented out if not configured
 - Verify yabai sudoers configuration
 
 ### Linux: Home directory not found
+
 - Update `dotfilesPath` in `home-manager/linux.nix` and `common.nix`
 - Ensure dotfiles are cloned to the correct location
 
 ### Package not found
+
 - Run `nix flake update` to refresh package definitions
 - Check if package name is correct: search on [search.nixos.org](https://search.nixos.org/packages)
 
