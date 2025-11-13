@@ -44,6 +44,41 @@ darwin-rebuild switch --flake ~/.config/nix-darwin
 darwin-rebuild switch --flake .
 ```
 
+## Fresh macOS Bootstrap
+
+The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --flake ~/.config/nix-darwin` works. The steps below assume Apple Silicon but also apply to Intel (skip Rosetta).
+
+1. **Install Apple tooling**
+   ```bash
+   xcode-select --install
+   softwareupdate --install-rosetta --agree-to-license # Apple Silicon only
+   ```
+2. **Install multi-user Nix with flakes enabled**
+   ```bash
+   curl -L https://nixos.org/nix/install | sh -s -- --daemon
+   mkdir -p ~/.config/nix
+   echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+   ```
+3. **Install nix-darwin**
+   ```bash
+   nix run nix-darwin/master -- switch --flake ~/.config/nix-darwin
+   ```
+   The command above will fail if the flake does not exist yet—clone this repository into `~/.config/nix-darwin` (or any path you prefer and adjust commands accordingly) before running it.
+4. **Apply the configuration**
+   ```bash
+   cd ~/.config/nix-darwin
+   darwin-rebuild switch --flake .
+   ```
+5. **Touch ID / watchID reminder**: the `pam_watchid.so` line in `darwin-configuration.nix` is enabled by default (see the comment above the `etc."pam.d/sudo_local"` block). Comment it out until you have installed the watchID helper script; otherwise `sudo` will fail.
+
+### Barebones apps installed on macOS
+
+- **Terminal & windowing**: Ghostty, iTerm2, yabai, skhd, Aerospace-like hotkeys.
+- **Browsers & productivity**: Arc, Firefox, Google Chrome, Slack, Discord, Obsidian, Raindrop, Toggl.
+- **System essentials**: 1Password (+ CLI), Alfred, AppCleaner, AltTab, Karabiner Elements, key fonts (Meslo, Victor Mono, SF Mono, Fira Sans).
+
+All CLI tooling (git, gh, fzf, ripgrep, tmux, Docker/Colima, language toolchains, etc.) is installed via nix packages declared in `darwin-configuration.nix` and `home-manager/common.nix`, so once `darwin-rebuild` succeeds the machine is ready for development.
+
 ### Linux/WSL
 
 First, install Nix on WSL:
