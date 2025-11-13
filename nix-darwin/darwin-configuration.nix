@@ -119,7 +119,6 @@
       "ghostty"
       "zen"
       "google-chrome"
-      "iterm2"
       "redis-insight"
       "sequel-ace"
     ];
