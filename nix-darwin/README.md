@@ -77,6 +77,14 @@ The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --f
 
    The command above will fail if the flake does not exist yet—clone this repository into `~/.config/nix-darwin` (or any path you prefer and adjust commands accordingly) before running it.
 
+   The flake exports multiple macOS hosts under `darwinConfigurations` (e.g., `Yasens-MacBook-Pro`, `Yasens-Mac-mini`). When you run `darwin-rebuild` you can either ensure your machine’s hostname matches one of those keys or pass the desired one explicitly, for example:
+
+   ```bash
+   darwin-rebuild switch --flake ~/.config/nix-darwin#Yasens-MacBook-Pro
+   ```
+
+   If you bring up a brand-new Mac, feel free to add/rename an entry in `flake.nix` so it matches the new host.
+
 4. **Apply the configuration**
 
    ```bash
