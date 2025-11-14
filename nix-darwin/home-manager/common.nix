@@ -35,7 +35,7 @@ in
       fastfetch
       fd
       ffmpegthumbnailer
-      flyctl
+      # flyctl
       fnm
       fzf
       gdu
