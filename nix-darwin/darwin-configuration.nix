@@ -19,30 +19,66 @@
   ];
 
   environment = {
-    systemPackages = [
-      pkgs.vim
-      pkgs.fish
-      pkgs.nushell
-      pkgs.starship
-      pkgs.nixfmt-rfc-style
-      pkgs.hub
-      pkgs.docker
-      pkgs.colima
-      pkgs.tmux
-      pkgs.ngrok
-      pkgs.carapace
-      pkgs.pam-reattach
-      pkgs.lazygit
-      pkgs.skhd
-      pkgs.yabai
-      pkgs.ncurses
-      pkgs.curl
-      pkgs.nil
-      pkgs.sesh
-      pkgs.ghostscript
-      pkgs.tectonic
-      pkgs.mermaid-cli
-      pkgs.imagemagick
+    systemPackages = with pkgs; [
+      automake
+      bat
+      bottom
+      btop
+      carapace
+      cloc
+      cloudflared
+      colima
+      curl
+      docker
+      fastfetch
+      fd
+      ffmpegthumbnailer
+      fish
+      flyctl
+      fnm
+      fzf
+      gdu
+      gh
+      gifsicle
+      git
+      ghostscript
+      gnused
+      go
+      gnumake
+      helix
+      hub
+      httpie
+      imagemagick
+      jq
+      lazydocker
+      lazygit
+      llvmPackages_latest.clang
+      luajitPackages.lpeg
+      mermaid-cli
+      ncurses
+      ngrok
+      nil
+      nixfmt-rfc-style
+      pam-reattach
+      perl538Packages.Appcpanminus
+      pgcli
+      php
+      poppler-utils
+      python311
+      redis
+      ripgrep
+      rustup
+      sesh
+      skhd
+      starship
+      tectonic
+      tmux
+      tree
+      unar
+      wget
+      yabai
+      yazi
+      zoxide
     ];
 
     # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)

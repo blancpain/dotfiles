@@ -10,60 +10,14 @@ let
   dotfilesPath = "${config.home.homeDirectory}/dotfiles";
   baseHomeDir =
     if pkgs.stdenv.isDarwin then "/Users/${config.home.username}" else "/home/${config.home.username}";
-  linuxOnlyPackages = with pkgs; [
-    rabbitmq-server
-  ];
 in
 {
   home.username = "blancpain";
   home.homeDirectory = lib.mkDefault baseHomeDir;
   home.stateVersion = "23.05";
 
-  # Common packages available on both macOS and Linux
-  home.packages =
-    (with pkgs; [
-      # Development tools
-      lazydocker
-      automake
-      bat
-      bob
-      bottom
-      btop
-      cloc
-      cloudflared
-      perl538Packages.Appcpanminus
-      fastfetch
-      fd
-      ffmpegthumbnailer
-      flyctl
-      fnm
-      fzf
-      gdu
-      gh
-      gifsicle
-      git
-      gnused
-      go
-      helix
-      httpie
-      jq
-      llvmPackages_latest.clang
-      luajitPackages.lpeg
-      gnumake
-      pgcli
-      php
-      poppler-utils
-      python311
-      redis
-      ripgrep
-      rustup
-      tree
-      unar
-      wget
-      yazi
-      zoxide
-    ])
-    ++ lib.optionals pkgs.stdenv.isLinux linuxOnlyPackages;
+  # No shared package list; per-OS packages are managed in each system module.
+  home.packages = [ ];
 
   # Common symlinks for configuration files
   home.file = {

@@ -14,11 +14,9 @@ in
   # Override home directory for Linux
   home.homeDirectory = lib.mkForce "/home/blancpain";
 
-  # Linux-specific packages
+  # Linux-specific packages that aren't needed on macOS
   home.packages = with pkgs; [
-    # Add any Linux-specific packages here
-    # For WSL, you might want to add:
-    # wslu # WSL utilities (if available in nixpkgs)
+    # Add Linux specific nix pkgs here
   ];
 
   # Linux-specific configurations
@@ -28,7 +26,8 @@ in
     # Code/Cursor paths are different on Linux
     ".config/Code/User".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/Code/User";
     ".config/Cursor/User".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/Cursor/User";
-    ".config/Windsurf/User".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/Windsurf/User";
+    ".config/Windsurf/User".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/Windsurf/User";
   };
 
   # WSL-specific session variables
