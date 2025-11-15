@@ -13,7 +13,7 @@ in
 
   # macOS-specific packages
   home.packages = with pkgs; [
-    pngpaste # macOS screenshot tool
+    # macOS specific nix pkgs go here
   ];
 
   # macOS-specific symlinks

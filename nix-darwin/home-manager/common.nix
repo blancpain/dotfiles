@@ -35,7 +35,7 @@ in
       fastfetch
       fd
       ffmpegthumbnailer
-      # flyctl
+      flyctl
       fnm
       fzf
       gdu
@@ -50,7 +50,7 @@ in
       llvmPackages_latest.clang
       luajitPackages.lpeg
       gnumake
-      mycli
+      pgcli
       php
       poppler-utils
       python311
