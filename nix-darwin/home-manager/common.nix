@@ -14,7 +14,7 @@ in
 {
   home.username = "blancpain";
   home.homeDirectory = lib.mkDefault baseHomeDir;
-  home.stateVersion = "23.05";
+  home.stateVersion = "25.05";
 
   # No shared package list; per-OS packages are managed in each system module.
   home.packages = [ ];
