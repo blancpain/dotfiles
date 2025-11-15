@@ -6,6 +6,10 @@ if test -d /run/current-system/sw/bin
     fish_add_path /run/current-system/sw/bin
 end
 
+if test -d "$HOME/.nix-profile/bin"
+    fish_add_path "$HOME/.nix-profile/bin"
+end
+
 # secrets
 # to set use: echo "set -gx KEY_NAME the_actual_key" | openssl enc -base64 >> .secrets.enc
 # file needs to sit in fish root path /fish/

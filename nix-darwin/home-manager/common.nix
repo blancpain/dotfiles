@@ -19,6 +19,16 @@ in
   # No shared package list; per-OS packages are managed in each system module.
   home.packages = [ ];
 
+  # Ensure ~/.nix-profile always points at the multi-user profile that nix-darwin builds.
+  home.activation.ensureNixProfileSymlink = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    target="/etc/profiles/per-user/${config.home.username}"
+    if [ -e "$target" ]; then
+      if [ ! -L "$HOME/.nix-profile" ] || [ "$(${pkgs.coreutils}/bin/readlink "$HOME/.nix-profile")" != "$target" ]; then
+        ${pkgs.coreutils}/bin/ln -sfn "$target" "$HOME/.nix-profile"
+      fi
+    fi
+  '';
+
   # Common symlinks for configuration files
   home.file = {
     ".config/wezterm".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/wezterm";
