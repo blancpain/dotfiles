@@ -124,6 +124,7 @@ in
       "ghostty"
       "google-chrome"
       "redis-insight"
+      "spotify"
     ];
     brews = [
       "mas" # Mac App Store CLI
