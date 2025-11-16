@@ -63,8 +63,10 @@
       perl538Packages.Appcpanminus
       pgcli
       php
+      pipx
       poppler-utils
-      python311
+      python3
+      rabbitmq-server
       redis
       ripgrep
       rustup
@@ -75,10 +77,13 @@
       tmux
       tree
       unar
+      wimlib
       wget
       yabai
       yazi
+      yq
       zoxide
+      zellij
     ];
 
     # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
@@ -150,7 +155,6 @@
       "1password"
       "obsidian"
       "discord"
-      "alt-tab"
       "font-fira-sans"
       "spacelauncher"
       "font-meslo-lg-nerd-font"
@@ -165,25 +169,14 @@
       "postman"
       "raindropio"
       "ghostty"
-      "zen"
       "google-chrome"
       "redis-insight"
-      "sequel-ace"
     ];
     brews = [
-      "mas" # Mac App Store CLI - macOS only
-      "llvm@17"
-      "pipx"
-      "python-yq"
-      "python@3.12"
-      "rabbitmq"
-      "rust"
-      "rust-analyzer"
-      "wimlib"
-      "zellij"
+      "mas" # Mac App Store CLI
+      "bob"
     ];
     masApps = {
-      "Color Picker" = 1545870783;
       "Unzip - RAR ZIP 7Z Unarchiver" = 1537056818;
       "Gifski" = 1351639930;
       "Toggl Track" = 1291898086;
