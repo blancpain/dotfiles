@@ -5,6 +5,15 @@
   ...
 }:
 
+let
+  commonSystemPackages = import ./system/common-packages.nix { inherit pkgs; };
+  darwinOnlyPackages = with pkgs; [
+    colima
+    pam-reattach
+    skhd
+    yabai
+  ];
+in
 {
   #NOTE: rm this overlay when fish test phase is fixed in nixpkgs
   nixpkgs.overlays = [
@@ -19,72 +28,7 @@
   ];
 
   environment = {
-    systemPackages = with pkgs; [
-      automake
-      bat
-      bottom
-      btop
-      carapace
-      cloc
-      cloudflared
-      colima
-      curl
-      docker
-      fastfetch
-      fd
-      ffmpegthumbnailer
-      fish
-      flyctl
-      fnm
-      fzf
-      gdu
-      gh
-      gifsicle
-      git
-      ghostscript
-      gnused
-      go
-      gnumake
-      helix
-      hub
-      httpie
-      imagemagick
-      jq
-      lazydocker
-      lazygit
-      llvmPackages_latest.clang
-      luajitPackages.lpeg
-      mermaid-cli
-      ncurses
-      ngrok
-      nil
-      nixfmt-rfc-style
-      pam-reattach
-      perl538Packages.Appcpanminus
-      pgcli
-      php
-      pipx
-      poppler-utils
-      python3
-      rabbitmq-server
-      redis
-      ripgrep
-      rustup
-      sesh
-      skhd
-      starship
-      tectonic
-      tmux
-      tree
-      unar
-      wimlib
-      wget
-      yabai
-      yazi
-      yq
-      zoxide
-      zellij
-    ];
+    systemPackages = commonSystemPackages ++ darwinOnlyPackages;
 
     # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
     # For enabling touchId in clamshell mode follow: https://linkarzu.com/posts/macos/auth-apple-watch/
