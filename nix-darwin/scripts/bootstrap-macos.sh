@@ -127,7 +127,6 @@ main() {
   install_nix_darwin
   apply_flake
   info "Bootstrap complete."
-  info "Touch ID reminder: disable pam_watchid in darwin-configuration.nix until watchID helper is installed."
 }
 
 main "$@"

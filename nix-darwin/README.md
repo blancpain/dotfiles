@@ -100,7 +100,7 @@ The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --f
    darwin-rebuild switch --flake .#mac
    ```
 
-7. **Touch ID / watchID reminder**: the `pam_watchid.so` line in `darwin-configuration.nix` is enabled by default (see the comment above the `etc."pam.d/sudo_local"` block). Comment it out until you have installed the watchID helper script; otherwise `sudo` will fail.
+Touch ID (including Apple Watch unlock) is configured automatically via nix-darwin; no manual PAM edits or helper scripts are required.
 
 ### Barebones apps installed on macOS
 
@@ -240,20 +240,17 @@ home-manager switch --flake ~/.config/nix-darwin#blancpain@linux
    - Update in all `home-manager/*.nix` files
    - Update the flake.nix homeConfigurations
 
-3. **WSL Considerations**:
+3. **Touch ID / Apple Watch**: PAM is configured automatically via nix-darwin (`watchIdAuth` + `pam_reattach`); no manual edits or scripts are required.
+
+4. **WSL Considerations**:
    - Some tools like yabai, skhd, karabiner won't work on Linux (they're macOS-only)
    - GUI applications should be installed via WSL's preferred method (not included here)
    - Consider using [NixOS-WSL](https://github.com/nix-community/NixOS-WSL) for a more integrated experience
-
-4. **First-Time Setup on macOS**:
-   - Comment out `pam_watchid.so` line in `darwin-configuration.nix` if you haven't set up watchID yet
-   - Install watchID script before uncommenting
 
 ## Troubleshooting
 
 ### macOS: Permission denied on sudo
 
-- Check that pam_watchid is properly commented out if not configured
 - Verify yabai sudoers configuration
 
 ### Linux: Home directory not found

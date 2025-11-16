@@ -30,18 +30,9 @@ in
   environment = {
     systemPackages = commonSystemPackages ++ darwinOnlyPackages;
 
-    # NOTE: Custom PAM configuration (see https://write.rog.gr/writing/using-touchid-with-tmux/#leveraging-nix-with-nix-darwin)
-    # For enabling touchId in clamshell mode follow: https://linkarzu.com/posts/macos/auth-apple-watch/
-    # WARN: comment out the pam_watchid.so on first setup as we need to install the watchid script first!!!
-    # otherwise sudo will break
-    # alternatively write some scripts for setting everything up
-
-    # watchid script
     etc."pam.d/sudo_local".text = ''
       # Managed by Nix Darwin
       auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
-      auth       sufficient     pam_tid.so
-      auth       sufficient     pam_watchid.so
     '';
 
     # Add yabai sudoers configuration
@@ -67,15 +58,18 @@ in
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
-  system.stateVersion = 5;
+  system.stateVersion = 6;
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
+  # Enable fish shell
   programs.fish.enable = true;
 
+  # touch ID for sudo
   security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local.watchIdAuth = true;
 
   users.users.blancpain = {
     home = "/Users/blancpain";
