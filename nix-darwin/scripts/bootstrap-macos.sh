@@ -9,8 +9,9 @@ Usage: scripts/bootstrap-macos.sh
 Automates the "Fresh macOS Bootstrap" steps:
   1. Ensure Apple Command Line Tools (and Rosetta on Apple Silicon)
   2. Install Determinate Systems Nix installer
-  3. Install nix-darwin via sudo nix run ... --flake (using this repo)
-  4. Apply the flake with darwin-rebuild switch --flake
+  3. Install Homebrew (Apple Silicon default path)
+  4. Install nix-darwin via sudo nix run ... --flake (using this repo)
+  5. Apply the flake with darwin-rebuild switch --flake
 
 Run this script from anywhere inside the repo.
 EOF
@@ -38,7 +39,10 @@ DETERMINATE_INSTALLER_URL="https://install.determinate.systems/nix"
 
 info() { printf '[INFO] %s\n' "$*"; }
 warn() { printf '[WARN] %s\n' "$*" >&2; }
-error() { printf '[ERROR] %s\n' "$*" >&2; exit 1; }
+error() {
+  printf '[ERROR] %s\n' "$*" >&2
+  exit 1
+}
 
 ensure_clt() {
   if xcode-select -p >/dev/null 2>&1; then
@@ -92,6 +96,18 @@ ensure_nix() {
   fi
 }
 
+ensure_homebrew() {
+  if command -v brew >/dev/null 2>&1; then
+    info "Homebrew already installed."
+    return
+  fi
+
+  info "Installing Homebrew (needed for casks/MAS)."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # Apple Silicon default path
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+}
+
 install_nix_darwin() {
   info "Installing/updating nix-darwin via flakes (sudo nix run ...)."
   sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$REPO_ROOT"
@@ -107,6 +123,7 @@ main() {
   ensure_rosetta
   source_nix_profile
   ensure_nix
+  ensure_homebrew
   install_nix_darwin
   apply_flake
   info "Bootstrap complete."

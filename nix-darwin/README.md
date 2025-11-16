@@ -43,56 +43,64 @@ Homebrew now only manages:
 
 ```bash
 # Apply configuration on macOS
-darwin-rebuild switch --flake ~/.config/nix-darwin
+darwin-rebuild switch --flake ~/.config/nix-darwin#mac
 
 # Or if you're in the nix-darwin directory
-darwin-rebuild switch --flake .
+darwin-rebuild switch --flake .#mac
 ```
 
 ## Fresh macOS Bootstrap
 
-The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --flake ~/.config/nix-darwin` works. The steps below assume Apple Silicon but also apply to Intel (skip Rosetta). For an automated run, execute `./scripts/bootstrap-macos.sh` from this repo—it walks through the same steps and stops if manual intervention is required.
+The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --flake ~/dotfiles/nix-darwin#mac` works. The steps below assume Apple Silicon. For an automated run, execute `./scripts/bootstrap-macos.sh` from this repo—it walks through the same steps and stops if manual intervention is required.
 
-1. **Install Apple tooling**
+1. **Clone this repository to ~/dotfiles**
+
+   ```bash
+   cd ~
+   git clone <repo-url> dotfiles
+   ```
+
+2. **Install Apple tooling**
 
    ```bash
    xcode-select --install
    softwareupdate --install-rosetta --agree-to-license # Apple Silicon only
    ```
 
-2. **Install multi-user Nix (Determinate Systems installer)**
+3. **Install multi-user Nix (Determinate Systems installer)**
 
    ```bash
    curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
    ```
 
-   See the [Determinate Nix Installer docs](https://github.com/DeterminateSystems/nix-installer#determinate-nix-installer) for background. This repo manages `~/.config/nix/nix.conf` (symlinked when the flake is applied), so you can skip the manual `experimental-features` edit.
+   See the [Determinate Nix Installer docs](https://github.com/DeterminateSystems/nix-installer#determinate-nix-installer) for background. This repo manages `~/.config/nix/nix.conf` (symlinked when the flake is applied), so no need to manually enable flakes here.
 
-3. **Install nix-darwin**
-   Follow the [nix-darwin getting-started guide](https://github.com/nix-darwin/nix-darwin?tab=readme-ov-file#getting-started-from-scratch) if you need to bootstrap `/etc/nix-darwin` (create the directory, `nix flake init -t ...`, set `nixpkgs.hostPlatform`, etc.). Once your flake exists (e.g., this repo cloned into `~/.config/nix-darwin`), install or update nix-darwin via:
-
-   ```bash
-   sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix-darwin
-   ```
-
-   The command above will fail if the flake does not exist yet—clone this repository into `~/.config/nix-darwin` (or any path you prefer and adjust commands accordingly) before running it.
-
-   The flake exports multiple macOS hosts under `darwinConfigurations` (e.g., `Yasens-MacBook-Pro`, `Yasens-Mac-mini`). When you run `darwin-rebuild` you can either ensure your machine’s hostname matches one of those keys or pass the desired one explicitly, for example:
+4. **Install Homebrew** (for casks & MAS CLI)
 
    ```bash
-   darwin-rebuild switch --flake ~/.config/nix-darwin#Yasens-MacBook-Pro
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   eval "$(/opt/homebrew/bin/brew shellenv)"
    ```
 
-   If you bring up a brand-new Mac, feel free to add/rename an entry in `flake.nix` so it matches the new host.
-
-4. **Apply the configuration**
+5. **Install nix-darwin**
+   Follow the [nix-darwin getting-started guide](https://github.com/nix-darwin/nix-darwin?tab=readme-ov-file#getting-started-from-scratch) if you need to bootstrap `/etc/nix-darwin` (create the directory, `nix flake init -t ...`, set `nixpkgs.hostPlatform`, etc.). Once the flake exists (repo cloned) install or update nix-darwin via:
 
    ```bash
-   cd ~/.config/nix-darwin
-   darwin-rebuild switch --flake .
+   sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/dotfiles/nix-darwin#mac
    ```
 
-5. **Touch ID / watchID reminder**: the `pam_watchid.so` line in `darwin-configuration.nix` is enabled by default (see the comment above the `etc."pam.d/sudo_local"` block). Comment it out until you have installed the watchID helper script; otherwise `sudo` will fail.
+   The command above will fail if the flake does not exist yet.
+
+   The flake exports a single macOS configuration named `mac`, so always include `#mac` when invoking the flake.
+
+6. **Apply the configuration**
+
+   ```bash
+   cd ~/dotfiles/nix-darwin
+   darwin-rebuild switch --flake .#mac
+   ```
+
+7. **Touch ID / watchID reminder**: the `pam_watchid.so` line in `darwin-configuration.nix` is enabled by default (see the comment above the `etc."pam.d/sudo_local"` block). Comment it out until you have installed the watchID helper script; otherwise `sudo` will fail.
 
 ### Barebones apps installed on macOS
 
@@ -217,7 +225,7 @@ homebrew = {
 nix flake update
 
 # macOS: Apply updates
-darwin-rebuild switch --flake ~/.config/nix-darwin
+darwin-rebuild switch --flake ~/.config/nix-darwin#mac
 
 # Linux: Apply updates
 home-manager switch --flake ~/.config/nix-darwin#blancpain@linux
