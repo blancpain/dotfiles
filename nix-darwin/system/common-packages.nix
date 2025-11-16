@@ -53,6 +53,7 @@ with pkgs;
   rustup
   sesh
   starship
+  statix
   supabase-cli
   tectonic
   tmux
