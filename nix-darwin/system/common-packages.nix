@@ -44,6 +44,7 @@ with pkgs;
   pgcli
   php
   pipx
+  pngpaste
   poppler-utils
   python3
   rabbitmq-server
@@ -52,6 +53,7 @@ with pkgs;
   rustup
   sesh
   starship
+  supabase-cli
   tectonic
   tmux
   tree
