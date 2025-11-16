@@ -73,11 +73,16 @@ in
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
+  programs.fish.enable = true;
+
   security.pam.services.sudo_local.touchIdAuth = true;
 
   users.users.blancpain = {
     home = "/Users/blancpain";
+    shell = pkgs.fish;
   };
+
+  environment.shells = [ pkgs.fish ];
 
   # Set system-wide defaults for certain options.
   system.defaults = {
@@ -92,6 +97,10 @@ in
   # Keep only macOS-specific tools and GUI apps in homebrew
   homebrew = {
     enable = true;
+    taps = [
+      "1password/tap"
+      "epk/epk"
+    ];
     casks = [
       "alfred"
       "arc"

@@ -24,21 +24,8 @@
     {
       # macOS configurations using nix-darwin
       darwinConfigurations = {
-        # You can add any hostname here and the configuration will work
-        "Yasens-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-          modules = [
-            ./darwin-configuration.nix
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.backupFileExtension = "backup";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.blancpain = import ./home-manager/darwin.nix;
-            }
-          ];
-        };
-
-        "Yasens-Mac-mini" = nix-darwin.lib.darwinSystem {
+        # Single macOS configuration; pick this attr when switching
+        mac = nix-darwin.lib.darwinSystem {
           modules = [
             ./darwin-configuration.nix
             home-manager.darwinModules.home-manager
