@@ -130,8 +130,21 @@ else
     else if command -v wl-copy >/dev/null
         abbr c "pwd | wl-copy"
     end
-    # WSL/Linux: quick home-manager switch with backups
-    abbr hms 'home-manager switch -b backup --flake ~/dotfiles/nix-darwin#blancpain@linux'
+    # WSL/Linux: invoke home-manager via nix run (works even if HM binary isn't on PATH)
+    abbr hms 'nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake ~/dotfiles/nix-darwin#blancpain@linux'
+    function hm_update --description 'Run nix flake update in ~/dotfiles/nix-darwin (Linux/WSL)'
+        set -l repo "$HOME/dotfiles/nix-darwin"
+        if not test -d $repo
+            printf 'nix flake repo not found: %s\n' $repo >&2
+            return 1
+        end
+        pushd $repo >/dev/null; or return 1
+        nix flake update $argv
+        set -l cmd_status $status
+        popd >/dev/null
+        return $cmd_status
+    end
+    abbr hu 'hm_update'
 end
 
 fzf_configure_bindings --directory=\cf
