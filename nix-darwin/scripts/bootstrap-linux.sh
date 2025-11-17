@@ -85,11 +85,39 @@ detect_home_manager_attr() {
   esac
 }
 
-  apply_home_manager() {
-    local hm_attr="$1"
-    info "Applying home-manager flake attribute: $hm_attr"
-    nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake "${REPO_ROOT}#${hm_attr}"
-  }
+apply_home_manager() {
+  local hm_attr="$1"
+  info "Applying home-manager flake attribute: $hm_attr"
+  nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake "${REPO_ROOT}#${hm_attr}"
+}
+
+setup_fish_shell() {
+  local fish_path="${HOME}/.nix-profile/bin/fish"
+
+  if [[ ! -x "$fish_path" ]]; then
+    warn "Fish shell not found at $fish_path, skipping shell setup."
+    return
+  fi
+
+  info "Setting up fish as default shell..."
+
+  # Check if fish is already in /etc/shells
+  if ! grep -qx "$fish_path" /etc/shells 2>/dev/null; then
+    info "Adding fish to /etc/shells (requires sudo)..."
+    echo "$fish_path" | sudo tee -a /etc/shells >/dev/null
+  else
+    info "Fish already in /etc/shells."
+  fi
+
+  # Check if fish is already the default shell
+  if [[ $(basename "$SHELL") != "fish" ]]; then
+    info "Setting fish as default shell..."
+    chsh -s "$fish_path"
+    info "Default shell changed to fish. You may need to log out and back in for this to take effect."
+  else
+    info "Fish is already the default shell."
+  fi
+}
 
 main() {
   ensure_repo_location
@@ -98,6 +126,7 @@ main() {
   local hm_attr
   hm_attr=$(detect_home_manager_attr)
   apply_home_manager "$hm_attr"
+  setup_fish_shell
   info "Bootstrap complete."
 }
 
