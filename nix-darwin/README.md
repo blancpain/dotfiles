@@ -112,37 +112,39 @@ All CLI tooling (git, gh, fzf, ripgrep, tmux, Docker/Colima, language toolchains
 
 ## Linux/WSL
 
-First, install Nix on WSL:
+Use the helper script (assumes repo is cloned to `~/dotfiles`):
 
 ```bash
-# Install Nix (multi-user installation recommended)
-curl -L https://nixos.org/nix/install | sh -s -- --daemon
-
-# Enable flakes
-mkdir -p ~/.config/nix
-echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
-```
-
-Then install and use home-manager:
-
-```bash
-# Install home-manager
-nix run home-manager/master -- init --switch
-
-# Clone your dotfiles to Linux
-cd ~
-git clone <your-dotfiles-repo> dotfiles
-
-# Update the dotfilesPath in home-manager/linux.nix if needed
-# Default is: /home/blancpain/dotfiles
-
-# Apply configuration on Linux (x86_64)
 cd ~/dotfiles/nix-darwin
-home-manager switch --flake .#blancpain@linux
-
-# For ARM Linux (Raspberry Pi, etc.)
-home-manager switch --flake .#blancpain@linux-aarch64
+./scripts/bootstrap-linux.sh
 ```
+
+What the script does:
+
+- Installs Nix via the Determinate Systems installer if missing
+- Runs home-manager with the right flake attribute (passes `--extra-experimental-features "nix-command flakes"`):
+  - `blancpain@linux` for `x86_64`
+  - `blancpain@linux-aarch64` for `aarch64`
+After `home-manager switch`, your `~/.config/nix` will be symlinked from this repo (via `home-manager/common.nix`), so we don't touch `nix.conf` during bootstrap.
+
+Manual equivalent:
+
+```bash
+# Install Nix (multi-user)
+curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
+source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+
+# Apply configuration (x86_64)
+cd ~/dotfiles/nix-darwin
+nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch --flake .#blancpain@linux
+
+# For ARM (aarch64)
+nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch --flake .#blancpain@linux-aarch64
+```
+
+Optional (once per machine): add `experimental-features = nix-command flakes` to `~/.config/nix/nix.conf` so you don't need to pass `--extra-experimental-features` manually.
+
+The Linux/WSL equivalent of `darwin-rebuild switch --flake .#mac` is `home-manager switch --flake .#<attr>` (or the `nix run home-manager/master -- switch --flake ...` form above). On NixOS, system-level changes use `sudo nixos-rebuild switch --flake .#<hostname>`.
 
 ## Configuration Details
 
