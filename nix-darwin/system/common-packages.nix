@@ -60,10 +60,11 @@ with pkgs;
   unar
   wimlib
   wget
-  yazi
+  # yazi
   yq
   zoxide
   zellij
-] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+]
+++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
   pngpaste
 ]
