@@ -1,7 +1,14 @@
-# Cache expensive operations at the top
-set -g IS_MACOS (test (uname) = Darwin; and echo 1; or echo 0)
-set -g HAS_XCLIP (command -v xclip >/dev/null; and echo 1; or echo 0)
-set -g HAS_WLCOPY (command -v wl-copy >/dev/null; and echo 1; or echo 0)
+# Cache expensive operations using universal variables (persists across sessions)
+# Only run these checks if not already cached
+if not set -q IS_MACOS
+    set -Ux IS_MACOS (test (uname) = Darwin; and echo 1; or echo 0)
+end
+if not set -q HAS_XCLIP
+    set -Ux HAS_XCLIP (command -v xclip >/dev/null; and echo 1; or echo 0)
+end
+if not set -q HAS_WLCOPY
+    set -Ux HAS_WLCOPY (command -v wl-copy >/dev/null; and echo 1; or echo 0)
+end
 
 if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
     source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
@@ -15,11 +22,17 @@ if test -d "$HOME/.nix-profile/bin"
     fish_add_path "$HOME/.nix-profile/bin"
 end
 
-# secrets
+# secrets (lazy-loaded on first command)
 # to set use: echo "set -gx KEY_NAME the_actual_key" | openssl enc -base64 >> .secrets.enc
 # file needs to sit in fish root path /fish/
-if test -f $HOME/dotfiles/fish/.secrets.enc
-    openssl enc -base64 -d <$HOME/dotfiles/fish/.secrets.enc | source
+set -g __secrets_loaded 0
+function __load_secrets_once --on-event fish_preexec
+    if test $__secrets_loaded -eq 0
+        set -g __secrets_loaded 1
+        if test -f $HOME/dotfiles/fish/.secrets.enc
+            openssl enc -base64 -d <$HOME/dotfiles/fish/.secrets.enc | source
+        end
+    end
 end
 
 #https://fishshell.com/docs/current/language.html
@@ -28,7 +41,15 @@ set -U fish_greeting # disable fish greeting
 #inits
 set -x STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 starship init fish | source # https://starship.rs/
-zoxide init fish | source # 'ajeetdsouza/zoxide'
+
+# Lazy-load zoxide on first command
+set -g __zoxide_loaded 0
+function __load_zoxide_once --on-event fish_preexec
+    if test $__zoxide_loaded -eq 0
+        set -g __zoxide_loaded 1
+        zoxide init fish | source
+    end
+end
 
 #PATH
 # macOS-specific paths
