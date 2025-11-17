@@ -46,9 +46,6 @@ vim.keymap.set("n", "gP", "O<Esc>p", { desc = "Paste on new line above" })
 vim.keymap.set({ "n", "o", "x" }, "<S-h>", "^", opts)
 vim.keymap.set({ "n", "o", "x" }, "<S-l>", "g_", opts)
 
--- git
-vim.keymap.set("n", "<leader>gb", ":BlameToggle<CR>", opts)
-
 -- scratch
 vim.keymap.set("n", "<leader>S", function()
   Snacks.picker.scratch({
