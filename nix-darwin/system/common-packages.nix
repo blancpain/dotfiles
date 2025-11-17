@@ -44,7 +44,6 @@ with pkgs;
   pgcli
   php
   pipx
-  pngpaste
   poppler-utils
   python3
   rabbitmq-server
@@ -65,4 +64,6 @@ with pkgs;
   yq
   zoxide
   zellij
+] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+  pngpaste
 ]
