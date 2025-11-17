@@ -73,8 +73,8 @@ if test $IS_MACOS -eq 1
 end
 
 #settings
-set -Ux EDITOR nvim
-set -Ux VISUAL nvim
+set -gx EDITOR nvim
+set -gx VISUAL nvim
 
 # Set FZF clipboard command based on OS
 if test $IS_MACOS -eq 1
