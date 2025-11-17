@@ -7,6 +7,10 @@
 
 let
   dotfilesPath = "${config.home.homeDirectory}/dotfiles";
+  # Reuse the shared system package list here because the Linux flake output only
+  # applies home-manager (no system module). For NixOS, you'd wire
+  # nix-darwin/linux-configuration.nix into a nixosConfiguration instead.
+  commonSystemPackages = import ../system/common-packages.nix { inherit pkgs; };
 in
 {
   imports = [ ./common.nix ];
@@ -15,9 +19,7 @@ in
   home.homeDirectory = lib.mkForce "/home/blancpain";
 
   # Linux-specific packages that aren't needed on macOS
-  home.packages = with pkgs; [
-    # Add Linux specific nix pkgs here
-  ];
+  home.packages = commonSystemPackages;
 
   # Linux-specific configurations
   home.file = {
@@ -34,4 +36,6 @@ in
   home.sessionVariables = {
     # Add any WSL-specific variables here
   };
+
+  programs.fish.enable = true;
 }

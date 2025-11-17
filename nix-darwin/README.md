@@ -160,6 +160,8 @@ What the script does:
   - `blancpain@linux-aarch64` for `aarch64`
 After `home-manager switch`, your `~/.config/nix` will be symlinked from this repo (via `home-manager/common.nix`), so we don't touch `nix.conf` during bootstrap.
 
+Note: the Linux outputs in this flake are home-manager-only (for WSL/regular Linux). `linux-configuration.nix` is a reference system module; to use it you’d need to add a `nixosConfigurations` entry and rebuild with `nixos-rebuild`. All CLI tools (including fish) are pulled in via home-manager for WSL/Linux.
+
 Manual equivalent:
 
 ```bash
