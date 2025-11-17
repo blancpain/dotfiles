@@ -106,6 +106,14 @@ return {
         },
       })
 
+      -- cmdline settings
+      opts.cmdline = vim.tbl_deep_extend("force", opts.cmdline or {}, {
+        keymap = {
+          ["<C-j>"] = { "select_next", "fallback" },
+          ["<C-k>"] = { "select_prev", "fallback" },
+        },
+      })
+
       return opts
     end,
   },
