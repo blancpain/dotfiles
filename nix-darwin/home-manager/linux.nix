@@ -11,6 +11,9 @@ in
 {
   imports = [ ./common.nix ];
 
+  # Avoid clobbering existing dotfiles; back them up with a .backup suffix.
+  home-manager.backupFileExtension = "backup";
+
   # Override home directory for Linux
   home.homeDirectory = lib.mkForce "/home/blancpain";
 
