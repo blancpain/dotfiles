@@ -60,7 +60,7 @@ with pkgs;
   unar
   wimlib
   wget
-  # yazi
+  yazi
   yq
   zoxide
   zellij
