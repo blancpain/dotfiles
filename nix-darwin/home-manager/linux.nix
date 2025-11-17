@@ -6,10 +6,8 @@
 }:
 
 let
-  envHome = builtins.getEnv "HOME";
-  resolvedHome =
-    if envHome != "" && lib.hasPrefix "/" envHome then envHome else "/home/blancpain";
-  dotfilesPath = "${resolvedHome}/dotfiles";
+  # HOME is fixed to /home/blancpain for Linux to keep managed paths inside $HOME.
+  dotfilesPath = "/home/blancpain/dotfiles";
   # Reuse the shared system package list here because the Linux flake output only
   # applies home-manager (no system module). For NixOS, you'd wire
   # nix-darwin/linux-configuration.nix into a nixosConfiguration instead.
@@ -20,13 +18,11 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  # Keep the Linux home path explicit to satisfy HM’s absolute-path requirement.
-  home.homeDirectory = lib.mkForce resolvedHome;
+  home.username = "blancpain";
+  home.homeDirectory = lib.mkForce "/home/blancpain";
 
-  # Linux-specific packages that aren't needed on macOS
   home.packages = commonSystemPackages;
 
-  # Linux-specific configurations
   home.file = {
     # Add Linux-specific symlinks here if needed
     # Note: Some macOS-specific tools (aerospace, karabiner, yabai, skhd) won't work on Linux
@@ -41,6 +37,4 @@ in
   home.sessionVariables = {
     # Add any WSL-specific variables here
   };
-
-  programs.fish.enable = true;
 }
