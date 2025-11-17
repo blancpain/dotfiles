@@ -85,11 +85,11 @@ detect_home_manager_attr() {
   esac
 }
 
-apply_home_manager() {
-  local hm_attr="$1"
-  info "Applying home-manager flake attribute: $hm_attr"
-  nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch --flake "${REPO_ROOT}#${hm_attr}"
-}
+  apply_home_manager() {
+    local hm_attr="$1"
+    info "Applying home-manager flake attribute: $hm_attr"
+    nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake "${REPO_ROOT}#${hm_attr}"
+  }
 
 main() {
   ensure_repo_location

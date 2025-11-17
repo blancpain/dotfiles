@@ -155,7 +155,7 @@ cd ~/dotfiles/nix-darwin
 What the script does:
 
 - Installs Nix via the Determinate Systems installer if missing
-- Runs home-manager with the right flake attribute (passes `--extra-experimental-features "nix-command flakes"`):
+- Runs home-manager with the right flake attribute (passes `--extra-experimental-features "nix-command flakes"` and `-b backup` for safe backups):
   - `blancpain@linux` for `x86_64`
   - `blancpain@linux-aarch64` for `aarch64`
 After `home-manager switch`, your `~/.config/nix` will be symlinked from this repo (via `home-manager/common.nix`), so we don't touch `nix.conf` during bootstrap.
@@ -169,10 +169,10 @@ source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
 # Apply configuration (x86_64)
 cd ~/dotfiles/nix-darwin
-nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch --flake .#blancpain@linux
+nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake .#blancpain@linux
 
 # For ARM (aarch64)
-nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch --flake .#blancpain@linux-aarch64
+nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake .#blancpain@linux-aarch64
 ```
 
 Optional (once per machine): add `experimental-features = nix-command flakes` to `~/.config/nix/nix.conf` so you don't need to pass `--extra-experimental-features` manually.
