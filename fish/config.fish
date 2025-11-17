@@ -47,8 +47,13 @@ set -U FZF_TMUX_OPTS "-p --no-info --ansi --color gutter:-1,bg+:-1,header:4,sepa
 set -U fzf_fd_opts --hidden --exclude .git
 set -U GOPATH (go env GOPATH) # https://golang.google.cn/
 set -x OP_BIOMETRIC_UNLOCK_ENABLED true
-set -x XDG_CONFIG_HOME "/Users/blancpain/.config"
-set -x NIX_CONF_DIR "/Users/blancpain/.config/nix"
+if test (uname) = Darwin
+    set -x XDG_CONFIG_HOME "/Users/blancpain/.config"
+    set -x NIX_CONF_DIR "/Users/blancpain/.config/nix"
+else
+    set -x XDG_CONFIG_HOME "$HOME/.config"
+    set -x NIX_CONF_DIR "$HOME/.config/nix"
+end
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 carapace _carapace | source
 
@@ -90,6 +95,11 @@ abbr cab cargo build
 abbr bu "brew update && brew upgrade"
 abbr dr "sudo darwin-rebuild switch --flake ~/dotfiles/nix-darwin#mac"
 abbr du nix_darwin_update
+if test (uname) = Linux
+    # WSL/Linux: quick home-manager switch with backups
+    # Use the installed home-manager frontend; no need for nix run once HM is on PATH.
+    abbr hms 'home-manager switch -b backup --flake ~/dotfiles/nix-darwin#blancpain@linux'
+end
 
 fzf_configure_bindings --directory=\cf
 
