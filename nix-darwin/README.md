@@ -37,6 +37,39 @@ Homebrew now only manages:
 - **macOS**: Uses nix-darwin for system config + home-manager for user config
 - **Linux/WSL**: Uses home-manager standalone for user config
 
+## Prerequisite: Git (SSH) Access
+
+If you hit “could not read from remote repository” when cloning, set up SSH access with GitHub.
+
+1. Check for an existing key:
+   ```bash
+   ls ~/.ssh/id_ed25519.pub ~/.ssh/id_rsa.pub
+   ```
+2. If absent, generate one (same on macOS/WSL/Linux):
+   ```bash
+   ssh-keygen -t ed25519 -C "you@example.com"
+   # press Enter to accept defaults
+   ```
+3. Start agent and add the key:
+   ```bash
+   eval "$(ssh-agent -s)"
+   ssh-add ~/.ssh/id_ed25519
+   ```
+4. Copy the **entire** public key (single line, no BEGIN/END):
+   ```bash
+   cat ~/.ssh/id_ed25519.pub
+   ```
+5. Add it to GitHub: Settings → SSH and GPG keys → New SSH key → paste → save.
+6. Test:
+   ```bash
+   ssh -T git@github.com
+   ```
+7. Clone with SSH:
+   ```bash
+   cd ~
+   git clone git@github.com:<owner>/<repo>.git dotfiles
+   ```
+
 ## Usage
 
 ### macOS
