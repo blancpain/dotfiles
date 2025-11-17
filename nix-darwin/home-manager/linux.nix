@@ -6,7 +6,10 @@
 }:
 
 let
-  dotfilesPath = "${config.home.homeDirectory}/dotfiles";
+  envHome = builtins.getEnv "HOME";
+  resolvedHome =
+    if envHome != "" && lib.hasPrefix "/" envHome then envHome else "/home/blancpain";
+  dotfilesPath = "${resolvedHome}/dotfiles";
   # Reuse the shared system package list here because the Linux flake output only
   # applies home-manager (no system module). For NixOS, you'd wire
   # nix-darwin/linux-configuration.nix into a nixosConfiguration instead.
@@ -18,7 +21,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   # Keep the Linux home path explicit to satisfy HM’s absolute-path requirement.
-  home.homeDirectory = lib.mkForce "/home/blancpain";
+  home.homeDirectory = lib.mkForce resolvedHome;
 
   # Linux-specific packages that aren't needed on macOS
   home.packages = commonSystemPackages;
