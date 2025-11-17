@@ -39,6 +39,39 @@
         };
       };
 
+      # NixOS configurations using nixpkgs.lib.nixosSystem
+      nixosConfigurations = {
+        # For NixOS systems, use: sudo nixos-rebuild switch --flake .#nixos
+        nixos = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./linux-configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.backupFileExtension = "backup";
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.blancpain = import ./home-manager/linux.nix;
+            }
+          ];
+        };
+
+        # ARM NixOS (e.g., Raspberry Pi)
+        nixos-aarch64 = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            ./linux-configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.backupFileExtension = "backup";
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.blancpain = import ./home-manager/linux.nix;
+            }
+          ];
+        };
+      };
+
       # Linux/WSL configurations using home-manager standalone
       homeConfigurations = {
         # For WSL or any Linux system, use: home-manager switch --flake .#blancpain@linux
