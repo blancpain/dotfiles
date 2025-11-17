@@ -15,6 +15,8 @@ in
 {
   imports = [ ./common.nix ];
 
+  nixpkgs.config.allowUnfree = true;
+
   # Override home directory for Linux
   home.homeDirectory = lib.mkForce "/home/blancpain";
 
