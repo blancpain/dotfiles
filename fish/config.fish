@@ -1,3 +1,8 @@
+# Cache expensive operations at the top
+set -g IS_MACOS (test (uname) = Darwin; and echo 1; or echo 0)
+set -g HAS_XCLIP (command -v xclip >/dev/null; and echo 1; or echo 0)
+set -g HAS_WLCOPY (command -v wl-copy >/dev/null; and echo 1; or echo 0)
+
 if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
     source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
 end
@@ -27,7 +32,7 @@ zoxide init fish | source # 'ajeetdsouza/zoxide'
 
 #PATH
 # macOS-specific paths
-if test (uname) = Darwin
+if test $IS_MACOS -eq 1
     fish_add_path /opt/homebrew/bin
     fish_add_path /opt/homebrew/sbin
     fish_add_path /opt/homebrew/opt/sqlite/bin
@@ -42,7 +47,7 @@ fish_add_path $HOME/.local/share/bob/nvim-bin #nvim bob
 fish_add_path $HOME/.cargo/bin
 
 # macOS-specific aliases
-if test (uname) = Darwin
+if test $IS_MACOS -eq 1
     alias influxdb="$HOME/.influxdb/influxdb3"
 end
 
@@ -51,13 +56,13 @@ set -Ux EDITOR nvim
 set -Ux VISUAL nvim
 
 # Set FZF clipboard command based on OS
-if test (uname) = Darwin
+if test $IS_MACOS -eq 1
     set -U FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
 else
     # Linux: check for available clipboard tools
-    if command -v xclip >/dev/null
+    if test $HAS_XCLIP -eq 1
         set -U FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -selection clipboard)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
-    else if command -v wl-copy >/dev/null
+    else if test $HAS_WLCOPY -eq 1
         set -U FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
     else
         set -U FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:accept' --color header:italic --header 'Press CTRL-Y to accept command'"
@@ -68,22 +73,29 @@ set -U FZF_DEFAULT_COMMAND "fd -H -E '.git'"
 set -U FZF_DEFAULT_OPTS "--reverse --no-info --prompt=' ' --pointer='' --marker='' --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
 set -U FZF_TMUX_OPTS "-p --no-info --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
 set -U fzf_fd_opts --hidden --exclude .git
-set -U GOPATH (go env GOPATH) # https://golang.google.cn/
+# Cache GOPATH instead of calling `go env` every time
+if not set -q GOPATH
+    set -Ux GOPATH (go env GOPATH) # https://golang.google.cn/
+end
 set -x OP_BIOMETRIC_UNLOCK_ENABLED true
 
-if test (uname) = Darwin
-    set -x XDG_CONFIG_HOME "$HOME/.config"
-    set -x NIX_CONF_DIR "$HOME/.config/nix"
-else
-    set -x XDG_CONFIG_HOME "$HOME/.config"
-    set -x NIX_CONF_DIR "$HOME/.config/nix"
-end
+# XDG dirs are the same on both platforms
+set -x XDG_CONFIG_HOME "$HOME/.config"
+set -x NIX_CONF_DIR "$HOME/.config/nix"
 
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
-carapace _carapace | source
+
+# Lazy-load Carapace on first completion attempt
+set -g __carapace_loaded 0
+function __load_carapace_once --on-event fish_preexec
+    if test $__carapace_loaded -eq 0
+        set -g __carapace_loaded 1
+        carapace _carapace | source
+    end
+end
 
 # Set browser only on macOS
-if test (uname) = Darwin
+if test $IS_MACOS -eq 1
     set -gx BROWSER "/Applications/Arc.app/Contents/MacOS/Arc"
 end
 
@@ -119,15 +131,15 @@ abbr cab cargo build
 abbr du nix_darwin_update
 
 # Platform-specific abbreviations
-if test (uname) = Darwin
+if test $IS_MACOS -eq 1
     abbr c "pwd | pbcopy"
     abbr bu "brew update && brew upgrade"
     abbr dr "sudo darwin-rebuild switch --flake ~/dotfiles/nix-darwin#mac"
 else
     # Linux clipboard abbreviation
-    if command -v xclip >/dev/null
+    if test $HAS_XCLIP -eq 1
         abbr c "pwd | xclip -selection clipboard"
-    else if command -v wl-copy >/dev/null
+    else if test $HAS_WLCOPY -eq 1
         abbr c "pwd | wl-copy"
     end
     # WSL/Linux: invoke home-manager via nix run (works even if HM binary isn't on PATH)
@@ -144,24 +156,24 @@ else
         popd >/dev/null
         return $cmd_status
     end
-    abbr hu 'hm_update'
+    abbr hu hm_update
 end
 
 fzf_configure_bindings --directory=\cf
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-if test -f $HOME/miniforge3/bin/conda
-    eval $HOME/miniforge3/bin/conda "shell.fish" hook $argv | source
-else
-    if test -f "$HOME/miniforge3/etc/fish/conf.d/conda.fish"
-        . "$HOME/miniforge3/etc/fish/conf.d/conda.fish"
-    else
-        set -x PATH $HOME/miniforge3/bin $PATH
-    end
-end
-
-if test -f "$HOME/miniforge3/etc/fish/conf.d/mamba.fish"
-    source "$HOME/miniforge3/etc/fish/conf.d/mamba.fish"
-end
+# if test -f $HOME/miniforge3/bin/conda
+#     eval $HOME/miniforge3/bin/conda "shell.fish" hook $argv | source
+# else
+#     if test -f "$HOME/miniforge3/etc/fish/conf.d/conda.fish"
+#         . "$HOME/miniforge3/etc/fish/conf.d/conda.fish"
+#     else
+#         set -x PATH $HOME/miniforge3/bin $PATH
+#     end
+# end
+#
+# if test -f "$HOME/miniforge3/etc/fish/conf.d/mamba.fish"
+#     source "$HOME/miniforge3/etc/fish/conf.d/mamba.fish"
+# end
 # <<< conda initialize <<<
