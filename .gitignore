@@ -12,3 +12,4 @@ globalStorage/
 sync/
 workspaceStorage/
 extensions/
+fish/fish_variables
