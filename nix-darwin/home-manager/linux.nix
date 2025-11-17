@@ -17,8 +17,8 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  # Align with the actual HOME in WSL/Linux to avoid “outside $HOME” install errors.
-  home.homeDirectory = lib.mkForce (builtins.getEnv "HOME");
+  # Keep the Linux home path explicit to satisfy HM’s absolute-path requirement.
+  home.homeDirectory = lib.mkForce "/home/blancpain";
 
   # Linux-specific packages that aren't needed on macOS
   home.packages = commonSystemPackages;
