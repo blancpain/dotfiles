@@ -26,14 +26,19 @@ starship init fish | source # https://starship.rs/
 zoxide init fish | source # 'ajeetdsouza/zoxide'
 
 #PATH
-fish_add_path /opt/homebrew/bin
-fish_add_path /opt/homebrew/sbin
-fish_add_path /opt/homebrew/opt/sqlite/bin
+# macOS-specific paths
+if test (uname) = Darwin
+    fish_add_path /opt/homebrew/bin
+    fish_add_path /opt/homebrew/sbin
+    fish_add_path /opt/homebrew/opt/sqlite/bin
+    fish_add_path /Applications/Postgres.app/Contents/Versions/15/bin
+end
+
+# Common paths (both macOS and Linux)
 fish_add_path $GOPATH/bin
 fish_add_path $HOME/.config/bin # custom scripts; currently empty
-fish_add_path /Applications/Postgres.app/Contents/Versions/15/bin
-fish_add_path /Users/blancpain/.local/share/bob/nvim-bin #nvim bob
-fish_add_path /Users/blancpain/.cargo/bin
+fish_add_path $HOME/.local/share/bob/nvim-bin #nvim bob
+fish_add_path $HOME/.cargo/bin
 
 alias influxdb="/Users/blancpain/.influxdb/influxdb3"
 
