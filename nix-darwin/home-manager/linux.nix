@@ -17,8 +17,8 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  # Override home directory for Linux
-  home.homeDirectory = lib.mkForce "/home/blancpain";
+  # Align with the actual HOME in WSL/Linux to avoid “outside $HOME” install errors.
+  home.homeDirectory = lib.mkForce (builtins.getEnv "HOME");
 
   # Linux-specific packages that aren't needed on macOS
   home.packages = commonSystemPackages;
