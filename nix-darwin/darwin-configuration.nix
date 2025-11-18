@@ -15,18 +15,6 @@ let
   ];
 in
 {
-  #NOTE: rm this overlay when fish test phase is fixed in nixpkgs: also see https://github.com/NixOS/nixpkgs/pull/462589
-  nixpkgs.overlays = [
-    (final: prev: {
-      fish = prev.fish.overrideAttrs (old: {
-        # disable test/check phase that’s failing
-        doCheck = false;
-        # just in case, override explicit checkPhase too
-        checkPhase = "true";
-      });
-    })
-  ];
-
   environment = {
     systemPackages = commonSystemPackages ++ darwinOnlyPackages;
 
