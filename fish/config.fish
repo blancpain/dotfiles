@@ -104,17 +104,6 @@ set -x OP_BIOMETRIC_UNLOCK_ENABLED true
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x NIX_CONF_DIR "$HOME/.config/nix"
 
-set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
-
-# Lazy-load Carapace on first completion attempt
-set -g __carapace_loaded 0
-function __load_carapace_once --on-event fish_preexec
-    if test $__carapace_loaded -eq 0
-        set -g __carapace_loaded 1
-        carapace _carapace | source
-    end
-end
-
 # Set browser only on macOS
 if test $IS_MACOS -eq 1
     set -gx BROWSER "/Applications/Arc.app/Contents/MacOS/Arc"
