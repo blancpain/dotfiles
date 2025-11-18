@@ -1,13 +1,12 @@
-# Cache expensive operations using universal variables (persists across sessions)
-# Only run these checks if not already cached
+# Set system-specific variables per session
 if not set -q IS_MACOS
-    set -Ux IS_MACOS (test (uname) = Darwin; and echo 1; or echo 0)
+    set -gx IS_MACOS (test (uname) = Darwin; and echo 1; or echo 0)
 end
 if not set -q HAS_XCLIP
-    set -Ux HAS_XCLIP (command -v xclip >/dev/null; and echo 1; or echo 0)
+    set -gx HAS_XCLIP (command -v xclip >/dev/null; and echo 1; or echo 0)
 end
 if not set -q HAS_WLCOPY
-    set -Ux HAS_WLCOPY (command -v wl-copy >/dev/null; and echo 1; or echo 0)
+    set -gx HAS_WLCOPY (command -v wl-copy >/dev/null; and echo 1; or echo 0)
 end
 
 if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
@@ -36,13 +35,13 @@ function __load_secrets_once --on-event fish_preexec
 end
 
 #https://fishshell.com/docs/current/language.html
-set -U fish_greeting # disable fish greeting
+set -g fish_greeting # disable fish greeting
 
 #inits
 set -x STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 starship init fish | source # https://starship.rs/
 carapace _carapace | source
-set -U fish_pager_color_description yellow # make descriptions in pager yellow
+set -g fish_pager_color_description yellow # make descriptions in pager yellow
 
 # Lazy-load zoxide on first command
 set -g __zoxide_loaded 0
@@ -80,25 +79,25 @@ set -gx VISUAL nvim
 
 # Set FZF clipboard command based on OS
 if test $IS_MACOS -eq 1
-    set -U FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
+    set -gx FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
 else
     # Linux: check for available clipboard tools
     if test $HAS_XCLIP -eq 1
-        set -U FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -selection clipboard)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
+        set -gx FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -selection clipboard)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
     else if test $HAS_WLCOPY -eq 1
-        set -U FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
+        set -gx FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
     else
-        set -U FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:accept' --color header:italic --header 'Press CTRL-Y to accept command'"
+        set -gx FZF_CTRL_R_OPTS "--border-label=' Command History ' --prompt=' ' --bind 'ctrl-y:accept' --color header:italic --header 'Press CTRL-Y to accept command'"
     end
 end
 
-set -U FZF_DEFAULT_COMMAND "fd -H -E '.git'"
-set -U FZF_DEFAULT_OPTS "--reverse --no-info --prompt=' ' --pointer='' --marker='' --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
-set -U FZF_TMUX_OPTS "-p --no-info --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
-set -U fzf_fd_opts --hidden --exclude .git
+set -gx FZF_DEFAULT_COMMAND "fd -H -E '.git'"
+set -gx FZF_DEFAULT_OPTS "--reverse --no-info --prompt=' ' --pointer='' --marker='' --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
+set -gx FZF_TMUX_OPTS "-p --no-info --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
+set -gx fzf_fd_opts --hidden --exclude .git
 # Cache GOPATH instead of calling `go env` every time
 if not set -q GOPATH
-    set -Ux GOPATH (go env GOPATH) # https://golang.google.cn/
+    set -gx GOPATH (go env GOPATH) # https://golang.google.cn/
 end
 set -x OP_BIOMETRIC_UNLOCK_ENABLED true
 
