@@ -98,8 +98,14 @@ set -g fish_pager_color_description yellow # make descriptions in pager yellow
 set -x STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 starship init fish | source # https://starship.rs/
 
-# Completions
-carapace _carapace | source
+# Completions (lazy-loaded on first prompt)
+set -g __carapace_loaded 0
+function __load_carapace_once --on-event fish_prompt
+    if test $__carapace_loaded -eq 0
+        set -g __carapace_loaded 1
+        carapace _carapace | source
+    end
+end
 
 # Lazy-load zoxide on first command
 set -g __zoxide_loaded 0
