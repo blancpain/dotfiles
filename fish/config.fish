@@ -36,11 +36,6 @@ set -gx VISUAL nvim
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x OP_BIOMETRIC_UNLOCK_ENABLED true
 
-# Cache GOPATH instead of calling `go env` every time
-if not set -q GOPATH
-    set -gx GOPATH (go env GOPATH) # https://golang.google.cn/
-end
-
 # Set browser only on macOS
 if test $IS_MACOS -eq 1
     set -gx BROWSER "/Applications/Arc.app/Contents/MacOS/Arc"
@@ -59,7 +54,7 @@ if test $IS_MACOS -eq 1
 end
 
 # Common paths (both macOS and Linux)
-fish_add_path $GOPATH/bin
+fish_add_path $HOME/go/bin # Go binaries (e.g., gitmux)
 fish_add_path $HOME/.config/bin # custom scripts; currently empty
 fish_add_path $HOME/.local/share/bob/nvim-bin #nvim bob
 fish_add_path $HOME/.cargo/bin
