@@ -1,4 +1,6 @@
-# Set system-specific variables per session
+# ==============================================================================
+# SYSTEM DETECTION
+# ==============================================================================
 if not set -q IS_MACOS
     set -gx IS_MACOS (test (uname) = Darwin; and echo 1; or echo 0)
 end
@@ -9,6 +11,9 @@ if not set -q HAS_WLCOPY
     set -gx HAS_WLCOPY (command -v wl-copy >/dev/null; and echo 1; or echo 0)
 end
 
+# ==============================================================================
+# NIX SETUP
+# ==============================================================================
 if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
     source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
 end
@@ -21,38 +26,29 @@ if test -d "$HOME/.nix-profile/bin"
     fish_add_path "$HOME/.nix-profile/bin"
 end
 
-# secrets (lazy-loaded on first command)
-# to set use: echo "set -gx KEY_NAME the_actual_key" | openssl enc -base64 >> .secrets.enc
-# file needs to sit in fish root path /fish/
-set -g __secrets_loaded 0
-function __load_secrets_once --on-event fish_preexec
-    if test $__secrets_loaded -eq 0
-        set -g __secrets_loaded 1
-        if test -f $HOME/dotfiles/fish/.secrets.enc
-            openssl enc -base64 -d <$HOME/dotfiles/fish/.secrets.enc | source
-        end
-    end
+set -x NIX_CONF_DIR "$HOME/.config/nix"
+
+# ==============================================================================
+# ENVIRONMENT VARIABLES
+# ==============================================================================
+set -gx EDITOR nvim
+set -gx VISUAL nvim
+set -x XDG_CONFIG_HOME "$HOME/.config"
+set -x OP_BIOMETRIC_UNLOCK_ENABLED true
+
+# Cache GOPATH instead of calling `go env` every time
+if not set -q GOPATH
+    set -gx GOPATH (go env GOPATH) # https://golang.google.cn/
 end
 
-#https://fishshell.com/docs/current/language.html
-set -g fish_greeting # disable fish greeting
-
-#inits
-set -x STARSHIP_CONFIG $HOME/.config/starship/starship.toml
-starship init fish | source # https://starship.rs/
-carapace _carapace | source
-set -g fish_pager_color_description yellow # make descriptions in pager yellow
-
-# Lazy-load zoxide on first command
-set -g __zoxide_loaded 0
-function __load_zoxide_once --on-event fish_preexec
-    if test $__zoxide_loaded -eq 0
-        set -g __zoxide_loaded 1
-        zoxide init fish | source
-    end
+# Set browser only on macOS
+if test $IS_MACOS -eq 1
+    set -gx BROWSER "/Applications/Arc.app/Contents/MacOS/Arc"
 end
 
-#PATH
+# ==============================================================================
+# PATH CONFIGURATION
+# ==============================================================================
 # macOS-specific paths
 if test $IS_MACOS -eq 1
     fish_add_path /opt/homebrew/bin
@@ -68,14 +64,13 @@ fish_add_path $HOME/.config/bin # custom scripts; currently empty
 fish_add_path $HOME/.local/share/bob/nvim-bin #nvim bob
 fish_add_path $HOME/.cargo/bin
 
-# macOS-specific aliases
-if test $IS_MACOS -eq 1
-    alias influxdb="$HOME/.influxdb/influxdb3"
-end
-
-#settings
-set -gx EDITOR nvim
-set -gx VISUAL nvim
+# ==============================================================================
+# FZF CONFIGURATION
+# ==============================================================================
+set -gx FZF_DEFAULT_COMMAND "fd -H -E '.git' --color=always"
+set -gx FZF_DEFAULT_OPTS "--reverse --no-info --prompt=' ' --pointer='' --marker='' --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
+set -gx FZF_TMUX_OPTS "-p --no-info --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
+set -gx fzf_fd_opts --hidden --exclude .git
 
 # Set FZF clipboard command based on OS
 if test $IS_MACOS -eq 1
@@ -91,41 +86,47 @@ else
     end
 end
 
-set -gx FZF_DEFAULT_COMMAND "fd -H -E '.git'"
-set -gx FZF_DEFAULT_OPTS "--reverse --no-info --prompt=' ' --pointer='' --marker='' --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
-set -gx FZF_TMUX_OPTS "-p --no-info --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
-set -gx fzf_fd_opts --hidden --exclude .git
-# Cache GOPATH instead of calling `go env` every time
-if not set -q GOPATH
-    set -gx GOPATH (go env GOPATH) # https://golang.google.cn/
-end
-set -x OP_BIOMETRIC_UNLOCK_ENABLED true
+fzf_configure_bindings --directory=\cf
 
-# XDG dirs are the same on both platforms
-set -x XDG_CONFIG_HOME "$HOME/.config"
-set -x NIX_CONF_DIR "$HOME/.config/nix"
+# ==============================================================================
+# SHELL INITIALIZATION
+# ==============================================================================
+set -g fish_greeting # disable fish greeting
+set -g fish_pager_color_description yellow # make descriptions in pager yellow
 
-# Set browser only on macOS
-if test $IS_MACOS -eq 1
-    set -gx BROWSER "/Applications/Arc.app/Contents/MacOS/Arc"
-end
+# Prompt
+set -x STARSHIP_CONFIG $HOME/.config/starship/starship.toml
+starship init fish | source # https://starship.rs/
 
-#helpers
-function nix_darwin_update --description 'Run nix flake update in ~/dotfiles/nix-darwin'
-    set -l repo "$HOME/dotfiles/nix-darwin"
-    if not test -d $repo
-        printf 'nix flake repo not found: %s\n' $repo >&2
-        return 1
+# Completions
+carapace _carapace | source
+
+# Lazy-load zoxide on first command
+set -g __zoxide_loaded 0
+function __load_zoxide_once --on-event fish_preexec
+    if test $__zoxide_loaded -eq 0
+        set -g __zoxide_loaded 1
+        zoxide init fish | source
     end
-
-    pushd $repo >/dev/null; or return 1
-    nix flake update $argv
-    set -l cmd_status $status
-    popd >/dev/null
-    return $cmd_status
 end
 
-#abbreviations
+# Secrets (lazy-loaded on first command)
+# To set use: echo "set -gx KEY_NAME the_actual_key" | openssl enc -base64 >> .secrets.enc
+# File needs to sit in fish root path /fish/
+set -g __secrets_loaded 0
+function __load_secrets_once --on-event fish_preexec
+    if test $__secrets_loaded -eq 0
+        set -g __secrets_loaded 1
+        if test -f $HOME/dotfiles/fish/.secrets.enc
+            openssl enc -base64 -d <$HOME/dotfiles/fish/.secrets.enc | source
+        end
+    end
+end
+
+# ==============================================================================
+# ABBREVIATIONS
+# ==============================================================================
+# Common abbreviations
 abbr vim nvim
 abbr vi nvim
 abbr v nvim
@@ -153,25 +154,52 @@ else
     else if test $HAS_WLCOPY -eq 1
         abbr c "pwd | wl-copy"
     end
-    # WSL/Linux: invoke home-manager via nix run (works even if HM binary isn't on PATH)
+    # WSL/Linux: invoke home-manager via nix run
     abbr hms 'nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake ~/dotfiles/nix-darwin#blancpain@linux'
-    function hm_update --description 'Run nix flake update in ~/dotfiles/nix-darwin (Linux/WSL)'
-        set -l repo "$HOME/dotfiles/nix-darwin"
-        if not test -d $repo
-            printf 'nix flake repo not found: %s\n' $repo >&2
-            return 1
-        end
-        pushd $repo >/dev/null; or return 1
-        nix flake update $argv
-        set -l cmd_status $status
-        popd >/dev/null
-        return $cmd_status
-    end
     abbr hu hm_update
 end
 
-fzf_configure_bindings --directory=\cf
+# ==============================================================================
+# ALIASES
+# ==============================================================================
+# macOS-specific aliases
+if test $IS_MACOS -eq 1
+    alias influxdb="$HOME/.influxdb/influxdb3"
+end
 
+# ==============================================================================
+# HELPER FUNCTIONS
+# ==============================================================================
+function nix_darwin_update --description 'Run nix flake update in ~/dotfiles/nix-darwin'
+    set -l repo "$HOME/dotfiles/nix-darwin"
+    if not test -d $repo
+        printf 'nix flake repo not found: %s\n' $repo >&2
+        return 1
+    end
+
+    pushd $repo >/dev/null; or return 1
+    nix flake update $argv
+    set -l cmd_status $status
+    popd >/dev/null
+    return $cmd_status
+end
+
+function hm_update --description 'Run nix flake update in ~/dotfiles/nix-darwin (Linux/WSL)'
+    set -l repo "$HOME/dotfiles/nix-darwin"
+    if not test -d $repo
+        printf 'nix flake repo not found: %s\n' $repo >&2
+        return 1
+    end
+    pushd $repo >/dev/null; or return 1
+    nix flake update $argv
+    set -l cmd_status $status
+    popd >/dev/null
+    return $cmd_status
+end
+
+# ==============================================================================
+# DISABLED/COMMENTED
+# ==============================================================================
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 # if test -f $HOME/miniforge3/bin/conda
