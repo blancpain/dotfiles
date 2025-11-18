@@ -42,29 +42,40 @@ Homebrew now only manages:
 If you hit “could not read from remote repository” when cloning, set up SSH access with GitHub.
 
 1. Check for an existing key:
+
    ```bash
    ls ~/.ssh/id_ed25519.pub ~/.ssh/id_rsa.pub
    ```
+
 2. If absent, generate one (same on macOS/WSL/Linux):
+
    ```bash
    ssh-keygen -t ed25519 -C "you@example.com"
    # press Enter to accept defaults
    ```
+
 3. Start agent and add the key:
+
    ```bash
    eval "$(ssh-agent -s)"
    ssh-add ~/.ssh/id_ed25519
    ```
+
 4. Copy the **entire** public key (single line, no BEGIN/END):
+
    ```bash
    cat ~/.ssh/id_ed25519.pub
    ```
+
 5. Add it to GitHub: Settings → SSH and GPG keys → New SSH key → paste → save.
 6. Test:
+
    ```bash
    ssh -T git@github.com
    ```
+
 7. Clone with SSH:
+
    ```bash
    cd ~
    git clone git@github.com:<owner>/<repo>.git dotfiles
@@ -158,7 +169,7 @@ What the script does:
 - Runs home-manager with the right flake attribute (passes `--extra-experimental-features "nix-command flakes"` and `-b backup` for safe backups):
   - `blancpain@linux` for `x86_64`
   - `blancpain@linux-aarch64` for `aarch64`
-After `home-manager switch`, your `~/.config/nix` will be symlinked from this repo (via `home-manager/common.nix`), so we don't touch `nix.conf` during bootstrap.
+    After `home-manager switch`, your `~/.config/nix` will be symlinked from this repo (via `home-manager/common.nix`), so we don't touch `nix.conf` during bootstrap.
 
 Note: the Linux outputs in this flake are home-manager-only (for WSL/regular Linux). `linux-configuration.nix` is a reference system module; to use it you’d need to add a `nixosConfigurations` entry and rebuild with `nixos-rebuild`. All CLI tools (including fish) are pulled in via home-manager for WSL/Linux.
 
@@ -195,7 +206,7 @@ Located in `home-manager/common.nix`:
 Located in `home-manager/darwin.nix` and `darwin-configuration.nix`:
 
 - macOS GUI app paths (Library/Application Support)
-- macOS-only tools: pngpaste, aerospace, karabiner, yabai, skhd
+- macOS-only tools: pngpaste, karabiner, yabai, skhd
 - System preferences: dock, finder, keyboard settings
 - Homebrew casks and Mac App Store apps
 

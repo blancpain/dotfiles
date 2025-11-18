@@ -38,7 +38,6 @@ in
     ".config/nix-darwin".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/nix-darwin";
     ".config/tmux".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/tmux";
     ".config/lazygit".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/lazygit";
-    ".config/nushell".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/nushell";
     ".config/fish".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/fish";
     ".config/helix".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/helix";
     ".config/yazi".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/yazi";

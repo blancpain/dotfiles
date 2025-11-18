@@ -25,7 +25,7 @@ in
 
   home.file = {
     # Add Linux-specific symlinks here if needed
-    # Note: Some macOS-specific tools (aerospace, karabiner, yabai, skhd) won't work on Linux
+    # Note: Some macOS-specific tools (e.g. karabiner, yabai, skhd) won't work on Linux
     # Code/Cursor paths are different on Linux
     ".config/Code/User".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/Code/User";
     ".config/Cursor/User".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/Cursor/User";

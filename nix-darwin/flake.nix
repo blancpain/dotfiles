@@ -1,6 +1,3 @@
-#NOTE: see `https://discourse.nixos.org/t/any-nix-darwin-nushell-users/37778/2` for nushell
-# https://nixos.wiki/wiki/Nushell
-
 {
   description = "Cross-platform system flake for macOS and Linux";
 

@@ -15,7 +15,7 @@ let
   ];
 in
 {
-  #NOTE: rm this overlay when fish test phase is fixed in nixpkgs
+  #NOTE: rm this overlay when fish test phase is fixed in nixpkgs: also see https://github.com/NixOS/nixpkgs/pull/462589
   nixpkgs.overlays = [
     (final: prev: {
       fish = prev.fish.overrideAttrs (old: {
