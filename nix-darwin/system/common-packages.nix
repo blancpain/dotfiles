@@ -6,6 +6,7 @@ with pkgs;
   bat
   bottom
   btop
+  carapace
   cloc
   cloudflared
   curl

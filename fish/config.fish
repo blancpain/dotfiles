@@ -41,6 +41,7 @@ set -U fish_greeting # disable fish greeting
 #inits
 set -x STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 starship init fish | source # https://starship.rs/
+carapace _carapace | source
 
 # Lazy-load zoxide on first command
 set -g __zoxide_loaded 0
