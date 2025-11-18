@@ -42,6 +42,7 @@ set -U fish_greeting # disable fish greeting
 set -x STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 starship init fish | source # https://starship.rs/
 carapace _carapace | source
+set -U fish_pager_color_description yellow # make descriptions in pager yellow
 
 # Lazy-load zoxide on first command
 set -g __zoxide_loaded 0
