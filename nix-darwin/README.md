@@ -146,6 +146,12 @@ The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --f
 
 Touch ID (including Apple Watch unlock) is configured automatically via nix-darwin; no manual PAM edits or helper scripts are required.
 
+**Note:** Fish shell is set as the default automatically by the bootstrap script. If you need to set it manually (e.g., after a fresh darwin-rebuild without the bootstrap script), run:
+
+```bash
+chsh -s /run/current-system/sw/bin/fish
+```
+
 ### Barebones apps installed on macOS
 
 - **Terminal & windowing**: Ghostty, yabai, skhd.

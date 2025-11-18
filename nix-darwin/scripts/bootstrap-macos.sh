@@ -118,6 +118,24 @@ apply_flake() {
   darwin-rebuild switch --flake "$REPO_ROOT"
 }
 
+set_default_shell() {
+  local fish_path="/run/current-system/sw/bin/fish"
+
+  if [[ ! -x $fish_path ]]; then
+    warn "Fish not found at $fish_path; skipping shell change."
+    return
+  fi
+
+  if [[ $SHELL == "$fish_path" ]]; then
+    info "Fish is already the default shell."
+    return
+  fi
+
+  info "Setting fish as the default shell."
+  chsh -s "$fish_path"
+  info "Default shell changed to fish. Open a new terminal to use it."
+}
+
 main() {
   ensure_clt
   ensure_rosetta
@@ -126,6 +144,7 @@ main() {
   ensure_homebrew
   install_nix_darwin
   apply_flake
+  set_default_shell
   info "Bootstrap complete."
 }
 

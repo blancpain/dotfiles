@@ -31,7 +31,6 @@ in
 
   # Common symlinks for configuration files
   home.file = {
-    ".config/wezterm".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/wezterm";
     ".config/starship".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/starship";
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/nvim";
     ".config/nix".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/nix";
@@ -39,10 +38,7 @@ in
     ".config/tmux".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/tmux";
     ".config/lazygit".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/lazygit";
     ".config/fish".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/fish";
-    ".config/helix".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/helix";
     ".config/yazi".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/yazi";
-    ".aider.conf.yml".source =
-      config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/aider/.aider.conf.yml";
   };
 
   home.sessionVariables = { };

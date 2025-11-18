@@ -1,7 +1,0 @@
-code-theme: monokai
-model: r1
-auto-commits: false
-watch-files: true
-dark-mode: true
-# NOTE: try
-# aider --architect --model r1 --editor-model sonnet

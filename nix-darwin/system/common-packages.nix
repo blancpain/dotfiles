@@ -25,7 +25,6 @@ with pkgs;
   gnused
   go
   gnumake
-  helix
   hub
   httpie
   imagemagick
