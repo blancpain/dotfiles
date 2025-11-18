@@ -63,8 +63,8 @@ fish_add_path $HOME/.cargo/bin
 # FZF CONFIGURATION
 # ==============================================================================
 set -gx FZF_DEFAULT_COMMAND "fd -H -E '.git' --color=always"
-set -gx FZF_DEFAULT_OPTS "--reverse --no-info --prompt=' ' --pointer='' --marker='' --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
-set -gx FZF_TMUX_OPTS "-p --no-info --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
+set -gx FZF_DEFAULT_OPTS "--reverse --cycle --no-info --preview-window=wrap --prompt=' ' --pointer='' --marker='' --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
+set -gx FZF_TMUX_OPTS "-p --cycle --no-info --ansi --color gutter:-1,bg+:-1,header:4,separator:0,info:0,label:4,border:4,prompt:7,pointer:5,query:7,prompt:7"
 set -gx fzf_fd_opts --hidden --exclude .git
 
 # Set FZF clipboard command based on OS
@@ -199,7 +199,7 @@ function hm_update --description 'Run nix flake update in ~/dotfiles/nix-darwin 
 end
 
 # ==============================================================================
-# DISABLED/COMMENTED
+# DISABLED
 # ==============================================================================
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
