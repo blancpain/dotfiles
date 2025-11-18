@@ -64,18 +64,15 @@ in
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
-  # Enable fish shell
-  programs.fish.enable = true;
-
   # touch ID for sudo
   security.pam.services.sudo_local.touchIdAuth = true;
   security.pam.services.sudo_local.watchIdAuth = true;
 
   users.users.blancpain = {
     home = "/Users/blancpain";
-    shell = pkgs.fish;
   };
 
+  # Add fish as a login shell
   environment.shells = [ pkgs.fish ];
 
   # Set system-wide defaults for certain options.
