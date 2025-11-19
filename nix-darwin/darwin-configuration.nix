@@ -70,6 +70,7 @@ in
     finder.FXPreferredViewStyle = "clmv";
     NSGlobalDomain.KeyRepeat = 1;
     NSGlobalDomain.InitialKeyRepeat = 14;
+    NSGlobalDomain.AppleFontSmoothing = 0;
   };
 
   # NOTE: can also add an onActivation func to zap all brews/casks that are not in the list
