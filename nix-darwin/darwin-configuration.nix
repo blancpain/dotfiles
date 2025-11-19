@@ -77,7 +77,6 @@ in
   homebrew = {
     enable = true;
     taps = [
-      "epk/epk"
     ];
     casks = [
       "alfred"
@@ -86,21 +85,16 @@ in
       "1password"
       "obsidian"
       "discord"
-      "font-fira-sans"
       "spacelauncher"
-      "font-meslo-lg-nerd-font"
-      "font-victor-mono"
+      "font-fira-code-nerd-font"
       "slack"
       "chatgpt"
-      "epk/epk/font-sf-mono-nerd-font"
       "karabiner-elements"
-      "firefox"
       "appcleaner"
       "mongodb-compass"
       "postman"
       "raindropio"
       "ghostty"
-      "google-chrome"
       "redis-insight"
       "spotify"
     ];
