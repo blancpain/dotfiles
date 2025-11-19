@@ -77,7 +77,6 @@ in
   homebrew = {
     enable = true;
     taps = [
-      "1password/tap"
       "epk/epk"
     ];
     casks = [
