@@ -87,8 +87,6 @@ in
       "obsidian"
       "discord"
       "spacelauncher"
-      "font-fira-code-nerd-font"
-      "font-iosevka-nerd-font"
       "slack"
       "chatgpt"
       "karabiner-elements"
@@ -99,6 +97,12 @@ in
       "ghostty"
       "redis-insight"
       "spotify"
+      # fonts
+      "font-cascadia-code-nf"
+      "font-fira-code-nerd-font"
+      "font-iosevka-nerd-font"
+      "font-jetbrains-mono-nerd-font"
+      "font-hack-nerd-font"
     ];
     brews = [
       "mas" # Mac App Store CLI

@@ -1,7 +1,9 @@
 # fonts
-font-family = FiraCode Nerd Font
-font-style = Retina
-font-size = 13.5
+font-family = Iosevka Nerd Font
+font-style = Light
+# font-family = FiraCode Nerd Font
+# font-style = Retina
+font-size = 15.5
 bold-is-bright = true
 # font-thicken = true
 
