@@ -1,6 +1,6 @@
 # Cross-Platform Nix Configuration
 
-This configuration supports both **macOS** (via nix-darwin) and **Linux/WSL** (via home-manager standalone).
+This configuration supports both **macOS** (via nix-darwin) and **Linux/WSL**.
 
 ## Structure
 
@@ -8,38 +8,17 @@ This configuration supports both **macOS** (via nix-darwin) and **Linux/WSL** (v
 nix-darwin/
 ├── flake.nix                    # Main flake orchestrating all configurations
 ├── darwin-configuration.nix     # macOS system-level configuration
-├── linux-configuration.nix      # Linux system-level configuration (reference)
+├── linux-configuration.nix      # NixOS system-level configuration (reference)
+├── networking.nix               # Networking configuration for NixOS
+├── system/
+│   └── common-packages.nix      # Shared system packages for all platforms
 └── home-manager/
     ├── common.nix               # Shared configuration for both platforms
     ├── darwin.nix               # macOS-specific home configuration
     └── linux.nix                # Linux-specific home configuration
 ```
 
-## Key Changes from Original Setup
-
-### 1. **Brew packages moved to Nix**
-
-Most brew packages are now installed via Nix and available on both platforms:
-
-- Development tools: git, gh, fzf, ripgrep, bat, fd, jq, yazi, zoxide, etc.
-- Language runtimes: go, rust, python, php, node (via fnm)
-- Utilities: lazygit, lazydocker, btop, bottom, fastfetch, etc.
-
-### 2. **Homebrew kept for macOS GUI apps only**
-
-Homebrew now only manages:
-
-- Casks (GUI applications): alfred, arc, 1password, obsidian, etc.
-- `mas` (Mac App Store CLI)
-
-### 3. **Platform-specific configurations**
-
-- **macOS**: Uses nix-darwin for system config + home-manager for user config
-- **Linux/WSL**: Uses home-manager standalone for user config
-
 ## Prerequisite: Git (SSH) Access
-
-If you hit “could not read from remote repository” when cloning, set up SSH access with GitHub.
 
 1. Check for an existing key:
 
@@ -93,7 +72,7 @@ darwin-rebuild switch --flake ~/.config/nix-darwin#mac
 darwin-rebuild switch --flake .#mac
 ```
 
-## Fresh macOS Bootstrap
+### Fresh macOS Bootstrap
 
 The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --flake ~/dotfiles/nix-darwin#mac` works. The steps below assume Apple Silicon. For an automated run, execute `./scripts/bootstrap-macos.sh` from this repo—it walks through the same steps and stops if manual intervention is required.
 
@@ -152,15 +131,7 @@ Touch ID (including Apple Watch unlock) is configured automatically via nix-darw
 chsh -s /run/current-system/sw/bin/fish
 ```
 
-### Barebones apps installed on macOS
-
-- **Terminal & windowing**: Ghostty, yabai, skhd.
-- **Browsers & productivity**: Arc, Firefox, Google Chrome, Slack, Discord, Obsidian, Raindrop, Toggl.
-- **System essentials**: 1Password (+ CLI), Alfred, AppCleaner, AltTab, Karabiner Elements, key fonts (Meslo, Victor Mono, SF Mono, Fira Sans).
-
-All CLI tooling (git, gh, fzf, ripgrep, tmux, Docker/Colima, language toolchains, etc.) is installed via nix packages declared in `darwin-configuration.nix` and `home-manager/common.nix`, so once `darwin-rebuild` succeeds the machine is ready for development.
-
-## Linux/WSL
+### Linux/WSL
 
 Use the helper script (assumes repo is cloned to `~/dotfiles`):
 
@@ -202,75 +173,23 @@ The Linux/WSL equivalent of `darwin-rebuild switch --flake .#mac` is `home-manag
 
 ### Common Packages (Both Platforms)
 
-Located in `home-manager/common.nix`:
-
-- All CLI tools and development utilities
-- Shared symlinks for nvim, tmux, fish, starship, etc.
+- `home-manager/common.nix`: User-level packages and dotfiles (installed per-user)
+  - CLI tools and development utilities
+  - Shared symlinks for nvim, tmux, fish, starship, etc.
+- `system/common-packages.nix`: System-level packages (installed system-wide)
+  - Available to all users on macOS and Linux
 
 ### macOS-Specific
 
 Located in `home-manager/darwin.nix` and `darwin-configuration.nix`:
 
-- macOS GUI app paths (Library/Application Support)
-- macOS-only tools: pngpaste, karabiner, yabai, skhd
-- System preferences: dock, finder, keyboard settings
-- Homebrew casks and Mac App Store apps
-
 ### Linux-Specific
 
 Located in `home-manager/linux.nix`:
 
-- Linux-specific paths (.config/Code instead of Library/...)
-- WSL-specific configurations
-- Different home directory path (/home/blancpain)
+### NixOS-Specific
 
-## Adding New Packages
-
-### CLI Tools (Available on Both Platforms)
-
-Add to `home-manager/common.nix`:
-
-```nix
-home.packages = with pkgs; [
-  # ... existing packages
-  newtool
-];
-```
-
-### macOS-Only Tools
-
-Add to `home-manager/darwin.nix`:
-
-```nix
-home.packages = with pkgs; [
-  # ... existing packages
-  macos-only-tool
-];
-```
-
-### Linux-Only Tools
-
-Add to `home-manager/linux.nix`:
-
-```nix
-home.packages = with pkgs; [
-  # ... existing packages
-  linux-only-tool
-];
-```
-
-### macOS GUI Apps
-
-Add to `darwin-configuration.nix` under `homebrew.casks`:
-
-```nix
-homebrew = {
-  casks = [
-    # ... existing casks
-    "new-app"
-  ];
-};
-```
+Located in `linux-configuration.nix` and `networking.nix`:
 
 ## Updating
 
@@ -297,7 +216,6 @@ home-manager switch --flake ~/.config/nix-darwin#blancpain@linux
 3. **Touch ID / Apple Watch**: PAM is configured automatically via nix-darwin (`watchIdAuth` + `pam_reattach`); no manual edits or scripts are required.
 
 4. **WSL Considerations**:
-   - Some tools like yabai, skhd, karabiner won't work on Linux (they're macOS-only)
    - GUI applications should be installed via WSL's preferred method (not included here)
    - Consider using [NixOS-WSL](https://github.com/nix-community/NixOS-WSL) for a more integrated experience
 
@@ -316,6 +234,122 @@ home-manager switch --flake ~/.config/nix-darwin#blancpain@linux
 
 - Run `nix flake update` to refresh package definitions
 - Check if package name is correct: search on [search.nixos.org](https://search.nixos.org/packages)
+
+### Fixing yabai + skhd Accessibility Permissions on macOS (Nix)
+
+This guide documents how to inspect and clean `TCC.db` (macOS Accessibility permissions database) when using **yabai** and **skhd** installed via **Nix**, especially when stale or duplicate `/nix/store` or Homebrew paths exist.
+
+#### 1️⃣ Check existing TCC Accessibility entries
+
+```bash
+sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" \
+"SELECT rowid, client, auth_value
+FROM access
+WHERE service = 'kTCCServiceAccessibility'
+ORDER BY client;"
+```
+
+Interpretation:
+
+- `auth_value = 2` → allowed
+- `auth_value = 0` → denied (stale/not approved)
+- We want only one allowed entry per binary (yabai + skhd)
+
+#### 2️⃣ Determine current binaries via Nix-darwin
+
+```bash
+which yabai
+which skhd
+readlink -f "$(which yabai)"
+readlink -f "$(which skhd)"
+```
+
+The `readlink -f` results show the **actual live binaries**. Those are the entries you must keep and authorize.
+
+#### 3️⃣ Backup the TCC database (critical!)
+
+```bash
+sudo cp "/Library/Application Support/com.apple.TCC/TCC.db" \
+"/Library/Application Support/com.apple.TCC/TCC.db.bak.$(date +%s)"
+```
+
+To restore if needed:
+
+```bash
+sudo cp "/Library/Application Support/com.apple.TCC/TCC.db.bak.TIMESTAMP" \
+"/Library/Application Support/com.apple.TCC/TCC.db"
+sudo reboot
+
+```
+
+#### 4️⃣ Delete stale yabai/skhd entries
+
+Replace the rowids with those that:
+
+- do NOT match the `readlink -f` results
+- are old Homebrew or older Nix-store paths
+- have `auth_value = 0` or outdated path
+
+_Example_:
+
+```bash
+sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" \
+"DELETE FROM access WHERE rowid IN (270,272);"
+```
+
+#### 5️⃣ Enable correct (current) binaries
+
+Update the _correct_ yabai + skhd paths to `auth_value = 2`:
+
+_Example_:
+
+```bash
+sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" \
+"UPDATE access SET auth_value = 2 WHERE rowid IN (274,275);"
+
+```
+
+#### 6️⃣ Verify final state
+
+```bash
+sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" \
+"SELECT rowid, client, auth_value
+FROM access
+WHERE client LIKE '%yabai%' OR client LIKE '%skhd%';"
+```
+
+Expect:
+
+- Exactly _two_ rows: one yabai, one skhd
+- Both `auth_value = 2`
+- Both matching your `readlink -f` paths
+
+Example expected output:
+
+```bash
+274|/nix/store/...yabai|2
+275|/nix/store/...skhd|2
+
+```
+
+#### 7️⃣ Reboot and confirm
+
+After reboot:
+
+- yabai window tiling works
+- skhd keybindings function
+- No duplicate permission entries remain
+- No popups needed — launchd services will run cleanly
+
+#### Notes
+
+| Issue                              | Cause                         | Fix                                 |
+| ---------------------------------- | ----------------------------- | ----------------------------------- |
+| No popup appears for Accessibility | launchd starts apps too early | Force-enable via SQL (Step 5)       |
+| Nix updates create new paths       | store path changed            | Repeat process — takes <1 min       |
+| Homebrew yabai still appears       | Old installation              | Delete TCC row + uninstall Brew pkg |
+
+**Important**: yabai/skhd may not appear in System Settings → Accessibility because they are CLI binaries, not `.app` bundles. This is expected and fine.
 
 ## Resources
 
