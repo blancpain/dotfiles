@@ -7,7 +7,7 @@ usage() {
 Usage: scripts/bootstrap-macos.sh
 
 Automates the "Fresh macOS Bootstrap" steps:
-  1. Ensure Apple Command Line Tools (and Rosetta on Apple Silicon)
+  1. Ensure Apple Command Line Tools
   2. Install Determinate Systems Nix installer
   3. Install Homebrew (Apple Silicon default path)
   4. Install nix-darwin via sudo nix run ... --flake (using this repo)
@@ -53,22 +53,6 @@ ensure_clt() {
   info "Command Line Tools not found; launching installer UI."
   xcode-select --install >/dev/null 2>&1 || true
   error "Command Line Tools installation must finish before continuing. Re-run this script afterward."
-}
-
-ensure_rosetta() {
-  local arch
-  arch=$(uname -m)
-  if [[ $arch != "arm64" ]]; then
-    info "Rosetta not required on $arch."
-    return
-  fi
-
-  info "Ensuring Rosetta 2 is installed (sudo required)."
-  if sudo /usr/sbin/softwareupdate --install-rosetta --agree-to-license >/dev/null 2>&1; then
-    info "Rosetta 2 is installed."
-  else
-    error "Failed to install Rosetta 2."
-  fi
 }
 
 source_nix_profile() {
@@ -138,7 +122,6 @@ set_default_shell() {
 
 main() {
   ensure_clt
-  ensure_rosetta
   source_nix_profile
   ensure_nix
   ensure_homebrew

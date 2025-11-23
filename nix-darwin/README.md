@@ -87,7 +87,6 @@ The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --f
 
    ```bash
    xcode-select --install
-   softwareupdate --install-rosetta --agree-to-license # Apple Silicon only
    ```
 
 3. **Install multi-user Nix (Determinate Systems installer)**
