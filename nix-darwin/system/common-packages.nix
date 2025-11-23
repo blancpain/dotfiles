@@ -32,7 +32,6 @@ with pkgs;
   jq
   lazydocker
   lazygit
-  llvmPackages_latest.clang
   luajitPackages.lpeg
   mermaid-cli
   ncurses
