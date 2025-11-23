@@ -13,14 +13,11 @@ with pkgs;
   docker
   fastfetch
   fd
-  ffmpegthumbnailer
   fish
-  flyctl
   fnm
   fzf
   gdu
   gh
-  gifsicle
   git
   ghostscript
   gnused
