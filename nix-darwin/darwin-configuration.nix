@@ -81,7 +81,6 @@ in
     ];
     casks = [
       "alfred"
-      "arc"
       "1password-cli"
       "1password"
       "obsidian"

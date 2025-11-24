@@ -36,11 +36,6 @@ set -gx VISUAL nvim
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x OP_BIOMETRIC_UNLOCK_ENABLED true
 
-# Set browser only on macOS
-if test $IS_MACOS -eq 1
-    set -gx BROWSER "/Applications/Arc.app/Contents/MacOS/Arc"
-end
-
 # ==============================================================================
 # PATH CONFIGURATION
 # ==============================================================================
