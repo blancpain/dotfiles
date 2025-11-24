@@ -85,7 +85,6 @@ in
       "1password-cli"
       "1password"
       "obsidian"
-      "claude-code"
       "discord"
       "spacelauncher"
       "slack"
