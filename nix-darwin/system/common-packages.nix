@@ -57,6 +57,7 @@ with pkgs;
   wget
   yazi
   yq
+  uv
   zoxide
   zellij
 ]
