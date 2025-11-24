@@ -51,6 +51,7 @@ if test $IS_MACOS -eq 1
     fish_add_path /opt/homebrew/opt/sqlite/bin
     fish_add_path /Applications/Postgres.app/Contents/Versions/15/bin
     fish_add_path $HOME/.codeium/windsurf/bin
+    fish_add_path $HOME/.local/bin
 end
 
 # Common paths (both macOS and Linux)
