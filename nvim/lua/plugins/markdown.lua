@@ -24,5 +24,17 @@ return {
       -- Directory to search for markdown task files
       task_dir = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/obsidian",
     },
+    keys = {
+      {
+        "<leader>Nd",
+        "<cmd>TaskList done<cr>",
+        desc = "Completed Tasks",
+      },
+      {
+        "<leader>Nn",
+        "<cmd>TaskList todo<cr>",
+        desc = "Pending Tasks",
+      },
+    },
   },
 }
