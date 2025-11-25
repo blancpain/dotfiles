@@ -85,6 +85,7 @@ in
       "1password"
       "obsidian"
       "discord"
+      "google-chrome"
       "spacelauncher"
       "slack"
       "chatgpt"
