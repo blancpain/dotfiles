@@ -21,6 +21,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "lir",
     "DressingSelect",
     "tsplayground",
+    "fugitive",
     "",
   },
   callback = function()

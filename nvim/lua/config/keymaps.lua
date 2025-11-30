@@ -27,7 +27,10 @@ vim.keymap.set("n", "<leader>q", function()
   Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
 
--- maximmize and zen mode
+-- fugitive
+vim.keymap.set("n", "<leader>G", "<cmd>G<cr><esc>", { desc = "Open Fugitive" })
+
+-- maximize and zen mode
 Snacks.toggle.zoom():map("<leader>m"):map("<leader>uZ")
 
 -- better navigation and search;
