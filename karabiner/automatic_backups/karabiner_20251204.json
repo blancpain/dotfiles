@@ -190,15 +190,6 @@
                             "to": [{ "key_code": "right_option" }]
                         }
                     ]
-                },
-                {
-                    "identifiers": {
-                        "device_address": "e7-7a-32-5b-13-41",
-                        "is_keyboard": true,
-                        "is_pointing_device": true
-                    },
-                    "ignore": false,
-                    "treat_as_built_in_keyboard": true
                 }
             ],
             "name": "Default profile",
