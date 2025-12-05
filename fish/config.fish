@@ -129,15 +129,18 @@ abbr vi nvim
 abbr v nvim
 abbr p python3
 abbr y yazi
-abbr g lazygit
 abbr d lazydocker
+abbr du nix_darwin_update
 abbr tn "tmux new -s (pwd | sed 's/.*\///g')"
+# git
+abbr g lazygit
 abbr gc git clone
 abbr gp git pull
 abbr gP git push
-abbr car cargo run
-abbr cab cargo build
-abbr du nix_darwin_update
+# rust
+abbr cr cargo run
+abbr cb cargo build
+abbr ct cargo test
 
 # Platform-specific abbreviations
 if test $IS_MACOS -eq 1
