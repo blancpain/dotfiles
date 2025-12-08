@@ -199,44 +199,6 @@
                     },
                     "ignore": false,
                     "treat_as_built_in_keyboard": true
-                },
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 668,
-                        "vendor_id": 76
-                    },
-                    "simple_modifications": [
-                        {
-                            "from": { "apple_vendor_top_case_key_code": "keyboard_fn" },
-                            "to": [{ "key_code": "left_command" }]
-                        },
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_control" }]
-                        },
-                        {
-                            "from": { "key_code": "left_control" },
-                            "to": [{ "key_code": "vk_none" }]
-                        }
-                    ]
-                },
-                {
-                    "identifiers": { "is_keyboard": true },
-                    "simple_modifications": [
-                        {
-                            "from": { "apple_vendor_top_case_key_code": "keyboard_fn" },
-                            "to": [{ "key_code": "left_command" }]
-                        },
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_control" }]
-                        },
-                        {
-                            "from": { "key_code": "left_control" },
-                            "to": [{ "key_code": "vk_none" }]
-                        }
-                    ]
                 }
             ],
             "name": "Default profile",
