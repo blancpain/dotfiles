@@ -94,12 +94,12 @@ ensure_homebrew() {
 
 install_nix_darwin() {
   info "Installing/updating nix-darwin via flakes (sudo nix run ...)."
-  sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake "$REPO_ROOT"
+  sudo -H nix run nix-darwin/master#darwin-rebuild -- switch --flake "$REPO_ROOT#mac"
 }
 
 apply_flake() {
   info "Applying darwin configuration via darwin-rebuild switch --flake."
-  darwin-rebuild switch --flake "$REPO_ROOT"
+  darwin-rebuild switch --flake "$REPO_ROOT#mac"
 }
 
 set_default_shell() {
