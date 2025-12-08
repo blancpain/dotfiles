@@ -99,7 +99,7 @@ install_nix_darwin() {
 
 apply_flake() {
   info "Applying darwin configuration via darwin-rebuild switch --flake."
-  darwin-rebuild switch --flake "$REPO_ROOT#mac"
+  sudo darwin-rebuild switch --flake "$REPO_ROOT#mac"
 }
 
 set_default_shell() {
