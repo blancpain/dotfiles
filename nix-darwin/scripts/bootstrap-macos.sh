@@ -120,6 +120,12 @@ set_default_shell() {
   info "Default shell changed to fish. Open a new terminal to use it."
 }
 
+configure_macos_defaults() {
+  info "Configuring macOS defaults."
+  defaults write kCFPreferencesAnyApplication TSMLanguageIndicatorEnabled 0
+  info "Disabled input source indicator."
+}
+
 main() {
   ensure_clt
   source_nix_profile
@@ -128,6 +134,7 @@ main() {
   install_nix_darwin
   apply_flake
   set_default_shell
+  configure_macos_defaults
   info "Bootstrap complete."
 }
 
