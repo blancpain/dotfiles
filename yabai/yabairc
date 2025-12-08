@@ -56,6 +56,7 @@ function yabai_rule {
 yabai_rule app="^Cursor$" space=2 label="assign-cursor" sticky=off
 yabai_rule app="^Slack$" space=3 label="assign-slack" sticky=off
 yabai_rule app="^Notes$" space=4 label="assign-notes" sticky=off
+yabai_rule app="^Notion$" space=4 label="assign-notion" sticky=off
 yabai_rule app="^Reminders$" space=5 label="assign-reminders" sticky=off manage=on
 yabai_rule app="^Raindrop.io$" space=6 label="assign-raindrop" sticky=off
 yabai_rule app="^Spark$" space=6 label="assign-spark" sticky=off
