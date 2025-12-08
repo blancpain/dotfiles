@@ -36,8 +36,9 @@ in
       "${config.system.primaryUser} ALL=(root) NOPASSWD: sha256:${hash} ${yabaiPath} --load-sa";
   };
 
-  # Necessary for using flakes on this system.
-  nix.settings.experimental-features = "nix-command flakes";
+  # Disable nix-darwin's Nix management (using Determinate Systems installer)
+  # The Determinate installer handles Nix configuration including experimental-features
+  nix.enable = false;
 
   # Set Git commit hash for darwin-version.
   system.configurationRevision = null;
