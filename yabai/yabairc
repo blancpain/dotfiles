@@ -51,8 +51,6 @@ function yabai_rule {
 }
 
 # automation rules
-# yabai_rule app="^Arc$" space=1 label="assign-arc" sticky=off
-# yabai_rule app="^Ghostty$" space=2 label="assign-ghostty" sticky=off
 yabai_rule app="^Cursor$" space=2 label="assign-cursor" sticky=off
 yabai_rule app="^Slack$" space=3 label="assign-slack" sticky=off
 yabai_rule app="^Notes$" space=4 label="assign-notes" sticky=off
@@ -62,7 +60,6 @@ yabai_rule app="^Reminders$" space=6 label="assign-reminders" sticky=off manage=
 yabai_rule app="^Raindrop.io$" space=6 label="assign-raindrop" sticky=off
 yabai_rule app="^Discord$" space=7 label="assign-discord" sticky=off
 yabai_rule app="^ChatGPT$" space=8 label="assign-chatgpt" sticky=off
-# yabai_rule app="^Claude$" space=8 label="assign-claude" sticky=off
 yabai_rule app="^Trader Workstation$" space=9 label="assign-tws" sticky=off
 yabai_rule app="^Spotify$" space=10 label="assign-spotify" sticky=off
 
