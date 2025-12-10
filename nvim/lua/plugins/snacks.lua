@@ -15,6 +15,11 @@ return {
         position = "float",
         border = true,
       },
+      lazygit = {
+        height = 0.9,
+        width = 0.9,
+        border = false,
+      },
     },
     indent = { enabled = false },
     notifier = { enabled = false },
