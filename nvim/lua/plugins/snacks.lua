@@ -5,6 +5,17 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
+    styles = {
+      float = {
+        position = "float",
+        height = 0.7,
+        width = 0.7,
+      },
+      terminal = {
+        position = "float",
+        border = true,
+      },
+    },
     indent = { enabled = false },
     notifier = { enabled = false },
     image = { enabled = true },
@@ -25,11 +36,11 @@ return {
       },
     },
     zen = {
-      enabled = false,
+      enabled = true,
       backdrop = 0.95,
       toggles = {
         dim = false,
-        git_signs = false,
+        git_signs = true,
         mini_diff_signs = false,
         -- diagnostics = false,
         -- inlay_hints = false,
