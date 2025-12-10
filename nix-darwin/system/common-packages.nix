@@ -35,7 +35,7 @@ with pkgs;
   ngrok
   nil
   nixfmt-rfc-style
-  perl538Packages.Appcpanminus
+  perlPackages.Appcpanminus
   pgcli
   php
   pipx
