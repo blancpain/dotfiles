@@ -41,7 +41,7 @@ return {
       },
     },
     zen = {
-      enabled = true,
+      enabled = false,
       backdrop = 0.95,
       toggles = {
         dim = false,
