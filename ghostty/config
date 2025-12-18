@@ -8,10 +8,10 @@ bold-is-bright = true
 # font-thicken = true
 
 # theme and colors
-# theme = eldritch
+theme = eldritch
 # theme = dracula
 # theme = Catppuccin Macchiato
-theme = Rose Pine Moon
+# theme = Rose Pine Moon
 # theme = TokyoNight Moon
 # cursor-color = #37f499
 # cursor-color = #f6c177
