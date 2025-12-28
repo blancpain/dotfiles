@@ -104,6 +104,7 @@ in
       "font-iosevka-nerd-font"
       "font-jetbrains-mono-nerd-font"
       "font-hack-nerd-font"
+      "raycast"
     ];
     brews = [
       "mas" # Mac App Store CLI
