@@ -81,7 +81,7 @@ in
     taps = [
     ];
     casks = [
-      "alfred"
+      # "alfred"
       "1password-cli"
       "1password"
       "obsidian"
