@@ -54,7 +54,7 @@ function yabai_rule {
 yabai_rule app="^Slack$" space=3 label="assign-slack" sticky=off
 yabai_rule app="^Notes$" space=4 label="assign-notes" sticky=off
 yabai_rule app="^Notion$" space=4 label="assign-notion" sticky=off
-yabai_rule app="^Gmail$" space=5 label="assign-gmail" sticky=off
+yabai_rule app="^Notion Mail$" space=5 label="assign-notion-mail" sticky=off
 yabai_rule app="^Notion Calendar$" space=5 label="assign-notion-cal" sticky=off
 yabai_rule app="^Reminders$" space=6 label="assign-reminders" sticky=off manage=on
 yabai_rule app="^Raindrop.io$" space=6 label="assign-raindrop" sticky=off
