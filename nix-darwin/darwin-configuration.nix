@@ -114,6 +114,7 @@ in
       "Unzip - RAR ZIP 7Z Unarchiver" = 1537056818;
       "Gifski" = 1351639930;
       "Toggl Track" = 1291898086;
+      "Klack" = 6446206067;
     };
   };
 }
