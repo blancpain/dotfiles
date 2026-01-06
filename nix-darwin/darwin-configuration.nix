@@ -68,10 +68,12 @@ in
   system.defaults = {
     dock.autohide = true;
     finder.AppleShowAllExtensions = true;
-    finder.FXPreferredViewStyle = "clmv";
-    NSGlobalDomain.KeyRepeat = 1;
-    NSGlobalDomain.InitialKeyRepeat = 14;
-    NSGlobalDomain.AppleFontSmoothing = 0;
+    NSGlobalDomain = {
+      KeyRepeat = 1;
+      InitialKeyRepeat = 14;
+      AppleFontSmoothing = 0;
+      ApplePressAndHoldEnabled = false; # disables accent menu, enables key repeat
+    };
   };
 
   # NOTE: can also add an onActivation func to zap all brews/casks that are not in the list
