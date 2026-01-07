@@ -66,7 +66,6 @@ yabai_rule app="^Spotify$" space=10 label="assign-spotify" sticky=off
 # turn off yabai for these apps
 yabai_rule app="^System Settings$" manage=off
 yabai_rule app="^Calculator$" manage=off
-yabai_rule app="^Alfred Preferences$" manage=off
 yabai_rule app="^Raycast$" manage=off
 yabai_rule app="^AlDente$" manage=off
 yabai_rule app="^Toggl Track$" manage=off
