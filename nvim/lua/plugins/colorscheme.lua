@@ -222,9 +222,41 @@ return {
     end,
   },
   {
+    "serhez/teide.nvim",
+    lazy = false,
+    priority = 1000,
+
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require("teide").setup({
+        style = "darker",
+        transparent = true,
+        styles = {
+          -- Style to be applied to different syntax groups
+          -- Value is any valid attr-list value for `:help nvim_set_hl`
+          comments = { italic = true },
+          keywords = { italic = true },
+          functions = {},
+          variables = {},
+          -- Background styles. Can be "dark", "transparent" or "normal"
+          sidebars = "transparent",
+          floats = "transparent",
+        },
+        on_colors = function(colors)
+          colors.bg_statusline = colors.none -- transparent lualine + top line
+        end,
+        on_highlights = function(hl, c)
+          hl.CursorLine = { bg = "none" }
+          hl.DiagnosticUnnecessary = { fg = "#918fbb" } -- unused variables etc
+          hl.LspInlayHint = { fg = "#918fbb", bg = "none" }
+        end,
+      })
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine",
+      colorscheme = "teide",
     },
   },
 }
