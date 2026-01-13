@@ -52,6 +52,7 @@ with pkgs;
   tectonic
   tmux
   tree
+  terraform
   unar
   wimlib
   wget
