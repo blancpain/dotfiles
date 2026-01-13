@@ -2,6 +2,7 @@
   "extras": [
     "lazyvim.plugins.extras.ai.sidekick",
     "lazyvim.plugins.extras.coding.mini-comment",
+    "lazyvim.plugins.extras.lang.terraform",
     "lazyvim.plugins.extras.util.rest"
   ],
   "install_version": 7,
