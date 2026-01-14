@@ -11,3 +11,6 @@ vim.g.snacks_animate = false
 
 -- default picker
 vim.g.lazyvim_picker = "snacks"
+
+-- python
+vim.g.lazyvim_python_lsp = "basedpyright"
