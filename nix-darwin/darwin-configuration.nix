@@ -55,7 +55,7 @@ in
 
   # touch ID for sudo
   security.pam.services.sudo_local.touchIdAuth = true;
-  security.pam.services.sudo_local.watchIdAuth = true;
+  # security.pam.services.sudo_local.watchIdAuth = true;  # TODO: re-enable when Swift cache is fixed upstream (pam-watchid requires Swift)
 
   users.users.blancpain = {
     home = "/Users/blancpain";
