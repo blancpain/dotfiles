@@ -127,7 +127,6 @@ end
 abbr vim nvim
 abbr vi nvim
 abbr v nvim
-abbr p python3
 abbr y yazi
 abbr d lazydocker
 abbr du nix_darwin_update
@@ -141,6 +140,10 @@ abbr gP git push
 abbr cr cargo run
 abbr cb cargo build
 abbr ct cargo test
+# python 
+abbr p python3
+abbr ps uv venv
+abbr pv source .venv/bin/activate.fish
 
 # Platform-specific abbreviations
 if test $IS_MACOS -eq 1
