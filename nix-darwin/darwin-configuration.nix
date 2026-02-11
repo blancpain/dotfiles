@@ -66,13 +66,72 @@ in
 
   # Set system-wide defaults for certain options.
   system.defaults = {
-    dock.autohide = true;
-    finder.AppleShowAllExtensions = true;
+
+    dock = {
+      autohide = true; # auto-hide the Dock
+      largesize = 128; # icon size when magnified
+      magnification = true; # enlarge icons on hover
+      mru-spaces = false; # don't auto-rearrange Spaces based on recent use
+      orientation = "bottom"; # Dock position on screen
+      show-recents = false; # hide recent apps section in Dock
+      # Hot corners (1=disabled, 5=Start Screen Saver)
+      wvous-bl-corner = 1; # bottom-left: disabled
+      wvous-br-corner = 5; # bottom-right: start screen saver
+      wvous-tl-corner = 1; # top-left: disabled
+      wvous-tr-corner = 1; # top-right: disabled
+    };
+
+    finder = {
+      AppleShowAllExtensions = true; # always show file extensions
+      ShowPathbar = true; # show path breadcrumbs at bottom of Finder
+      ShowStatusBar = false; # hide status bar at bottom of Finder
+    };
+
+    screencapture.location = "~/Documents/Screenshots"; # save screenshots here
+
+    # Stage Manager disabled, tiling disabled (using yabai)
+    WindowManager = {
+      GloballyEnabled = false; # disable Stage Manager
+      AppWindowGroupingBehavior = true; # group windows by app when showing
+      AutoHide = false; # don't auto-hide Stage Manager strip
+      EnableTiledWindowMargins = false; # no margins when tiling windows
+      EnableTilingByEdgeDrag = false; # disable drag-to-edge tiling
+      EnableTilingOptionAccelerator = false; # disable Option-key tiling accelerator
+      EnableTopTilingByEdgeDrag = false; # disable drag-to-top-edge fullscreen
+      HideDesktop = true; # hide desktop items when clicking wallpaper
+      StageManagerHideWidgets = false; # don't hide widgets in Stage Manager
+      StandardHideWidgets = true; # hide widgets when not on desktop
+    };
+
+    trackpad = {
+      Clicking = true; # tap to click
+    };
+
+    universalaccess = {
+      reduceMotion = true; # reduce UI animations
+      closeViewScrollWheelToggle = true; # Ctrl+scroll to zoom screen
+    };
+
     NSGlobalDomain = {
-      KeyRepeat = 1;
-      InitialKeyRepeat = 14;
-      AppleFontSmoothing = 0;
+      # Keyboard
+      KeyRepeat = 1; # key repeat rate (lower = faster)
+      InitialKeyRepeat = 14; # delay before key repeat starts (lower = shorter)
       ApplePressAndHoldEnabled = false; # disables accent menu, enables key repeat
+      "com.apple.keyboard.fnState" = false; # Fn key shows special keys, not F1-F12
+      # Appearance
+      AppleInterfaceStyle = "Dark"; # dark mode
+      AppleFontSmoothing = 0; # disable sub-pixel font smoothing
+      # Scrolling & navigation
+      "com.apple.swipescrolldirection" = false; # non-natural (traditional) scrolling
+    };
+
+    # Settings without direct nix-darwin typed options
+    CustomUserPreferences = {
+      NSGlobalDomain = {
+        AppleKeyboardUIMode = 1; # keyboard access for dialogs (bitmask: 1=dialogs, 2=all controls, 3=both)
+        "com.apple.mouse.scaling" = 1.5; # mouse tracking speed
+        "com.apple.scrollwheel.scaling" = 1; # scroll wheel speed
+      };
     };
   };
 
@@ -89,6 +148,7 @@ in
       "obsidian"
       "discord"
       "google-chrome"
+      "hammerspoon"
       "spacelauncher"
       "slack"
       "chatgpt"

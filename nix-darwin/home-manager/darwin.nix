@@ -19,6 +19,7 @@ in
   # macOS-specific symlinks
   home.file = {
     ".config/karabiner".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/karabiner";
+    ".hammerspoon".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/hammerspoon";
     ".config/skhd".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/skhd";
     ".config/yabai".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/yabai";
     ".config/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/ghostty";
