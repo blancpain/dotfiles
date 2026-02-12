@@ -149,7 +149,7 @@ abbr ps source .venv/bin/activate.fish
 if test $IS_MACOS -eq 1
     abbr c "pwd | pbcopy"
     abbr bu "brew update && brew upgrade"
-    abbr dr "sudo darwin-rebuild switch --flake ~/dotfiles/nix-darwin#mac"
+    abbr dr "sudo darwin-rebuild switch --impure --flake ~/dotfiles/nix-darwin#mac"
 else
     # Linux clipboard abbreviation
     if test $HAS_XCLIP -eq 1

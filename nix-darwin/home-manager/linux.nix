@@ -2,12 +2,12 @@
   config,
   pkgs,
   lib,
+  username,
   ...
 }:
 
 let
-  # HOME is fixed to /home/blancpain for Linux to keep managed paths inside $HOME.
-  dotfilesPath = "/home/blancpain/dotfiles";
+  dotfilesPath = "/home/${username}/dotfiles";
   # Reuse the shared system package list here because the Linux flake output only
   # applies home-manager (no system module). For NixOS, you'd wire
   # nix-darwin/linux-configuration.nix into a nixosConfiguration instead.
@@ -18,8 +18,8 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  home.username = "blancpain";
-  home.homeDirectory = lib.mkForce "/home/blancpain";
+  home.username = username;
+  home.homeDirectory = lib.mkForce "/home/${username}";
 
   home.packages = commonSystemPackages;
 

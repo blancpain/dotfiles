@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  username,
   ...
 }:
 
@@ -43,7 +44,7 @@ in
   # Set Git commit hash for darwin-version.
   system.configurationRevision = null;
 
-  system.primaryUser = "blancpain";
+  system.primaryUser = username;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
@@ -57,8 +58,8 @@ in
   security.pam.services.sudo_local.touchIdAuth = true;
   # security.pam.services.sudo_local.watchIdAuth = true;  # TODO: re-enable when Swift cache is fixed upstream (pam-watchid requires Swift)
 
-  users.users.blancpain = {
-    home = "/Users/blancpain";
+  users.users.${username} = {
+    home = "/Users/${username}";
   };
 
   # Add fish as a login shell
@@ -105,11 +106,6 @@ in
 
     trackpad = {
       Clicking = true; # tap to click
-    };
-
-    universalaccess = {
-      reduceMotion = true; # reduce UI animations
-      closeViewScrollWheelToggle = true; # Ctrl+scroll to zoom screen
     };
 
     NSGlobalDomain = {

@@ -2,12 +2,12 @@
   pkgs,
   config,
   lib,
+  username,
   ...
 }:
 
 let
   commonSystemPackages = import ./system/common-packages.nix { inherit pkgs; };
-  username = "blancpain";
   homeDir = "/home/${username}";
 in
 

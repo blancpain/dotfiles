@@ -66,15 +66,15 @@ nix-darwin/
 
 ```bash
 # Apply configuration on macOS
-darwin-rebuild switch --flake ~/.config/nix-darwin#mac
+darwin-rebuild switch --impure --flake ~/.config/nix-darwin#mac
 
 # Or if you're in the nix-darwin directory
-darwin-rebuild switch --flake .#mac
+darwin-rebuild switch --impure --flake .#mac
 ```
 
 ### Fresh macOS Bootstrap
 
-The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --flake ~/dotfiles/nix-darwin#mac` works. The steps below assume Apple Silicon. For an automated run, execute `./scripts/bootstrap-macos.sh` from this repo—it walks through the same steps and stops if manual intervention is required.
+The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --impure --flake ~/dotfiles/nix-darwin#mac` works. The steps below assume Apple Silicon. For an automated run, execute `./scripts/bootstrap-macos.sh` from this repo—it walks through the same steps and stops if manual intervention is required.
 
 1. **Clone this repository to ~/dotfiles**
 
@@ -108,7 +108,7 @@ The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --f
    Follow the [nix-darwin getting-started guide](https://github.com/nix-darwin/nix-darwin?tab=readme-ov-file#getting-started-from-scratch) if you need to bootstrap `/etc/nix-darwin` (create the directory, `nix flake init -t ...`, set `nixpkgs.hostPlatform`, etc.). Once the flake exists (repo cloned) install or update nix-darwin via:
 
    ```bash
-   sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/dotfiles/nix-darwin#mac
+   sudo nix run nix-darwin/master#darwin-rebuild -- switch --impure --flake ~/dotfiles/nix-darwin#mac
    ```
 
    The command above will fail if the flake does not exist yet.
@@ -119,7 +119,7 @@ The goal is to get a brand-new Mac to the point where `darwin-rebuild switch --f
 
    ```bash
    cd ~/dotfiles/nix-darwin
-   darwin-rebuild switch --flake .#mac
+   darwin-rebuild switch --impure --flake .#mac
    ```
 
 Touch ID (including Apple Watch unlock) is configured automatically via nix-darwin; no manual PAM edits or helper scripts are required.
@@ -143,8 +143,8 @@ What the script does:
 
 - Installs Nix via the Determinate Systems installer if missing
 - Runs home-manager with the right flake attribute (passes `--extra-experimental-features "nix-command flakes"` and `-b backup` for safe backups):
-  - `blancpain@linux` for `x86_64`
-  - `blancpain@linux-aarch64` for `aarch64`
+  - `$USER@linux` for `x86_64`
+  - `$USER@linux-aarch64` for `aarch64`
     After `home-manager switch`, your `~/.config/nix` will be symlinked from this repo (via `home-manager/common.nix`), so we don't touch `nix.conf` during bootstrap.
 
 Note: the Linux outputs in this flake are home-manager-only (for WSL/regular Linux). `linux-configuration.nix` is a reference system module; to use it you’d need to add a `nixosConfigurations` entry and rebuild with `nixos-rebuild`. All CLI tools (including fish) are pulled in via home-manager for WSL/Linux.
@@ -158,10 +158,10 @@ source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
 # Apply configuration (x86_64)
 cd ~/dotfiles/nix-darwin
-nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake .#blancpain@linux
+nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --impure --flake .#$USER@linux
 
 # For ARM (aarch64)
-nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake .#blancpain@linux-aarch64
+nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --impure --flake .#$USER@linux-aarch64
 ```
 
 Optional (once per machine): add `experimental-features = nix-command flakes` to `~/.config/nix/nix.conf` so you don't need to pass `--extra-experimental-features` manually.
@@ -197,20 +197,17 @@ Located in `linux-configuration.nix` and `networking.nix`:
 nix flake update
 
 # macOS: Apply updates
-darwin-rebuild switch --flake ~/.config/nix-darwin#mac
+darwin-rebuild switch --impure --flake ~/.config/nix-darwin#mac
 
 # Linux: Apply updates
-home-manager switch --flake ~/.config/nix-darwin#blancpain@linux
+home-manager switch --impure --flake ~/.config/nix-darwin#$USER@linux
 ```
 
 ## Important Notes
 
 1. **Dotfiles Path**: Update the `dotfilesPath` variable in both `common.nix` and `linux.nix` if your dotfiles are in a different location
 
-2. **Username**: The username `blancpain` is hardcoded. If you need to change it:
-   - Update in `darwin-configuration.nix`
-   - Update in all `home-manager/*.nix` files
-   - Update the flake.nix homeConfigurations
+2. **Username**: The username is resolved dynamically from `$USER` / `$SUDO_USER` at evaluation time via `builtins.getEnv` in `flake.nix`. This requires the `--impure` flag on all rebuild/switch commands. Falls back to `blancpain` if neither env var is set.
 
 3. **Touch ID / Apple Watch**: PAM is configured automatically via nix-darwin (`watchIdAuth` + `pam_reattach`); no manual edits or scripts are required.
 

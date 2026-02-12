@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  username,
   ...
 }:
 
@@ -12,7 +13,7 @@ let
     if pkgs.stdenv.isDarwin then "/Users/${config.home.username}" else "/home/${config.home.username}";
 in
 {
-  home.username = "blancpain";
+  home.username = username;
   home.homeDirectory = lib.mkDefault baseHomeDir;
   home.stateVersion = "25.05";
 

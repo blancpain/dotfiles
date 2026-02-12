@@ -79,8 +79,8 @@ detect_home_manager_attr() {
   local arch
   arch=$(uname -m)
   case "$arch" in
-    x86_64) echo "blancpain@linux" ;;
-    aarch64) echo "blancpain@linux-aarch64" ;;
+    x86_64) echo "$USER@linux" ;;
+    aarch64) echo "$USER@linux-aarch64" ;;
     *)
       error "Unsupported architecture: $arch. Add a matching homeConfigurations attr to flake.nix."
       ;;
@@ -90,7 +90,7 @@ detect_home_manager_attr() {
 apply_home_manager() {
   local hm_attr="$1"
   info "Applying home-manager flake attribute: $hm_attr"
-  nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake "${REPO_ROOT}#${hm_attr}"
+  nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --impure --flake "${REPO_ROOT}#${hm_attr}"
 }
 
 setup_fish_shell() {
