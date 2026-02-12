@@ -50,19 +50,22 @@ function yabai_rule {
   yabai -m rule --apply "$@"
 }
 
+# NOTE: below (plus some of the above settings related to transparency)
+# require SIP to be disabled so have commented out for now
+
 # automation rules
-yabai_rule app="^Slack$" space=3 label="assign-slack" sticky=off
-yabai_rule app="^Notes$" space=4 label="assign-notes" sticky=off
-yabai_rule app="^Notion$" space=4 label="assign-notion" sticky=off
-yabai_rule app="^Notion Mail$" space=5 label="assign-notion-mail" sticky=off
-yabai_rule app="^Notion Calendar$" space=5 label="assign-notion-cal" sticky=off
-yabai_rule app="^Reminders$" space=6 label="assign-reminders" sticky=off manage=on
-yabai_rule app="^Raindrop.io$" space=6 label="assign-raindrop" sticky=off
-yabai_rule app="^Obsidian$" space=7 label="assign-obsidian" sticky=off
-yabai_rule app="^ChatGPT$" space=8 label="assign-chatgpt" sticky=off
-yabai_rule app="^Claude$" space=8 label="assign-claude" sticky=off
-yabai_rule app="^Discord$" space=9 label="assign-discord" sticky=off
-yabai_rule app="^Spotify$" space=10 label="assign-spotify" sticky=off
+# yabai_rule app="^Slack$" space=3 label="assign-slack" sticky=off
+# yabai_rule app="^Notes$" space=4 label="assign-notes" sticky=off
+# yabai_rule app="^Notion$" space=4 label="assign-notion" sticky=off
+# yabai_rule app="^Notion Mail$" space=5 label="assign-notion-mail" sticky=off
+# yabai_rule app="^Notion Calendar$" space=5 label="assign-notion-cal" sticky=off
+# yabai_rule app="^Reminders$" space=6 label="assign-reminders" sticky=off manage=on
+# yabai_rule app="^Raindrop.io$" space=6 label="assign-raindrop" sticky=off
+# yabai_rule app="^Obsidian$" space=7 label="assign-obsidian" sticky=off
+# yabai_rule app="^ChatGPT$" space=8 label="assign-chatgpt" sticky=off
+# yabai_rule app="^Claude$" space=8 label="assign-claude" sticky=off
+# yabai_rule app="^Discord$" space=9 label="assign-discord" sticky=off
+# yabai_rule app="^Spotify$" space=10 label="assign-spotify" sticky=off
 
 # turn off yabai for these apps
 yabai_rule app="^System Settings$" manage=off
