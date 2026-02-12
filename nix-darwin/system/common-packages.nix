@@ -34,7 +34,7 @@ with pkgs;
   ncurses
   ngrok
   nil
-  nixfmt-rfc-style
+  nixfmt
   pandoc
   perlPackages.Appcpanminus
   pgcli
