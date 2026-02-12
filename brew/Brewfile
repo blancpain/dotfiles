@@ -1,0 +1,128 @@
+# Taps
+tap "koekeishiya/formulae"      # yabai, skhd
+tap "supabase/tap"              # supabase CLI
+
+# ------------------------------------------------------------------
+# CLI tools 
+# ------------------------------------------------------------------
+brew "automake"
+brew "bat"
+brew "bottom"
+brew "btop"
+brew "carapace"
+brew "cloc"
+brew "cloudflared"
+brew "cpanminus"            # perlPackages.Appcpanminus in nix
+brew "curl"
+brew "docker"
+brew "exercism"
+brew "fastfetch"
+brew "fontconfig"
+brew "fd"
+brew "fish"
+brew "fnm"
+brew "fzf"
+brew "gdu"
+brew "gh"
+brew "ghostscript"
+brew "git"
+brew "gnu-sed"              # gnused in nix
+brew "go"
+brew "hub"
+brew "httpie"
+brew "imagemagick"
+brew "jq"
+brew "lazydocker"
+brew "lazygit"
+brew "make"                 # gnumake in nix
+brew "ncurses"
+brew "pandoc"
+brew "pgcli"
+brew "php"
+brew "pipx"
+brew "pkgconf"
+brew "pngpaste"
+brew "poppler"              # poppler-utils in nix
+brew "python@3"
+brew "rabbitmq"
+brew "redis"
+brew "ripgrep"
+brew "rustup"
+brew "sesh"
+brew "starship"
+brew "supabase/tap/supabase"
+brew "tectonic"
+brew "terraform"
+brew "tmux"
+brew "tree"
+brew "unar"
+brew "uv"
+brew "webp"
+brew "wget"
+brew "wimlib"
+brew "yazi"
+brew "yq"
+brew "zellij"
+brew "zoxide"
+
+# ------------------------------------------------------------------
+# macOS-specific CLI
+# ------------------------------------------------------------------
+brew "colima"
+brew "mas"
+brew "bob"
+# brew "pam-reattach" #not available on corporate/BYOD machines
+brew "koekeishiya/formulae/skhd"
+brew "koekeishiya/formulae/yabai"
+
+# ------------------------------------------------------------------
+# Casks (GUI applications)
+# ------------------------------------------------------------------
+cask "1password"
+cask "1password-cli"
+cask "appcleaner"
+cask "chatgpt"
+cask "discord"
+cask "ghostty"
+cask "google-chrome"
+cask "hammerspoon"
+cask "karabiner-elements"
+cask "mongodb-compass"
+cask "ngrok"
+cask "notion"
+cask "notion-calendar"
+cask "notion-mail"
+cask "obsidian"
+cask "postman"
+cask "raindropio"
+cask "raycast"
+cask "redis-insight"
+cask "slack"
+cask "spacelauncher"
+cask "spotify"
+
+# Fonts
+cask "font-cascadia-code-nf"
+cask "font-fira-code-nerd-font"
+cask "font-hack-nerd-font"
+cask "font-iosevka-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+
+# ------------------------------------------------------------------
+# Mac App Store
+# ------------------------------------------------------------------
+mas "1Password for Safari", id: 1569813296
+mas "Color Picker", id: 1545870783
+mas "Flow", id: 1423210932
+mas "Gifski", id: 1351639930
+mas "Keynote", id: 409183694
+mas "Klack", id: 6446206067
+mas "Notion Web Clipper", id: 1559269364
+mas "Numbers", id: 361304891
+mas "Pages", id: 361309726
+mas "Prodrafts", id: 1545810067
+mas "Save to Raindrop.io", id: 1549370672
+mas "Toggl Track", id: 1291898086
+mas "uBlock Origin Lite", id: 6745342698
+mas "Unzip - RAR ZIP 7Z Unarchiver", id: 1537056818
+mas "Xcode", id: 497799835
