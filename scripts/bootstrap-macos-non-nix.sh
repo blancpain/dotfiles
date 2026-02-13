@@ -129,7 +129,10 @@ setup_node() {
 
   if ! fnm list | grep -q lts; then
     info "Installing Node.js LTS via fnm."
-    fnm install --lts
+    if ! fnm install --lts; then
+      warn "fnm install failed; skipping Node.js setup."
+      return
+    fi
   fi
 
   fnm default lts-latest
@@ -153,7 +156,7 @@ setup_node() {
       info "$pkg already installed."
     else
       info "Installing $pkg globally."
-      npm install -g "$pkg"
+      npm install -g "$pkg" || warn "Failed to install $pkg."
     fi
   done
 }
@@ -170,7 +173,10 @@ setup_rust() {
     info "Rust stable toolchain already installed."
   else
     info "Installing Rust stable toolchain."
-    rustup install stable
+    if ! rustup install stable; then
+      warn "rustup install failed; skipping Rust setup."
+      return
+    fi
     rustup default stable
   fi
 }
@@ -194,7 +200,7 @@ setup_go() {
       info "$bin_name already installed."
     else
       info "Installing $bin_name via go install."
-      go install "$pkg"
+      go install "$pkg" || warn "Failed to install $bin_name."
     fi
   done
 }
