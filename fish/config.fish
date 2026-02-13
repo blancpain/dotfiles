@@ -12,23 +12,6 @@ if not set -q HAS_WLCOPY
 end
 
 # ==============================================================================
-# NIX SETUP
-# ==============================================================================
-if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
-    source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
-end
-
-if test -d /run/current-system/sw/bin
-    fish_add_path /run/current-system/sw/bin
-end
-
-if test -d "$HOME/.nix-profile/bin"
-    fish_add_path "$HOME/.nix-profile/bin"
-end
-
-set -x NIX_CONF_DIR "$HOME/.config/nix"
-
-# ==============================================================================
 # ENVIRONMENT VARIABLES
 # ==============================================================================
 set -gx EDITOR nvim
@@ -129,7 +112,7 @@ abbr vi nvim
 abbr v nvim
 abbr y yazi
 abbr d lazydocker
-abbr du nix_darwin_update
+# abbr du nix_darwin_update # nix
 abbr tn "tmux new -s (pwd | sed 's/.*\///g')"
 # git
 abbr g lazygit
@@ -150,7 +133,7 @@ if test $IS_MACOS -eq 1
     abbr c "pwd | pbcopy"
     abbr bu "brew update && brew upgrade"
     abbr bb "brew bundle --file=~/dotfiles/brew/Brewfile"
-    abbr dr "sudo darwin-rebuild switch --impure --flake ~/dotfiles/nix-darwin#mac"
+    # abbr dr "sudo darwin-rebuild switch --impure --flake ~/dotfiles/nix-darwin#mac" # nix
 else
     # Linux clipboard abbreviation
     if test $HAS_XCLIP -eq 1
@@ -158,48 +141,41 @@ else
     else if test $HAS_WLCOPY -eq 1
         abbr c "pwd | wl-copy"
     end
-    # WSL/Linux: invoke home-manager via nix run
-    abbr hms 'nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake ~/dotfiles/nix-darwin#blancpain@linux'
-    abbr hu hm_update
-end
-
-# ==============================================================================
-# ALIASES
-# ==============================================================================
-# macOS-specific aliases
-if test $IS_MACOS -eq 1
-    alias influxdb="$HOME/.influxdb/influxdb3"
+    # WSL/Linux: invoke home-manager via nix run (nix)
+    # abbr hms 'nix run --extra-experimental-features "nix-command flakes" home-manager/master -- switch -b backup --flake ~/dotfiles/nix-darwin#blancpain@linux'
+    # abbr hu hm_update
 end
 
 # ==============================================================================
 # HELPER FUNCTIONS
 # ==============================================================================
-function nix_darwin_update --description 'Run nix flake update in ~/dotfiles/nix-darwin'
-    set -l repo "$HOME/dotfiles/nix-darwin"
-    if not test -d $repo
-        printf 'nix flake repo not found: %s\n' $repo >&2
-        return 1
-    end
-
-    pushd $repo >/dev/null; or return 1
-    nix flake update $argv
-    set -l cmd_status $status
-    popd >/dev/null
-    return $cmd_status
-end
-
-function hm_update --description 'Run nix flake update in ~/dotfiles/nix-darwin (Linux/WSL)'
-    set -l repo "$HOME/dotfiles/nix-darwin"
-    if not test -d $repo
-        printf 'nix flake repo not found: %s\n' $repo >&2
-        return 1
-    end
-    pushd $repo >/dev/null; or return 1
-    nix flake update $argv
-    set -l cmd_status $status
-    popd >/dev/null
-    return $cmd_status
-end
+# nix - fresh macOS systems now managed with custom script and brew
+# function nix_darwin_update --description 'Run nix flake update in ~/dotfiles/nix-darwin'
+#     set -l repo "$HOME/dotfiles/nix-darwin"
+#     if not test -d $repo
+#         printf 'nix flake repo not found: %s\n' $repo >&2
+#         return 1
+#     end
+#
+#     pushd $repo >/dev/null; or return 1
+#     nix flake update $argv
+#     set -l cmd_status $status
+#     popd >/dev/null
+#     return $cmd_status
+# end
+#
+# function hm_update --description 'Run nix flake update in ~/dotfiles/nix-darwin (Linux/WSL)'
+#     set -l repo "$HOME/dotfiles/nix-darwin"
+#     if not test -d $repo
+#         printf 'nix flake repo not found: %s\n' $repo >&2
+#         return 1
+#     end
+#     pushd $repo >/dev/null; or return 1
+#     nix flake update $argv
+#     set -l cmd_status $status
+#     popd >/dev/null
+#     return $cmd_status
+# end
 
 # ==============================================================================
 # DISABLED
