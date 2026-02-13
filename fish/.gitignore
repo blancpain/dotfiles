@@ -1,0 +1,20 @@
+# Fisher-managed plugin files — run `fisher install` to populate.
+# Only fish_plugins (the manifest) and user-owned configs are tracked.
+
+# Fisher itself
+functions/fisher.fish
+completions/fisher.fish
+
+# edc/bass
+functions/__bass.py
+functions/bass.fish
+
+# laughedelic/pisces
+functions/_pisces_*.fish
+conf.d/pisces.fish
+
+# patrickf1/fzf.fish
+functions/_fzf_*.fish
+functions/fzf_configure_bindings.fish
+conf.d/fzf.fish
+completions/fzf_configure_bindings.fish
