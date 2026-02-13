@@ -73,23 +73,22 @@ Install [AlDente](https://apphousekitchen.com/) for battery charge management. T
 
 ### Symlinks Created
 
-| Target in `~`                               | Source in repo    |
-| ------------------------------------------- | ----------------- |
-| `.config/starship`                          | `starship/`       |
-| `.config/nvim`                              | `nvim/`           |
-| `.config/tmux`                              | `tmux/`           |
-| `.config/lazygit`                           | `lazygit/`        |
-| `.config/fish`                              | `fish/`           |
-| `.config/yazi`                              | `yazi/`           |
-| `.config/karabiner`                         | `karabiner/`      |
-| `.config/skhd`                              | `skhd/`           |
-| `.config/yabai`                             | `yabai/`          |
-| `.config/ghostty`                           | `ghostty/`        |
-| `.hammerspoon`                              | `hammerspoon/`    |
-| `.cursor`                                   | `Cursor/.cursor/` |
-| `Library/Application Support/Code/User`     | `Code/User/`      |
-| `Library/Application Support/Cursor/User`   | `Cursor/User/`    |
-| `Library/Application Support/Windsurf/User` | `Windsurf/User/`  |
+| Target in `~`                               | Source in repo   |
+| ------------------------------------------- | ---------------- |
+| `.config/starship`                          | `starship/`      |
+| `.config/nvim`                              | `nvim/`          |
+| `.config/tmux`                              | `tmux/`          |
+| `.config/lazygit`                           | `lazygit/`       |
+| `.config/fish`                              | `fish/`          |
+| `.config/yazi`                              | `yazi/`          |
+| `.config/karabiner`                         | `karabiner/`     |
+| `.config/skhd`                              | `skhd/`          |
+| `.config/yabai`                             | `yabai/`         |
+| `.config/ghostty`                           | `ghostty/`       |
+| `.hammerspoon`                              | `hammerspoon/`   |
+| `Library/Application Support/Code/User`     | `Code/User/`     |
+| `Library/Application Support/Cursor/User`   | `Cursor/User/`   |
+| `Library/Application Support/Windsurf/User` | `Windsurf/User/` |
 
 ### macOS Defaults Applied
 
