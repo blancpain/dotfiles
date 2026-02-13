@@ -62,7 +62,6 @@ brew "wget"
 brew "wimlib"
 brew "yazi"
 brew "yq"
-brew "zellij"
 brew "zoxide"
 
 # ------------------------------------------------------------------
