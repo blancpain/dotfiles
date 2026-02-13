@@ -131,87 +131,36 @@ To also remove packages not in the Brewfile:
 brew bundle --file=brew/Brewfile --cleanup
 ```
 
-## Fixing yabai + skhd Accessibility Permissions
+## Granting yabai + skhd Accessibility Permissions
 
-When yabai or skhd don't respond to Accessibility permissions (common after updates), you can fix them via the TCC database.
+CLI binaries like yabai and skhd won't appear in the standard Accessibility list and can't be added by dragging into System Settings directly. The trick is to use the **file picker dialog** instead. No SIP disablement required.
 
-### 1. Check existing TCC Accessibility entries
+### Steps (repeat for both yabai and skhd)
 
-```bash
-sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" \
-"SELECT rowid, client, auth_value
-FROM access
-WHERE service = 'kTCCServiceAccessibility'
-ORDER BY client;"
-```
+1. Open the Homebrew bin directory in Finder:
 
-- `auth_value = 2` means allowed
-- `auth_value = 0` means denied (stale/not approved)
+   ```bash
+   open /opt/homebrew/bin
+   ```
 
-### 2. Find current binary paths
+2. Go to **System Settings > Privacy & Security > Accessibility**.
 
-```bash
-which yabai
-which skhd
-```
+3. Click the **+** button at the bottom — this opens a file picker dialog.
 
-With Homebrew these are typically `/opt/homebrew/bin/yabai` and `/opt/homebrew/bin/skhd`.
+4. **Drag and drop** the binary (e.g. `yabai`) from the Finder window **into the file picker dialog** (not into the System Settings window itself).
 
-### 3. Backup the TCC database
+5. Approve the change if prompted.
 
-```bash
-sudo cp "/Library/Application Support/com.apple.TCC/TCC.db" \
-"/Library/Application Support/com.apple.TCC/TCC.db.bak.$(date +%s)"
-```
+6. The binary will **not** appear in the Accessibility list afterwards — this is normal for CLI binaries that aren't `.app` bundles.
 
-To restore if needed:
+7. Verify it works:
 
-```bash
-sudo cp "/Library/Application Support/com.apple.TCC/TCC.db.bak.TIMESTAMP" \
-"/Library/Application Support/com.apple.TCC/TCC.db"
-sudo reboot
-```
+   ```bash
+   yabai --restart-service
+   skhd --restart-service
+   ```
 
-### 4. Delete stale entries
-
-Delete rows that don't match your current binary paths (replace rowids with your own):
-
-```bash
-sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" \
-"DELETE FROM access WHERE rowid IN (270,272);"
-```
-
-### 5. Enable correct binaries
-
-Set the correct yabai + skhd entries to `auth_value = 2`:
-
-```bash
-sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" \
-"UPDATE access SET auth_value = 2 WHERE rowid IN (274,275);"
-```
-
-### 6. Verify
-
-```bash
-sudo sqlite3 "/Library/Application Support/com.apple.TCC/TCC.db" \
-"SELECT rowid, client, auth_value
-FROM access
-WHERE client LIKE '%yabai%' OR client LIKE '%skhd%';"
-```
-
-Expect exactly two rows, both with `auth_value = 2`, matching your binary paths.
-
-### 7. Reboot and confirm
-
-After reboot, yabai tiling and skhd keybindings should work without permission popups.
-
-| Issue                              | Cause                         | Fix                                 |
-| ---------------------------------- | ----------------------------- | ----------------------------------- |
-| No popup appears for Accessibility | launchd starts apps too early | Force-enable via SQL (Step 5)       |
-| Homebrew updates change paths      | Binary path changed           | Repeat process                      |
-| Old entries still appear           | Previous installation         | Delete TCC row + verify binary path |
-
-yabai/skhd may not appear in System Settings > Accessibility because they are CLI binaries, not `.app` bundles. This is expected.
+> **Note:** After Homebrew updates that replace the binary, you may need to repeat this process.
 
 ## Troubleshooting
 
