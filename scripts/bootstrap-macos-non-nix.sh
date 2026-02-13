@@ -378,7 +378,111 @@ configure_macos_defaults() {
   killall Finder || true
   killall SystemUIServer || true
 
-  info "macOS defaults applied."
+  # Verify settings weren't overridden by MDM configuration profiles
+  info "Verifying macOS defaults..."
+  local mdm_overrides=0
+
+  # Check managed preferences — MDM profiles live in /Library/Managed Preferences/
+  # and override user-domain plists at runtime. Reading back from the user domain
+  # alone would always agree with what we wrote, giving false "all clear" results.
+  verify_default() {
+    local domain="$1" key="$2" expected="$3"
+    local managed_domain="$domain"
+
+    # NSGlobalDomain and kCFPreferencesAnyApplication map to .GlobalPreferences on disk
+    case "$domain" in
+      NSGlobalDomain|kCFPreferencesAnyApplication) managed_domain=".GlobalPreferences" ;;
+    esac
+
+    local managed_plist="/Library/Managed Preferences/${managed_domain}"
+    local managed_val
+    if managed_val=$(defaults read "$managed_plist" "$key" 2>/dev/null); then
+      if [[ "$managed_val" != "$expected" ]]; then
+        warn "\"$domain $key\" is managed by MDM (enforced: $managed_val, wanted: $expected)."
+        mdm_overrides=$((mdm_overrides + 1))
+      fi
+      return 0
+    fi
+
+    # Also check per-user managed preferences
+    local user_managed_plist="/Library/Managed Preferences/$(whoami)/${managed_domain}"
+    if managed_val=$(defaults read "$user_managed_plist" "$key" 2>/dev/null); then
+      if [[ "$managed_val" != "$expected" ]]; then
+        warn "\"$domain $key\" is managed by MDM (enforced: $managed_val, wanted: $expected)."
+        mdm_overrides=$((mdm_overrides + 1))
+      fi
+      return 0
+    fi
+
+    # No MDM profile for this key — verify our write took effect
+    local actual
+    actual=$(defaults read "$domain" "$key" 2>/dev/null) || return 0
+    if [[ "$actual" != "$expected" ]]; then
+      warn "\"$domain $key\" was set to $expected but reads back as $actual."
+      mdm_overrides=$((mdm_overrides + 1))
+    fi
+  }
+
+  # Dock
+  verify_default com.apple.dock autohide 1
+  verify_default com.apple.dock largesize 128
+  verify_default com.apple.dock magnification 1
+  verify_default com.apple.dock mru-spaces 0
+  verify_default com.apple.dock orientation bottom
+  verify_default com.apple.dock show-recents 0
+  verify_default com.apple.dock wvous-bl-corner 1
+  verify_default com.apple.dock wvous-br-corner 5
+  verify_default com.apple.dock wvous-tl-corner 1
+  verify_default com.apple.dock wvous-tr-corner 1
+
+  # Finder
+  verify_default NSGlobalDomain AppleShowAllExtensions 1
+  verify_default com.apple.finder ShowPathbar 1
+  verify_default com.apple.finder ShowStatusBar 0
+
+  # Screenshots
+  verify_default com.apple.screencapture location "$HOME/Documents/Screenshots"
+
+  # Window Manager
+  verify_default com.apple.WindowManager GloballyEnabled 0
+  verify_default com.apple.WindowManager AppWindowGroupingBehavior 1
+  verify_default com.apple.WindowManager AutoHide 0
+  verify_default com.apple.WindowManager EnableTiledWindowMargins 0
+  verify_default com.apple.WindowManager EnableTilingByEdgeDrag 0
+  verify_default com.apple.WindowManager EnableTilingOptionAccelerator 0
+  verify_default com.apple.WindowManager EnableTopTilingByEdgeDrag 0
+  verify_default com.apple.WindowManager HideDesktop 1
+  verify_default com.apple.WindowManager StageManagerHideWidgets 0
+  verify_default com.apple.WindowManager StandardHideWidgets 1
+
+  # Trackpad
+  verify_default com.apple.AppleMultitouchTrackpad Clicking 1
+  verify_default com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking 1
+
+  # Keyboard
+  verify_default NSGlobalDomain KeyRepeat 1
+  verify_default NSGlobalDomain InitialKeyRepeat 14
+  verify_default NSGlobalDomain ApplePressAndHoldEnabled 0
+  verify_default NSGlobalDomain com.apple.keyboard.fnState 0
+  verify_default NSGlobalDomain AppleKeyboardUIMode 1
+
+  # Appearance
+  verify_default NSGlobalDomain AppleInterfaceStyle Dark
+  verify_default NSGlobalDomain AppleFontSmoothing 0
+
+  # Mouse & scrolling
+  verify_default NSGlobalDomain com.apple.swipescrolldirection 0
+  verify_default NSGlobalDomain com.apple.mouse.scaling "1.5"
+  verify_default NSGlobalDomain com.apple.scrollwheel.scaling 1
+
+  # Input source indicator
+  verify_default kCFPreferencesAnyApplication TSMLanguageIndicatorEnabled 0
+
+  if [[ "$mdm_overrides" -gt 0 ]]; then
+    warn "$mdm_overrides setting(s) appear to be managed by MDM — check warnings above."
+  else
+    info "All macOS defaults verified successfully."
+  fi
 }
 
 # ---------- Main ----------
