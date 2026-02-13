@@ -98,11 +98,18 @@ The bootstrap script configures these system preferences:
 - **Finder**: show all extensions, show path bar, hide status bar
 - **Screenshots**: saved to `~/Documents/Screenshots`
 - **Window Manager**: Stage Manager disabled, all tiling disabled (yabai handles this)
-- **Trackpad**: tap to click
+- **Trackpad**: tap to click, secondary click via bottom-right corner
 - **Keyboard**: fast key repeat (rate 1, delay 14), press-and-hold disabled (key repeat instead), Fn shows special keys, keyboard access for dialogs
 - **Appearance**: dark mode, sub-pixel font smoothing disabled
 - **Mouse/Scrolling**: traditional (non-natural) scrolling, tracking speed 1.5, scroll wheel speed 1.0
 - **Input**: input source indicator disabled
+
+### Manual Settings
+
+These cannot be automated via `defaults write` and must be configured by hand:
+
+- **Display**: System Settings > Displays > disable "Automatically adjust brightness"
+- **Location Services**: System Settings > Privacy & Security > Location Services > disable location access for most apps (keep only Find My and essential services)
 
 ### Fish Shell
 

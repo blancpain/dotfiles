@@ -16,8 +16,9 @@ Automates a fresh macOS setup WITHOUT Nix:
   7. Install global Go tools
   8. Create dotfile symlinks
   9. Install TPM (Tmux Plugin Manager)
-  10. Set fish as default shell
-  11. Apply macOS system defaults
+  10. Bootstrap Fisher plugins for fish shell
+  11. Set fish as default shell
+  12. Apply macOS system defaults
 
   NOTE: Touch ID sudo (pam-reattach) and yabai sudoers are commented out —
   they cannot be used on corporate/BYOD-enrolled machines. Uncomment if
@@ -256,6 +257,45 @@ setup_tmux() {
     || warn "Failed to clone TPM — check network connectivity."
 }
 
+# ---------- Step 10: Fisher plugins ----------
+
+setup_fisher() {
+  local fish_path
+  fish_path="$(brew --prefix)/bin/fish"
+
+  if [[ ! -x "$fish_path" ]]; then
+    warn "Fish not found; skipping Fisher plugin setup."
+    return
+  fi
+
+  local fish_plugins="$HOME/.config/fish/fish_plugins"
+  if [[ ! -f "$fish_plugins" ]]; then
+    warn "fish_plugins file not found at $fish_plugins; skipping Fisher setup."
+    return
+  fi
+
+  # Check if Fisher and all plugins are already installed by comparing
+  # `fisher list` output against the fish_plugins manifest.
+  local installed
+  installed=$("$fish_path" -c 'fisher list 2>/dev/null' | sort) || true
+  local wanted
+  wanted=$(sort < "$fish_plugins")
+
+  if [[ -n "$installed" && "$installed" == "$wanted" ]]; then
+    info "Fisher plugins already installed."
+    return
+  fi
+
+  info "Bootstrapping Fisher plugins."
+  # On a fresh machine fisher.fish doesn't exist yet (plugin files aren't tracked
+  # in git). Curl the bootstrap script, source it in the running fish session, then
+  # run `fisher update` which reads fish_plugins and installs everything.
+  "$fish_path" -c '
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+    fisher update
+  ' || warn "Fisher plugin bootstrap failed — you can retry manually with: fish -c \"curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update\""
+}
+
 # ---------- DISABLED: Touch ID sudo + pam-reattach ----------
 # NOTE: Cannot be used on corporate/BYOD-enrolled machines.
 # Uncomment this function and add configure_sudo to main() for personal machines.
@@ -312,7 +352,7 @@ setup_tmux() {
 #   info "Yabai sudoers configured."
 # }
 
-# ---------- Step 10: Default shell ----------
+# ---------- Step 11: Default shell ----------
 
 set_default_shell() {
   local fish_path
@@ -348,7 +388,7 @@ set_default_shell() {
   fi
 }
 
-# ---------- Step 11: macOS defaults ----------
+# ---------- Step 12: macOS defaults ----------
 
 configure_macos_defaults() {
   info "Applying macOS defaults (MDM-managed profiles may silently override some of these)."
@@ -391,6 +431,11 @@ configure_macos_defaults() {
   # --- Trackpad ---
   defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+  # Secondary click: bottom-right corner
+  defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 2
+  defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool false
+  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool false
 
   # --- Keyboard ---
   defaults write NSGlobalDomain KeyRepeat -int 1
@@ -497,6 +542,10 @@ configure_macos_defaults() {
   # Trackpad
   verify_default com.apple.AppleMultitouchTrackpad Clicking 1
   verify_default com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking 1
+  verify_default com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick 2
+  verify_default com.apple.AppleMultitouchTrackpad TrackpadRightClick 0
+  verify_default com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick 2
+  verify_default com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick 0
 
   # Keyboard
   verify_default NSGlobalDomain KeyRepeat 1
@@ -536,6 +585,7 @@ main() {
   setup_go
   create_symlinks
   setup_tmux
+  setup_fisher
   # configure_sudo            # disabled: not available on corporate/BYOD machines
   # configure_yabai_sudoers   # disabled: not available on corporate/BYOD machines
   set_default_shell
