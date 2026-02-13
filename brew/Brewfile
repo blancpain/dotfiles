@@ -1,6 +1,6 @@
 # Taps
 tap "koekeishiya/formulae"      # yabai, skhd
-tap "supabase/tap"              # supabase CLI
+# tap "supabase/tap"              # supabase CLI - not allowed on BYOD
 
 # ------------------------------------------------------------------
 # CLI tools 
@@ -11,7 +11,7 @@ brew "bottom"
 brew "btop"
 brew "carapace"
 brew "cloc"
-brew "cloudflared"
+# brew "cloudflared"             # not allowed on BYOD
 brew "cpanminus"            # perlPackages.Appcpanminus in nix
 brew "curl"
 brew "docker"
@@ -49,7 +49,7 @@ brew "redis"
 brew "ripgrep"
 brew "sesh"
 brew "starship"
-brew "supabase/tap/supabase"
+# brew "supabase/tap/supabase"   # not allowed on BYOD
 brew "tectonic"
 brew "terraform"
 brew "tmux"
@@ -89,7 +89,7 @@ cask "hammerspoon"
 cask "istat-menus"
 cask "karabiner-elements"
 cask "mongodb-compass"
-cask "ngrok"
+# cask "ngrok"                   # not allowed on BYOD
 cask "notion"
 cask "notion-calendar"
 cask "notion-mail"
