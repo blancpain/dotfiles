@@ -99,7 +99,8 @@ install_packages() {
   fi
 
   info "Installing packages from Brewfile (this may take a while)."
-  brew bundle --file="$BREWFILE"
+  # Some casks may fail on MDM-managed machines; continue so formulae still install.
+  brew bundle --file="$BREWFILE" || warn "brew bundle finished with errors — some casks may have been blocked by MDM."
 }
 
 # ---------- Step 4: Claude Code ----------
@@ -111,7 +112,8 @@ install_claude_code() {
   fi
 
   info "Installing Claude Code."
-  curl -fsSL https://claude.ai/install.sh | bash
+  curl -fsSL https://claude.ai/install.sh | bash \
+    || warn "Claude Code install failed (proxy or firewall may be blocking the download)."
 }
 
 # ---------- Step 5: Node.js + global npm packages ----------
@@ -203,6 +205,9 @@ create_symlinks() {
   info "Creating dotfile symlinks."
 
   # ~/.config targets (common + darwin)
+  # NOTE: karabiner, skhd, and yabai require Accessibility / Input Monitoring
+  # permissions (and karabiner needs a system extension) that MDM may block.
+  # Configs are symlinked regardless so they're ready if permissions are granted.
   local config_pkgs=(starship nvim tmux lazygit fish yazi karabiner skhd yabai ghostty)
   for pkg in "${config_pkgs[@]}"; do
     link_file "$REPO_ROOT/$pkg" "$HOME/.config/$pkg"
@@ -292,18 +297,24 @@ set_default_shell() {
   # Ensure fish is in /etc/shells
   if ! grep -qF "$fish_path" /etc/shells; then
     info "Adding $fish_path to /etc/shells."
-    echo "$fish_path" | sudo tee -a /etc/shells >/dev/null
+    if ! echo "$fish_path" | sudo tee -a /etc/shells >/dev/null; then
+      warn "Could not add $fish_path to /etc/shells (MDM or sudo restriction). Skipping shell change."
+      return
+    fi
   fi
 
   info "Setting fish as the default shell."
-  chsh -s "$fish_path"
-  info "Default shell changed to fish. Open a new terminal to use it."
+  if chsh -s "$fish_path"; then
+    info "Default shell changed to fish. Open a new terminal to use it."
+  else
+    warn "chsh failed — directory service or MDM may restrict shell changes. You can launch fish from your terminal profile settings instead."
+  fi
 }
 
 # ---------- Step 10: macOS defaults ----------
 
 configure_macos_defaults() {
-  info "Applying macOS defaults."
+  info "Applying macOS defaults (MDM-managed profiles may silently override some of these)."
 
   # --- Dock ---
   defaults write com.apple.dock autohide -bool true
