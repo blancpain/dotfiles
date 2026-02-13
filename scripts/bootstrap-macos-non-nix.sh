@@ -165,20 +165,33 @@ setup_node() {
 # ---------- Step 6: Rust toolchain + cargo packages ----------
 
 setup_rust() {
+  # Install rustup via the official installer (not Homebrew) so that
+  # ~/.cargo/bin, proxy binaries, and ~/.cargo/env are all set up correctly.
   if ! command -v rustup >/dev/null 2>&1; then
-    warn "rustup not found; skipping Rust setup."
-    return
+    info "Installing Rust toolchain via rustup."
+    if ! curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path; then
+      warn "rustup install failed; skipping Rust setup."
+      return
+    fi
   fi
 
-  if rustup show | grep -q stable; then
-    info "Rust stable toolchain already installed."
-  else
+  # Source cargo env for the rest of this script
+  # shellcheck source=/dev/null
+  [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+  if ! rustup show | grep -q stable; then
     info "Installing Rust stable toolchain."
     if ! rustup install stable; then
       warn "rustup install failed; skipping Rust setup."
       return
     fi
     rustup default stable
+  fi
+
+  if command -v cargo >/dev/null 2>&1; then
+    info "cargo $(cargo --version | awk '{print $2}') available."
+  else
+    warn "cargo not found — check your rustup installation."
   fi
 }
 
@@ -310,7 +323,10 @@ set_default_shell() {
     return
   fi
 
-  if [[ "$SHELL" == "$fish_path" ]]; then
+  # $SHELL can be stale; query the directory service for the actual login shell.
+  local current_shell
+  current_shell=$(dscl . -read /Users/"$(whoami)" UserShell 2>/dev/null | awk '{print $2}')
+  if [[ "$current_shell" == "$fish_path" ]]; then
     info "Fish is already the default shell."
     return
   fi
@@ -352,6 +368,7 @@ configure_macos_defaults() {
 
   # --- Finder ---
   defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+  defaults write com.apple.finder AppleShowAllFiles -bool true
   defaults write com.apple.finder ShowPathbar -bool true
   defaults write com.apple.finder ShowStatusBar -bool false
 
@@ -458,6 +475,7 @@ configure_macos_defaults() {
 
   # Finder
   verify_default NSGlobalDomain AppleShowAllExtensions 1
+  verify_default com.apple.finder AppleShowAllFiles 1
   verify_default com.apple.finder ShowPathbar 1
   verify_default com.apple.finder ShowStatusBar 0
 
