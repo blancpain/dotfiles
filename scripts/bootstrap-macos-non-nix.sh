@@ -15,8 +15,9 @@ Automates a fresh macOS setup WITHOUT Nix:
   6. Set up Rust toolchain (stable)
   7. Install global Go tools
   8. Create dotfile symlinks
-  9. Set fish as default shell
-  10. Apply macOS system defaults
+  9. Install TPM (Tmux Plugin Manager)
+  10. Set fish as default shell
+  11. Apply macOS system defaults
 
   NOTE: Touch ID sudo (pam-reattach) and yabai sudoers are commented out —
   they cannot be used on corporate/BYOD-enrolled machines. Uncomment if
@@ -228,6 +229,20 @@ create_symlinks() {
   link_file "$REPO_ROOT/Windsurf/User" "$HOME/Library/Application Support/Windsurf/User"
 }
 
+# ---------- Step 9: TPM (Tmux Plugin Manager) ----------
+
+setup_tmux() {
+  local tpm_dir="$REPO_ROOT/tmux/plugins/tpm"
+  if [[ -d "$tpm_dir" ]]; then
+    info "TPM (Tmux Plugin Manager) already installed."
+    return
+  fi
+
+  info "Installing TPM (Tmux Plugin Manager)."
+  git clone https://github.com/tmux-plugins/tpm "$tpm_dir" \
+    || warn "Failed to clone TPM — check network connectivity."
+}
+
 # ---------- DISABLED: Touch ID sudo + pam-reattach ----------
 # NOTE: Cannot be used on corporate/BYOD-enrolled machines.
 # Uncomment this function and add configure_sudo to main() for personal machines.
@@ -284,7 +299,7 @@ create_symlinks() {
 #   info "Yabai sudoers configured."
 # }
 
-# ---------- Step 9: Default shell ----------
+# ---------- Step 10: Default shell ----------
 
 set_default_shell() {
   local fish_path
@@ -317,7 +332,7 @@ set_default_shell() {
   fi
 }
 
-# ---------- Step 10: macOS defaults ----------
+# ---------- Step 11: macOS defaults ----------
 
 configure_macos_defaults() {
   info "Applying macOS defaults (MDM-managed profiles may silently override some of these)."
@@ -502,6 +517,7 @@ main() {
   setup_rust
   setup_go
   create_symlinks
+  setup_tmux
   # configure_sudo            # disabled: not available on corporate/BYOD machines
   # configure_yabai_sudoers   # disabled: not available on corporate/BYOD machines
   set_default_shell
