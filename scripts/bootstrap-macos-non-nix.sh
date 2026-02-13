@@ -210,7 +210,6 @@ create_symlinks() {
 
   # Home-directory targets
   link_file "$REPO_ROOT/hammerspoon" "$HOME/.hammerspoon"
-  link_file "$REPO_ROOT/Cursor/.cursor" "$HOME/.cursor"
 
   # Library/Application Support targets
   link_file "$REPO_ROOT/Code/User"     "$HOME/Library/Application Support/Code/User"
