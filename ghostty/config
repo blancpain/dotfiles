@@ -30,3 +30,4 @@ background-blur = true
 # keybindings
 keybind = ctrl+i=text:\x1b[5;5~
 keybind = shift+enter=text:\n
+keybind = super+m=toggle_visibility
