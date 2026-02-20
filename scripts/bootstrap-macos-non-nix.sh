@@ -14,11 +14,12 @@ Automates a fresh macOS setup WITHOUT Nix:
   5. Set up Node.js (fnm + LTS) and global npm packages
   6. Set up Rust toolchain (stable)
   7. Install global Go tools
-  8. Create dotfile symlinks
-  9. Install TPM (Tmux Plugin Manager)
-  10. Bootstrap Fisher plugins for fish shell
-  11. Set fish as default shell
-  12. Apply macOS system defaults
+  8. Configure global git identity (user.name / user.email)
+  9. Create dotfile symlinks
+  10. Install TPM (Tmux Plugin Manager)
+  11. Bootstrap Fisher plugins for fish shell
+  12. Set fish as default shell
+  13. Apply macOS system defaults
 
   NOTE: Touch ID sudo (pam-reattach) and yabai sudoers are commented out —
   they cannot be used on corporate/BYOD-enrolled machines. Uncomment if
@@ -220,7 +221,33 @@ setup_go() {
   done
 }
 
-# ---------- Step 8: Symlinks ----------
+# ---------- Step 8: Git global config ----------
+
+setup_git_config() {
+  if ! command -v git >/dev/null 2>&1; then
+    warn "git not found; skipping git config setup."
+    return
+  fi
+
+  local name="Yasen Dimitrov"
+  local email="y_dimitrov@ymail.com"
+
+  local current_name current_email
+  current_name=$(git config --global user.name 2>/dev/null || true)
+  current_email=$(git config --global user.email 2>/dev/null || true)
+
+  if [[ "$current_name" == "$name" && "$current_email" == "$email" ]]; then
+    info "Git global identity already configured."
+    return
+  fi
+
+  info "Configuring global git identity."
+  git config --global user.name "$name"
+  git config --global user.email "$email"
+  info "Git identity set: $name <$email>"
+}
+
+# ---------- Step 9: Symlinks ----------
 
 create_symlinks() {
   info "Creating dotfile symlinks."
@@ -583,6 +610,7 @@ main() {
   setup_node
   setup_rust
   setup_go
+  setup_git_config
   create_symlinks
   setup_tmux
   setup_fisher
