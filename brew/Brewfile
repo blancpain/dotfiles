@@ -113,7 +113,6 @@ cask "font-jetbrains-mono-nerd-font"
 # Mac App Store
 # ------------------------------------------------------------------
 mas "1Password for Safari", id: 1569813296
-mas "Flow", id: 1423210932
 mas "Gifski", id: 1351639930
 mas "Keynote", id: 409183694
 mas "Klack", id: 6446206067
