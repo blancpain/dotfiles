@@ -88,10 +88,9 @@ cask "google-drive"
 cask "hammerspoon"
 cask "istat-menus"
 cask "karabiner-elements"
-cask "mongodb-compass"
 # cask "ngrok"                   # not allowed on BYOD
 cask "notion"
-cask "notion-calendar"
+# cask "notion-calendar"
 cask "notion-mail"
 cask "obsidian"
 cask "postman"
@@ -110,18 +109,14 @@ cask "font-iosevka-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 
 # ------------------------------------------------------------------
-# Mac App Store
+# Mac App Store (sometimes Apple Store not allowed on BYOW)
 # ------------------------------------------------------------------
-mas "1Password for Safari", id: 1569813296
-mas "Gifski", id: 1351639930
-mas "Keynote", id: 409183694
-mas "Klack", id: 6446206067
-mas "Notion Web Clipper", id: 1559269364
-mas "Numbers", id: 361304891
-mas "Pages", id: 361309726
-mas "Prodrafts", id: 1545810067
-mas "Save to Raindrop.io", id: 1549370672
-mas "Toggl Track", id: 1291898086
-mas "uBlock Origin Lite", id: 6745342698
-mas "Unzip - RAR ZIP 7Z Unarchiver", id: 1537056818
-mas "Xcode", id: 497799835
+# mas "Gifski", id: 1351639930
+# mas "Klack", id: 6446206067
+# mas "Toggl Track", id: 1291898086
+
+# Safari Extensions (not allowed under BYOD)
+# mas "1Password for Safari", id: 1569813296
+# mas "Save to Raindrop.io", id: 1549370672
+# mas "Notion Web Clipper", id: 1559269364
+# mas "uBlock Origin Lite", id: 6745342698
