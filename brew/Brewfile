@@ -89,6 +89,7 @@ cask "hammerspoon"
 cask "istat-menus"
 cask "karabiner-elements"
 # cask "ngrok"                   # not allowed on BYOD
+cask "neo4j-desktop"
 cask "notion"
 # cask "notion-calendar"
 cask "notion-mail"
