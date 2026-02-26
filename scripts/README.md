@@ -4,16 +4,18 @@ dotfiles managed with Homebrew and symlinks.
 
 ## Prerequisite: Git (SSH) Access
 
+This is required before the repo can be cloned. Only the personal key is needed here — the bootstrap script handles generating and configuring the work key automatically.
+
 1. Check for an existing key:
 
    ```bash
-   ls ~/.ssh/id_ed25519.pub ~/.ssh/id_rsa.pub
+   ls ~/.ssh/id_ed25519.pub
    ```
 
 2. If absent, generate one:
 
    ```bash
-   ssh-keygen -t ed25519 -C "you@example.com"
+   ssh-keygen -t ed25519 -C "you@example.com" -f ~/.ssh/id_ed25519
    ```
 
 3. Start agent and add the key:
@@ -61,9 +63,13 @@ What it does:
 5. Sets up Node.js (fnm + LTS) and global npm packages (mermaid-cli, gemini-cli, codex, tsx, typescript, tree-sitter-cli)
 6. Sets up Rust toolchain (stable)
 7. Installs Go tools (bootdev)
-8. Creates dotfile symlinks
-9. Sets fish as the default shell
-10. Applies macOS system defaults (Dock, Finder, keyboard, trackpad, appearance, etc.)
+8. Configures global git identity (user.name / user.email)
+9. Sets up SSH keys — generates personal (`~/.ssh/id_ed25519`) and work (`~/.ssh/id_ed25519_github_work`) keys if absent, configures `~/.ssh/config` with `github.com` (personal) and `github-work` (work) host aliases, and tests both connections. **If your org enforces SAML SSO**, you must also authorize the work key: GitHub → Settings → SSH and GPG keys → Configure SSO → Authorize `<org>`
+10. Creates dotfile symlinks
+11. Installs TPM (Tmux Plugin Manager)
+12. Bootstraps Fisher plugins for fish shell
+13. Sets fish as the default shell
+14. Applies macOS system defaults (Dock, Finder, keyboard, trackpad, appearance, etc.)
 
 > **Corporate/BYOD note:** Touch ID sudo (`pam-reattach`) and yabai sudoers are commented out in the bootstrap script — they require modifying `/etc/pam.d` and `/etc/sudoers.d` which is not permitted on corporate-enrolled machines. Uncomment them in the script for personal machines.
 

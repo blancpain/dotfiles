@@ -15,11 +15,12 @@ Automates a fresh macOS setup WITHOUT Nix:
   6. Set up Rust toolchain (stable)
   7. Install global Go tools
   8. Configure global git identity (user.name / user.email)
-  9. Create dotfile symlinks
-  10. Install TPM (Tmux Plugin Manager)
-  11. Bootstrap Fisher plugins for fish shell
-  12. Set fish as default shell
-  13. Apply macOS system defaults
+  9. Set up SSH keys (personal + work GitHub)
+  10. Create dotfile symlinks
+  11. Install TPM (Tmux Plugin Manager)
+  12. Bootstrap Fisher plugins for fish shell
+  13. Set fish as default shell
+  14. Apply macOS system defaults
 
   NOTE: Touch ID sudo (pam-reattach) and yabai sudoers are commented out —
   they cannot be used on corporate/BYOD-enrolled machines. Uncomment if
@@ -247,7 +248,93 @@ setup_git_config() {
   info "Git identity set: $name <$email>"
 }
 
-# ---------- Step 9: Symlinks ----------
+# ---------- Step 9: SSH keys ----------
+
+setup_ssh_keys() {
+  local personal_key="$HOME/.ssh/id_ed25519"
+  local work_key="$HOME/.ssh/id_ed25519_github_work"
+  local ssh_config="$HOME/.ssh/config"
+
+  mkdir -p "$HOME/.ssh"
+  chmod 700 "$HOME/.ssh"
+
+  # Personal key
+  if [[ ! -f "$personal_key" ]]; then
+    info "No personal SSH key found; generating $personal_key."
+    local personal_email
+    read -r -p "[SSH] Enter your personal GitHub email: " personal_email
+    ssh-keygen -t ed25519 -C "$personal_email" -f "$personal_key"
+    info "Personal key generated. Add to GitHub (Settings → SSH keys):"
+    cat "${personal_key}.pub"
+    read -r -p "Press Enter once you've added the personal key to GitHub..."
+  else
+    info "Personal SSH key already exists at $personal_key."
+  fi
+
+  # Work key
+  if [[ ! -f "$work_key" ]]; then
+    info "No work SSH key found; generating $work_key."
+    local work_email
+    read -r -p "[SSH] Enter your work GitHub email: " work_email
+    ssh-keygen -t ed25519 -C "$work_email" -f "$work_key"
+    info "Work key generated. Add to your work GitHub account (Settings → SSH keys):"
+    cat "${work_key}.pub"
+    read -r -p "Press Enter once you've added the work key to GitHub..."
+  else
+    info "Work SSH key already exists at $work_key."
+  fi
+
+  # Load keys into agent (best-effort; 1Password agent may handle this instead)
+  ssh-add "$personal_key" 2>/dev/null || true
+  ssh-add "$work_key" 2>/dev/null || true
+
+  # Ensure ~/.ssh/config has the two GitHub host entries
+  if grep -qF "Host github-work" "$ssh_config" 2>/dev/null; then
+    info "GitHub SSH host entries already in $ssh_config."
+  else
+    info "Adding GitHub SSH host entries to $ssh_config."
+    local tmp
+    tmp=$(mktemp)
+    cat > "$tmp" <<'SSHCONF'
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+
+Host github-work
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_github_work
+
+SSHCONF
+    # Append any pre-existing config (e.g. 1Password IdentityAgent block)
+    [[ -f "$ssh_config" ]] && cat "$ssh_config" >> "$tmp"
+    mv "$tmp" "$ssh_config"
+    chmod 600 "$ssh_config"
+  fi
+
+  # Test both connections
+  # ssh -T always exits non-zero (GitHub denies shell access), so capture output
+  # separately to avoid the pipe failing under set -o pipefail.
+  info "Testing GitHub SSH connections..."
+  local out
+  out=$(ssh -T git@github.com -o StrictHostKeyChecking=accept-new 2>&1) || true
+  if [[ "$out" == *"successfully authenticated"* ]]; then
+    info "Personal GitHub SSH: OK"
+  else
+    warn "Personal GitHub SSH test failed — make sure the key is added to your GitHub account."
+  fi
+  out=$(ssh -T git@github-work -o StrictHostKeyChecking=accept-new 2>&1) || true
+  if [[ "$out" == *"successfully authenticated"* ]]; then
+    info "Work GitHub SSH: OK"
+    info "If your org uses SAML SSO, you must also authorize the key:"
+    info "  GitHub → Settings → SSH and GPG keys → Configure SSO → Authorize <org>"
+  else
+    warn "Work GitHub SSH test failed — make sure the key is added to your work GitHub account."
+  fi
+}
+
+# ---------- Step 10: Symlinks ----------
 
 create_symlinks() {
   info "Creating dotfile symlinks."
@@ -270,7 +357,7 @@ create_symlinks() {
   link_file "$REPO_ROOT/Windsurf/User" "$HOME/Library/Application Support/Windsurf/User"
 }
 
-# ---------- Step 9: TPM (Tmux Plugin Manager) ----------
+# ---------- Step 11: TPM (Tmux Plugin Manager) ----------
 
 setup_tmux() {
   local tpm_dir="$REPO_ROOT/tmux/plugins/tpm"
@@ -284,7 +371,7 @@ setup_tmux() {
     || warn "Failed to clone TPM — check network connectivity."
 }
 
-# ---------- Step 10: Fisher plugins ----------
+# ---------- Step 12: Fisher plugins ----------
 
 setup_fisher() {
   local fish_path
@@ -379,7 +466,7 @@ setup_fisher() {
 #   info "Yabai sudoers configured."
 # }
 
-# ---------- Step 11: Default shell ----------
+# ---------- Step 13: Default shell ----------
 
 set_default_shell() {
   local fish_path
@@ -415,7 +502,7 @@ set_default_shell() {
   fi
 }
 
-# ---------- Step 12: macOS defaults ----------
+# ---------- Step 14: macOS defaults ----------
 
 configure_macos_defaults() {
   info "Applying macOS defaults (MDM-managed profiles may silently override some of these)."
@@ -611,6 +698,7 @@ main() {
   setup_rust
   setup_go
   setup_git_config
+  setup_ssh_keys
   create_symlinks
   setup_tmux
   setup_fisher
