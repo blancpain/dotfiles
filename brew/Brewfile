@@ -6,6 +6,7 @@ tap "koekeishiya/formulae"      # yabai, skhd
 # CLI tools 
 # ------------------------------------------------------------------
 brew "automake"
+brew "awsume"
 brew "bat"
 brew "bottom"
 brew "btop"
@@ -101,6 +102,7 @@ cask "redis-insight"
 cask "slack"
 cask "spacelauncher"
 cask "spotify"
+cask "tableplus"
 
 # Fonts
 cask "font-cascadia-code-nf"
