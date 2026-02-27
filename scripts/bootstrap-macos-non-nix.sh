@@ -10,17 +10,18 @@ Automates a fresh macOS setup WITHOUT Nix:
   1. Ensure Apple Command Line Tools
   2. Install Homebrew (Apple Silicon default path)
   3. Install all packages via Brewfile (brew bundle)
-  4. Install Claude Code
-  5. Set up Node.js (fnm + LTS) and global npm packages
-  6. Set up Rust toolchain (stable)
-  7. Install global Go tools
-  8. Configure global git identity (user.name / user.email)
-  9. Set up SSH keys (personal + work GitHub)
-  10. Create dotfile symlinks
-  11. Install TPM (Tmux Plugin Manager)
-  12. Bootstrap Fisher plugins for fish shell
-  13. Set fish as default shell
-  14. Apply macOS system defaults
+  4. Install AWS CLI v2 (via .pkg installer)
+  5. Install Claude Code
+  6. Set up Node.js (fnm + LTS) and global npm packages
+  7. Set up Rust toolchain (stable)
+  8. Install global Go tools
+  9. Configure global git identity (user.name / user.email)
+  10. Set up SSH keys (personal + work GitHub)
+  11. Create dotfile symlinks
+  12. Install TPM (Tmux Plugin Manager)
+  13. Bootstrap Fisher plugins for fish shell
+  14. Set fish as default shell
+  15. Apply macOS system defaults
 
   NOTE: Touch ID sudo (pam-reattach) and yabai sudoers are commented out —
   they cannot be used on corporate/BYOD-enrolled machines. Uncomment if
@@ -107,7 +108,30 @@ install_packages() {
   brew bundle --file="$BREWFILE" || warn "brew bundle finished with errors — some casks may have been blocked by MDM."
 }
 
-# ---------- Step 4: Claude Code ----------
+# ---------- Step 4: AWS CLI ----------
+
+install_aws_cli() {
+  if command -v aws >/dev/null 2>&1; then
+    info "AWS CLI already installed ($(aws --version 2>&1 | head -1))."
+    return
+  fi
+
+  info "Installing AWS CLI v2."
+  local pkg_path
+  pkg_path=$(mktemp -d)/AWSCLIV2.pkg
+  if ! curl -fsSL "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "$pkg_path"; then
+    warn "Failed to download AWS CLI installer — skipping."
+    return
+  fi
+  if ! sudo installer -pkg "$pkg_path" -target /; then
+    warn "AWS CLI installer failed — check sudo access."
+  else
+    info "AWS CLI installed: $(aws --version 2>&1 | head -1)."
+  fi
+  rm -f "$pkg_path"
+}
+
+# ---------- Step 5: Claude Code ----------
 
 install_claude_code() {
   if command -v claude >/dev/null 2>&1; then
@@ -693,6 +717,7 @@ main() {
   ensure_clt
   ensure_homebrew
   install_packages
+  install_aws_cli
   install_claude_code
   setup_node
   setup_rust
