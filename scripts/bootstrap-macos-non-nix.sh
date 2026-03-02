@@ -331,9 +331,6 @@ Host github-work
   User git
   IdentityFile ~/.ssh/id_ed25519_github_work
 
-Host *
-  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-
 SSHCONF
     # Prepend to any pre-existing config, preserving manual additions
     [[ -f "$ssh_config" ]] && cat "$ssh_config" >> "$tmp"

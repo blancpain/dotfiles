@@ -115,10 +115,9 @@ Host github-work
   HostName github.com
   User git
   IdentityFile ~/.ssh/id_ed25519_github_work
-
-Host *
-  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 ```
+
+The `Host * / IdentityAgent` block for the 1Password SSH agent is **not** written by the bootstrap — 1Password adds it automatically when you enable the SSH agent in **Settings → Developer → Use the SSH agent**. This avoids duplicating the block if 1Password has already written it.
 
 ### Post-bootstrap (laptops only)
 
