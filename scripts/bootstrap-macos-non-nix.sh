@@ -262,15 +262,14 @@ setup_git_config() {
   current_name=$(git config --global user.name 2>/dev/null || true)
   current_email=$(git config --global user.email 2>/dev/null || true)
 
-  if [[ "$current_name" == "$name" && "$current_email" == "$email" ]]; then
-    info "Git global identity already configured."
+  if [[ -n "$current_name" && -n "$current_email" ]]; then
+    info "Git global identity already configured: $current_name <$current_email>"
     return
   fi
 
-  info "Configuring global git identity."
-  git config --global user.name "$name"
-  git config --global user.email "$email"
-  info "Git identity set: $name <$email>"
+  [[ -z "$current_name" ]]  && git config --global user.name "$name"
+  [[ -z "$current_email" ]] && git config --global user.email "$email"
+  info "Git identity set: $(git config --global user.name) <$(git config --global user.email)>"
 }
 
 # ---------- Step 9: SSH keys ----------
