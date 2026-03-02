@@ -16,12 +16,13 @@ Automates a fresh macOS setup WITHOUT Nix:
   7. Set up Rust toolchain (stable)
   8. Install global Go tools
   9. Configure global git identity (user.name / user.email)
-  10. Set up SSH keys (personal + work GitHub)
-  11. Create dotfile symlinks
-  12. Install TPM (Tmux Plugin Manager)
-  13. Bootstrap Fisher plugins for fish shell
-  14. Set fish as default shell
-  15. Apply macOS system defaults
+  10. Set up SSH keys (personal + work GitHub) + write ~/.ssh/config
+  11. Optionally restore Snowflake SSH key from 1Password
+  12. Create dotfile symlinks
+  13. Install TPM (Tmux Plugin Manager)
+  14. Bootstrap Fisher plugins for fish shell
+  15. Set fish as default shell
+  16. Apply macOS system defaults
 
   NOTE: Touch ID sudo (pam-reattach) and yabai sudoers are commented out —
   they cannot be used on corporate/BYOD-enrolled machines. Uncomment if
@@ -330,8 +331,11 @@ Host github-work
   User git
   IdentityFile ~/.ssh/id_ed25519_github_work
 
+Host *
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
 SSHCONF
-    # Append any pre-existing config (e.g. 1Password IdentityAgent block)
+    # Prepend to any pre-existing config, preserving manual additions
     [[ -f "$ssh_config" ]] && cat "$ssh_config" >> "$tmp"
     mv "$tmp" "$ssh_config"
     chmod 600 "$ssh_config"
@@ -358,7 +362,62 @@ SSHCONF
   fi
 }
 
-# ---------- Step 10: Symlinks ----------
+# ---------- Step 10: Snowflake SSH key ----------
+#
+# Pulls the private key from 1Password and derives the public key locally.
+# Gated behind a prompt — skip on machines that don't need Snowflake access.
+
+setup_snowflake_key() {
+  local snowflake_dir="$HOME/.ssh/snowflake"
+  local private_key="$snowflake_dir/rsa_key.p8"
+  local public_key="$snowflake_dir/rsa_key.pub"
+
+  if [[ -f "$private_key" && -f "$public_key" ]]; then
+    info "Snowflake SSH key already present; skipping."
+    return
+  fi
+
+  local answer
+  read -r -p "[Snowflake] Set up Snowflake SSH key on this machine? [y/N] " answer
+  if [[ ! "$answer" =~ ^[Yy]$ ]]; then
+    info "Skipping Snowflake SSH key setup."
+    return
+  fi
+
+  if ! command -v op >/dev/null 2>&1; then
+    warn "1Password CLI (op) not found; skipping Snowflake key setup."
+    return
+  fi
+
+  # Ensure we have an active 1Password session
+  if ! op whoami >/dev/null 2>&1; then
+    info "Signing in to 1Password CLI."
+    if ! op signin; then
+      warn "1Password sign-in failed; skipping Snowflake key setup."
+      return
+    fi
+  fi
+
+  mkdir -p "$snowflake_dir"
+
+  info "Pulling Snowflake private key from 1Password."
+  if ! op document get "Snowflake SSH Key (SME)" --output "$private_key" 2>/dev/null; then
+    warn "Failed to retrieve 'Snowflake SSH Key (SME)' from 1Password — check the item name and vault access."
+    return
+  fi
+  chmod 600 "$private_key"
+
+  info "Deriving Snowflake public key."
+  if ! openssl pkey -in "$private_key" -pubout -out "$public_key" 2>/dev/null; then
+    warn "Failed to derive public key from $private_key."
+    return
+  fi
+  chmod 644 "$public_key"
+
+  info "Snowflake SSH key ready at $snowflake_dir."
+}
+
+# ---------- Step 11: Symlinks ----------
 
 create_symlinks() {
   info "Creating dotfile symlinks."
@@ -724,6 +783,7 @@ main() {
   setup_go
   setup_git_config
   setup_ssh_keys
+  setup_snowflake_key
   create_symlinks
   setup_tmux
   setup_fisher
