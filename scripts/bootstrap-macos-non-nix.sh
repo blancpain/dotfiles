@@ -282,35 +282,64 @@ setup_ssh_keys() {
   mkdir -p "$HOME/.ssh"
   chmod 700 "$HOME/.ssh"
 
-  # Personal key
-  if [[ ! -f "$personal_key" ]]; then
-    info "No personal SSH key found; generating $personal_key."
-    local personal_email
-    read -r -p "[SSH] Enter your personal GitHub email: " personal_email
-    ssh-keygen -t ed25519 -C "$personal_email" -f "$personal_key"
-    info "Personal key generated. Add to GitHub (Settings → SSH keys):"
-    cat "${personal_key}.pub"
-    read -r -p "Press Enter once you've added the personal key to GitHub..."
+  if [[ -d "/Applications/1Password.app" ]]; then
+    if ! command -v op >/dev/null 2>&1; then
+      warn "1Password CLI (op) not found; skipping key extraction."
+    else
+      if ! op whoami >/dev/null 2>&1; then
+        info "Signing in to 1Password CLI."
+        if ! op signin; then
+          warn "1Password sign-in failed; skipping key extraction."
+        fi
+      fi
+      if op whoami >/dev/null 2>&1; then
+        if [[ ! -f "$personal_key.pub" ]]; then
+          info "Extracting GitHub Personal public key from 1Password."
+          op item get "GitHub Personal" --fields "public key" > "$personal_key.pub" \
+            || warn "Failed to extract 'GitHub Personal' public key from 1Password."
+        else
+          info "GitHub Personal public key already exists; skipping."
+        fi
+        if [[ ! -f "$work_key.pub" ]]; then
+          info "Extracting GitHub Work public key from 1Password."
+          op item get "GitHub Work" --fields "public key" > "$work_key.pub" \
+            || warn "Failed to extract 'GitHub Work' public key from 1Password."
+        else
+          info "GitHub Work public key already exists; skipping."
+        fi
+      fi
+    fi
   else
-    info "Personal SSH key already exists at $personal_key."
-  fi
+    # Personal key
+    if [[ ! -f "$personal_key" ]]; then
+      info "No personal SSH key found; generating $personal_key."
+      local personal_email
+      read -r -p "[SSH] Enter your personal GitHub email: " personal_email
+      ssh-keygen -t ed25519 -C "$personal_email" -f "$personal_key"
+      info "Personal key generated. Add to GitHub (Settings → SSH keys):"
+      cat "${personal_key}.pub"
+      read -r -p "Press Enter once you've added the personal key to GitHub..."
+    else
+      info "Personal SSH key already exists at $personal_key."
+    fi
 
-  # Work key
-  if [[ ! -f "$work_key" ]]; then
-    info "No work SSH key found; generating $work_key."
-    local work_email
-    read -r -p "[SSH] Enter your work GitHub email: " work_email
-    ssh-keygen -t ed25519 -C "$work_email" -f "$work_key"
-    info "Work key generated. Add to your work GitHub account (Settings → SSH keys):"
-    cat "${work_key}.pub"
-    read -r -p "Press Enter once you've added the work key to GitHub..."
-  else
-    info "Work SSH key already exists at $work_key."
-  fi
+    # Work key
+    if [[ ! -f "$work_key" ]]; then
+      info "No work SSH key found; generating $work_key."
+      local work_email
+      read -r -p "[SSH] Enter your work GitHub email: " work_email
+      ssh-keygen -t ed25519 -C "$work_email" -f "$work_key"
+      info "Work key generated. Add to your work GitHub account (Settings → SSH keys):"
+      cat "${work_key}.pub"
+      read -r -p "Press Enter once you've added the work key to GitHub..."
+    else
+      info "Work SSH key already exists at $work_key."
+    fi
 
-  # Load keys into agent (best-effort; 1Password agent may handle this instead)
-  ssh-add "$personal_key" 2>/dev/null || true
-  ssh-add "$work_key" 2>/dev/null || true
+    # Load keys into agent
+    ssh-add "$personal_key" 2>/dev/null || true
+    ssh-add "$work_key" 2>/dev/null || true
+  fi
 
   # Ensure ~/.ssh/config has the two GitHub host entries
   if grep -qF "Host github-work" "$ssh_config" 2>/dev/null; then

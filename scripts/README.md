@@ -4,7 +4,30 @@ dotfiles managed with Homebrew and symlinks.
 
 ## Prerequisite: Git (SSH) Access
 
-This is required before the repo can be cloned. Only the personal key is needed here — the bootstrap script handles generating and configuring the work key automatically.
+This is required before the repo can be cloned.
+
+### With 1Password (recommended)
+
+Prerequisites:
+
+- 1Password installed and signed in to your account
+- SSH keys stored in your vault as **"GitHub Personal"** and **"GitHub Work"** items (already registered in GitHub)
+- SSH agent enabled: **1Password → Settings → Developer → Use the SSH agent**
+
+1. Test the connection:
+
+   ```bash
+   ssh -T git@github.com
+   ```
+
+2. Clone:
+
+   ```bash
+   cd ~
+   git clone git@github.com:<owner>/<repo>.git dotfiles
+   ```
+
+### Without 1Password
 
 1. Check for an existing key:
 
@@ -64,13 +87,13 @@ What it does:
 6. Sets up Rust toolchain (stable)
 7. Installs Go tools (bootdev)
 8. Configures global git identity (user.name / user.email)
-9. Sets up SSH keys — generates personal (`~/.ssh/id_ed25519`) and work (`~/.ssh/id_ed25519_github_work`) keys if absent, writes `~/.ssh/config` with GitHub host aliases and the 1Password SSH agent block, and tests both connections. **If your org enforces SAML SSO**, you must also authorize the work key: GitHub → Settings → SSH and GPG keys → Configure SSO → Authorize `<org>`
+9. Sets up SSH keys — if 1Password is installed, extracts public keys from "GitHub Personal" and "GitHub Work" items via `op`; otherwise generates fresh keys interactively. Writes `~/.ssh/config` with GitHub host aliases and tests both connections. **If your org enforces SAML SSO**, you must also authorize the work key: GitHub → Settings → SSH and GPG keys → Configure SSO → Authorize `<org>`
 10. Optionally restores the Snowflake private key from 1Password (`Snowflake SSH Key (SME)`) and derives the public key from it
 11. Creates dotfile symlinks
-11. Installs TPM (Tmux Plugin Manager)
-12. Bootstraps Fisher plugins for fish shell
-13. Sets fish as the default shell
-14. Applies macOS system defaults (Dock, Finder, keyboard, trackpad, appearance, etc.)
+12. Installs TPM (Tmux Plugin Manager)
+13. Bootstraps Fisher plugins for fish shell
+14. Sets fish as the default shell
+15. Applies macOS system defaults (Dock, Finder, keyboard, trackpad, appearance, etc.)
 
 > **Corporate/BYOD note:** Touch ID sudo (`pam-reattach`) and yabai sudoers are commented out in the bootstrap script — they require modifying `/etc/pam.d` and `/etc/sudoers.d` which is not permitted on corporate-enrolled machines. Uncomment them in the script for personal machines.
 
@@ -78,16 +101,16 @@ What it does:
 
 **What the bootstrap script manages:**
 
-| File | How it's handled |
-| ---- | ---------------- |
-| `~/.ssh/id_ed25519{,.pub}` | Generated fresh on each new machine, added to personal GitHub |
-| `~/.ssh/id_ed25519_github_work{,.pub}` | Generated fresh on each new machine, added to work GitHub |
-| `~/.ssh/snowflake/rsa_key.p8` | Pulled from 1Password item `Snowflake SSH Key (SME)` (prompted) |
-| `~/.ssh/snowflake/rsa_key.pub` | Derived from the private key (see below) — same public key every time |
-| `~/.ssh/config` | Written by the script — GitHub host aliases + 1Password agent block |
-| `~/.ssh/known_hosts` | **Do not copy.** Rebuilds automatically on first connection to each host |
+| File                                | How it's handled                                                                          |
+| ----------------------------------- | ----------------------------------------------------------------------------------------- |
+| `~/.ssh/id_ed25519.pub`             | Extracted from 1Password ("GitHub Personal") via `op`, or generated fresh if no 1Password |
+| `~/.ssh/id_ed25519_github_work.pub` | Extracted from 1Password ("GitHub Work") via `op`, or generated fresh if no 1Password     |
+| `~/.ssh/snowflake/rsa_key.p8`       | Pulled from 1Password item `Snowflake SSH Key (SME)` (prompted)                           |
+| `~/.ssh/snowflake/rsa_key.pub`      | Derived from the private key (see below) — same public key every time                     |
+| `~/.ssh/config`                     | Written by the script — GitHub host aliases + 1Password agent block                       |
+| `~/.ssh/known_hosts`                | **Do not copy.** Rebuilds automatically on first connection to each host                  |
 
-**GitHub keys are intentionally regenerated on each machine.** After bootstrap, add the new public keys to GitHub. Because the Snowflake public key is derived deterministically from the private key (which lives in 1Password), it is always identical to the one registered in Terraform — no Terraform changes needed.
+**With 1Password**, the same public keys are extracted on every machine — no need to re-add them to GitHub after the first setup. **Without 1Password**, fresh keys are generated and must be added to GitHub after bootstrap. Because the Snowflake public key is derived deterministically from the private key (which lives in 1Password), it is always identical to the one registered in Terraform — no Terraform changes needed.
 
 **Deriving a public key from a private key:**
 
