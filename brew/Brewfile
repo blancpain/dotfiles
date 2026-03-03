@@ -46,6 +46,7 @@ brew "pngpaste"
 brew "poppler"              # poppler-utils in nix
 brew "python@3"
 brew "rabbitmq"
+brew "rclone"
 brew "redis"
 brew "ripgrep"
 brew "sesh"
