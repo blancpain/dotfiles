@@ -1,9 +1,8 @@
 # Taps
 tap "koekeishiya/formulae"      # yabai, skhd
-# tap "supabase/tap"              # supabase CLI - not allowed on BYOD
 
 # ------------------------------------------------------------------
-# CLI tools 
+# CLI tools
 # ------------------------------------------------------------------
 brew "automake"
 brew "awsume"
@@ -12,7 +11,6 @@ brew "bottom"
 brew "btop"
 brew "carapace"
 brew "cloc"
-# brew "cloudflared"             # not allowed on BYOD
 brew "cpanminus"            # perlPackages.Appcpanminus in nix
 brew "curl"
 brew "docker"
@@ -51,7 +49,6 @@ brew "redis"
 brew "ripgrep"
 brew "sesh"
 brew "starship"
-# brew "supabase/tap/supabase"   # not allowed on BYOD
 brew "tectonic"
 brew "terraform"
 brew "tmux"
@@ -71,7 +68,6 @@ brew "zoxide"
 brew "colima"
 brew "mas"
 brew "bob"
-# brew "pam-reattach" #not available on corporate/BYOD machines
 brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
 
@@ -90,10 +86,8 @@ cask "google-drive"
 cask "hammerspoon"
 cask "istat-menus"
 cask "karabiner-elements"
-# cask "ngrok"                   # not allowed on BYOD
 cask "neo4j-desktop"
 cask "notion"
-# cask "notion-calendar"
 cask "notion-mail"
 cask "obsidian"
 cask "postman"
@@ -111,16 +105,3 @@ cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
 cask "font-iosevka-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
-
-# ------------------------------------------------------------------
-# Mac App Store (sometimes Apple Store not allowed on BYOW)
-# ------------------------------------------------------------------
-# mas "Gifski", id: 1351639930
-# mas "Klack", id: 6446206067
-# mas "Toggl Track", id: 1291898086
-
-# Safari Extensions (not allowed under BYOD)
-# mas "1Password for Safari", id: 1569813296
-# mas "Save to Raindrop.io", id: 1549370672
-# mas "Notion Web Clipper", id: 1559269364
-# mas "uBlock Origin Lite", id: 6745342698

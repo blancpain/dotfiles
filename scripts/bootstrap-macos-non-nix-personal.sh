@@ -4,12 +4,12 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: scripts/bootstrap-macos-non-nix.sh
+Usage: scripts/bootstrap-macos-non-nix-personal.sh
 
-Automates a fresh macOS setup WITHOUT Nix:
+Automates a fresh macOS setup WITHOUT Nix (personal machine):
   1. Ensure Apple Command Line Tools
   2. Install Homebrew (Apple Silicon default path)
-  3. Install all packages via Brewfile (brew bundle)
+  3. Install all packages via Brewfile.personal (brew bundle)
   4. Install AWS CLI v2 (via .pkg installer)
   5. Install Claude Code
   6. Set up Node.js (fnm + LTS) and global npm packages
@@ -21,12 +21,10 @@ Automates a fresh macOS setup WITHOUT Nix:
   12. Create dotfile symlinks
   13. Install TPM (Tmux Plugin Manager)
   14. Bootstrap Fisher plugins for fish shell
-  15. Set fish as default shell
-  16. Apply macOS system defaults
-
-  NOTE: Touch ID sudo (pam-reattach) and yabai sudoers are commented out —
-  they cannot be used on corporate/BYOD-enrolled machines. Uncomment if
-  running on a personal machine.
+  15. Configure Touch ID sudo (pam-reattach)
+  16. Configure passwordless sudo for yabai --load-sa
+  17. Set fish as default shell
+  18. Apply macOS system defaults
 
 Run this script from anywhere inside the repo.
 EOF
@@ -49,7 +47,7 @@ fi
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT=$(cd "${SCRIPT_DIR}/.." && pwd)
-BREWFILE="${REPO_ROOT}/brew/Brewfile"
+BREWFILE="${REPO_ROOT}/brew/Brewfile.personal"
 
 info()  { printf '[INFO] %s\n' "$*"; }
 warn()  { printf '[WARN] %s\n' "$*" >&2; }
@@ -104,9 +102,8 @@ install_packages() {
     error "Brewfile not found at $BREWFILE"
   fi
 
-  info "Installing packages from Brewfile (this may take a while)."
-  # Some casks may fail on MDM-managed machines; continue so formulae still install.
-  brew bundle --file="$BREWFILE" || warn "brew bundle finished with errors — some casks may have been blocked by MDM."
+  info "Installing packages from Brewfile.personal (this may take a while)."
+  brew bundle --file="$BREWFILE" || warn "brew bundle finished with errors — check the output above."
 }
 
 # ---------- Step 4: AWS CLI ----------
@@ -448,9 +445,6 @@ create_symlinks() {
   info "Creating dotfile symlinks."
 
   # ~/.config targets (common + darwin)
-  # NOTE: karabiner, skhd, and yabai require Accessibility / Input Monitoring
-  # permissions (and karabiner needs a system extension) that MDM may block.
-  # Configs are symlinked regardless so they're ready if permissions are granted.
   local config_pkgs=(starship nvim tmux lazygit fish yazi karabiner skhd yabai ghostty)
   for pkg in "${config_pkgs[@]}"; do
     link_file "$REPO_ROOT/$pkg" "$HOME/.config/$pkg"
@@ -518,63 +512,59 @@ setup_fisher() {
   ' || warn "Fisher plugin bootstrap failed — you can retry manually with: fish -c \"curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update\""
 }
 
-# ---------- DISABLED: Touch ID sudo + pam-reattach ----------
-# NOTE: Cannot be used on corporate/BYOD-enrolled machines.
-# Uncomment this function and add configure_sudo to main() for personal machines.
+# ---------- Step 13: Touch ID sudo + pam-reattach ----------
 
-# configure_sudo() {
-#   local sudo_local="/etc/pam.d/sudo_local"
-#   local pam_reattach_lib="/opt/homebrew/lib/pam/pam_reattach.so"
-#
-#   if [[ -f "$sudo_local" ]] && grep -q pam_tid "$sudo_local"; then
-#     info "Touch ID sudo already configured."
-#     return
-#   fi
-#
-#   if [[ ! -f "$pam_reattach_lib" ]]; then
-#     warn "pam-reattach not found at $pam_reattach_lib; skipping sudo configuration."
-#     return
-#   fi
-#
-#   info "Configuring Touch ID for sudo (with pam-reattach for tmux sessions)."
-#   sudo tee "$sudo_local" >/dev/null <<EOF
-# # Touch ID for sudo (pam-reattach enables it inside tmux)
-# auth       optional       $pam_reattach_lib ignore_ssh
-# auth       sufficient     pam_tid.so
-# EOF
-#   info "Touch ID sudo configured."
-# }
+configure_sudo() {
+  local sudo_local="/etc/pam.d/sudo_local"
+  local pam_reattach_lib="/opt/homebrew/lib/pam/pam_reattach.so"
 
-# ---------- DISABLED: Yabai sudoers ----------
-# NOTE: Cannot be used on corporate/BYOD-enrolled machines.
-# Uncomment this function and add configure_yabai_sudoers to main() for personal machines.
+  if [[ -f "$sudo_local" ]] && grep -q pam_tid "$sudo_local"; then
+    info "Touch ID sudo already configured."
+    return
+  fi
 
-# configure_yabai_sudoers() {
-#   local yabai_path
-#   yabai_path="$(brew --prefix)/bin/yabai"
-#   local sudoers_file="/etc/sudoers.d/yabai"
-#
-#   if [[ ! -x "$yabai_path" ]]; then
-#     warn "yabai not found at $yabai_path; skipping sudoers configuration."
-#     return
-#   fi
-#
-#   local hash
-#   hash=$(shasum -a 256 "$yabai_path" | cut -d ' ' -f1)
-#
-#   if [[ -f "$sudoers_file" ]] && grep -q "$hash" "$sudoers_file"; then
-#     info "Yabai sudoers already up to date."
-#     return
-#   fi
-#
-#   info "Configuring passwordless sudo for yabai --load-sa (requires SIP partially disabled)."
-#   sudo tee "$sudoers_file" >/dev/null <<EOF
-# $(whoami) ALL=(root) NOPASSWD: sha256:$hash $yabai_path --load-sa
-# EOF
-#   info "Yabai sudoers configured."
-# }
+  if [[ ! -f "$pam_reattach_lib" ]]; then
+    warn "pam-reattach not found at $pam_reattach_lib; skipping sudo configuration."
+    return
+  fi
 
-# ---------- Step 13: Default shell ----------
+  info "Configuring Touch ID for sudo (with pam-reattach for tmux sessions)."
+  sudo tee "$sudo_local" >/dev/null <<EOF
+# Touch ID for sudo (pam-reattach enables it inside tmux)
+auth       optional       $pam_reattach_lib ignore_ssh
+auth       sufficient     pam_tid.so
+EOF
+  info "Touch ID sudo configured."
+}
+
+# ---------- Step 14: Yabai sudoers ----------
+
+configure_yabai_sudoers() {
+  local yabai_path
+  yabai_path="$(brew --prefix)/bin/yabai"
+  local sudoers_file="/etc/sudoers.d/yabai"
+
+  if [[ ! -x "$yabai_path" ]]; then
+    warn "yabai not found at $yabai_path; skipping sudoers configuration."
+    return
+  fi
+
+  local hash
+  hash=$(shasum -a 256 "$yabai_path" | cut -d ' ' -f1)
+
+  if [[ -f "$sudoers_file" ]] && grep -q "$hash" "$sudoers_file"; then
+    info "Yabai sudoers already up to date."
+    return
+  fi
+
+  info "Configuring passwordless sudo for yabai --load-sa (requires SIP partially disabled)."
+  sudo tee "$sudoers_file" >/dev/null <<EOF
+$(whoami) ALL=(root) NOPASSWD: sha256:$hash $yabai_path --load-sa
+EOF
+  info "Yabai sudoers configured."
+}
+
+# ---------- Step 15: Default shell ----------
 
 set_default_shell() {
   local fish_path
@@ -597,7 +587,7 @@ set_default_shell() {
   if ! grep -qF "$fish_path" /etc/shells; then
     info "Adding $fish_path to /etc/shells."
     if ! echo "$fish_path" | sudo tee -a /etc/shells >/dev/null; then
-      warn "Could not add $fish_path to /etc/shells (MDM or sudo restriction). Skipping shell change."
+      warn "Could not add $fish_path to /etc/shells. Skipping shell change."
       return
     fi
   fi
@@ -606,14 +596,14 @@ set_default_shell() {
   if chsh -s "$fish_path"; then
     info "Default shell changed to fish. Open a new terminal to use it."
   else
-    warn "chsh failed — directory service or MDM may restrict shell changes. You can launch fish from your terminal profile settings instead."
+    warn "chsh failed — you can launch fish from your terminal profile settings instead."
   fi
 }
 
-# ---------- Step 14: macOS defaults ----------
+# ---------- Step 16: macOS defaults ----------
 
 configure_macos_defaults() {
-  info "Applying macOS defaults (MDM-managed profiles may silently override some of these)."
+  info "Applying macOS defaults."
 
   # --- Dock ---
   defaults write com.apple.dock autohide -bool true
@@ -812,8 +802,8 @@ main() {
   create_symlinks
   setup_tmux
   setup_fisher
-  # configure_sudo            # disabled: not available on corporate/BYOD machines
-  # configure_yabai_sudoers   # disabled: not available on corporate/BYOD machines
+  configure_sudo
+  configure_yabai_sudoers
   set_default_shell
   configure_macos_defaults
   info "Bootstrap complete. Some changes may require a logout or restart to take full effect."

@@ -71,31 +71,53 @@ Prerequisites:
 
 ## Fresh macOS Bootstrap
 
-Run the automated bootstrap script from anywhere inside the repo:
+Two bootstrap scripts and two Brewfiles exist — pick the right pair for your machine:
+
+| Machine type | Script | Brewfile |
+| ------------ | ------ | -------- |
+| Corporate / BYOD | `scripts/bootstrap-macos-non-nix-corporate.sh` | `brew/Brewfile.corporate` |
+| Personal | `scripts/bootstrap-macos-non-nix-personal.sh` | `brew/Brewfile.personal` |
+
+**Differences between corporate and personal:**
+
+| Feature | Corporate | Personal |
+| ------- | --------- | -------- |
+| `cloudflared`, `ngrok`, `supabase` | — | ✓ |
+| `pam-reattach` (Touch ID sudo in tmux) | — | ✓ |
+| Yabai passwordless sudoers | — | ✓ |
+| Mac App Store apps (Gifski, Klack, Toggl Track) | — | ✓ |
+| Safari Extensions (1Password, Raindrop, Notion Clipper, uBlock) | — | ✓ |
+
+Run from anywhere inside the repo:
 
 ```bash
-./scripts/bootstrap-macos-non-nix.sh
+# Corporate / BYOD
+./scripts/bootstrap-macos-non-nix-corporate.sh
+
+# Personal
+./scripts/bootstrap-macos-non-nix-personal.sh
 ```
 
-What it does:
+What each script does:
 
 1. Ensures Apple Command Line Tools are installed
 2. Installs Homebrew (Apple Silicon)
-3. Installs all packages via `brew bundle` (Brewfile)
-4. Installs Claude Code
-5. Sets up Node.js (fnm + LTS) and global npm packages (mermaid-cli, gemini-cli, codex, tsx, typescript, tree-sitter-cli)
-6. Sets up Rust toolchain (stable)
-7. Installs Go tools (bootdev)
-8. Configures global git identity (user.name / user.email)
-9. Sets up SSH keys — if 1Password is installed, extracts public keys from "GitHub Personal" and "GitHub Work" items via `op`; otherwise generates fresh keys interactively. Writes `~/.ssh/config` with GitHub host aliases and tests both connections. **If your org enforces SAML SSO**, you must also authorize the work key: GitHub → Settings → SSH and GPG keys → Configure SSO → Authorize `<org>`
-10. Optionally restores the Snowflake private key from 1Password (`Snowflake SSH Key (SME)`) and derives the public key from it
-11. Creates dotfile symlinks
-12. Installs TPM (Tmux Plugin Manager)
-13. Bootstraps Fisher plugins for fish shell
-14. Sets fish as the default shell
-15. Applies macOS system defaults (Dock, Finder, keyboard, trackpad, appearance, etc.)
-
-> **Corporate/BYOD note:** Touch ID sudo (`pam-reattach`) and yabai sudoers are commented out in the bootstrap script — they require modifying `/etc/pam.d` and `/etc/sudoers.d` which is not permitted on corporate-enrolled machines. Uncomment them in the script for personal machines.
+3. Installs all packages via `brew bundle` (using the matching Brewfile)
+4. Installs AWS CLI v2
+5. Installs Claude Code
+6. Sets up Node.js (fnm + LTS) and global npm packages (mermaid-cli, gemini-cli, codex, tsx, typescript, tree-sitter-cli)
+7. Sets up Rust toolchain (stable)
+8. Installs Go tools (bootdev)
+9. Configures global git identity (user.name / user.email)
+10. Sets up SSH keys — if 1Password is installed, extracts public keys from "GitHub Personal" and "GitHub Work" items via `op`; otherwise generates fresh keys interactively. Writes `~/.ssh/config` with GitHub host aliases and tests both connections. **If your org enforces SAML SSO**, you must also authorize the work key: GitHub → Settings → SSH and GPG keys → Configure SSO → Authorize `<org>`
+11. Optionally restores the Snowflake private key from 1Password (`Snowflake SSH Key (SME)`) and derives the public key from it
+12. Creates dotfile symlinks
+13. Installs TPM (Tmux Plugin Manager)
+14. Bootstraps Fisher plugins for fish shell
+15. *(Personal only)* Configures Touch ID sudo via `pam-reattach`
+16. *(Personal only)* Configures passwordless sudo for `yabai --load-sa`
+17. Sets fish as the default shell
+18. Applies macOS system defaults (Dock, Finder, keyboard, trackpad, appearance, etc.)
 
 ### SSH Keys
 
@@ -197,20 +219,22 @@ chsh -s "$(brew --prefix)/bin/fish"
 
 ### Touch ID for sudo
 
-Touch ID is configured for sudo via `/etc/pam.d/sudo_local`, including `pam-reattach` so it works inside tmux sessions. No manual PAM edits required.
+*(Personal machines only.)* Touch ID is configured for sudo via `/etc/pam.d/sudo_local`, including `pam-reattach` so it works inside tmux sessions. This is handled automatically by the personal bootstrap script — no manual PAM edits required.
 
 ## Adding/Removing Packages
 
-Edit `brew/Brewfile` and run:
+Edit the appropriate Brewfile (`brew/Brewfile.corporate` or `brew/Brewfile.personal`) and run:
 
 ```bash
-brew bundle --file=brew/Brewfile
+brew bundle --file=brew/Brewfile.corporate
+# or
+brew bundle --file=brew/Brewfile.personal
 ```
 
 To also remove packages not in the Brewfile:
 
 ```bash
-brew bundle --file=brew/Brewfile --cleanup
+brew bundle --file=brew/Brewfile.corporate --cleanup
 ```
 
 ## Granting yabai + skhd Accessibility Permissions
