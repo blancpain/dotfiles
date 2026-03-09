@@ -189,7 +189,7 @@ setup_node() {
   done
 }
 
-# ---------- Step 6: Rust toolchain + cargo packages ----------
+# ---------- Step 7: Rust toolchain + cargo packages ----------
 
 setup_rust() {
   # Install rustup via the official installer (not Homebrew) so that
@@ -222,7 +222,7 @@ setup_rust() {
   fi
 }
 
-# ---------- Step 7: Go tools ----------
+# ---------- Step 8: Go tools ----------
 
 setup_go() {
   if ! command -v go >/dev/null 2>&1; then
@@ -246,7 +246,7 @@ setup_go() {
   done
 }
 
-# ---------- Step 8: Git global config ----------
+# ---------- Step 9: Git global config ----------
 
 setup_git_config() {
   if ! command -v git >/dev/null 2>&1; then
@@ -271,7 +271,7 @@ setup_git_config() {
   info "Git identity set: $(git config --global user.name) <$(git config --global user.email)>"
 }
 
-# ---------- Step 9: SSH keys ----------
+# ---------- Step 10: SSH keys ----------
 
 setup_ssh_keys() {
   local personal_key="$HOME/.ssh/id_ed25519"
@@ -386,7 +386,7 @@ SSHCONF
   fi
 }
 
-# ---------- Step 10: Snowflake SSH key ----------
+# ---------- Step 11: Snowflake SSH key ----------
 #
 # Pulls the private key from 1Password and derives the public key locally.
 # Gated behind a prompt — skip on machines that don't need Snowflake access.
@@ -478,7 +478,7 @@ setup_tmux() {
     warn "Failed to clone TPM — check network connectivity."
 }
 
-# ---------- Step 12: Fisher plugins ----------
+# ---------- Step 14: Fisher plugins ----------
 
 setup_fisher() {
   local fish_path
@@ -517,7 +517,7 @@ setup_fisher() {
   ' || warn "Fisher plugin bootstrap failed — you can retry manually with: fish -c \"curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update\""
 }
 
-# ---------- Step 13: Default shell ----------
+# ---------- Step 15: Default shell ----------
 
 set_default_shell() {
   local fish_path
@@ -553,7 +553,7 @@ set_default_shell() {
   fi
 }
 
-# ---------- Step 14: macOS defaults ----------
+# ---------- Step 16: macOS defaults ----------
 
 configure_macos_defaults() {
   info "Applying macOS defaults (MDM-managed profiles may silently override some of these)."
