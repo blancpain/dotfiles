@@ -78,6 +78,26 @@ return {
             "typescriptreact",
           },
         },
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                ignore = { "*" },
+              },
+            },
+          },
+        },
+      },
+      setup = {
+        ruff = function()
+          Snacks.util.lsp.on({ name = "ruff" }, function(_, client)
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end)
+        end,
       },
     },
   },
