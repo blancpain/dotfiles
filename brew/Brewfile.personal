@@ -110,9 +110,3 @@ cask "font-hack-nerd-font"
 cask "font-iosevka-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 
-# ------------------------------------------------------------------
-# Mac App Store
-# ------------------------------------------------------------------
-mas "Gifski", id: 1351639930
-mas "Klack", id: 6446206067
-mas "Toggl Track", id: 1291898086

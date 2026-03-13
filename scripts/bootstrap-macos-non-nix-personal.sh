@@ -142,7 +142,7 @@ install_claude_code() {
     || warn "Claude Code install failed (proxy or firewall may be blocking the download)."
 }
 
-# ---------- Step 5: Node.js + global npm packages ----------
+# ---------- Step 6: Node.js + global npm packages ----------
 
 setup_node() {
   if ! command -v fnm >/dev/null 2>&1; then
@@ -187,7 +187,7 @@ setup_node() {
   done
 }
 
-# ---------- Step 6: Rust toolchain + cargo packages ----------
+# ---------- Step 7: Rust toolchain + cargo packages ----------
 
 setup_rust() {
   # Install rustup via the official installer (not Homebrew) so that
@@ -220,7 +220,7 @@ setup_rust() {
   fi
 }
 
-# ---------- Step 7: Go tools ----------
+# ---------- Step 8: Go tools ----------
 
 setup_go() {
   if ! command -v go >/dev/null 2>&1; then
@@ -244,7 +244,7 @@ setup_go() {
   done
 }
 
-# ---------- Step 8: Git global config ----------
+# ---------- Step 9: Git global config ----------
 
 setup_git_config() {
   if ! command -v git >/dev/null 2>&1; then
@@ -269,7 +269,7 @@ setup_git_config() {
   info "Git identity set: $(git config --global user.name) <$(git config --global user.email)>"
 }
 
-# ---------- Step 9: SSH keys ----------
+# ---------- Step 10: SSH keys ----------
 
 setup_ssh_keys() {
   local personal_key="$HOME/.ssh/id_ed25519"
@@ -384,7 +384,7 @@ SSHCONF
   fi
 }
 
-# ---------- Step 10: Snowflake SSH key ----------
+# ---------- Step 11: Snowflake SSH key ----------
 #
 # Pulls the private key from 1Password and derives the public key locally.
 # Gated behind a prompt — skip on machines that don't need Snowflake access.
@@ -439,7 +439,7 @@ setup_snowflake_key() {
   info "Snowflake SSH key ready at $snowflake_dir."
 }
 
-# ---------- Step 11: Symlinks ----------
+# ---------- Step 12: Symlinks ----------
 
 create_symlinks() {
   info "Creating dotfile symlinks."
@@ -459,7 +459,7 @@ create_symlinks() {
   link_file "$REPO_ROOT/Windsurf/User" "$HOME/Library/Application Support/Windsurf/User"
 }
 
-# ---------- Step 11: TPM (Tmux Plugin Manager) ----------
+# ---------- Step 13: TPM (Tmux Plugin Manager) ----------
 
 setup_tmux() {
   local tpm_dir="$REPO_ROOT/tmux/plugins/tpm"
@@ -473,7 +473,7 @@ setup_tmux() {
     || warn "Failed to clone TPM — check network connectivity."
 }
 
-# ---------- Step 12: Fisher plugins ----------
+# ---------- Step 14: Fisher plugins ----------
 
 setup_fisher() {
   local fish_path
@@ -512,7 +512,7 @@ setup_fisher() {
   ' || warn "Fisher plugin bootstrap failed — you can retry manually with: fish -c \"curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update\""
 }
 
-# ---------- Step 13: Touch ID sudo + pam-reattach ----------
+# ---------- Step 15: Touch ID sudo + pam-reattach ----------
 
 configure_sudo() {
   local sudo_local="/etc/pam.d/sudo_local"
@@ -537,7 +537,7 @@ EOF
   info "Touch ID sudo configured."
 }
 
-# ---------- Step 14: Yabai sudoers ----------
+# ---------- Step 16: Yabai sudoers ----------
 
 configure_yabai_sudoers() {
   local yabai_path
@@ -564,7 +564,7 @@ EOF
   info "Yabai sudoers configured."
 }
 
-# ---------- Step 15: Default shell ----------
+# ---------- Step 17: Default shell ----------
 
 set_default_shell() {
   local fish_path
@@ -600,7 +600,7 @@ set_default_shell() {
   fi
 }
 
-# ---------- Step 16: macOS defaults ----------
+# ---------- Step 18: macOS defaults ----------
 
 configure_macos_defaults() {
   info "Applying macOS defaults."
@@ -785,6 +785,31 @@ configure_macos_defaults() {
   fi
 }
 
+# ---------- Step 19: Mac App Store apps ----------
+
+install_mas_apps() {
+  # mas "purchase" via brew bundle is unreliable — install directly instead.
+  declare -A MAS_APPS=(
+    [1351639930]="Gifski"
+    [6446206067]="Klack"
+    [1291898086]="Toggl Track"
+  )
+
+  for id in "${!MAS_APPS[@]}"; do
+    name="${MAS_APPS[$id]}"
+    if mas list | grep -q "^${id}"; then
+      info "${name} already installed."
+    else
+      info "Installing ${name}..."
+      if mas install "$id"; then
+        info "${name} installed."
+      else
+        warn "${name} failed to install — make sure you are signed into the App Store with the Apple ID that purchased it."
+      fi
+    fi
+  done
+}
+
 # ---------- Main ----------
 
 main() {
@@ -806,6 +831,7 @@ main() {
   configure_yabai_sudoers
   set_default_shell
   configure_macos_defaults
+  install_mas_apps
   info "Bootstrap complete. Some changes may require a logout or restart to take full effect."
 }
 
