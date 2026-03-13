@@ -15,21 +15,6 @@
                         ]
                     },
                     {
-                        "description": "Map right Option to Control+Shift+Command+4 (Screenshot + Copy)",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "right_option" },
-                                "to": [
-                                    {
-                                        "key_code": "4",
-                                        "modifiers": ["left_control", "left_shift", "left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Map left Command + right Option to Command+Shift+4 (Screenshot + Save)",
                         "manipulators": [
                             {
@@ -41,6 +26,21 @@
                                     {
                                         "key_code": "4",
                                         "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Map right Option to Control+Shift+Command+4 (Screenshot + Copy)",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "right_option" },
+                                "to": [
+                                    {
+                                        "key_code": "4",
+                                        "modifiers": ["left_control", "left_shift", "left_command"]
                                     }
                                 ],
                                 "type": "basic"
