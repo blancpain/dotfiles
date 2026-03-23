@@ -17,12 +17,13 @@ Automates a fresh macOS setup WITHOUT Nix (corporate/BYOD machine):
   8. Install global Go tools
   9. Configure global git identity (user.name / user.email)
   10. Set up SSH keys (personal + work GitHub) + write ~/.ssh/config
-  11. Optionally restore Snowflake SSH key from 1Password
-  12. Create dotfile symlinks
-  13. Install TPM (Tmux Plugin Manager)
-  14. Bootstrap Fisher plugins for fish shell
-  15. Set fish as default shell
-  16. Apply macOS system defaults
+  11. Set up Tailscale + Mac Mini SSH access
+  12. Optionally restore Snowflake SSH key from 1Password
+  13. Create dotfile symlinks
+  14. Install TPM (Tmux Plugin Manager)
+  15. Bootstrap Fisher plugins for fish shell
+  16. Set fish as default shell
+  17. Apply macOS system defaults
 
 Run this script from anywhere inside the repo.
 EOF
@@ -386,7 +387,79 @@ SSHCONF
   fi
 }
 
-# ---------- Step 11: Snowflake SSH key ----------
+# ---------- Step 11: Tailscale + Mac Mini SSH ----------
+
+setup_tailscale() {
+  if ! command -v tailscale >/dev/null 2>&1; then
+    warn "tailscale not found; skipping."
+    return
+  fi
+
+  # Start daemon if not running
+  if ! tailscale status >/dev/null 2>&1; then
+    info "Starting Tailscale daemon."
+    sudo brew services start tailscale
+  fi
+
+  # Authenticate if not logged in
+  if ! tailscale status >/dev/null 2>&1; then
+    info "Authenticating Tailscale (this will open a browser)."
+    tailscale up
+  else
+    info "Tailscale already authenticated."
+  fi
+
+  tailscale status
+
+  # Add Mac Mini to SSH config
+  local ssh_config="$HOME/.ssh/config"
+  local macmini_key="$HOME/.ssh/macmini.pub"
+
+  if grep -qF "Host macmini" "$ssh_config" 2>/dev/null; then
+    info "Mac Mini SSH host entry already in $ssh_config."
+  else
+    local answer
+    read -r -p "[Tailscale] Add Mac Mini SSH entry to ~/.ssh/config? [y/N] " answer
+    if [[ "$answer" =~ ^[Yy]$ ]]; then
+
+      # Extract Mac Mini public key from 1Password for IdentityFile
+      if [[ ! -f "$macmini_key" ]]; then
+        if command -v op >/dev/null 2>&1 && op whoami >/dev/null 2>&1; then
+          info "Extracting Mac Mini public key from 1Password."
+          op item get "Mac Mini" --fields "public key" > "$macmini_key" \
+            || warn "Failed to extract 'Mac Mini' public key from 1Password."
+        else
+          warn "1Password CLI not available; you'll need to manually create ~/.ssh/macmini.pub with the public key."
+        fi
+      fi
+
+      info "Adding Mac Mini entry to $ssh_config."
+      cat >> "$ssh_config" <<'SSHCONF'
+
+Host macmini
+  HostName 100.82.197.87
+  User blancpain
+  IdentityFile ~/.ssh/macmini.pub
+  IdentitiesOnly yes
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+SSHCONF
+      chmod 600 "$ssh_config"
+
+      # Copy public key to Mac Mini authorized_keys for key-based auth
+      if [[ -f "$macmini_key" ]]; then
+        info "Copying public key to Mac Mini (you'll be prompted for the Mac Mini password once)."
+        ssh -o PreferredAuthentications=password macmini \
+          "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys" < "$macmini_key" \
+          || warn "Failed to copy key — you can add it manually to the Mac Mini's ~/.ssh/authorized_keys."
+      fi
+
+      info "Mac Mini SSH configured. Use: ssh macmini"
+    fi
+  fi
+}
+
+# ---------- Step 12: Snowflake SSH key ----------
 #
 # Pulls the private key from 1Password and derives the public key locally.
 # Gated behind a prompt — skip on machines that don't need Snowflake access.
@@ -751,6 +824,7 @@ main() {
   setup_go
   setup_git_config
   setup_ssh_keys
+  setup_tailscale
   setup_snowflake_key
   create_symlinks
   setup_tmux
