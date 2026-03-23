@@ -1,5 +1,6 @@
 # Taps
 tap "koekeishiya/formulae"      # yabai, skhd
+tap "oven-sh/bun"
 tap "supabase/tap"              # supabase CLI
 
 # ------------------------------------------------------------------
@@ -10,6 +11,7 @@ brew "awsume"
 brew "bat"
 brew "bottom"
 brew "btop"
+brew "oven-sh/bun/bun"
 brew "carapace"
 brew "cloc"
 brew "cloudflared"

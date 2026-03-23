@@ -1,5 +1,6 @@
 # Taps
 tap "koekeishiya/formulae"      # yabai, skhd
+tap "oven-sh/bun"
 
 # ------------------------------------------------------------------
 # CLI tools
@@ -9,6 +10,7 @@ brew "awsume"
 brew "bat"
 brew "bottom"
 brew "btop"
+brew "oven-sh/bun/bun"
 brew "carapace"
 brew "cloc"
 brew "cpanminus"            # perlPackages.Appcpanminus in nix
