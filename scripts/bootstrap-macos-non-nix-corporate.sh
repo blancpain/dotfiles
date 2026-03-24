@@ -426,15 +426,15 @@ setup_tailscale() {
       if [[ ! -f "$macmini_key" ]]; then
         if command -v op >/dev/null 2>&1 && op whoami >/dev/null 2>&1; then
           info "Extracting Mac Mini public key from 1Password."
-          op item get "Mac Mini" --fields "public key" > "$macmini_key" \
-            || warn "Failed to extract 'Mac Mini' public key from 1Password."
+          op item get "Mac Mini" --fields "public key" >"$macmini_key" ||
+            warn "Failed to extract 'Mac Mini' public key from 1Password."
         else
           warn "1Password CLI not available; you'll need to manually create ~/.ssh/macmini.pub with the public key."
         fi
       fi
 
       info "Adding Mac Mini entry to $ssh_config."
-      cat >> "$ssh_config" <<'SSHCONF'
+      cat >>"$ssh_config" <<'SSHCONF'
 
 Host macmini
   HostName 100.82.197.87
@@ -443,6 +443,7 @@ Host macmini
   IdentitiesOnly yes
   ServerAliveInterval 60
   ServerAliveCountMax 3
+  ForwardAgent yes
 SSHCONF
       chmod 600 "$ssh_config"
 
@@ -450,8 +451,8 @@ SSHCONF
       if [[ -f "$macmini_key" ]]; then
         info "Copying public key to Mac Mini (you'll be prompted for the Mac Mini password once)."
         ssh -o PreferredAuthentications=password macmini \
-          "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys" < "$macmini_key" \
-          || warn "Failed to copy key — you can add it manually to the Mac Mini's ~/.ssh/authorized_keys."
+          "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys" <"$macmini_key" ||
+          warn "Failed to copy key — you can add it manually to the Mac Mini's ~/.ssh/authorized_keys."
       fi
 
       info "Mac Mini SSH configured. Use: ssh macmini"

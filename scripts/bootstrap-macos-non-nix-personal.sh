@@ -50,9 +50,12 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT=$(cd "${SCRIPT_DIR}/.." && pwd)
 BREWFILE="${REPO_ROOT}/brew/Brewfile.personal"
 
-info()  { printf '[INFO] %s\n' "$*"; }
-warn()  { printf '[WARN] %s\n' "$*" >&2; }
-error() { printf '[ERROR] %s\n' "$*" >&2; exit 1; }
+info() { printf '[INFO] %s\n' "$*"; }
+warn() { printf '[WARN] %s\n' "$*" >&2; }
+error() {
+  printf '[ERROR] %s\n' "$*" >&2
+  exit 1
+}
 
 # Create a symlink, backing up any existing non-symlink target.
 link_file() {
@@ -139,8 +142,8 @@ install_claude_code() {
   fi
 
   info "Installing Claude Code."
-  curl -fsSL https://claude.ai/install.sh | bash \
-    || warn "Claude Code install failed (proxy or firewall may be blocking the download)."
+  curl -fsSL https://claude.ai/install.sh | bash ||
+    warn "Claude Code install failed (proxy or firewall may be blocking the download)."
 }
 
 # ---------- Step 6: Node.js + global npm packages ----------
@@ -265,7 +268,7 @@ setup_git_config() {
     return
   fi
 
-  [[ -z "$current_name" ]]  && git config --global user.name "$name"
+  [[ -z "$current_name" ]] && git config --global user.name "$name"
   [[ -z "$current_email" ]] && git config --global user.email "$email"
   info "Git identity set: $(git config --global user.name) <$(git config --global user.email)>"
 }
@@ -293,15 +296,15 @@ setup_ssh_keys() {
       if op whoami >/dev/null 2>&1; then
         if [[ ! -f "$personal_key.pub" ]]; then
           info "Extracting GitHub Personal public key from 1Password."
-          op item get "GitHub Personal" --fields "public key" > "$personal_key.pub" \
-            || warn "Failed to extract 'GitHub Personal' public key from 1Password."
+          op item get "GitHub Personal" --fields "public key" >"$personal_key.pub" ||
+            warn "Failed to extract 'GitHub Personal' public key from 1Password."
         else
           info "GitHub Personal public key already exists; skipping."
         fi
         if [[ ! -f "$work_key.pub" ]]; then
           info "Extracting GitHub Work public key from 1Password."
-          op item get "GitHub Work" --fields "public key" > "$work_key.pub" \
-            || warn "Failed to extract 'GitHub Work' public key from 1Password."
+          op item get "GitHub Work" --fields "public key" >"$work_key.pub" ||
+            warn "Failed to extract 'GitHub Work' public key from 1Password."
         else
           info "GitHub Work public key already exists; skipping."
         fi
@@ -346,7 +349,7 @@ setup_ssh_keys() {
     info "Adding GitHub SSH host entries to $ssh_config."
     local tmp
     tmp=$(mktemp)
-    cat > "$tmp" <<'SSHCONF'
+    cat >"$tmp" <<'SSHCONF'
 Host github.com
   HostName github.com
   User git
@@ -359,7 +362,7 @@ Host github-work
 
 SSHCONF
     # Prepend to any pre-existing config, preserving manual additions
-    [[ -f "$ssh_config" ]] && cat "$ssh_config" >> "$tmp"
+    [[ -f "$ssh_config" ]] && cat "$ssh_config" >>"$tmp"
     mv "$tmp" "$ssh_config"
     chmod 600 "$ssh_config"
   fi
@@ -424,15 +427,15 @@ setup_tailscale() {
       if [[ ! -f "$macmini_key" ]]; then
         if command -v op >/dev/null 2>&1 && op whoami >/dev/null 2>&1; then
           info "Extracting Mac Mini public key from 1Password."
-          op item get "Mac Mini" --fields "public key" > "$macmini_key" \
-            || warn "Failed to extract 'Mac Mini' public key from 1Password."
+          op item get "Mac Mini" --fields "public key" >"$macmini_key" ||
+            warn "Failed to extract 'Mac Mini' public key from 1Password."
         else
           warn "1Password CLI not available; you'll need to manually create ~/.ssh/macmini.pub with the public key."
         fi
       fi
 
       info "Adding Mac Mini entry to $ssh_config."
-      cat >> "$ssh_config" <<'SSHCONF'
+      cat >>"$ssh_config" <<'SSHCONF'
 
 Host macmini
   HostName 100.82.197.87
@@ -441,6 +444,7 @@ Host macmini
   IdentitiesOnly yes
   ServerAliveInterval 60
   ServerAliveCountMax 3
+  ForwardAgent yes
 SSHCONF
       chmod 600 "$ssh_config"
 
@@ -448,8 +452,8 @@ SSHCONF
       if [[ -f "$macmini_key" ]]; then
         info "Copying public key to Mac Mini (you'll be prompted for the Mac Mini password once)."
         ssh -o PreferredAuthentications=password macmini \
-          "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys" < "$macmini_key" \
-          || warn "Failed to copy key — you can add it manually to the Mac Mini's ~/.ssh/authorized_keys."
+          "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys" <"$macmini_key" ||
+          warn "Failed to copy key — you can add it manually to the Mac Mini's ~/.ssh/authorized_keys."
       fi
 
       info "Mac Mini SSH configured. Use: ssh macmini"
@@ -527,8 +531,8 @@ create_symlinks() {
   link_file "$REPO_ROOT/hammerspoon" "$HOME/.hammerspoon"
 
   # Library/Application Support targets
-  link_file "$REPO_ROOT/Code/User"     "$HOME/Library/Application Support/Code/User"
-  link_file "$REPO_ROOT/Cursor/User"   "$HOME/Library/Application Support/Cursor/User"
+  link_file "$REPO_ROOT/Code/User" "$HOME/Library/Application Support/Code/User"
+  link_file "$REPO_ROOT/Cursor/User" "$HOME/Library/Application Support/Cursor/User"
   link_file "$REPO_ROOT/Windsurf/User" "$HOME/Library/Application Support/Windsurf/User"
 }
 
@@ -542,8 +546,8 @@ setup_tmux() {
   fi
 
   info "Installing TPM (Tmux Plugin Manager)."
-  git clone https://github.com/tmux-plugins/tpm "$tpm_dir" \
-    || warn "Failed to clone TPM — check network connectivity."
+  git clone https://github.com/tmux-plugins/tpm "$tpm_dir" ||
+    warn "Failed to clone TPM — check network connectivity."
 }
 
 # ---------- Step 14: Fisher plugins ----------
@@ -568,7 +572,7 @@ setup_fisher() {
   local installed
   installed=$("$fish_path" -c 'fisher list 2>/dev/null' | sort) || true
   local wanted
-  wanted=$(sort < "$fish_plugins")
+  wanted=$(sort <"$fish_plugins")
 
   if [[ -n "$installed" && "$installed" == "$wanted" ]]; then
     info "Fisher plugins already installed."
@@ -759,7 +763,7 @@ configure_macos_defaults() {
 
     # NSGlobalDomain and kCFPreferencesAnyApplication map to .GlobalPreferences on disk
     case "$domain" in
-      NSGlobalDomain|kCFPreferencesAnyApplication) managed_domain=".GlobalPreferences" ;;
+    NSGlobalDomain | kCFPreferencesAnyApplication) managed_domain=".GlobalPreferences" ;;
     esac
 
     local managed_plist="/Library/Managed Preferences/${managed_domain}"
