@@ -30,10 +30,10 @@ if test $IS_MACOS -eq 1
     fish_add_path /opt/homebrew/opt/libpq/bin
     fish_add_path /Applications/Postgres.app/Contents/Versions/15/bin
     fish_add_path $HOME/.codeium/windsurf/bin
-    fish_add_path $HOME/.local/bin
 end
 
 # Common paths (both macOS and Linux)
+fish_add_path $HOME/.local/bin
 fish_add_path $HOME/go/bin # Go binaries (e.g., gitmux)
 fish_add_path $HOME/.config/bin # custom scripts; currently empty
 fish_add_path $HOME/.local/share/bob/nvim-bin #nvim bob
