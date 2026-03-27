@@ -323,11 +323,16 @@ install_carapace() {
     return
   fi
   info "Installing carapace."
-  local tag
-  tag=$(gh_latest_tag "carapace-sh/carapace-bin")
+  local url
+  url=$(curl -fsSL "https://api.github.com/repos/carapace-sh/carapace-bin/releases/latest" \
+    | jq -r ".assets[] | select(.name | test(\"linux_${DEB_ARCH}\\\\.tar\\\\.gz$\")) | .browser_download_url")
+  if [[ -z "$url" ]]; then
+    warn "Could not find carapace release for linux_${DEB_ARCH}; skipping."
+    return
+  fi
   local tmp
   tmp=$(mktemp -d)
-  curl -fsSL "https://github.com/carapace-sh/carapace-bin/releases/download/${tag}/carapace-bin_linux_${DEB_ARCH}.tar.gz" | tar -C "$tmp" -xzf -
+  curl -fsSL "$url" | tar -C "$tmp" -xzf -
   sudo install "$tmp/carapace" /usr/local/bin/
   rm -rf "$tmp"
 }
