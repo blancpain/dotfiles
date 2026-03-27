@@ -39,10 +39,6 @@ if [[ $(uname) != "Linux" ]]; then
   exit 1
 fi
 
-if [[ $EUID -eq 0 ]]; then
-  echo "Run this script as a regular user (sudo will be requested when needed)." >&2
-  exit 1
-fi
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT=$(cd "${SCRIPT_DIR}/.." && pwd)
