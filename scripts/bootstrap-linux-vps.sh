@@ -297,7 +297,11 @@ install_bottom() {
   info "Installing bottom."
   local tag
   tag=$(gh_latest_tag "ClementTsang/bottom")
-  install_deb "https://github.com/ClementTsang/bottom/releases/download/${tag}/bottom_${tag}_${DEB_ARCH}.deb"
+  local tmp
+  tmp=$(mktemp -d)
+  curl -fsSL "https://github.com/ClementTsang/bottom/releases/download/${tag}/bottom_${ARCH}-unknown-linux-gnu.tar.gz" | tar -C "$tmp" -xzf -
+  sudo install "$tmp/btm" /usr/local/bin/
+  rm -rf "$tmp"
 }
 
 install_gdu() {
