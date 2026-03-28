@@ -32,6 +32,11 @@ if test $IS_MACOS -eq 1
     fish_add_path $HOME/.codeium/windsurf/bin
 end
 
+# Linux-specific paths
+if test $IS_MACOS -eq 0
+    fish_add_path $HOME/.local/share/fnm
+end
+
 # Common paths (both macOS and Linux)
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/go/bin # Go binaries (e.g., gitmux)
