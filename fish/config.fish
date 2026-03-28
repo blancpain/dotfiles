@@ -127,7 +127,7 @@ abbr ct cargo test
 # python 
 abbr p python3
 abbr pv uv venv
-abbr ps source .venv/bin/activate.fish
+abbr pa source .venv/bin/activate.fish
 
 # Platform-specific abbreviations
 if test $IS_MACOS -eq 1
