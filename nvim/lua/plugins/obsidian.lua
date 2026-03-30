@@ -2,6 +2,7 @@ return {
   "obsidian-nvim/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
   ft = "markdown",
+  cond = vim.fn.isdirectory(vim.fn.expand("~/repos/obsidian")) == 1,
   ---@module 'obsidian'
   ---@type obsidian.config
   opts = {
@@ -31,7 +32,24 @@ return {
         if not id:match("^%d+%-") then
           id = tostring(os.time()) .. "-" .. id
         end
-        local out = { id = id, aliases = note.aliases, tags = note.tags, area = {}, project = {} }
+
+        local function clean_list(list)
+          local cleaned = {}
+          for _, v in ipairs(list or {}) do
+            if v ~= nil and v ~= "" then
+              cleaned[#cleaned + 1] = v
+            end
+          end
+          return cleaned
+        end
+
+        local out = {
+          id = id,
+          aliases = clean_list(note.aliases),
+          tags = clean_list(note.tags),
+          area = {},
+          project = {},
+        }
         if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
           for k, v in pairs(note.metadata) do
             out[k] = v
