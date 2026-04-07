@@ -178,6 +178,7 @@ setup_node() {
     "tsx"
     "typescript"
     "tree-sitter-cli"
+    "ctx7"
   )
 
   info "Installing global npm packages."
