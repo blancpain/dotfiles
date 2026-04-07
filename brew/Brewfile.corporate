@@ -12,6 +12,7 @@ brew "bottom"
 brew "btop"
 brew "oven-sh/bun/bun"
 brew "carapace"
+brew "cmake"
 brew "cloc"
 brew "cpanminus"            # perlPackages.Appcpanminus in nix
 brew "curl"

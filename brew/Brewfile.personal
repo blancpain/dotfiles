@@ -13,6 +13,7 @@ brew "bottom"
 brew "btop"
 brew "oven-sh/bun/bun"
 brew "carapace"
+brew "cmake"
 brew "cloc"
 brew "cloudflared"
 brew "cpanminus"            # perlPackages.Appcpanminus in nix
